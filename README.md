@@ -2,12 +2,15 @@
 
 Entorn per a la manipulació i edició de documents txt i xml
 
-Cortés Danés, Ariadna
-Duran Manzano, Pau
-López Domènech, Marc
-Valls Camps, Marc
+--- 
 
-ariadna.cortes.danes@estudiantat.upc.edu
-pau.duran.manzano@estudiantat.upc.edu
-marc.lopez.domenech@estudiantat.upc.edu
-marc.valls.camps@estudiantat.upc.edu
+**AUTHORS**
+- Cortés Danés, Ariadna :yum:
+- Duran Manzano, Pau :relaxed:
+- López Domènech, Marc :sunglasses:
+- Valls Camps, Marc :innocent:  
+ 
+ariadna.cortes.danes@estudiantat.upc.edu   
+pau.duran.manzano@estudiantat.upc.edu   
+marc.lopez.domenech@estudiantat.upc.edu   
+marc.valls.camps@estudiantat.upc.edu   
