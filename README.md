@@ -6,7 +6,7 @@ Entorn per a la manipulació i edició de documents txt i xml
 
 **AUTHORS**
 - Cortés Danés, Ariadna :yum:
-- Duran Manzano, Pau :relaxed:
+- Duran Manzano, Pau :blush:
 - López Domènech, Marc :sunglasses:
 - Valls Camps, Marc :innocent:  
  
