@@ -1,5 +1,6 @@
 package domain.documents;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -25,6 +26,8 @@ public class DocumentsSet {
      * @return DocumentsSet
      */
     private DocumentsSet() {
+        documents = new HashMap<>();
+        presence = new HashMap<>();
     }
 
     /**
