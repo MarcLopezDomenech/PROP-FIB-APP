@@ -1,10 +1,12 @@
 package domain;
 
+import java.util.List;
+import javafx.util.Pair;
+
 import domain.documents.DocumentsSet;
 import domain.expressions.ExpressionsSet;
 import domain.expressions.Expression;
 
-import java.util.List;
 
 /**
  * @class CtrlDomain
