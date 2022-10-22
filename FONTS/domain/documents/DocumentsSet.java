@@ -4,8 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-// ToDo: Trobar el import per poder fer servir Pair
+import javafx.util.Pair;
 
 import domain.documents.Document;
 import domain.expressions.Expression;
