@@ -8,6 +8,7 @@ import java.util.Set;
 // ToDo: Trobar el import per poder fer servir Pair
 
 import domain.documents.Document;
+import domain.expressions.Expression;
 
 /**
  * @class DocumentsSet
@@ -124,7 +125,7 @@ public class DocumentsSet {
         return null;
     }
 
-    public List<Pair<String, String>> listByExpression(String expression) {
+    public List<Pair<String, String>> listByExpression(Expression expression) {
         return null;
     }
 
