@@ -6,8 +6,8 @@ import java.util.*;
 
 /**
  * @class InternalDocument 
- * @brief This class stores the interal data that the system saves for each
- * document, that is used to compare documents and search content similarities 
+ * @brief Classe que representa les dades internes que el sistema guarda per a cada document 
+ * Aquesta informacio es utilitzada per a comparar documents i per a evaluar rellevancia  
  * @author Ariadna Cortes Danes
  */
 public class InternalDocument {
@@ -15,50 +15,57 @@ public class InternalDocument {
     private Map<String, Integer>  relevantWords;
     private int totalWords;
 
-    /**
-     * Default constructor
+     /**
+     * @brief Constructora per defecte de InternalDocument
      */
     InternalDocument(){
-        totalTerms = 0;
+        analizeContent("");
     }
 
     /**
-     * Normal constructor of a document
+     * @brief Constructora de InternalDocument
+     * @param content contingut del que s'ha de guardar la representacio
      */
     InternalDocument(String content) {
         analizeContent(content);
     }   
 
-    InternalDocument(Map<String,Integer> relevantWords) {
+    /**
+     * @brief Constructora per a fer backUps de InternalDocument
+     * @param relevantWords Map<paraula,cops> que correspon a l'analisi del contingut d'un document
+     * @param numWords nombre total de paraules que te el contingut del document
+     */
+    InternalDocument(Map<String,Integer> relevantWords, int totalWords) {
         this.relevantWords = relevantWords;
+        this.totalWords = totalWords;
     } 
 
     /**
-     * Get del atribut words
+     * @brief get de l'atribut relevantWords
      */
     public Map<String,Integer> getRelevantWords() {
         return relevantWords;
     }
 
     /**
-     * Get del atribut words
+     * @brief get del set de claus de l'atribut relevantWords
      */
     public Set<String> getRelevantKeyWords() {
         return relevantWords.keySet();
     }
 
     /**
-     * Get del atribut words
+     * @brief get de l'atribut totalWords (nombre total de paraules del contingut)
      */
     public int getTotalWords() {
         return totalWords;
     }
 
     /**
-     * @brief Extract the data corresponding to the contents recieved
-     * @details his function initializes/actualizes a map<keyword, times>
-     * where times is the number of repetitions of the keyword in the content
-     * @param Content the content to analize
+     * @brief Analitzar les dades que el sistema guarda pel contingut rebut
+     * @details aquesta funcio inicialitza/actualitza el contingut de revelantWords
+     * (Map<paraula,cops>) i de totalWords (nombre total de paraules del contingut)
+     * @param Content el contingut a analitzar
      */  
     public void analizeContent (String content) {
         Map<String,Integer> words = new HashMap<String,Integer>();
