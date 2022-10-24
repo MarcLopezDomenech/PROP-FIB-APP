@@ -6,12 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.print.DocFlavor.STRING;
-
-import javafx.util.Pair;
-
 import domain.documents.Document;
 import domain.expressions.Expression;
+import domain.util.Pair;
 
 /**
  * @class DocumentsSet
@@ -133,7 +130,7 @@ public class DocumentsSet {
         addPresence(newWords);
     }
 
-    public List<Pair<String, String>> listSimilars(String title, String author) {
+    public List<Pair<String, String>> listSimilars(String title, String author, int k) {
         return null;
     }
 
