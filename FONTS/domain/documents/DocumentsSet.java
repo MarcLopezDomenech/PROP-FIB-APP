@@ -1,9 +1,13 @@
 package domain.documents;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import javax.print.DocFlavor.STRING;
+
 import javafx.util.Pair;
 
 import domain.documents.Document;
@@ -95,11 +99,20 @@ public class DocumentsSet {
     }
 
     public Boolean existsDocument(String title, String author) {
-        return null;
+        Map<String,Document> maptitle=documents.get(author);
+        return maptitle.containsKey(title);
     }
 
     public String getContentDocument(String title, String author) {
-        return null;
+        Document resdoc = getDocument(title, author);
+        if(resdoc == null){
+            //EXCEPTION
+            System.out.println("NO EXISTE EL DOCUMENTO");
+            return "EXCEPTION";
+        }
+        else{
+            return resdoc.getContent();
+        }
     }
 
     /**
@@ -125,15 +138,46 @@ public class DocumentsSet {
     }
 
     public List<Pair<String, String>> listByExpression(Expression expression) {
-        return null;
+        List<Pair<String, String>> expr_list;
+        for (Map.Entry<String, Map<String, Document>> d : documents.entrySet()) {
+            String aut = d.getKey();
+            Map<String, Document> titDoc = d.getValue();
+            for (Map.Entry<String, Document> d2 : titDoc.entrySet()) {
+                 String tit = d2.getKey();
+                 Document doc = d2.getValue();
+                 if(expression.evaluate(doc.getContent())){
+                    expr_list.add(new Pair(tit,aut));
+                 }
+            }
+        }
+        return expr_list;
     }
 
     public List<Pair<String, String>> listTitlesOfAuthor(String author) {
+        List<Pair<String, String>> expr_list;
+        Map<String,Document> maptitle = documents.get(author);
+        for (Map.Entry<String, Document> d2 : maptitle.entrySet()) {
+            String tit = d2.getKey();
+            expr_list.add(new Pair(tit,author));
+        }
         return null;
     }
 
     public List<String> listAuthorsByPrefix(String author) {
-        return null;
+        ArrayList<String> lista; 
+        int len = author.length();
+        for (Map.Entry<String, Map<String,Document>> entry : documents.entrySet()) {
+            String nom=entry.getKey();
+            boolean no_err=false;
+            for (int i = 0; i < len; i++){
+                if (nom[i] != author[i]){
+                    no_err=false;
+                    break;
+                }
+            }
+            if(no_err) lista.add(nom);
+        }
+        return lista;
     }
 
     public List<Pair<String, String>> listByQuery(String query, int k) {
@@ -141,7 +185,9 @@ public class DocumentsSet {
     }
 
     private Document getDocument(String title, String author) {
-        return null;
+        Map<String,Document> maptitle = documents.get(author);
+        Document resdoc = maptitle.get(title);
+        return resdoc;
     }
 
     /**
