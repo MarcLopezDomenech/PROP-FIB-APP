@@ -100,12 +100,12 @@ public class DocumentsSet {
         return maptitle.containsKey(title);
     }
 
-    public String getContentDocument(String title, String author) {
+    public String getContentDocument(String title, String author) throws ExcepNoDoc
+    {
         Document resdoc = getDocument(title, author);
         if(resdoc == null){
             //EXCEPTION
-            System.out.println("NO EXISTE EL DOCUMENTO");
-            return "EXCEPTION NO EXISTE EL DOCUMENTO";
+            throw new ExcepNoDoc("El documento con título y autor: "+title +' '+author+" no existe");
         }
         else{
             return resdoc.getContent();
@@ -143,7 +143,7 @@ public class DocumentsSet {
                  String tit = d2.getKey();
                  Document doc = d2.getValue();
                  if(expression.evaluate(doc.getContent())){
-                    expr_list.add(new Pair(tit,aut));
+                    expr_list.add(new Pair<String,String>(tit,aut));
                  }
             }
         }
@@ -155,7 +155,7 @@ public class DocumentsSet {
         Map<String,Document> maptitle = documents.get(author);
         for (Map.Entry<String, Document> d2 : maptitle.entrySet()) {
             String tit = d2.getKey();
-            expr_list.add(new Pair(tit,author));
+            expr_list.add(new Pair<String,String>(tit,author));
         }
         return expr_list;
     }
