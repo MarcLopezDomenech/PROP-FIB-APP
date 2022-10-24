@@ -108,7 +108,7 @@ public class DocumentsSet {
         if(resdoc == null){
             //EXCEPTION
             System.out.println("NO EXISTE EL DOCUMENTO");
-            return "EXCEPTION";
+            return "EXCEPTION NO EXISTE EL DOCUMENTO";
         }
         else{
             return resdoc.getContent();
@@ -154,23 +154,23 @@ public class DocumentsSet {
     }
 
     public List<Pair<String, String>> listTitlesOfAuthor(String author) {
-        List<Pair<String, String>> expr_list;
+        List<Pair<String, String>> expr_list= new ArrayList<Pair<String,String>>();
         Map<String,Document> maptitle = documents.get(author);
         for (Map.Entry<String, Document> d2 : maptitle.entrySet()) {
             String tit = d2.getKey();
             expr_list.add(new Pair(tit,author));
         }
-        return null;
+        return expr_list;
     }
 
     public List<String> listAuthorsByPrefix(String author) {
-        ArrayList<String> lista; 
+        ArrayList<String> lista = new ArrayList<String>(); 
         int len = author.length();
         for (Map.Entry<String, Map<String,Document>> entry : documents.entrySet()) {
             String nom=entry.getKey();
             boolean no_err=false;
             for (int i = 0; i < len; i++){
-                if (nom[i] != author[i]){
+                if (nom.charAt(i) != author.charAt(i)){
                     no_err=false;
                     break;
                 }
