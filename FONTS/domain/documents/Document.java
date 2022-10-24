@@ -19,9 +19,6 @@ public class Document {
     private String originalFormat; //xml or txt
     private InternalDocument internalDoc;
 
-    public static void main(String[] args) {
-        System.out.println("Hello World \n wooooorld");
-    }
     /**
      * @brief Constructora per defecte de document
      */
