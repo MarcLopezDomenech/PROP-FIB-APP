@@ -18,6 +18,9 @@ import domain.util.Pair;
 public class DocumentsSet {
     private static DocumentsSet singletonObject;
 
+    // Nombre de documents que estan donats d'alta al sistema
+    private int numDocuments;
+
     // Conjunt de documents en format (autor(títol, document))
     private Map<String, Map<String, Document>> documents;
 
@@ -32,6 +35,7 @@ public class DocumentsSet {
      * @return DocumentsSet
      */
     private DocumentsSet() {
+        numDocuments = 0;
         documents = new HashMap<>();
         presence = new HashMap<>();
     }
@@ -68,6 +72,7 @@ public class DocumentsSet {
         // En qualsevol cas, afegim el títol-document a l'autor i el posem a tots els documents
         docTitlesAuthor.put(title, newDoc);
         documents.put(author, docTitlesAuthor);
+        ++numDocuments;
 
         // Només queda actualitzar el vector de presència
         Set<String> newWords = newDoc.getRelevantWords();
@@ -89,6 +94,7 @@ public class DocumentsSet {
         if (doc == null); // ToDo: throws exception
         docTitlesAuthor.remove(title);
         documents.put(author, docTitlesAuthor);
+        --numDocuments;
 
         // Només queda actualitzar el vector de presència
         Set<String> oldWords = doc.getRelevantWords();
