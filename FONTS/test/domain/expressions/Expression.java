@@ -1,4 +1,4 @@
 package test.domain.expressions;
 
-public class ExpressionsSetStub {
+public class Expression {
 }
