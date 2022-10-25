@@ -1,9 +1,7 @@
-package domain.expressions;
+package main.domain.expressions;
 
 import java.util.Map;
 import java.util.HashMap;
-
-import domain.expressions.Expression;
 
 /**
  * @class ExpressionsSet

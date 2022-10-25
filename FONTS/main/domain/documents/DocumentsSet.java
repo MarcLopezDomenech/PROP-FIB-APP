@@ -1,4 +1,4 @@
-package domain.documents;
+package main.domain.documents;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,9 +9,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 
-import domain.documents.Document;
-import domain.expressions.Expression;
-import domain.util.Pair;
+import main.domain.expressions.Expression;
+import main.domain.util.Pair;
 
 /**
  * @class DocumentsSet
