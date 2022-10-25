@@ -1,11 +1,11 @@
-package domain;
+package main.domain;
 
 import java.util.List;
 
-import domain.documents.DocumentsSet;
-import domain.expressions.ExpressionsSet;
-import domain.expressions.Expression;
-import domain.util.Pair;
+import main.domain.documents.DocumentsSet;
+import main.domain.expressions.ExpressionsSet;
+import main.domain.expressions.Expression;
+import main.domain.util.Pair;
 
 
 /**
