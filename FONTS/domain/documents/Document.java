@@ -41,6 +41,20 @@ public class Document {
     }
 
     /**
+     * @brief constructora de document sense format especific
+     * @param author autor del document creat
+     * @param title titol del document creat
+     * @param contingut del document creat
+     */
+    public Document(String author, String title, String content) {
+        this.author = author;
+        this.title = title;
+        this.content = content;
+        this.originalFormat = null;
+        this.internalDoc = new InternalDocument(content);
+    }
+
+    /**
      * @brief Constructora del document quan fem un backUp
      * @param backUpInformation string per ser interpretat com a dades del document 
      */

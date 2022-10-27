@@ -69,7 +69,7 @@ public class InternalDocument {
      */  
     public void analizeContent (String content) {
         Map<String,Integer> words = new HashMap<String,Integer>();
-        String[] splited = content.split("( )|(.)|(,)|(!)|(?)");
+        String[] splited = content.split("^\\w");
         totalWords = splited.length;
         
         for (String word : splited) {
