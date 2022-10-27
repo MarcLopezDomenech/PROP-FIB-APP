@@ -103,12 +103,26 @@ public class DocumentsSet {
         Set<String> oldWords = doc.getRelevantWords();
         removePresence(oldWords);
     }
-
+    /**
+     * @brief Operació per saber la existencia del document
+     * @details Retorna un boolea de la existencia del doument identificat pels paràmetres
+     * @param title títol del document
+     * @param author autor del document
+     * @post Es retorna si existeix o no el document definit per title i author
+     */
     public Boolean existsDocument(String title, String author) {
         Map<String,Document> maptitle=documents.get(author);
         return maptitle.containsKey(title);
     }
-
+    /**
+     * @brief Operació per conseguir el contingut d'un document
+     * @details Retorna el contingut del document identificat pels paràmetres
+     * @pre El document identificat per (title, author) existeix
+     * @param title títol del document del que volem el contingut
+     * @param author autor del document del que volem el contingut
+     * @post Es retorna el contingut del document amb title i author
+     * @throws ExceptionNoDocument (String title, String author)
+     */
     public String getContentDocument(String title, String author) throws ExceptionNoDocument
     {
         Document resdoc = getDocument(title, author);
@@ -169,15 +183,15 @@ public class DocumentsSet {
         return result;
     }
 
-    public List<Pair<String, String>> listByExpression(Expression expression) {
-        List<Pair<String, String>> expr_list;
+    public List<Pair<String, String>> listByExpression(Expression expression, Boolean caseSensitive) {
+        List<Pair<String, String>> expr_list= new ArrayList<Pair<String, String>>();
         for (Map.Entry<String, Map<String, Document>> d : documents.entrySet()) {
             String aut = d.getKey();
             Map<String, Document> titDoc = d.getValue();
             for (Map.Entry<String, Document> d2 : titDoc.entrySet()) {
                  String tit = d2.getKey();
                  Document doc = d2.getValue();
-                 if(expression.evaluate(doc.getContent())){
+                 if(expression.evaluate(doc.getContent(),caseSensitive)){
                     expr_list.add(new Pair<String,String>(tit,aut));
                  }
             }
