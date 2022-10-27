@@ -1,10 +1,9 @@
 package test.domain;
 
-import main.domain.*;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class CtrlDomainTest {
+public class DriverCtrlDomain {
     @Test
     public void prova() {
         double result = 60;

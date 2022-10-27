@@ -1,4 +1,4 @@
 package test.domain.util;
 
-public class PairStub {
+public class Pair {
 }

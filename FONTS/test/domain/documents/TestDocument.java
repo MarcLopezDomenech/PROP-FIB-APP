@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import main.domain.documents.Document;
 import org.junit.Test;
 
-public class DocumentTest {
+public class TestDocument {
     
     /**
 	 * Test dels getters

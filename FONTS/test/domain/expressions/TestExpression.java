@@ -1,4 +1,4 @@
 package test.domain.expressions;
 
-public class ExpressionTest {
+public class TestExpression {
 }

@@ -1,4 +1,4 @@
 package test.domain.documents;
 
-public class DocumentsSetTest {
+public class TestDocumentsSet {
 }
