@@ -1,4 +1,4 @@
 package test.domain.util;
 
-public class PairTest {
+public class TestPair {
 }

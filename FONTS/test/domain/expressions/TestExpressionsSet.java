@@ -1,4 +1,4 @@
 package test.domain.expressions;
 
-public class ExpressionsSetTest {
+public class TestExpressionsSet {
 }
