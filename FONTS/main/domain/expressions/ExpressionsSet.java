@@ -3,6 +3,8 @@ package main.domain.expressions;
 import java.util.Map;
 import java.util.HashMap;
 
+import main.domain.expressions.Expression;
+
 /**
  * @class ExpressionsSet
  * @brief Classe que emmagatzema totes les expression booleanes que estan registrades al sistema i que en permet la seva gestió
