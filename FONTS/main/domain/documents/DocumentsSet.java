@@ -11,6 +11,7 @@ import java.util.Iterator;
 
 import main.domain.expressions.Expression;
 import main.domain.util.Pair;
+import main.excepcions.ExceptionNoDocument;
 
 /**
  * @class DocumentsSet
@@ -108,12 +109,12 @@ public class DocumentsSet {
         return maptitle.containsKey(title);
     }
 
-    public String getContentDocument(String title, String author) throws ExcepNoDoc
+    public String getContentDocument(String title, String author) throws ExceptionNoDocument
     {
         Document resdoc = getDocument(title, author);
         if(resdoc == null){
             //EXCEPTION
-            throw new ExcepNoDoc("El documento con título y autor: "+title +' '+author+" no existe");
+            throw new ExceptionNoDocument(title, author);
         }
         else{
             return resdoc.getContent();
