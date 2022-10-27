@@ -159,9 +159,9 @@ public class CtrlDomain {
      * @return Llista dels identificadors (títol, autor) dels documents que tenen alguna frase que compleix l'expressió donada
      * @post L'estat del sistema no queda alterat
      */
-    List<Pair<String, String>> listByExpression(String expression) {
+    List<Pair<String, String>> listByExpression(String expression, Boolean caseSensitive) {
         Expression expr = es.getExpression(expression);
-        return ds.listByExpression(expr);
+        return ds.listByExpression(expr, caseSensitive);
     }
 
     /**
