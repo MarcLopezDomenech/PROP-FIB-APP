@@ -1,14 +1,12 @@
-package domain.documents;
-
-import java.util.*;
+package test.domain.documents;
 
 //TestChecks
 import static org.junit.Assert.*;
+
+import main.domain.documents.Document;
 import org.junit.Test;
 
-import domain.documents.Document;
-
-public class TestDocument {
+public class DocumentTest {
     
     /**
 	 * Test dels getters

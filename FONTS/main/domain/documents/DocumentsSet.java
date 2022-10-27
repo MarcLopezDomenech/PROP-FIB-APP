@@ -1,17 +1,16 @@
-package domain.documents;
+package main.domain.documents;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
 
-import javax.print.DocFlavor.STRING;
-
-import javafx.util.Pair;
-
-import domain.documents.Document;
-import domain.expressions.Expression;
+import main.domain.expressions.Expression;
+import main.domain.util.Pair;
 
 /**
  * @class DocumentsSet
@@ -20,6 +19,9 @@ import domain.expressions.Expression;
  */
 public class DocumentsSet {
     private static DocumentsSet singletonObject;
+
+    // Nombre de documents que estan donats d'alta al sistema
+    private int numDocuments;
 
     // Conjunt de documents en format (autor(títol, document))
     private Map<String, Map<String, Document>> documents;
@@ -35,6 +37,7 @@ public class DocumentsSet {
      * @return DocumentsSet
      */
     private DocumentsSet() {
+        numDocuments = 0;
         documents = new HashMap<>();
         presence = new HashMap<>();
     }
@@ -71,6 +74,7 @@ public class DocumentsSet {
         // En qualsevol cas, afegim el títol-document a l'autor i el posem a tots els documents
         docTitlesAuthor.put(title, newDoc);
         documents.put(author, docTitlesAuthor);
+        ++numDocuments;
 
         // Només queda actualitzar el vector de presència
         Set<String> newWords = newDoc.getRelevantWords();
@@ -92,6 +96,7 @@ public class DocumentsSet {
         if (doc == null); // ToDo: throws exception
         docTitlesAuthor.remove(title);
         documents.put(author, docTitlesAuthor);
+        --numDocuments;
 
         // Només queda actualitzar el vector de presència
         Set<String> oldWords = doc.getRelevantWords();
@@ -103,12 +108,12 @@ public class DocumentsSet {
         return maptitle.containsKey(title);
     }
 
-    public String getContentDocument(String title, String author) {
+    public String getContentDocument(String title, String author) throws ExcepNoDoc
+    {
         Document resdoc = getDocument(title, author);
         if(resdoc == null){
             //EXCEPTION
-            System.out.println("NO EXISTE EL DOCUMENTO");
-            return "EXCEPTION NO EXISTE EL DOCUMENTO";
+            throw new ExcepNoDoc("El documento con título y autor: "+title +' '+author+" no existe");
         }
         else{
             return resdoc.getContent();
@@ -133,8 +138,34 @@ public class DocumentsSet {
         addPresence(newWords);
     }
 
-    public List<Pair<String, String>> listSimilars(String title, String author) {
-        return null;
+    public List<Pair<String, String>> listSimilars(String title, String author, int k) {
+        Document original = getDocument(title, author);
+        List<Pair<Pair<String, String>, Double>> ordre = new ArrayList<>();
+        for (Map.Entry<String, Map<String, Document>> authorTitleDoc : documents.entrySet()) {
+            String aut = authorTitleDoc.getKey();
+            Map<String, Document> titleDocs = authorTitleDoc.getValue();
+            for (Map.Entry<String, Document> titleDoc : titleDocs.entrySet()) {
+                String tit = titleDoc.getKey();
+                // En cas que no estiguem en el document original
+                if (!(tit.equals(title) && aut.equals(author))) {
+                    Document doc = titleDoc.getValue();
+                    // Obtenim el valor i l'afegim a la llista
+                    Double value = original.compare(doc, numDocuments, presence);
+                    ordre.add(new Pair<>(new Pair<>(tit, aut), value));
+                }
+            }
+        }
+        // Ordenem la llista en funció dels valors
+        Collections.sort(ordre, new ValueComparator());
+        List<Pair<String, String>> result = new ArrayList<>();
+        Iterator<Pair<Pair<String, String>, Double>> iterator = ordre.listIterator();
+        int i = 0;
+        // Iterem per tota la llista ordenada fins que arribem a k o al final, per guardar el resultat que retornem
+        while(i < k && iterator.hasNext()) {
+            result.add(iterator.next().getFirst());
+            ++i;
+        }
+        return result;
     }
 
     public List<Pair<String, String>> listByExpression(Expression expression) {
@@ -146,7 +177,7 @@ public class DocumentsSet {
                  String tit = d2.getKey();
                  Document doc = d2.getValue();
                  if(expression.evaluate(doc.getContent())){
-                    expr_list.add(new Pair(tit,aut));
+                    expr_list.add(new Pair<String,String>(tit,aut));
                  }
             }
         }
@@ -158,7 +189,7 @@ public class DocumentsSet {
         Map<String,Document> maptitle = documents.get(author);
         for (Map.Entry<String, Document> d2 : maptitle.entrySet()) {
             String tit = d2.getKey();
-            expr_list.add(new Pair(tit,author));
+            expr_list.add(new Pair<String,String>(tit,author));
         }
         return expr_list;
     }
@@ -223,4 +254,24 @@ public class DocumentsSet {
         }
     }
 
+    /**
+     * @class ValueComparator
+     * @brief Classe que permet comparar Pair<Pair<String, String>, Double>
+     * @author pau.duran.manzano
+     */
+    private class ValueComparator implements Comparator<Pair<Pair<String, String>, Double>> {
+        /**
+         * @brief Operació per comparar en funció del segon valor (el second) d'un pair
+         * @pre Cap dels valors dels camps de dins dels pairs és null
+         * @param p1 Primer pair a comparar
+         * @param p2 Segon pair a comprar
+         * @return Es retorna 1 si p1 té un second major que p2, 0 si són iguals i -1 altrament
+         */
+        @Override
+        public int compare(Pair<Pair<String, String>, Double> p1, Pair<Pair<String, String>, Double> p2) {
+            if (p1.getSecond() > p2.getSecond()) return 1;
+            else if (p1.getSecond() == p2.getSecond()) return 0;
+            else return -1;
+        }
+    }
 }

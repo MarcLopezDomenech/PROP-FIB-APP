@@ -1,4 +1,4 @@
-package domain.documents;
+package main.domain.documents;
 
 //External include
 import java.util.*;

@@ -1,9 +1,6 @@
-package domain.documents;
+package main.domain.documents;
 
 import java.util.*;
-import java.math.*;
-
-import domain.documents.InternalDocument;
 
 /**
  * @class Document 

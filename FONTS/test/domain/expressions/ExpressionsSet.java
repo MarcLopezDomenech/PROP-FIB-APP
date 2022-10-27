@@ -1,4 +1,4 @@
-package domain.expressions;
+package test.domain.expressions;
 
 public class ExpressionsSet {
 }
