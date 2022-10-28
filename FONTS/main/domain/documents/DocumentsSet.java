@@ -199,7 +199,14 @@ public class DocumentsSet {
         }
         return result;
     }
-
+    /**
+     * @brief Operació per conseguir els documents que compleixen una expressió
+     * @details Retorna una llista dels documents identificats per títul i autor que compleixen l'expressió booleana
+     * @pre L'expressió expression existeix
+     * @param expression Expression en la que volem evaluar els documents
+     * @param caseSensitive Boolea que identifica com s'evalua el contigut en l'expressió
+     * @post Tots els docuemnts de la llista existeixen i compleixen l'expressió booleana en el cas de caseSensitive
+     */
     public List<Pair<String, String>> listByExpression(Expression expression, Boolean caseSensitive) {
         List<Pair<String, String>> expr_list= new ArrayList<Pair<String, String>>();
         for (Map.Entry<String, Map<String, Document>> d : documents.entrySet()) {
@@ -215,7 +222,12 @@ public class DocumentsSet {
         }
         return expr_list;
     }
-
+    /**
+     * @brief Operació per conseguir els títols dels documents d'un autor
+     * @details Retorna una llista dels documents identificats per títul i autor que ha escrit l'autor
+     * @param author autor dels documents que busquem
+     * @post Tots els docuemnts de la llista son del autor author
+     */
     public List<Pair<String, String>> listTitlesOfAuthor(String author) {
         List<Pair<String, String>> expr_list= new ArrayList<Pair<String,String>>();
         Map<String,Document> maptitle = documents.get(author);
