@@ -55,7 +55,7 @@ public class Document {
      * @brief Constructora del document quan fem un backUp
      * @param backUpInformation string per ser interpretat com a dades del document 
      */
-    Document(String backUpInformation) {
+    public Document(String backUpInformation) {
         /*this.author = author;
         this.title = title;
         this.content = content;

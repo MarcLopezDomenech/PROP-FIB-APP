@@ -17,16 +17,16 @@ public class InternalDocument {
 
      /**
      * @brief Constructora per defecte de InternalDocument
-     */
+     
     InternalDocument(){
         analizeContent("");
-    }
+    }*/
 
     /**
      * @brief Constructora de InternalDocument
      * @param content contingut del que s'ha de guardar la representacio
      */
-    InternalDocument(String content) {
+    public InternalDocument(String content) {
         analizeContent(content);
     }   
 
@@ -35,7 +35,7 @@ public class InternalDocument {
      * @param relevantWords Map<paraula,cops> que correspon a l'analisi del contingut d'un document
      * @param numWords nombre total de paraules que te el contingut del document
      */
-    InternalDocument(Map<String,Integer> relevantWords, int totalWords) {
+    public InternalDocument(Map<String,Integer> relevantWords, int totalWords) {
         this.relevantWords = relevantWords;
         this.totalWords = totalWords;
     } 
@@ -69,7 +69,7 @@ public class InternalDocument {
      */  
     public void analizeContent (String content) {
         Map<String,Integer> words = new HashMap<String,Integer>();
-        String[] splited = content.split("^\\w");
+        String[] splited = content.split("[- ,!?.]+");
         totalWords = splited.length;
         
         for (String word : splited) {
