@@ -11,6 +11,7 @@ import java.util.Iterator;
 
 import main.domain.expressions.Expression;
 import main.domain.util.Pair;
+import main.excepcions.ExceptionDocumentExists;
 import main.excepcions.ExceptionNoDocument;
 
 /**
@@ -63,9 +64,10 @@ public class DocumentsSet {
      * @param author autor associat al nou document
      * @param content contingut del nou document
      * @post Es crea el document, es guarda i s'actualizen els atributs interns de la classe
+     * @throws ExceptionDocumentExists en cas que ja existeixi un document identificat per (title, author) a l'aplicatiu
      */
-    public void createDocument(String title, String author, String content) {
-        if (existsDocument(title, author)); // ToDo: throws exception
+    public void createDocument(String title, String author, String content) throws ExceptionDocumentExists {
+        if (existsDocument(title, author)) throw new ExceptionDocumentExists(title, author);
         Document newDoc = new Document(title, author, content);
         Map<String, Document> docTitlesAuthor = documents.get(author);
 
@@ -89,12 +91,13 @@ public class DocumentsSet {
      * @param title títol del document a esborrar
      * @param author autor del document a esborrar
      * @post El document (title, author) queda esborrat de l'aplicatiu i les estructures internes actualitzades adientment
+     * @throws ExceptionNoDocument quan no hi ha cap document identificat per (title, author) donat d'alta
      */
-    public void deleteDocument(String title, String author) {
+    public void deleteDocument(String title, String author) throws ExceptionNoDocument {
         Map<String, Document> docTitlesAuthor = documents.get(author);
-        if (docTitlesAuthor == null); // ToDo: throws exception
+        if (docTitlesAuthor == null) throw new ExceptionNoDocument(title, author);
         Document doc = docTitlesAuthor.get(title);
-        if (doc == null); // ToDo: throws exception
+        if (doc == null) throw new ExceptionNoDocument(title, author);
         docTitlesAuthor.remove(title);
         documents.put(author, docTitlesAuthor);
         --numDocuments;
@@ -121,7 +124,7 @@ public class DocumentsSet {
      * @param title títol del document del que volem el contingut
      * @param author autor del document del que volem el contingut
      * @post Es retorna el contingut del document amb title i author
-     * @throws ExceptionNoDocument (String title, String author)
+     * @throws ExceptionNoDocument en el cas que no existeix un document identificat pels paràmetres donats
      */
     public String getContentDocument(String title, String author) throws ExceptionNoDocument
     {
@@ -143,9 +146,11 @@ public class DocumentsSet {
      * @param author autor del document a modificar
      * @param newContent nou contingut del document
      * @post El document (title, author) té com a contingut newContent
+     * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
      */
-    public void updateContentDocument(String title, String author, String newContent) {
+    public void updateContentDocument(String title, String author, String newContent) throws ExceptionNoDocument {
         Document doc = getDocument(title, author);
+        if (doc == null) throw new ExceptionNoDocument(title, author);
         Set<String> oldWords = doc.getRelevantWords();
         removePresence(oldWords);
         doc.setContent(newContent);
@@ -153,8 +158,20 @@ public class DocumentsSet {
         addPresence(newWords);
     }
 
-    public List<Pair<String, String>> listSimilars(String title, String author, int k) {
+    /**
+     * @brief Funció per obtenir els identificadors dels k documents més similars a un document
+     * @details Amb aquesta operació es poden consultar els documents més similars a un document. En concret, a partir de l'identificador (títol i autor) d'un document, s'obtenen els identificadors dels k documents que són més similars a aquest.
+     * @pre El document identificat pels paràmetres donats està donat d'alta a l'aplicatiu
+     * @param title Títol del document a què se li vol buscar els similars
+     * @param author Autor del document a què se li vol buscar els similars
+     * @param k Nombre d'identificadors de documents similars que es vol obtenir
+     * @return Llista amb parells dels identificadors (títol, autor) dels com a molt k documents més similars al document donat
+     * @post L'estat del sistema no queda alterat
+     * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
+     */
+    public List<Pair<String, String>> listSimilars(String title, String author, int k) throws ExceptionNoDocument {
         Document original = getDocument(title, author);
+        if (original == null) throw new ExceptionNoDocument(title, author);
         List<Pair<Pair<String, String>, Double>> ordre = new ArrayList<>();
         for (Map.Entry<String, Map<String, Document>> authorTitleDoc : documents.entrySet()) {
             String aut = authorTitleDoc.getKey();
