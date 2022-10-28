@@ -4,6 +4,8 @@ import java.util.Map;
 import java.util.HashMap;
 
 import main.domain.expressions.Expression;
+import main.excepcions.ExceptionExpressionExists;
+import main.excepcions.ExceptionNoExpression;
 
 /**
  * @class ExpressionsSet
@@ -45,10 +47,11 @@ public class ExpressionsSet {
      * @param id_expression Identificador de l'expressió que es vol obtenir
      * @return Expression identificada per id_expression
      * @post L'estat del sistema no queda alterat
+     * @throws ExceptionNoExpression si no existeix cap expressió identificada per (id_expression)
      */
-    public Expression getExpression(String id_expression) {     // ToDo: throws exception
+    public Expression getExpression(String id_expression) throws ExceptionNoExpression {
         Expression expression = expressions.get(id_expression);
-        if (expression == null) return null; // ToDo: throws exception
+        if (expression == null) throw new ExceptionNoExpression(id_expression);
         return expression;
     }
 
@@ -57,15 +60,16 @@ public class ExpressionsSet {
      * @details Aquesta funció permet donar d'alta una expressió a partir del seu identificador
      * @param id_expression Identificador que es vol assignar a la nova expressió
      * @post Si no exisitia cap expressió identificada amb l'identificador donat, es dona d'alta una expressió que s'identificarà amb ell.
+     * @throws ExceptionExpressionExists si l'string donnat ja identifica una expressió donada d'alta al sistema
      */
-    public void createExpression(String id_expression) {        // ToDo: throws exception
+    public void createExpression(String id_expression) throws ExceptionExpressionExists {
         Expression newExpression = new Expression(id_expression);
         Expression oldExpression = expressions.put(id_expression, newExpression);
 
         // Map.put() retorna el value que estava associada a la key donada o null si aquesta key no estava mapejada
         if (oldExpression != null) {
             expressions.put(id_expression, oldExpression);
-            // ToDo: throws exception
+            throw new ExceptionExpressionExists(id_expression);
         }
     }
 
@@ -75,11 +79,12 @@ public class ExpressionsSet {
      * @pre Existeix una expressió registrada en el sistema identificada amb el paràmetre donat
      * @param id_expression Identificador de l'expressió que es vol esborrar de l'aplicatiu
      * @post El sistema deixa de tenir registrada l'expressió identificada pel paràmetre donat
+     * @throws ExceptionNoExpression en cas que no existeixi cap expressió booleana identificada per (id_expression)
      */
-    public void deleteExpression(String id_expression) {        // ToDo: throws exception
+    public void deleteExpression(String id_expression) throws ExceptionNoExpression {
         Expression oldExpression = expressions.remove(id_expression);
 
         // Map.remove() retorna el value que estava associada a la key donada o null si aquesta key no estava mapejada
-        if (oldExpression == null);     // ToDo: throws exception
+        if (oldExpression == null) throw new ExceptionNoExpression(id_expression);
     }
 }

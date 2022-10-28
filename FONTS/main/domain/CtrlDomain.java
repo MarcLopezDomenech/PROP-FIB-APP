@@ -6,6 +6,10 @@ import main.domain.documents.DocumentsSet;
 import main.domain.expressions.ExpressionsSet;
 import main.domain.expressions.Expression;
 import main.domain.util.Pair;
+import main.excepcions.ExceptionDocumentExists;
+import main.excepcions.ExceptionExpressionExists;
+import main.excepcions.ExceptionNoDocument;
+import main.excepcions.ExceptionNoExpression;
 
 
 /**
@@ -43,12 +47,12 @@ public class CtrlDomain {
     /**
      * @brief Mètode per donar d'alta un nou document
      * @details L'operació rep el nom i el títol del nou document a donar d'alta a l'aplicatiu, i sempre que no n'existeixi un amb els mateixos identificadors, així ho fa amb contingut buit.
-     * @pre
      * @param title Títol del nou document
      * @param author Autor del nou document
      * @post Existeix a l'aplicatiu un document identificat per (title, author). Si no existia prèviament, el contingut serà buit.
+     * @throws ExceptionDocumentExists en cas que ja existeixi un document identificat per (title, author) a l'aplicatiu
      */
-    void createEmptyDocument(String title, String author) { // ToDo: throws exception
+    void createEmptyDocument(String title, String author) throws ExceptionDocumentExists {
         ds.createDocument(title, author, "");
     }
 
@@ -59,8 +63,9 @@ public class CtrlDomain {
      * @param title Títol del document a esborrar
      * @param author Autor del document a esborrar
      * @post No existeix cap document a l'aplicatiu identificat per (title, author)
+     * @throws ExceptionNoDocument quan no hi ha cap document identificat per (title, author) donat d'alta
      */
-    void deleteDocument(String title, String author) {      // ToDo: throws exception
+    void deleteDocument(String title, String author) throws ExceptionNoDocument {
         ds.deleteDocument(title, author);
     }
 
@@ -84,8 +89,9 @@ public class CtrlDomain {
      * @param author Autor del document al qual se li vol consultar el contingut
      * @return String amb el contingut del document (title, author)
      * @post L'estat del sistema no queda alterat
+     * @throws ExceptionNoDocument en el cas que no existeix un document identificat pels paràmetres donats
      */
-    String getContentDocument(String title, String author) {  // ToDo: throws exception
+    String getContentDocument(String title, String author) throws ExceptionNoDocument {
         return ds.getContentDocument(title, author);
     }
 
@@ -97,8 +103,9 @@ public class CtrlDomain {
      * @param author Autor del document a modificar
      * @param content Nou contingut a assignar al document
      * @post El document identificat per (title, author) té com a contingut content
+     * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
      */
-    void updateContentDocument(String title, String author, String content) {     // ToDo: throws ex
+    void updateContentDocument(String title, String author, String content) throws ExceptionNoDocument {
         ds.updateContentDocument(title, author, content);
     }
 
@@ -111,8 +118,9 @@ public class CtrlDomain {
      * @param k Nombre d'identificadors de documents similars que es vol obtenir
      * @return Llista amb parells dels identificadors (títol, autor) dels com a molt k documents més similars al document donat
      * @post L'estat del sistema no queda alterat
+     * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
      */
-    List<Pair<String, String>> listSimilars(String title, String author, int k) {
+    List<Pair<String, String>> listSimilars(String title, String author, int k) throws ExceptionNoDocument {
         return ds.listSimilars(title, author, k);
     }
 
@@ -158,8 +166,9 @@ public class CtrlDomain {
      * @param expression Expressió booleana a partir de la qual es vol realitzar la consulta
      * @return Llista dels identificadors (títol, autor) dels documents que tenen alguna frase que compleix l'expressió donada
      * @post L'estat del sistema no queda alterat
+     * @throws ExceptionNoExpression en cas que l'expressió identificada per (expression) no estigui donada d'alta a l'aplicatiu
      */
-    List<Pair<String, String>> listByExpression(String expression, Boolean caseSensitive) {
+    List<Pair<String, String>> listByExpression(String expression, Boolean caseSensitive) throws ExceptionNoExpression {
         Expression expr = es.getExpression(expression);
         return ds.listByExpression(expr, caseSensitive);
     }
@@ -169,8 +178,9 @@ public class CtrlDomain {
      * @details La funció permet donar d'alta una expressió booleana que s'identificarà amb la cadena de caràcters donada
      * @param expression Cadena de caràcters que identificarà la nova expressió booleana
      * @post En cas que la cadena de caràcters donada pugui ser una expressió vàlida i no existeixi prèviament, es dona d'alta una expressió booleana identificada amb aquesta cadena
+     * @throws ExceptionExpressionExists si l'string donnat ja identifica una expressió donada d'alta al sistema
      */
-    void createExpression(String expression) {      // ToDo: throws exception
+    void createExpression(String expression) throws ExceptionExpressionExists {
         es.createExpression(expression);
     }
 
@@ -180,9 +190,9 @@ public class CtrlDomain {
      * @pre Existeix una expressió identificada per la cadena de caràcters donada
      * @param expression Identificador de l'expressió booleana que es vol esborrar
      * @post Deixa d'estar registrada en l'aplicatiu l'expressió booleana identificada pel paràmetre
-     * @note This is a stupid note
+     * @throws ExceptionNoExpression en cas que no existeixi cap expressió booleana identificada per (expression)
      */
-    void deleteExpression(String expression) {    // ToDo: throws exception
+    void deleteExpression(String expression) throws ExceptionNoExpression {
         es.deleteExpression(expression);
     }
 
@@ -193,8 +203,10 @@ public class CtrlDomain {
      * @param oldExpression Identificador de l'expressió booleana a modificar
      * @param newExpression Nou identificador que es vol donar a l'expressió booleana
      * @post En cas que no existeixi cap expressió booleana identificada per newExpression, es modifica l'identificador de l'expressió identificada per oldExpression pel nou
+     * @throws ExceptionNoExpression si no existeix cap expressió identificada per (oldExpression)
+     * @throws ExceptionExpressionExists en cas que el nou identificador que es vol donar ja és d'una altra expressió
      */
-    void modifyExpression(String oldExpression, String newExpression) {   // ToDo: throws exception
+    void modifyExpression(String oldExpression, String newExpression) throws ExceptionNoExpression, ExceptionExpressionExists {
         deleteExpression(oldExpression);
         createExpression(newExpression);
     }
