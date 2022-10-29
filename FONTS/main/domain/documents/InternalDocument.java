@@ -9,6 +9,10 @@ import java.util.*;
  * @brief Classe que representa les dades internes que el sistema guarda per a cada document 
  * Aquesta informacio es utilitzada per a comparar documents i per a evaluar rellevancia  
  * @author Ariadna Cortes Danes
+ * 
+ * //TODO: 
+ *  -- split content terms by non-word characters
+ *  -- stop words?
  */
 public class InternalDocument {
 
@@ -69,7 +73,7 @@ public class InternalDocument {
      */  
     public void analizeContent (String content) {
         Map<String,Integer> words = new HashMap<String,Integer>();
-        String[] splited = content.split("[- ,!?.]+");
+        String[] splited = content.split("[- ,!?.:]+");     
         totalWords = splited.length;
         
         for (String word : splited) {
