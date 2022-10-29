@@ -3,7 +3,7 @@ package main.domain.expressions;
 import java.util.Map;
 import java.util.HashMap;
 
-import main.domain.expressions.Expression;
+import test.domain.expressions.Expression;
 import main.excepcions.ExceptionExpressionExists;
 import main.excepcions.ExceptionNoExpression;
 
@@ -39,6 +39,20 @@ public class ExpressionsSet {
         }
         return singletonObject;
     }
+
+    /**
+     * @brief Funció per obtenir el conjunt d'expressions de la classe
+     * @details Aquesta funció és necessària per poder fer tests, tot i que no s'emprarà fora de les proves
+     * @return Map d'identificador-expressió de totes les expressions guardades a la classe
+     */
+    public Map<String, Expression> getExpressions() {return expressions;}
+
+    /**
+     * @brief Funció per assignar el conjunt d'expressions de la classe
+     * @details Aquesta funció és necessària per poder fer tests, tot i que no s'emprarà fora de les proves
+     * @param expressions map d'identificador-expressió que es vol assignar a la classe
+     */
+    public void setExpressions(Map<String, Expression> expressions) {this.expressions = expressions;}
 
     /**
      * @brief Funció per aconseguir una expressió

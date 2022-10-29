@@ -6,7 +6,11 @@ package test.domain.expressions;
  * @author pau.duran.manzano
  */
 public class Expression {
-    public Expression(String expression) {}
+    private String id;
+
+    public Expression(String expression) {this.id = expression;}
+
+    public String getId() {return id;}
 
     public Boolean evaluate(String content, Boolean caseSensitive) {return true;}
 
