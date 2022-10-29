@@ -5,13 +5,17 @@ import java.util.Map;
 
 import main.excepcions.ExceptionExpressionExists;
 import main.excepcions.ExceptionNoExpression;
+import main.domain.expressions.ExpressionsSet;
 
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import main.domain.expressions.ExpressionsSet;
-
+/**
+ * @class TestExpressionsSet
+ * @brief Classe per provar de forma unitària la classe ExpressionsSet
+ * @author pau.duran.manzano
+ */
 public class TestExpressionsSet {
     private static Map<String, Expression> testValues;
 
