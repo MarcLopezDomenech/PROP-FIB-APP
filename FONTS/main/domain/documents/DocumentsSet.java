@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 
-import main.domain.expressions.Expression;
+import test.domain.expressions.Expression;
 import main.domain.util.Pair;
 import main.excepcions.ExceptionDocumentExists;
 import main.excepcions.ExceptionNoDocument;

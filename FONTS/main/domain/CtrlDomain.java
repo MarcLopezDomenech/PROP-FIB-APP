@@ -4,7 +4,7 @@ import java.util.List;
 
 import main.domain.documents.DocumentsSet;
 import main.domain.expressions.ExpressionsSet;
-import main.domain.expressions.Expression;
+import test.domain.expressions.Expression;
 import main.domain.util.Pair;
 import main.excepcions.ExceptionDocumentExists;
 import main.excepcions.ExceptionExpressionExists;
