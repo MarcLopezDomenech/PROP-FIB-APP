@@ -21,10 +21,10 @@ public class TestDocument {
 	public void testGetters()
 	{
         //test els getters per als diferents tipus de constructores
-        Document doc1 = new Document("Ari", "Titol del document", "Contingut", "txt");
+        Document doc1 = new Document("Ari", "Titol del document", "Tres tristes, tristes tigres comen trigo en un trigal.", "txt");
         assertEquals("Ari", doc1.getAuthor());
         assertEquals("Titol del document", doc1.getTitle());
-        assertEquals("Contingut", doc1.getContent());
+        assertEquals("Tres tristes, tristes tigres comen trigo en un trigal.", doc1.getContent());
         assertEquals("txt", doc1.getOriginalFormat());
 
         Document doc2 = new Document("Ari", "Titol del document", "Contingut");
@@ -40,7 +40,7 @@ public class TestDocument {
     @Test
 	public void testSetters()
 	{
-        Document doc = new Document("Ari", "Titol del document", "Aixo es el contingut", "txt");
+        Document doc = new Document("Ari", "Titol del document", "Tres tristes, tristes tigres comen trigo en un trigal.", "txt");
         doc.setContent("Now content :)");
         assertEquals("Now content :)", doc.getContent());
     }
@@ -65,7 +65,7 @@ public class TestDocument {
         presence.put("mesTest", 9);
         presence.put("paraulaaa", 9);
         presence.put("parauula", 9);
-        Document doc = new Document("Ari", "Titol del document", "Tres tristes tigres comen trigo en un trigal.", "txt");
+        Document doc = new Document("Ari", "Titol del document", "Tres tristes, tristes tigres comen trigo en un trigal.", "txt");
         String[] words = {"tigres","trigo"};
 
         assertEquals(25.0, doc.termRelevance_tf_idf(words,num_docs,presence),0.1);
@@ -91,8 +91,8 @@ public class TestDocument {
         presence.put("mesTest", 9);
         presence.put("paraulaaa", 9);
         presence.put("parauula", 9);
-        Document doc = new Document("Ari", "Titol del document", "Tres tristes tigres comen trigo en un trigal", "txt");
-        String query = "me gusta el furbo";
-        assertEquals(25.0, doc.queryRelevance(query,num_docs,presence),0.1);
+        Document doc = new Document("Ari", "Titol del document", "Tres tristes, tristes tigres comen trigo en un trigal", "txt");
+        String query = "deportes de equipo";
+        assertEquals(0.0, doc.queryRelevance(query,num_docs,presence),0.1);
     }
 }
