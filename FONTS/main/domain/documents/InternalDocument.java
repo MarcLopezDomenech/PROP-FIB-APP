@@ -17,7 +17,7 @@ import java.util.*;
 public class InternalDocument {
 
     private Map<String, Integer>  relevantWords;
-    private int totalWords;
+    private double totalWords;
 
      /**
      * @brief Constructora per defecte de InternalDocument
@@ -61,7 +61,7 @@ public class InternalDocument {
     /**
      * @brief get de l'atribut totalWords (nombre total de paraules del contingut)
      */
-    public int getTotalWords() {
+    public double getTotalWords() {
         return totalWords;
     }
 
