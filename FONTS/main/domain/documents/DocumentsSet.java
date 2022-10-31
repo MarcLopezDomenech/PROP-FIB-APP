@@ -114,8 +114,9 @@ public class DocumentsSet {
      * @post Es retorna si existeix o no el document definit per title i author
      */
     public Boolean existsDocument(String title, String author) {
-        Map<String,Document> maptitle=documents.get(author);
-        return maptitle.containsKey(title);
+        Map<String,Document> maptitle = documents.get(author);
+        if (maptitle == null) return false;
+        else return maptitle.containsKey(title);
     }
     /**
      * @brief Operació per conseguir el contingut d'un document

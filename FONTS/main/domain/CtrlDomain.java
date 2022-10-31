@@ -52,7 +52,7 @@ public class CtrlDomain {
      * @post Existeix a l'aplicatiu un document identificat per (title, author). Si no existia prèviament, el contingut serà buit.
      * @throws ExceptionDocumentExists en cas que ja existeixi un document identificat per (title, author) a l'aplicatiu
      */
-    void createEmptyDocument(String title, String author) throws ExceptionDocumentExists {
+    public void createEmptyDocument(String title, String author) throws ExceptionDocumentExists {
         ds.createDocument(title, author, "");
     }
 
@@ -65,7 +65,7 @@ public class CtrlDomain {
      * @post No existeix cap document a l'aplicatiu identificat per (title, author)
      * @throws ExceptionNoDocument quan no hi ha cap document identificat per (title, author) donat d'alta
      */
-    void deleteDocument(String title, String author) throws ExceptionNoDocument {
+    public void deleteDocument(String title, String author) throws ExceptionNoDocument {
         ds.deleteDocument(title, author);
     }
 
@@ -77,7 +77,7 @@ public class CtrlDomain {
      * @return Booleà que indica cert si existeix el document (title, author) i fals altrament
      * @post L'estat del sistema no queda alterat
      */
-    Boolean existsDocument(String title, String author) {
+    public Boolean existsDocument(String title, String author) {
         return ds.existsDocument(title, author);
     }
 
@@ -91,7 +91,7 @@ public class CtrlDomain {
      * @post L'estat del sistema no queda alterat
      * @throws ExceptionNoDocument en el cas que no existeix un document identificat pels paràmetres donats
      */
-    String getContentDocument(String title, String author) throws ExceptionNoDocument {
+    public String getContentDocument(String title, String author) throws ExceptionNoDocument {
         return ds.getContentDocument(title, author);
     }
 
@@ -105,7 +105,7 @@ public class CtrlDomain {
      * @post El document identificat per (title, author) té com a contingut content
      * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
      */
-    void updateContentDocument(String title, String author, String content) throws ExceptionNoDocument {
+    public void updateContentDocument(String title, String author, String content) throws ExceptionNoDocument {
         ds.updateContentDocument(title, author, content);
     }
 
@@ -120,7 +120,7 @@ public class CtrlDomain {
      * @post L'estat del sistema no queda alterat
      * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
      */
-    List<Pair<String, String>> listSimilars(String title, String author, int k) throws ExceptionNoDocument {
+    public List<Pair<String, String>> listSimilars(String title, String author, int k) throws ExceptionNoDocument {
         return ds.listSimilars(title, author, k);
     }
 
@@ -131,7 +131,7 @@ public class CtrlDomain {
      * @return Llista amb els identificadors (títol, autor) dels documents que tenen com a autor l'autor donat
      * @post L'estat del sistema no queda alterat
      */
-    List<Pair<String, String>> listTitlesOfAuthor(String author) {
+    public List<Pair<String, String>> listTitlesOfAuthor(String author) {
         return ds.listTitlesOfAuthor(author);
     }
 
@@ -142,7 +142,7 @@ public class CtrlDomain {
      * @return Llista amb els autors (string) que comencen pel prefix donat
      * @post L'estat del sistema no queda alterat
      */
-    List<String> listAuthorsByPrefix(String prefix) {
+    public List<String> listAuthorsByPrefix(String prefix) {
         return ds.listAuthorsByPrefix(prefix);
     }
 
@@ -154,7 +154,7 @@ public class CtrlDomain {
      * @return Llista amb els identificadors (títol, autor) dels k documents més rellevants, pel que fa a contingut, de la query
      * @post L'estat del sistema no queda alterat
      */
-    List<Pair<String, String>> listByQuery(String query, int  k) {
+    public List<Pair<String, String>> listByQuery(String query, int  k) {
         return ds.listByQuery(query, k);
     }
 
@@ -168,7 +168,7 @@ public class CtrlDomain {
      * @post L'estat del sistema no queda alterat
      * @throws ExceptionNoExpression en cas que l'expressió identificada per (expression) no estigui donada d'alta a l'aplicatiu
      */
-    List<Pair<String, String>> listByExpression(String expression, Boolean caseSensitive) throws ExceptionNoExpression {
+    public List<Pair<String, String>> listByExpression(String expression, Boolean caseSensitive) throws ExceptionNoExpression {
         Expression expr = es.getExpression(expression);
         return ds.listByExpression(expr, caseSensitive);
     }
@@ -180,7 +180,7 @@ public class CtrlDomain {
      * @post En cas que la cadena de caràcters donada pugui ser una expressió vàlida i no existeixi prèviament, es dona d'alta una expressió booleana identificada amb aquesta cadena
      * @throws ExceptionExpressionExists si l'string donnat ja identifica una expressió donada d'alta al sistema
      */
-    void createExpression(String expression) throws ExceptionExpressionExists {
+    public void createExpression(String expression) throws ExceptionExpressionExists {
         es.createExpression(expression);
     }
 
@@ -192,7 +192,7 @@ public class CtrlDomain {
      * @post Deixa d'estar registrada en l'aplicatiu l'expressió booleana identificada pel paràmetre
      * @throws ExceptionNoExpression en cas que no existeixi cap expressió booleana identificada per (expression)
      */
-    void deleteExpression(String expression) throws ExceptionNoExpression {
+    public void deleteExpression(String expression) throws ExceptionNoExpression {
         es.deleteExpression(expression);
     }
 
@@ -206,7 +206,7 @@ public class CtrlDomain {
      * @throws ExceptionNoExpression si no existeix cap expressió identificada per (oldExpression)
      * @throws ExceptionExpressionExists en cas que el nou identificador que es vol donar ja és d'una altra expressió
      */
-    void modifyExpression(String oldExpression, String newExpression) throws ExceptionNoExpression, ExceptionExpressionExists {
+    public void modifyExpression(String oldExpression, String newExpression) throws ExceptionNoExpression, ExceptionExpressionExists {
         deleteExpression(oldExpression);
         createExpression(newExpression);
     }
