@@ -11,7 +11,7 @@ import org.junit.Test;
 
 public class TestDocument {
     
-    @BeforeClass public static void init(){
+    @BeforeClass public static void init(){ //??
     }
 
     /**
@@ -76,6 +76,28 @@ public class TestDocument {
 	 */
     @Test
 	public void testQueryRelevance()
+	{
+        int num_docs = 10;
+        Map<String,Integer> presence = new HashMap<String,Integer>();
+        presence.put("tres", 7);
+        presence.put("tristes", 2);
+        presence.put("tigres", 1);
+        presence.put("comen", 3);
+        presence.put("trigo", 2);
+        presence.put("en", 6);
+        presence.put("un", 9);
+        presence.put("trigal", 1);
+        presence.put("test", 10);
+        presence.put("mesTest", 9);
+        presence.put("paraulaaa", 9);
+        presence.put("parauula", 9);
+        Document doc = new Document("Ari", "Titol del document", "Tres tristes, tristes tigres comen trigo en un trigal", "txt");
+        String query = "deportes de equipo";
+        assertEquals(0.0, doc.queryRelevance(query,num_docs,presence),0.1);
+    }
+
+    @Test
+	public void testCompare()
 	{
         int num_docs = 10;
         Map<String,Integer> presence = new HashMap<String,Integer>();
