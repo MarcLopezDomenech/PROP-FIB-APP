@@ -17,7 +17,7 @@ import java.util.*;
 public class InternalDocument {
 
     private Map<String, Integer>  relevantWords;
-    private double totalWords;
+    private int totalWords;
 
      /**
      * @brief Constructora per defecte de InternalDocument
@@ -61,17 +61,24 @@ public class InternalDocument {
     /**
      * @brief get de l'atribut totalWords (nombre total de paraules del contingut)
      */
-    public double getTotalWords() {
+    public int getTotalWords() {
         return totalWords;
     }
 
+    /**
+     * @brief Canviar el contingut representat per internalDocument
+     * @param content
+     */
+    public void newContent(String content) {
+        analizeContent(content);
+    }
     /**
      * @brief Analitzar les dades que el sistema guarda pel contingut rebut
      * @details aquesta funcio inicialitza/actualitza el contingut de revelantWords
      * (Map<paraula,cops>) i de totalWords (nombre total de paraules del contingut)
      * @param Content el contingut a analitzar
      */  
-    public void analizeContent (String content) {
+    private void analizeContent (String content) {
         Map<String,Integer> words = new HashMap<String,Integer>();
         String[] splited = content.split("[- ,!?.:]+");     
         totalWords = splited.length;
