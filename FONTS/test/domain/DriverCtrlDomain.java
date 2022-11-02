@@ -153,7 +153,8 @@ public class DriverCtrlDomain {
         System.out.print("Introdueix un autor: ");
         String author = scanner.next();
         String content = cd.getContentDocument(title, author);
-        System.out.println(content);
+        if ("".equals(content)) System.out.println("El contingut del document és buit");
+        else System.out.println(content);
     }
 
     public static void testUpdateContentDocument() throws ExceptionNoDocument {
@@ -213,8 +214,10 @@ public class DriverCtrlDomain {
         int k = scanner.nextInt();
         List<Pair<String, String>> result = cd.listByQuery(query, k);
         if (result == null || result.size() == 0) System.out.println("No hi ha resultats");
-        for (Pair<String, String> r : result) {
-            System.out.println(r.getFirst() + " " + r.getSecond());
+        else {
+            for (Pair<String, String> r : result) {
+                System.out.println(r.getFirst() + " " + r.getSecond());
+            }
         }
     }
 

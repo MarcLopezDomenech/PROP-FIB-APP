@@ -232,9 +232,11 @@ public class DocumentsSet {
     public List<Pair<String, String>> listTitlesOfAuthor(String author) {
         List<Pair<String, String>> expr_list= new ArrayList<Pair<String,String>>();
         Map<String,Document> maptitle = documents.get(author);
-        for (Map.Entry<String, Document> d2 : maptitle.entrySet()) {
-            String tit = d2.getKey();
-            expr_list.add(new Pair<String,String>(tit,author));
+        if (maptitle != null) {
+            for (Map.Entry<String, Document> d2 : maptitle.entrySet()) {
+                String tit = d2.getKey();
+                expr_list.add(new Pair<String, String>(tit, author));
+            }
         }
         return expr_list;
     }
@@ -262,6 +264,7 @@ public class DocumentsSet {
 
     private Document getDocument(String title, String author) {
         Map<String,Document> maptitle = documents.get(author);
+        if (maptitle == null) return null;
         Document resdoc = maptitle.get(title);
         return resdoc;
     }
