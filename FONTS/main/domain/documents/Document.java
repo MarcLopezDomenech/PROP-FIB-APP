@@ -113,7 +113,7 @@ public class Document {
      */
     public void setContent(String newContent) {
         content = newContent;
-        internalDoc.analizeContent(newContent);
+        internalDoc.newContent(newContent);
     }
 
     /**
@@ -168,7 +168,7 @@ public class Document {
      */
     public double termRelevance_tf_idf(String[] terms, Integer num_docs, Map<String,Integer> presence) {
         double tf_idf = 0;
-        int totalTerms = internalDoc.getTotalWords();
+        double totalTerms = (double) internalDoc.getTotalWords();
         Map<String,Integer> relevantTerms = internalDoc.getRelevantWords(); 
         for (String term : terms) {
             if (relevantTerms.containsKey(term)) {

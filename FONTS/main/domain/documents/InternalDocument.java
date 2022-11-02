@@ -9,6 +9,10 @@ import java.util.*;
  * @brief Classe que representa les dades internes que el sistema guarda per a cada document 
  * Aquesta informacio es utilitzada per a comparar documents i per a evaluar rellevancia  
  * @author Ariadna Cortes Danes
+ * 
+ * //TODO: 
+ *  -- split content terms by non-word characters
+ *  -- stop words?
  */
 public class InternalDocument {
 
@@ -62,14 +66,21 @@ public class InternalDocument {
     }
 
     /**
+     * @brief Canviar el contingut representat per internalDocument
+     * @param content
+     */
+    public void newContent(String content) {
+        analizeContent(content);
+    }
+    /**
      * @brief Analitzar les dades que el sistema guarda pel contingut rebut
      * @details aquesta funcio inicialitza/actualitza el contingut de revelantWords
      * (Map<paraula,cops>) i de totalWords (nombre total de paraules del contingut)
      * @param Content el contingut a analitzar
      */  
-    public void analizeContent (String content) {
+    private void analizeContent (String content) {
         Map<String,Integer> words = new HashMap<String,Integer>();
-        String[] splited = content.split("[- ,!?.]+");
+        String[] splited = content.split("[- ,!?.:]+");     
         totalWords = splited.length;
         
         for (String word : splited) {

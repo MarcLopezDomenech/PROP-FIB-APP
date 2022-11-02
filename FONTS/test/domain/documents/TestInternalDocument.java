@@ -32,18 +32,25 @@ public class TestInternalDocument {
         assertArrayEquals(expectedResult, s4);
         
         String c5 = "Tres-tristes-tigres?! -";
-        String[] s5 = c5.split("[- ,!?.]+");
+        String[] s5 = c5.split("[- ,!?.:]+");
         assertArrayEquals(expectedResult, s5);
+
+        
+        String c6 = "Tres :tristes:tigres";
+        String[] s6 = c6.split("[- ,!?.:]+");
+        assertArrayEquals(expectedResult, s6);
     }
+
     /**
-     * @brief Getter testing
+     * Test del getters
      */
     @Test
     public void testGetters() {
-        String content = "Tres tristes tigres comen trigo en un trigal.";
-        InternalDocument internal1 = new InternalDocument(content);
+        String content = "Tres tristes, tristes tigres comen trigo en un trigal.";
+        InternalDocument internal1 = new InternalDocument(content); //calls analize content
+        
+        //Test de getRelevantKeyWords
         Set<String> set = internal1.getRelevantKeyWords();
-
         assertEquals(8, set.size());
         assertTrue(set.contains("Tres"));
         assertTrue(set.contains("tristes"));
@@ -54,6 +61,52 @@ public class TestInternalDocument {
         assertTrue(set.contains("un"));
         assertTrue(set.contains("trigal"));
 
-        assertEquals(8, internal1.getTotalWords());
+        //Test de getTotalWords
+        assertEquals(9, internal1.getTotalWords());
+
+        //Test de getRelevantWords
+        Map<String,Integer> relevantWords = internal1.getRelevantWords();
+        assertTrue(1 == relevantWords.get("Tres"));
+        assertTrue(2 == relevantWords.get("tristes"));
+        assertTrue(1 == relevantWords.get("tigres"));
+        assertTrue(1 == relevantWords.get("comen"));
+        assertTrue(1 == relevantWords.get("trigo"));
+        assertTrue(1 == relevantWords.get("en"));
+        assertTrue(1 == relevantWords.get("un"));
+        assertTrue(1 == relevantWords.get("trigal"));
+
+        //Alguns tests extres de casos més complicats
+        String moreComplicatedContent = "Hola! Com estàs? Jo bé, gracies. (adeu) ";
+
+        InternalDocument internal2 = new InternalDocument(moreComplicatedContent);
+        Set<String> set2 = internal2.getRelevantKeyWords();
+
+        assertEquals(7, internal2.getTotalWords());
+        assertTrue(set2.contains("(adeu)")); //mal        
+    }
+
+
+    /**
+     * @brief Getter testing and content analysis
+     */
+    @Test
+    public void testNewContent() {
+        String initial = "Initial useless content";
+        InternalDocument intDoc = new InternalDocument(initial);
+        intDoc.newContent("Tres tristes, tristes tigres comen trigo en un trigal.");
+
+        //Comprovació que els atributs de internal document han canviat consequentment
+        assertEquals(9, intDoc.getTotalWords());
+        
+        Set<String> set = intDoc.getRelevantKeyWords();
+        assertEquals(8, set.size());
+        assertTrue(set.contains("Tres"));
+        assertTrue(set.contains("tristes"));
+        assertTrue(set.contains("tigres"));
+        assertTrue(set.contains("comen"));
+        assertTrue(set.contains("trigo"));
+        assertTrue(set.contains("en"));
+        assertTrue(set.contains("un"));
+        assertTrue(set.contains("trigal"));
     }
 }
