@@ -1,10 +1,14 @@
 package test.domain;
 
 import java.util.Scanner;
+import java.util.List;
 
+import main.domain.util.Pair;
 import main.domain.CtrlDomain;
 import main.excepcions.ExceptionDocumentExists;
+import main.excepcions.ExceptionExpressionExists;
 import main.excepcions.ExceptionNoDocument;
+import main.excepcions.ExceptionNoExpression;
 
 /**
  * @class DriverCtrlDomain
@@ -164,35 +168,92 @@ public class DriverCtrlDomain {
         System.out.println("Contingut modificat");
     }
 
-    public static void testListSimilars() {
-
+    public static void testListSimilars() throws ExceptionNoDocument {
+        System.out.println("Llistar els documents més semblants a un document");
+        System.out.print("Introdueix un títol: ");
+        String title = scanner.next();
+        System.out.print("Introdueix un autor: ");
+        String author = scanner.next();
+        System.out.print("Introdueix una k: ");
+        int k = scanner.nextInt();
+        List<Pair<String, String>> result = cd.listSimilars(title, author, k);
+        if (result == null || result.size() == 0) System.out.println("No hi ha resultats");
+        for (Pair<String, String> r : result) {
+            System.out.println(r.getFirst() + " " + r.getSecond());
+        }
     }
 
     public static void testListTitlesOfAuthor() {
-
+        System.out.println("Llistar els títols d'un autor");
+        System.out.print("Introdueix un autor: ");
+        String author = scanner.next();
+        List<Pair<String, String>> result = cd.listTitlesOfAuthor(author);
+        if (result == null || result.size() == 0) System.out.println("No hi ha resultats");
+        for (Pair<String, String> r : result) {
+            System.out.println(r.getFirst() + " " + r.getSecond());
+        }
     }
 
     public static void testListAuthorsByPrefix() {
-
+        System.out.println("Llistar els autors per prefix");
+        System.out.print("Introdueix un prefix: ");
+        String prefix = scanner.next();
+        List<String> authors = cd.listAuthorsByPrefix(prefix);
+        if (authors == null || authors.size() == 0) System.out.println("No hi ha resultats");
+        for (String a : authors) {
+            System.out.println(a);
+        }
     }
 
     public static void testListByQuery() {
-
+        System.out.println("Llistar els documents a partir d'una query");
+        System.out.print("Introdueix una query: ");
+        String query = scanner.next();
+        System.out.print("Introdueix una k: ");
+        int k = scanner.nextInt();
+        List<Pair<String, String>> result = cd.listByQuery(query, k);
+        if (result == null || result.size() == 0) System.out.println("No hi ha resultats");
+        for (Pair<String, String> r : result) {
+            System.out.println(r.getFirst() + " " + r.getSecond());
+        }
     }
 
-    public static void testListByExpression() {
-
+    public static void testListByExpression() throws ExceptionNoExpression {
+        System.out.println("Llistar els documents a partir d'una expressió booleana");
+        System.out.print("Introdueix una expressió booleana: ");
+        String expression = scanner.next();
+        System.out.print("Vols que sigui case sensitive (S/N): ");
+        Boolean caseSensitive = scanner.next().equals("S");
+        List<Pair<String, String>> result = cd.listByExpression(expression, caseSensitive);
+        if (result == null || result.size() == 0) System.out.println("No hi ha resultats");
+        for (Pair<String, String> r : result) {
+            System.out.println(r.getFirst() + " " + r.getSecond());
+        }
     }
 
-    public static void testCreateExpression() {
-
+    public static void testCreateExpression() throws ExceptionExpressionExists {
+        System.out.println("Crear una expressió booleana");
+        System.out.print("Introdueix una expressió booleana: ");
+        String expression = scanner.next();
+        cd.createExpression(expression);
+        System.out.println("Expressió booleana creada");
     }
 
-    public static void testDeleteExpression() {
-
+    public static void testDeleteExpression() throws ExceptionNoExpression {
+        System.out.println("Esborrar una expressió booleana");
+        System.out.print("Introdueix una expressió booleana: ");
+        String expression = scanner.next();
+        cd.deleteExpression(expression);
+        System.out.println("Expressió booleana esborrada");
     }
 
-    public static void testModifyExpression() {
-
+    public static void testModifyExpression() throws ExceptionNoExpression, ExceptionExpressionExists {
+        System.out.println("Modificar una expressió booleana");
+        System.out.print("Introdueix l'expressió booleana a modificar: ");
+        String oldExpression = scanner.next();
+        System.out.print("Introdueix l'expressió booleana modificada: ");
+        String newExpression = scanner.next();
+        cd.modifyExpression(oldExpression, newExpression);
+        System.out.println("Expressió booleana modificada");
     }
 }
