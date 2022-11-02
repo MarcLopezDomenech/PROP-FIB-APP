@@ -114,8 +114,9 @@ public class DocumentsSet {
      * @post Es retorna si existeix o no el document definit per title i author
      */
     public Boolean existsDocument(String title, String author) {
-        Map<String,Document> maptitle=documents.get(author);
-        return maptitle.containsKey(title);
+        Map<String,Document> maptitle = documents.get(author);
+        if (maptitle == null) return false;
+        else return maptitle.containsKey(title);
     }
     /**
      * @brief Operació per conseguir el contingut d'un document
@@ -129,13 +130,7 @@ public class DocumentsSet {
     public String getContentDocument(String title, String author) throws ExceptionNoDocument
     {
         Document resdoc = getDocument(title, author);
-        if(resdoc == null){
-            //EXCEPTION
-            throw new ExceptionNoDocument(title, author);
-        }
-        else{
-            return resdoc.getContent();
-        }
+        return resdoc.getContent();
     }
 
     /**
@@ -150,7 +145,6 @@ public class DocumentsSet {
      */
     public void updateContentDocument(String title, String author, String newContent) throws ExceptionNoDocument {
         Document doc = getDocument(title, author);
-        if (doc == null) throw new ExceptionNoDocument(title, author);
         Set<String> oldWords = doc.getRelevantWords();
         removePresence(oldWords);
         doc.setContent(newContent);
@@ -171,7 +165,6 @@ public class DocumentsSet {
      */
     public List<Pair<String, String>> listSimilars(String title, String author, int k) throws ExceptionNoDocument {
         Document original = getDocument(title, author);
-        if (original == null) throw new ExceptionNoDocument(title, author);
         List<Pair<Pair<String, String>, Double>> ordre = new ArrayList<>();
         for (Map.Entry<String, Map<String, Document>> authorTitleDoc : documents.entrySet()) {
             String aut = authorTitleDoc.getKey();
@@ -231,9 +224,11 @@ public class DocumentsSet {
     public List<Pair<String, String>> listTitlesOfAuthor(String author) {
         List<Pair<String, String>> expr_list= new ArrayList<Pair<String,String>>();
         Map<String,Document> maptitle = documents.get(author);
-        for (Map.Entry<String, Document> d2 : maptitle.entrySet()) {
-            String tit = d2.getKey();
-            expr_list.add(new Pair<String,String>(tit,author));
+        if (maptitle != null) {
+            for (Map.Entry<String, Document> d2 : maptitle.entrySet()) {
+                String tit = d2.getKey();
+                expr_list.add(new Pair<String, String>(tit, author));
+            }
         }
         return expr_list;
     }
@@ -259,9 +254,11 @@ public class DocumentsSet {
         return null;
     }
 
-    private Document getDocument(String title, String author) {
+    private Document getDocument(String title, String author) throws ExceptionNoDocument {
         Map<String,Document> maptitle = documents.get(author);
+        if (maptitle == null) throw new ExceptionNoDocument(title, author);
         Document resdoc = maptitle.get(title);
+        if (resdoc == null) throw new ExceptionNoDocument(title, author);
         return resdoc;
     }
 

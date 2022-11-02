@@ -13,6 +13,6 @@ public class ExceptionDocumentExists extends Exception{
      * @return ExceptionDocumentExists
      */
     public ExceptionDocumentExists(String title, String author){
-        super("Ja existeix un document amb títol '"+ title + "' i autor '" + author);
+        super("Ja existeix un document amb títol '"+ title + "' i autor '" + author + "'");
     }
 }
