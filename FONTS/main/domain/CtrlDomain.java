@@ -1,9 +1,11 @@
 package main.domain;
 
 import java.util.List;
+import java.util.Map;
 
 import main.domain.documents.DocumentsSet;
 import main.domain.expressions.ExpressionsSet;
+import test.domain.documents.Document;
 import test.domain.expressions.Expression;
 import main.domain.util.Pair;
 import main.excepcions.ExceptionDocumentExists;
@@ -107,6 +109,16 @@ public class CtrlDomain {
      */
     public void updateContentDocument(String title, String author, String content) throws ExceptionNoDocument {
         ds.updateContentDocument(title, author, content);
+    }
+
+    /**
+     * @brief Funció per obtenir tots els identificadors dels documents del sistema
+     * @details Aquesta funció permet consultar tots els documents que hi ha guardats en el sistema
+     * @return Llistat de parells de tots els identificadors de documents de l'aplicatiu
+     * @post L'estat del sistema no queda alterat
+     */
+    public List<Pair<String, String>> listAllDocuments() {
+        return ds.listAll();
     }
 
     /**

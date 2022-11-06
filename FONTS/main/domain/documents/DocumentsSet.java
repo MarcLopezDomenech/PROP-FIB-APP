@@ -183,6 +183,25 @@ public class DocumentsSet {
     }
 
     /**
+     * @brief Funció per obtenir tots els identificadors dels documents del sistema
+     * @details Aquesta funció permet consultar tots els documents que hi ha guardats en el sistema
+     * @return Llistat de parells de tots els identificadors de documents de l'aplicatiu
+     * @post L'estat del sistema no queda alterat
+     */
+    public List<Pair<String, String>> listAll() {
+        List<Pair<String, String>> all = new ArrayList<Pair<String, String>>();
+        for (Map.Entry<String, Map<String, Document>> titlesOfAuthor : documents.entrySet()) {
+            String author = titlesOfAuthor.getKey();
+            Map<String, Document> titleDoc = titlesOfAuthor.getValue();
+            for (Map.Entry<String, Document> documentsOfAuthor : titleDoc.entrySet()) {
+                String title = documentsOfAuthor.getKey();
+                all.add(new Pair(title, author));
+            }
+        }
+        return all;
+    }
+
+    /**
      * @brief Funció per obtenir els identificadors dels k documents més similars a un document
      * @details Amb aquesta operació es poden consultar els documents més similars a un document. En concret, a partir de l'identificador (títol i autor) d'un document, s'obtenen els identificadors dels k documents que són més similars a aquest.
      * @pre El document identificat pels paràmetres donats està donat d'alta a l'aplicatiu

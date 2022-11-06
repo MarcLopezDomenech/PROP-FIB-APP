@@ -46,30 +46,33 @@ public class DriverCtrlDomain {
                             testUpdateContentDocument();
                             break;
                         case 6:
-                            testListSimilars();
+                            testListAllDocuments();
                             break;
                         case 7:
-                            testListTitlesOfAuthor();
+                            testListSimilars();
                             break;
                         case 8:
-                            testListAuthorsByPrefix();
+                            testListTitlesOfAuthor();
                             break;
                         case 9:
-                            testListByQuery();
+                            testListAuthorsByPrefix();
                             break;
                         case 10:
-                            testListByExpression();
+                            testListByQuery();
                             break;
                         case 11:
-                            testCreateExpression();
+                            testListByExpression();
                             break;
                         case 12:
-                            testDeleteExpression();
+                            testCreateExpression();
                             break;
                         case 13:
-                            testModifyExpression();
+                            testDeleteExpression();
                             break;
                         case 14:
+                            testModifyExpression();
+                            break;
+                        case 15:
                             break;
                         default:
                             System.out.println("No has introduït un valor vàlid.");
@@ -95,15 +98,16 @@ public class DriverCtrlDomain {
         System.out.println("3 - Saber si existeix un document");
         System.out.println("4 - Consultar el contingut d'un document");
         System.out.println("5 - Modificar el contingut d'un document");
-        System.out.println("6 - Llistar els documents més semblants a un document");
-        System.out.println("7 - Llistar els títols d'un autor");
-        System.out.println("8 - Llistar els autors per prefix");
-        System.out.println("9 - Llistar els documents a partir d'una query");
-        System.out.println("10 - Llistar els documents a partir d'una expressió booleana");
-        System.out.println("11 - Crear una expressió booleana");
-        System.out.println("12 - Esborrar una expressió booleana");
-        System.out.println("13 - Modificar una expressió booleana");
-        System.out.println("14 - Sortir :)");
+        System.out.println("6 - Llistar tots els documents");
+        System.out.println("7 - Llistar els documents més semblants a un document");
+        System.out.println("8 - Llistar els títols d'un autor");
+        System.out.println("9 - Llistar els autors per prefix");
+        System.out.println("10 - Llistar els documents a partir d'una query");
+        System.out.println("11 - Llistar els documents a partir d'una expressió booleana");
+        System.out.println("12 - Crear una expressió booleana");
+        System.out.println("13 - Esborrar una expressió booleana");
+        System.out.println("14 - Modificar una expressió booleana");
+        System.out.println("15 - Sortir :)");
         System.out.print("Quina operació vols realitzar?: ");
     }
 
@@ -163,6 +167,14 @@ public class DriverCtrlDomain {
         String content = scanner.next();
         cd.updateContentDocument(title, author, content);
         System.out.println("Contingut modificat");
+    }
+
+    public static void testListAllDocuments() {
+        List<Pair<String, String>> result = cd.listAllDocuments();
+        if (result == null || result.size() == 0) System.out.println("No hi ha cap document");
+        for (Pair<String, String> r : result) {
+            System.out.println(r.getFirst() + " " + r.getSecond());
+        }
     }
 
     public static void testListSimilars() throws ExceptionNoDocument {
