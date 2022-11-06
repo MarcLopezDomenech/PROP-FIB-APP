@@ -1,12 +1,13 @@
 package main.domain.documents;
 
 import java.util.*;
+import main.excepcions.ExceptionInvalidFormat;
 
 /**
  * @class Document 
  * @brief Classe que representa un document dins el sistema, identificat per un títol i un autor
  * Els documents tenen contingut, que pot ser txt o xml.
- * @author Ariadna Cortes Danes
+ * @author ariadna.cortes.danes
  */
 public class Document {
 
@@ -19,20 +20,21 @@ public class Document {
     /**
      * @brief Constructora per defecte de document
      */
-    Document(){}
+    public Document(){}
 
     /**
-     * @brief constructora de document
-     * @param author autor del document creat
-     * @param title titol del document creat
-     * @param contingut del document creat
-     * @param format format del document "txt" or "xml"
-     * @throws InvalidFormat el format del document es invalid (no es txt o xml)
+     * @brief Constructora de document
+     * @param author Autor del document creat
+     * @param title Titol del document creat
+     * @param content Contingut del document creat
+     * @param format Format del document: "txt" or "xml"
+     * @throws ExceptionInvalidFormat El format del document es invalid (no es txt o xml)
      */
-    public Document(String author, String title, String content, String format) {
+    public Document(String author, String title, String content, String format) throws ExceptionInvalidFormat {
         this.author = author;
         this.title = title;
         this.content = content;
+        if (format != "txt" || format != "xml") throw new ExceptionInvalidFormat(format);
         this.originalFormat = format;
         this.internalDoc = new InternalDocument(content);
     }
@@ -52,64 +54,55 @@ public class Document {
     }
 
     /**
-     * @brief Constructora del document quan fem un backUp
-     * @param backUpInformation string per ser interpretat com a dades del document 
+     * @brief Constructora del document utilitzada al fer un back-up de l'aplicació
+     * @details String backUpInformation conte les etiquetes author, title, format i content,
+     * que identifiquen cada un dels atributs del document. 
+     * @param backUpInformation String que serà interpretat com les dades a recuperar del document 
      */
     public Document(String backUpInformation) {
-        /*this.author = author;
-        this.title = title;
-        this.content = content;
-        this.originalFormat = format;
-        Map<String, Int> internalInformation = convert(backUpInformation)
-        this.internalDoc = new InternalDocument(internalInformation);*/
+        //Aquest metode encara  no esta implementat
     }
 
     /**
-     * @brief get de l'atribut autor 
+     * @brief Getter de l'atribut autor 
      */
     public String getAuthor() {
         return author;
     } 
 
   /**
-     * @brief get de l'atribut titol 
+     * @brief Getter de l'atribut titol 
      */
     public String getTitle() {
         return title;
     } 
 
      /**
-     * @brief get de l'atribut contingut 
+     * @brief Getter de l'atribut contingut 
      */
     public String getContent() {
         return content;
     }
 
-  /**
-     * @brief get de l'atribut format (l'original que es va assignar al crear el document) 
+    /**
+     * @brief Getter de l'atribut format (format original que es va assignar al crear el document) 
      */
     public String getOriginalFormat() {
         return originalFormat;
     }
 
      /**
-     * @brief 
-     * 
-    public InternalDocument getInternalDocument() {
-        return internalDoc;
-    }*/
-
-     /**
-     * @brief retorna el set de paraules clau del contingut del document   
+     * @brief Retorna el set de paraules clau del contingut del document   
+     * @details Paraules claus son totes aquelles paraules que apareixen en el contingut del document (sense repeticions)
      */
     public Set<String> getRelevantWords() {
         return internalDoc.getRelevantKeyWords();
     }
 
     /**
-     * @brief sets a new content to the document
-     * @details a new content will be analized and document internal data will be updated
-     * @param newContent the new content of the document
+     * @brief Actualitza el contingut del document
+     * @details S'assignara un nou contingut al document, que s'analitzara i modificara les dades del document en conseqüencia
+     * @param newContent El nou contingut a ser assignat al document
      */
     public void setContent(String newContent) {
         content = newContent;
@@ -118,10 +111,10 @@ public class Document {
 
     /**
      * @brief Valora com de semblants son els continguts de dos documents A i B
-     * @details utilitzant l'algoritme tf-idf, calcula la rellevancia de A per a les paraules del contingut 
+     * @details Utilitzant l'algoritme tf-idf, calcula la rellevancia de A per a les paraules del contingut 
      * de B i la rellenvancia de B per a les paraules del contingut d'A
      * @param other Document amb el que es vol comparar el contingut
-     * @return double que representa un index de semblança entre els documents A i B
+     * @return Nombre que representa un index de semblança entre els documents A i B
      */
     public double compare(Document other, Integer num_docs, Map<String,Integer> presence) {
 
@@ -140,31 +133,29 @@ public class Document {
 
     /**
      * @brief Valora com de rellevant es el contingut del document donada una query
-     * @details Utilitza l'algoritme de tf-idf per a calcular la rellevancia del contingut del
-     * document en relació a les paraules de la query. 
-     * @pre el parametre query nomes conte paraules separades per espais (sense signes de puntuació, etc)
-     * @param query conjunt de paraules en les que evaluar la rellevancia del document
-     * @param num_docs total de documents del conjunt de documents al que pertany el document
-     * @param presence mapa que guarda en quants documents apareix un paraula concreta: Map<paraula,cops>
-     * @return double que quantifica la rellevancia d'una query per al contingut del document
+     * @details Utilitza l'algoritme de tf-idf per a calcular la rellevancia del contingut del document en relació a les paraules de la query. 
+     * @pre El parametre query nomes conte paraules separades per espais (sense signes de puntuació, etc)
+     * @param query Conjunt de paraules en les que evaluar la rellevancia del document
+     * @param num_docs Total de documents del conjunt de documents al que pertany el document
+     * @param presence Mapa que guarda en quants documents del sistema apareix un paraula concreta: Map<paraula,cops>
+     * @return Nombre que quantifica la rellevancia d'una query per al contingut del document
      */
     public double queryRelevance(String query, Integer num_docs, Map<String,Integer> presence) {
-
         String[] queryTerms = query.split(query);
         double tf_idf = termRelevance_tf_idf(queryTerms, num_docs, presence);
 
-        return tf_idf*100;      //no es sobre 100 per ajuda a
+        return tf_idf*100;
     }
 
 
     /**
-     * @brief Algorisme tf-idf 
+     * @brief Implementacio de l'algorisme tf-idf 
      * @details Calcula com de rellevant es el contingut del document en relació a una serie de termes
-     * @pre el parametre query nomes conte paraules separades per espais (sense signes de puntuació, etc)
-     * @param terms termes dels que evaluar la rellevancia
-     * @param num_docs total de documents del conjunt de documents al que pertany el document
-     * @param presence mapa que guarda en quants documents apareix un paraula concreta: Map<paraula,cops>
-     * @return double que quantifica la rellevancia d'una query per al contingut del document
+     * @pre El parametre terms es un conjunt de paraules atomiques (sense espais ni signes de puntuació, etc.)
+     * @param terms Termes dels que evaluar la rellevancia
+     * @param num_docs Total de documents del conjunt de documents al que pertany el document
+     * @param presence Mapa que guarda en quants documents del sistema apareix un paraula concreta: Map<paraula,cops>
+     * @return Nombre que quantifica la rellevancia d'una query per al contingut del document
      */
     public double termRelevance_tf_idf(String[] terms, Integer num_docs, Map<String,Integer> presence) {
         double tf_idf = 0;
