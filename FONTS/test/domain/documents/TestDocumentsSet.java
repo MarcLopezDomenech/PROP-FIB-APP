@@ -50,9 +50,6 @@ public class TestDocumentsSet {
 
     @Test
     public void testGettersISetters() {
-        DocumentsSet ds = DocumentsSet.getInstance();
-        Document d1 = new Document("t1", "a1", "c 1");
-        ds.setDocuments();
     }
 
     @Test
