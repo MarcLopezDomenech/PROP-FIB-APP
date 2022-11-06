@@ -6,6 +6,7 @@ import main.domain.documents.Document;
 //TestChecks
 import static org.junit.Assert.*;
 
+import main.excepcions.ExceptionInvalidFormat;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -18,8 +19,7 @@ public class TestDocument {
 	 * Test dels getters
 	 */
     @Test
-	public void testGetters()
-	{
+	public void testGetters() throws ExceptionInvalidFormat {
         //test els getters per als diferents tipus de constructores
         Document doc1 = new Document("Ari", "Titol del document", "Tres tristes, tristes tigres comen trigo en un trigal.", "txt");
         assertEquals("Ari", doc1.getAuthor());
@@ -38,8 +38,7 @@ public class TestDocument {
 	 * Test dels setters
 	 */
     @Test
-	public void testSetters()
-	{
+	public void testSetters() throws ExceptionInvalidFormat {
         Document doc = new Document("Ari", "Titol del document", "Tres tristes, tristes tigres comen trigo en un trigal.", "txt");
         doc.setContent("Now content :)");
         assertEquals("Now content :)", doc.getContent());
@@ -49,8 +48,7 @@ public class TestDocument {
 	 * Test dels setters
 	 */
     @Test
-	public void testTermRelevance_tf_idf()
-	{
+	public void testTermRelevance_tf_idf() throws ExceptionInvalidFormat {
         int num_docs = 10;
         Map<String,Integer> presence = new HashMap<String,Integer>();
         presence.put("Tres", 7);
@@ -75,8 +73,7 @@ public class TestDocument {
 	 * Test dels setters
 	 */
     @Test
-	public void testQueryRelevance()
-	{
+	public void testQueryRelevance() throws ExceptionInvalidFormat {
         int num_docs = 10;
         Map<String,Integer> presence = new HashMap<String,Integer>();
         presence.put("tres", 7);
@@ -97,8 +94,7 @@ public class TestDocument {
     }
 
     @Test
-	public void testCompare()
-	{
+	public void testCompare() throws ExceptionInvalidFormat {
         int num_docs = 10;
         Map<String,Integer> presence = new HashMap<String,Integer>();
         presence.put("tres", 7);
