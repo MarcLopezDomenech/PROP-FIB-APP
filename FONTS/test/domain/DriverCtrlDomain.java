@@ -17,17 +17,16 @@ import main.excepcions.ExceptionNoExpression;
  */
 public class DriverCtrlDomain {
     private static CtrlDomain cd;
-    private static Scanner scanner;
 
     public static void main(String[] args) {
         cd = CtrlDomain.getInstance();
-        scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Benvingut/da al Driver del Controlador de Domini");
         try {
-            String cont = "S";
+            int value;
             do {
                 imprimirOpcions();
-                int value = scanner.nextInt();
+                value = scanner.nextInt();
                 System.out.println();
                 try {
                     switch (value) {
@@ -71,9 +70,7 @@ public class DriverCtrlDomain {
                             testModifyExpression();
                             break;
                         case 14:
-                            cont = "N";
                             break;
-
                         default:
                             System.out.println("No has introduït un valor vàlid.");
                             break;
@@ -82,19 +79,13 @@ public class DriverCtrlDomain {
                     String missatge = e.getMessage();
                     System.out.println(missatge);
                 }
-                if ("S".equals(cont)) {
-                    System.out.println();
-                    System.out.print("Vols continuar (S/N)?: ");
-                    cont = scanner.next();
-                    System.out.println();
-                }
-            } while ("S".equals(cont));
+                System.out.println();
+            } while (value != 14);
             System.out.println("Sortim.");
         } catch (Exception e) {
             System.out.println("El valor introduït no es pot processar, abortem.");
             return;
         }
-
     }
 
     public static void imprimirOpcions() {
@@ -117,16 +108,18 @@ public class DriverCtrlDomain {
     }
 
     public static void testCreateEmptyDocument() throws ExceptionDocumentExists {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Crear un document buit");
         System.out.print("Introdueix un títol: ");
-        String title = scanner.next();
+        String title = scanner.nextLine();
         System.out.print("Introdueix un autor: ");
-        String author = scanner.next();
+        String author = scanner.nextLine();
         cd.createEmptyDocument(title, author);
         System.out.println("Document buit creat");
     }
 
     public static void testDeleteDocument() throws ExceptionNoDocument {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Esborrar un document");
         System.out.print("Introdueix un títol: ");
         String title = scanner.next();
@@ -137,6 +130,7 @@ public class DriverCtrlDomain {
     }
 
     public static void testExistsDocument() {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Saber si existeix un document");
         System.out.print("Introdueix un títol: ");
         String title = scanner.next();
@@ -147,6 +141,7 @@ public class DriverCtrlDomain {
     }
 
     public static void testGetContentDocument() throws ExceptionNoDocument {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Consultar el contingut d'un document");
         System.out.print("Introdueix un títol: ");
         String title = scanner.next();
@@ -158,6 +153,7 @@ public class DriverCtrlDomain {
     }
 
     public static void testUpdateContentDocument() throws ExceptionNoDocument {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Modificar el contingut d'un document");
         System.out.print("Introdueix un títol: ");
         String title = scanner.next();
@@ -170,6 +166,7 @@ public class DriverCtrlDomain {
     }
 
     public static void testListSimilars() throws ExceptionNoDocument {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Llistar els documents més semblants a un document");
         System.out.print("Introdueix un títol: ");
         String title = scanner.next();
@@ -185,6 +182,7 @@ public class DriverCtrlDomain {
     }
 
     public static void testListTitlesOfAuthor() {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Llistar els títols d'un autor");
         System.out.print("Introdueix un autor: ");
         String author = scanner.next();
@@ -196,6 +194,7 @@ public class DriverCtrlDomain {
     }
 
     public static void testListAuthorsByPrefix() {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Llistar els autors per prefix");
         System.out.print("Introdueix un prefix: ");
         String prefix = scanner.next();
@@ -207,6 +206,7 @@ public class DriverCtrlDomain {
     }
 
     public static void testListByQuery() {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Llistar els documents a partir d'una query");
         System.out.print("Introdueix una query: ");
         String query = scanner.next();
@@ -222,6 +222,7 @@ public class DriverCtrlDomain {
     }
 
     public static void testListByExpression() throws ExceptionNoExpression {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Llistar els documents a partir d'una expressió booleana");
         System.out.print("Introdueix una expressió booleana: ");
         String expression = scanner.next();
@@ -235,6 +236,7 @@ public class DriverCtrlDomain {
     }
 
     public static void testCreateExpression() throws ExceptionExpressionExists {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Crear una expressió booleana");
         System.out.print("Introdueix una expressió booleana: ");
         String expression = scanner.next();
@@ -243,6 +245,7 @@ public class DriverCtrlDomain {
     }
 
     public static void testDeleteExpression() throws ExceptionNoExpression {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Esborrar una expressió booleana");
         System.out.print("Introdueix una expressió booleana: ");
         String expression = scanner.next();
@@ -251,6 +254,7 @@ public class DriverCtrlDomain {
     }
 
     public static void testModifyExpression() throws ExceptionNoExpression, ExceptionExpressionExists {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Modificar una expressió booleana");
         System.out.print("Introdueix l'expressió booleana a modificar: ");
         String oldExpression = scanner.next();
