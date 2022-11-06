@@ -8,38 +8,43 @@ import java.util.*;
  * @author pau.duran.manzano
  */
 public class Document {
+    private String content;
 
     public Document() {}
 
-    public Document(String title, String author, String content) {}
-
-    public Document(String title, String author, String content, String format) {}
-
-    public String getContent() {
-        return "Contingut inventat per poder fer tests.";
+    public Document(String title, String author, String content) {
+        this.content = content;
     }
 
-    public void setContent(String content) {}
+    public Document(String title, String author, String content, String format) {
+        this.content = content;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {this.content = content;}
 
     public Set<String> getRelevantWords() {
-        Set<String> s1 = new HashSet<>(Arrays.asList("paraula", "hola", "que", "tal"));
-        Set<String> s2 = new HashSet<>(Arrays.asList("paraula", "hola", "que", "tal"));
-        Set<String> s3 = new HashSet<>(Arrays.asList("això", "és", "una", "classe", "stub"));
-        Set<String> s4 = new HashSet<>(Arrays.asList("per", "fer", "tests"));
-        Set<String> s5 = new HashSet<>(Arrays.asList());
-
-        List<Set<String>> relevantWords  = Arrays.asList(s1, s2, s3, s4, s5);
-        int r = new Random().nextInt(5);
-        System.out.println("Estem a la funció getRelevantWords i es retorna " + r);
-        return relevantWords.get(r);
+        Set<String> relevantWordsFake = new HashSet<>();
+        for (Character c : content.toCharArray()) {
+            String s = c.toString();
+            if (!" ".equals(s)) relevantWordsFake.add(s);
+        }
+        return relevantWordsFake;
     }
 
     public double compare(Document other, Integer num_docs, Map<String,Integer> presence) {
-        return Math.random()*100;
+        Integer r = other.content.length() - content.length();
+        if (r < 0) return -r;
+        else return r;
     }
 
     public double queryRelevance(String query, Integer num_docs, Map<String,Integer> presence) {
-        return Math.random()*100;
+        Integer r = query.length() - content.length();
+        if (r < 0) return -r;
+        else return r;
     }
 
 

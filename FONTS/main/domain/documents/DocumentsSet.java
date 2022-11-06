@@ -10,6 +10,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 
 import test.domain.expressions.Expression;
+import test.domain.documents.Document;
 import main.domain.util.Pair;
 import main.excepcions.ExceptionDocumentExists;
 import main.excepcions.ExceptionNoDocument;
@@ -55,6 +56,35 @@ public class DocumentsSet {
         }
         return singletonObject;
     }
+
+    /**
+     * @brief Funció per obtenir el conjunt de documents de la classe
+     * @details Aquesta funció és necessària per poder fer tests, tot i que no s'emprarà fora de les proves
+     * @return Map de (autor, (títol, Document)) de tots els documents guardats a la classe
+     */
+    public Map<String, Map<String, Document>> getDocuments() {return documents;}
+
+    /**
+     * @brief Funció per assignar el conjunt de documents de la classe
+     * @details Aquesta funció és necessària per poder fer tests, tot i que no s'emprarà fora de les proves
+     * @param documents map de (autor, (títol, Document)) que es vol assignar a la classe
+     */
+    public void setDocuments(Map<String, Map<String, Document>> documents) {
+        this.documents = documents;
+        numDocuments = documents.size();
+        for (Map<String, Document> titlesAuthor : documents.values()) {
+            for (Document d : titlesAuthor.values()) {
+                addPresence(d.getRelevantWords());
+            }
+        }
+    }
+
+    /**
+     * @brief Funció per obtenir l'atribut de presència de la classe
+     * @details Aquesta funció és necessària per poder fer tests, tot i que no s'emprarà fora de les proves
+     * @return Map de valor i quantitat d'aparicions de tots els documents guardats a la classe
+     */
+    public Map<String, Integer> getPresence() {return presence;}
 
     /**
      * @brief Operació per crear i registrar un nou document
