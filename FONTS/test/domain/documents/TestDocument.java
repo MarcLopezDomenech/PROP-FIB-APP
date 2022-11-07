@@ -7,12 +7,35 @@ import main.domain.documents.Document;
 import static org.junit.Assert.*;
 
 import main.excepcions.ExceptionInvalidFormat;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * @class TestDocument
+ * @brief Classe per provar de forma unitària la classe Document
+ * @author ariadna.cortes.danes
+ */
 public class TestDocument {
-    
-    @BeforeClass public static void init(){ //??
+    private static  Map<String,Integer> presence;
+    private static int num_docs;
+
+
+    @Before 
+    public void init(){ 
+        num_docs = 10;
+        presence = new HashMap<String,Integer>();
+        presence.put("tres", 7);
+        presence.put("tristes", 2);
+        presence.put("tigres", 1);
+        presence.put("comen", 3);
+        presence.put("trigo", 2);
+        presence.put("en", 6);
+        presence.put("un", 9);
+        presence.put("trigal", 1);
+        presence.put("test", 10);
+        presence.put("mesTest", 9);
+        presence.put("paraulaaa", 9);
+        presence.put("parauula", 9);
     }
 
     /**
@@ -57,24 +80,10 @@ public class TestDocument {
 	 */
     @Test
 	public void testTermRelevance_tf_idf() throws ExceptionInvalidFormat {
-        int num_docs = 10;
-        Map<String,Integer> presence = new HashMap<String,Integer>();
-        presence.put("Tres", 7);
-        presence.put("tristes", 2);
-        presence.put("tigres", 1);
-        presence.put("comen", 3);
-        presence.put("trigo", 2);
-        presence.put("en", 6);
-        presence.put("un", 9);
-        presence.put("trigal", 1);
-        presence.put("test", 10);
-        presence.put("mesTest", 9);
-        presence.put("paraulaaa", 9);
-        presence.put("parauula", 9);
         Document doc = new Document("Ari", "Titol del document", "Tres tristes, tristes tigres comen trigo en un trigal.", "txt");
         String[] words = {"tigres","trigo"};
 
-        assertEquals(25.0, doc.termRelevance_tf_idf(words,num_docs,presence),0.1);
+        assertEquals(0.1887, doc.termRelevance_tf_idf(words,num_docs,presence),0.01);
     }
     
     /**
@@ -82,20 +91,6 @@ public class TestDocument {
 	 */
     @Test
 	public void testQueryRelevance() throws ExceptionInvalidFormat {
-        int num_docs = 10;
-        Map<String,Integer> presence = new HashMap<String,Integer>();
-        presence.put("tres", 7);
-        presence.put("tristes", 2);
-        presence.put("tigres", 1);
-        presence.put("comen", 3);
-        presence.put("trigo", 2);
-        presence.put("en", 6);
-        presence.put("un", 9);
-        presence.put("trigal", 1);
-        presence.put("test", 10);
-        presence.put("mesTest", 9);
-        presence.put("paraulaaa", 9);
-        presence.put("parauula", 9);
         Document doc = new Document("Ari", "Titol del document", "Tres tristes, tristes tigres comen trigo en un trigal", "txt");
         String query = "deportes de equipo";
         assertEquals(0.0, doc.queryRelevance(query,num_docs,presence),0.1);
@@ -103,20 +98,6 @@ public class TestDocument {
 
     @Test
 	public void testCompare() throws ExceptionInvalidFormat {
-        int num_docs = 10;
-        Map<String,Integer> presence = new HashMap<String,Integer>();
-        presence.put("tres", 7);
-        presence.put("tristes", 2);
-        presence.put("tigres", 1);
-        presence.put("comen", 3);
-        presence.put("trigo", 2);
-        presence.put("en", 6);
-        presence.put("un", 9);
-        presence.put("trigal", 1);
-        presence.put("test", 10);
-        presence.put("mesTest", 9);
-        presence.put("paraulaaa", 9);
-        presence.put("parauula", 9);
         Document doc = new Document("Ari", "Titol del document", "Tres tristes, tristes tigres comen trigo en un trigal", "txt");
         String query = "deportes de equipo";
         assertEquals(0.0, doc.queryRelevance(query,num_docs,presence),0.1);
