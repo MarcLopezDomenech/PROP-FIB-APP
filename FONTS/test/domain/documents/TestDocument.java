@@ -27,6 +27,7 @@ public class TestDocument {
         assertEquals("Tres tristes, tristes tigres comen trigo en un trigal.", doc1.getContent());
         assertEquals("txt", doc1.getOriginalFormat());
 
+        //Test dels getters de una creadora sense format
         Document doc2 = new Document("Ari", "Titol del document", "Contingut");
         assertEquals("Ari", doc2.getAuthor());
         assertEquals("Titol del document", doc2.getTitle());
@@ -42,6 +43,13 @@ public class TestDocument {
         Document doc = new Document("Ari", "Titol del document", "Tres tristes, tristes tigres comen trigo en un trigal.", "txt");
         doc.setContent("Now content :)");
         assertEquals("Now content :)", doc.getContent());
+    }
+
+    @Test (expected = ExceptionInvalidFormat.class)
+    public void testInvalidFormatException() throws ExceptionInvalidFormat {
+        Document doc2 = new Document("Ari", "Titol del document", "Contingut", "invalid");
+        //Salta ExceptionInvalidFormat
+        System.out.println("Això no apareix per pantalla");
     }
 
     /**
