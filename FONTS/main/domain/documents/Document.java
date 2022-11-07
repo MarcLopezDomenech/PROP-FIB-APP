@@ -34,7 +34,7 @@ public class Document {
         this.author = author;
         this.title = title;
         this.content = content;
-        if (format != "txt" || format != "xml") throw new ExceptionInvalidFormat(format);
+        if (format != "txt" && format != "xml") throw new ExceptionInvalidFormat(format);
         this.originalFormat = format;
         this.internalDoc = new InternalDocument(content);
     }
