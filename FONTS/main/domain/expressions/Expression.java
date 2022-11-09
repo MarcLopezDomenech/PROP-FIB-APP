@@ -11,76 +11,46 @@ import java.util.List;
  * @author marc.valls.camps i pau.duran.manzano
  */
 public abstract class Expression {
-    /*public static boolean verify(String exp) {
-        // format test
-        // hi ha dhaver caracters que no acceptem?
-
-        // close test
-        int pars = 0;
-        int keys = 0;
-        //int
-        for (int i = 0; i < exp.length(); i++) {
-            if (exp.charAt(i) == '(') ++pars;
-            else if (exp.charAt(i) == ')') --pars;
-            else if (exp.charAt(i) == '{') ++keys;
-            else if (exp.charAt(i) == '}') --keys;
-
-            if ((exp.charAt(i) == '(' || exp.charAt(i) == ')') && keys == 1) return false;
-            if (pars < 0 || keys < 0 || keys > 1) return false;
-        }
-        if (pars != 0 || keys != 0) return false;
-
-        // key substitution
-        for (int i = exp.length() - 1; i >= 0; --i) {
-            if (exp.charAt(i) == '}') {
-                int j = i;
-                while (exp.charAt(i) != '{') --i;
-
-            }
-        }
-
-        // space elimination - CAN'T BE DONE THIS WAY (phrases)
-        exp.replaceAll("\\s+","");
-
-        // consecutive operators test - relies on space elimination
-        while (exp.contains("!!")) exp.replaceAll("!!", "");
-        if (exp.contains("&&") || exp.contains("||") || exp.contains("&|") ||
-                exp.contains("|&") || exp.contains("!|") || exp.contains("!&")) return false;
-
-        // consecutive words test?
-
-
-        return true;
-    }*/
-
     public static void main(String[] args) throws ExceptionInvalidExpression {
         Expression e = create("hola & !(adeu) & pa&&tata");
     }
+    private static String keys_to_ands(String exp) throws ExceptionInvalidExpression {
+        int n = exp.length();
+        String result = "";
+        for(int i = 0; i < n; ++i) {
+            if (exp.charAt(i) == '{'){
+                int j = i + 1;                                                      // apunta primer char despres de {
+                while (i < n && exp.charAt(i) != '}') ++i;                          // desplaça i fins trobar }
+                if (i == n) throw new ExceptionInvalidExpression(exp);              // claus no tanquen
+
+                int count = 0;
+                while (j < i) {
+                    while (j < i && exp.charAt(i) == ' ') ++j;                      // elimina espais al principi del Literal
+                    if (j < i) {
+                        int jj = j;
+                        if (exp.charAt(j) == '"') {
+                            while(j < i && exp.charAt(j) != '"') ++j;
+                            if (j == i) throw new ExceptionInvalidExpression(exp);  // cometes no tanquen
+                            ++j;                                                    // per incloure les " que tanquen
+                        }
+                        // else if (exp.charAt(j) == '(') // es poden posar controls, de moment saccepta ( i ) com a paraula
+                        else while(j < i && exp.charAt(j) != ' ') ++j;
+                        result += exp.substring(jj, j);
+                        result += " & ";
+                        ++count;
+                    }
+                }
+                if (count > 0) result = result.substring(0,result.length()-3);
+                ++i;                                                                // perque estava apuntant a }
+            }
+            else if (exp.charAt(i) == '}') throw new ExceptionInvalidExpression(exp); // claus no tanquen
+            else result += String.valueOf(exp.charAt(i));
+        }
+        return result;
+    }
 
     public static Expression create(String exp) throws ExceptionInvalidExpression {
-        int n = exp.length();
-        String result = new String();
-        for (int i = 0; i < n; ++i) {
-            if (exp.charAt(i) == '{') {
-                result += exp.substring(0, i);
-                ++i;
-                int ini = i;
-                Boolean found = false;
-                while (i < n && exp.charAt(i) != '}') {
-                    if (exp.charAt(i) == ' ') {
-                        found = true;
-                        result += exp.substring(ini, i);
-                        result += " & ";
-                        ini = i + 1;
-                    }
-                    ++i;
-                }
-                if (i == n) throw new ExceptionInvalidExpression(exp);
-                if (found) result = result.substring(0, result.length() - 3);
-                ++i;
-            }
-        }
-        if (result.length() == 0) result = exp;
+        String result = keys_to_ands(exp);
         return create1(result);
     }
 
