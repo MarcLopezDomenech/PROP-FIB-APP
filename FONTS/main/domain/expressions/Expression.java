@@ -25,10 +25,11 @@ public abstract class Expression {
 
                 int count = 0;
                 while (j < i) {
-                    while (j < i && exp.charAt(i) == ' ') ++j;                      // elimina espais al principi del Literal
+                    while (j < i && exp.charAt(j) == ' ') ++j;                      // elimina espais al principi del Literal
                     if (j < i) {
                         int jj = j;
                         if (exp.charAt(j) == '"') {
+                            ++j;
                             while(j < i && exp.charAt(j) != '"') ++j;
                             if (j == i) throw new ExceptionInvalidExpression(exp);  // cometes no tanquen
                             ++j;                                                    // per incloure les " que tanquen
@@ -41,7 +42,6 @@ public abstract class Expression {
                     }
                 }
                 if (count > 0) result = result.substring(0,result.length()-3);
-                ++i;                                                                // perque estava apuntant a }
             }
             else if (exp.charAt(i) == '}') throw new ExceptionInvalidExpression(exp); // claus no tanquen
             else result += String.valueOf(exp.charAt(i));
