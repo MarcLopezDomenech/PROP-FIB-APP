@@ -288,7 +288,7 @@ public class DocumentsSet {
         int len = author.length();
         for (Map.Entry<String, Map<String,Document>> entry : documents.entrySet()) {
             String nom=entry.getKey();
-            boolean no_err=false;
+            boolean no_err=true;
             for (int i = 0; i < len; i++){
                 if (nom.charAt(i) != author.charAt(i)){
                     no_err=false;
@@ -301,7 +301,29 @@ public class DocumentsSet {
     }
 
     public List<Pair<String, String>> listByQuery(String query, int k) {
-        return null;
+        List<Pair<Pair<String, String>, Double>> ordre = new ArrayList<>();
+        for (Map.Entry<String, Map<String, Document>> authorTitleDoc : documents.entrySet()) {
+            String author = authorTitleDoc.getKey();
+            Map<String, Document> titleDocs = authorTitleDoc.getValue();
+            for (Map.Entry<String, Document> titleDoc : titleDocs.entrySet()) {
+                String title = titleDoc.getKey();
+                Document doc = titleDoc.getValue();
+                // Obtenim el valor i l'afegim a la llista
+                Double value = doc.queryRelevance(query, numDocuments, presence);
+                ordre.add(new Pair<>(new Pair<>(title, author), value));
+            }
+        }
+        // Ordenem la llista en funció dels valors
+        Collections.sort(ordre, new ValueComparator());
+        List<Pair<String, String>> result = new ArrayList<>();
+        Iterator<Pair<Pair<String, String>, Double>> iterator = ordre.listIterator();
+        int i = 0;
+        // Iterem per tota la llista ordenada fins que arribem a k o al final, per guardar el resultat que retornem
+        while(i < k && iterator.hasNext()) {
+            result.add(iterator.next().getFirst());
+            ++i;
+        }
+        return result;
     }
 
     private Document getDocument(String title, String author) throws ExceptionNoDocument {
