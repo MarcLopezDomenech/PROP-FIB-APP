@@ -5,25 +5,10 @@ import main.excepcions.ExceptionInvalidExpression;
 /**
  * @class Expression
  * @brief Classe que representa i evalua expressions booleanes
- * @author marc.valls.camps
+ * @author marc.valls.camps, ariadna.cortes.danes i pau.duran.manzano
  */
 public abstract class Expression {
-    
-    //private String value;
-    //private Expression left = null;
-    //private Expression right = null;
-
-    /*public static void main(String[] args) {
-        try {
-            Expression ex1 = new Expression(" ");
-            System.out.println("EXPRESSIO VALIDA");
-        } catch (ExceptionInvalidExpression e) {
-            System.out.println("EXPRESSIO INVALIDA");
-        }
-    }*/
-
     public Expression create(String str) throws ExceptionInvalidExpression {
-    //public Expression(String str) throws ExceptionInvalidExpression {
         System.out.println("Iniciando analasi de " + str);
         if (str.isEmpty()) throw new ExceptionInvalidExpression(str);
         while (str.charAt(0) == '(' && str.charAt(str.length()-1) == ')') str = str.substring(1, str.length()-1);
@@ -70,7 +55,7 @@ public abstract class Expression {
         }
         if (str.charAt(0) == '!') {
             System.out.println("Encontramos una not !");
-            String strNot = str.substring(1, str.length());
+            String strNot = str.substring(1);
             return new Not(create(strNot));
         } else {
             if (str.charAt(0) == '"') {
