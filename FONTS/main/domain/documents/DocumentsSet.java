@@ -306,7 +306,7 @@ public class DocumentsSet {
      * @brief Operació per conseguir una llista dels k documents que compleixen millor la query
      * @details Retorna una llista de de titles i authors que identifiquen a documents que compleixen la query
      * @param query que volem apkicar als documents
-     * * @param k nombre de documents que volem retornar
+     * @param k nombre de documents que volem retornar
      * @post Llista de authors i títuls que identifiquen a un document cada pair que cumpleix la query
      */
     public List<Pair<String, String>> listByQuery(String query, int k) {
