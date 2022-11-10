@@ -1,38 +1,38 @@
 package main.domain.expressions;
 
-import main.excepcions.ExceptionInvalidExpresion;
+import main.excepcions.ExceptionInvalidExpression;
 
 /**
  * @class Expression
  * @brief Classe que representa i evalua expressions booleanes
  * @author marc.valls.camps
  */
-public class Expression {
+public abstract class Expression {
     
     private String value; 
     private Expression left = null;
     private Expression right = null;
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         try {
             Expression ex1 = new Expression(" ");
             System.out.println("EXPRESSIO VALIDA");
-        } catch (ExceptionInvalidExpresion e) {
+        } catch (ExceptionInvalidExpression e) {
             System.out.println("EXPRESSIO INVALIDA");
-        } 
-    }
+        }
+    }*/
 
-    public Expression(String str) throws ExceptionInvalidExpresion {
+    public Expression(String str) throws ExceptionInvalidExpression {
         System.out.println("Iniciando analasi de " + str);
-        if (str.isEmpty()) throw new ExceptionInvalidExpresion(str);
+        if (str.isEmpty()) throw new ExceptionInvalidExpression(str);
         while (str.charAt(0) == '(' && str.charAt(str.length()-1) == ')') str = str.substring(1, str.length()-1);
         while (!str.isEmpty() && str.charAt(0) == ' ') str = str.substring(1, str.length());
         while (!str.isEmpty() && str.charAt(str.length()-1) == ' ') str = str.substring(0, str.length()-1);
-        if (str.isEmpty()) throw new ExceptionInvalidExpresion(str);
-        if (is_dual_operator(str.charAt(0))) throw new ExceptionInvalidExpresion(str);
-        if (is_dual_operator(str.charAt(str.length()-1))) throw new ExceptionInvalidExpresion(str);
-        if (!checkComillas(str)) throw new ExceptionInvalidExpresion(str);
-        if (!checkParentesis(str)) throw new ExceptionInvalidExpresion(str);
+        if (str.isEmpty()) throw new ExceptionInvalidExpression(str);
+        if (is_dual_operator(str.charAt(0))) throw new ExceptionInvalidExpression(str);
+        if (is_dual_operator(str.charAt(str.length()-1))) throw new ExceptionInvalidExpression(str);
+        if (!checkComillas(str)) throw new ExceptionInvalidExpression(str);
+        if (!checkParentesis(str)) throw new ExceptionInvalidExpression(str);
         System.out.println("Comillas, parenesis, operadors i espais... checked");
 
         boolean or = false; 
@@ -90,7 +90,7 @@ public class Expression {
                         System.out.println(" Literal con comitas");
                         value = str.substring(1, str.length()-1);
                     } else {
-                        throw new ExceptionInvalidExpresion(str);
+                        throw new ExceptionInvalidExpression(str);
                     }
                 }
                 else {
