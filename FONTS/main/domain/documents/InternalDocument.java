@@ -37,7 +37,7 @@ public class InternalDocument {
     /**
      * @brief Constructora per a fer backUps de InternalDocument
      * @param relevantWords Map<paraula,cops> que correspon a l'analisi del contingut d'un document
-     * @param numWords nombre total de paraules que te el contingut del document
+     * @param totalWords nombre total de paraules que te el contingut del document
      */
     public InternalDocument(Map<String,Integer> relevantWords, int totalWords) {
         this.relevantWords = relevantWords;
@@ -67,16 +67,17 @@ public class InternalDocument {
 
     /**
      * @brief Canviar el contingut representat per internalDocument
-     * @param content
+     * @param content nou contingut del document 
      */
     public void newContent(String content) {
         analizeContent(content);
     }
+   
     /**
      * @brief Analitzar les dades que el sistema guarda pel contingut rebut
      * @details aquesta funcio inicialitza/actualitza el contingut de revelantWords
      * (Map<paraula,cops>) i de totalWords (nombre total de paraules del contingut)
-     * @param Content el contingut a analitzar
+     * @param content el contingut a analitzar
      */  
     private void analizeContent (String content) {
         Map<String,Integer> words = new HashMap<String,Integer>();
