@@ -174,20 +174,26 @@ public class DriverCtrlDomain {
         }
     }
 
-    public static void testListSimilars() throws ExceptionNoDocument {
+    public static void testListSimilars() throws ExceptionNoDocument, ExceptionInvalidStrategy {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Llistar els documents més semblants a un document");
         System.out.print("Introdueix un títol: ");
         String title = scanner.nextLine();
         System.out.print("Introdueix un autor: ");
         String author = scanner.nextLine();
+        System.out.print("Quina estratègia vols usar (tf-idf/tf-boolean): ");
+        String strategy = scanner.nextLine();
         System.out.print("Introdueix una k: ");
-        int k = scanner.nextInt();
-        List<Pair<String, String>> result = cd.listSimilars(title, author, k);
-        if (result == null || result.size() == 0) System.out.println("No hi ha resultats");
-        for (Pair<String, String> r : result) {
-            System.out.println(r.getFirst() + " " + r.getSecond());
-        }
+        try {
+            int k = scanner.nextInt();
+            List<Pair<String, String>> result = cd.listSimilars(title, author, k, strategy);
+            if (result == null || result.size() == 0) System.out.println("No hi ha resultats");
+            for (Pair<String, String> r : result) {
+                System.out.println(r.getFirst() + " " + r.getSecond());
+            }
+        } catch (Exception InputMismatchException) {        // Excepció que llença scanner si no es rep un int
+        System.out.println("El valor de k ha de ser un enter");
+    }
     }
 
     public static void testListTitlesOfAuthor() {
@@ -220,13 +226,17 @@ public class DriverCtrlDomain {
         System.out.print("Introdueix una query: ");
         String query = scanner.nextLine();
         System.out.print("Introdueix una k: ");
-        int k = scanner.nextInt();
-        List<Pair<String, String>> result = cd.listByQuery(query, k);
-        if (result == null || result.size() == 0) System.out.println("No hi ha resultats");
-        else {
-            for (Pair<String, String> r : result) {
-                System.out.println(r.getFirst() + " " + r.getSecond());
+        try {
+            int k = scanner.nextInt();
+            List<Pair<String, String>> result = cd.listByQuery(query, k);
+            if (result == null || result.size() == 0) System.out.println("No hi ha resultats");
+            else {
+                for (Pair<String, String> r : result) {
+                    System.out.println(r.getFirst() + " " + r.getSecond());
+                }
             }
+        } catch (Exception InputMismatchException) {        // Excepció que llença scanner si no es rep un int
+            System.out.println("El valor de k ha de ser un enter");
         }
     }
 

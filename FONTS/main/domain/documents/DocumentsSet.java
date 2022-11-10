@@ -13,6 +13,7 @@ import main.domain.expressions.Expression;
 import main.domain.documents.Document;
 import main.domain.util.Pair;
 import main.excepcions.ExceptionDocumentExists;
+import main.excepcions.ExceptionInvalidStrategy;
 import main.excepcions.ExceptionNoDocument;
 
 /**
@@ -213,7 +214,8 @@ public class DocumentsSet {
      * @post L'estat del sistema no queda alterat
      * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
      */
-    public List<Pair<String, String>> listSimilars(String title, String author, int k) throws ExceptionNoDocument {
+    public List<Pair<String, String>> listSimilars(String title, String author, int k, String strategy) throws ExceptionNoDocument, ExceptionInvalidStrategy {
+        if (!"tf-idf".equals(strategy) && !"tf-boolean".equals(strategy)) throw new ExceptionInvalidStrategy(strategy);
         Document original = getDocument(title, author);
         List<Pair<Pair<String, String>, Double>> ordre = new ArrayList<>();
         for (Map.Entry<String, Map<String, Document>> authorTitleDoc : documents.entrySet()) {
@@ -224,8 +226,10 @@ public class DocumentsSet {
                 // En cas que no estiguem en el document original
                 if (!(tit.equals(title) && aut.equals(author))) {
                     Document doc = titleDoc.getValue();
-                    // Obtenim el valor i l'afegim a la llista
-                    Double value = original.compare_tf_idf(doc, numDocuments, presence);
+                    // Obtenim el valor (en funció de l'estratègia triada) i l'afegim a la llista
+                    Double value;
+                    if ("tf-idf".equals(strategy)) value = original.compare_tf_idf(doc, numDocuments, presence);
+                    else value = original.compare_tf_boolean(doc);
                     ordre.add(new Pair<>(new Pair<>(tit, aut), value));
                 }
             }
@@ -285,7 +289,7 @@ public class DocumentsSet {
     /**
      * @brief Operació per conseguir els autors que el comencen per un prefix
      * @details Retorna una llista dels autors que el seu nom comença pel prefix que rep la funció
-     * @param author prefix del author
+     * @param prefix prefix del author
      * @post Tots els autors que comencen per el prefix author
      */
     public List<String> listAuthorsByPrefix(String prefix) {
@@ -302,7 +306,7 @@ public class DocumentsSet {
      * @brief Operació per conseguir una llista dels k documents que compleixen millor la query
      * @details Retorna una llista de de titles i authors que identifiquen a documents que compleixen la query
      * @param query que volem apkicar als documents
-     * * @param k nombre de documents que volem retornar
+     * @param k nombre de documents que volem retornar
      * @post Llista de authors i títuls que identifiquen a un document cada pair que cumpleix la query
      */
     public List<Pair<String, String>> listByQuery(String query, int k) {
