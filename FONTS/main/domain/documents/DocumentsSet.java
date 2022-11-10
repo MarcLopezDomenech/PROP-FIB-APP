@@ -298,7 +298,13 @@ public class DocumentsSet {
         }
         return result;
     }
-
+    /**
+     * @brief Operació per conseguir una llista dels k documents que compleixen millor la query
+     * @details Retorna una llista de de titles i authors que identifiquen a documents que compleixen la query
+     * @param query que volem apkicar als documents
+     * * @param k nombre de documents que volem retornar
+     * @post Llista de authors i títuls que identifiquen a un document cada pair que cumpleix la query
+     */
     public List<Pair<String, String>> listByQuery(String query, int k) {
         List<Pair<Pair<String, String>, Double>> ordre = new ArrayList<>();
         for (Map.Entry<String, Map<String, Document>> authorTitleDoc : documents.entrySet()) {
@@ -325,6 +331,13 @@ public class DocumentsSet {
         return result;
     }
 
+    /**
+     * @brief Operació per conseguir el document que te un títul i autor deteminat
+     * @details Retorna un document identificat per l'author igual a uthor i títul igual a title
+     * @param author author del document
+     * * @param title title del document
+     * @post El document identificat per aquell títul i aquell author
+     */
     private Document getDocument(String title, String author) throws ExceptionNoDocument {
         Map<String,Document> maptitle = documents.get(author);
         if (maptitle == null) throw new ExceptionNoDocument(title, author);
