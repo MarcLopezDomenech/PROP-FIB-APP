@@ -246,29 +246,7 @@ public class DocumentsSet {
         }
         return result;
     }
-    /**
-     * @brief Operació per conseguir els documents que compleixen una expressió
-     * @details Retorna una llista dels documents identificats per títul i autor que compleixen l'expressió booleana
-     * @pre L'expressió expression existeix
-     * @param expression Expression en la que volem evaluar els documents
-     * @param caseSensitive Boolea que identifica com s'evalua el contigut en l'expressió
-     * @post Tots els docuemnts de la llista existeixen i compleixen l'expressió booleana en el cas de caseSensitive
-     */
-    public List<Pair<String, String>> listByExpression(Expression expression, Boolean caseSensitive) {
-        List<Pair<String, String>> expr_list= new ArrayList<Pair<String, String>>();
-        for (Map.Entry<String, Map<String, Document>> d : documents.entrySet()) {
-            String aut = d.getKey();
-            Map<String, Document> titDoc = d.getValue();
-            for (Map.Entry<String, Document> d2 : titDoc.entrySet()) {
-                 String tit = d2.getKey();
-                 Document doc = d2.getValue();
-                 if(expression.evaluate(doc.getContent(),caseSensitive)){
-                    expr_list.add(new Pair<String,String>(tit,aut));
-                 }
-            }
-        }
-        return expr_list;
-    }
+
     /**
      * @brief Operació per conseguir els títols dels documents d'un autor
      * @details Retorna una llista dels documents identificats per títul i autor que ha escrit l'autor
@@ -286,6 +264,7 @@ public class DocumentsSet {
         }
         return expr_list;
     }
+
     /**
      * @brief Operació per conseguir els autors que el comencen per un prefix
      * @details Retorna una llista dels autors que el seu nom comença pel prefix que rep la funció
@@ -302,6 +281,7 @@ public class DocumentsSet {
         }
         return result;
     }
+
     /**
      * @brief Operació per conseguir una llista dels k documents que compleixen millor la query
      * @details Retorna una llista de de titles i authors que identifiquen a documents que compleixen la query
@@ -333,6 +313,30 @@ public class DocumentsSet {
             ++i;
         }
         return result;
+    }
+
+    /**
+     * @brief Operació per conseguir els documents que compleixen una expressió
+     * @details Retorna una llista dels documents identificats per títul i autor que compleixen l'expressió booleana
+     * @pre L'expressió expression existeix
+     * @param expression Expression en la que volem evaluar els documents
+     * @param caseSensitive Boolea que identifica com s'evalua el contigut en l'expressió
+     * @post Tots els docuemnts de la llista existeixen i compleixen l'expressió booleana en el cas de caseSensitive
+     */
+    public List<Pair<String, String>> listByExpression(Expression expression, Boolean caseSensitive) {
+        List<Pair<String, String>> expr_list= new ArrayList<Pair<String, String>>();
+        for (Map.Entry<String, Map<String, Document>> d : documents.entrySet()) {
+            String aut = d.getKey();
+            Map<String, Document> titDoc = d.getValue();
+            for (Map.Entry<String, Document> d2 : titDoc.entrySet()) {
+                String tit = d2.getKey();
+                Document doc = d2.getValue();
+                if(expression.evaluate(doc.getContent(),caseSensitive)){
+                    expr_list.add(new Pair<String,String>(tit,aut));
+                }
+            }
+        }
+        return expr_list;
     }
 
     /**
