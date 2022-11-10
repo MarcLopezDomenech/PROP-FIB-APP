@@ -8,8 +8,9 @@ import main.excepcions.ExceptionInvalidExpression;
  * @author marc.valls.camps, ariadna.cortes.danes i pau.duran.manzano
  */
 public abstract class Expression {
-    public Expression create(String str) throws ExceptionInvalidExpression {
+    public static Expression create(String str) throws ExceptionInvalidExpression {
         System.out.println("Iniciando analasi de " + str);
+        str = keys_to_ands(str);
         if (str.isEmpty()) throw new ExceptionInvalidExpression(str);
         while (str.charAt(0) == '(' && str.charAt(str.length()-1) == ')') str = str.substring(1, str.length()-1);
         while (!str.isEmpty() && str.charAt(0) == ' ') str = str.substring(1, str.length());
@@ -72,11 +73,46 @@ public abstract class Expression {
         }
     }
 
-    public boolean is_dual_operator(Character a) {
+    private static String keys_to_ands(String exp) throws ExceptionInvalidExpression {
+        int n = exp.length();
+        String result = "";
+        for(int i = 0; i < n; ++i) {
+            if (exp.charAt(i) == '{'){
+                int j = i + 1;                                                      // apunta primer char despres de {
+                while (i < n && exp.charAt(i) != '}') ++i;                          // desplaça i fins trobar }
+                if (i == n) throw new ExceptionInvalidExpression(exp);              // claus no tanquen
+
+                int count = 0;
+                while (j < i) {
+                    while (j < i && exp.charAt(j) == ' ') ++j;                      // elimina espais al principi del Literal
+                    if (j < i) {
+                        int jj = j;
+                        if (exp.charAt(j) == '"') {
+                            ++j;
+                            while(j < i && exp.charAt(j) != '"') ++j;
+                            if (j == i) throw new ExceptionInvalidExpression(exp);  // cometes no tanquen
+                            ++j;                                                    // per incloure les " que tanquen
+                        }
+                        // else if (exp.charAt(j) == '(') // es poden posar controls, de moment saccepta ( i ) com a paraula
+                        else while(j < i && exp.charAt(j) != ' ') ++j;
+                        result += exp.substring(jj, j);
+                        result += " & ";
+                        ++count;
+                    }
+                }
+                if (count > 0) result = result.substring(0,result.length()-3);
+            }
+            else if (exp.charAt(i) == '}') throw new ExceptionInvalidExpression(exp); // claus no tanquen
+            else result += String.valueOf(exp.charAt(i));
+        }
+        return result;
+    }
+
+    public static boolean is_dual_operator(Character a) {
         return (a == '&' || a == '|');
     } 
 
-    public boolean checkParentesis(String str) {
+    public static boolean checkParentesis(String str) {
         boolean correct = true;
         boolean first = true;
         int i = 0;
@@ -98,7 +134,7 @@ public abstract class Expression {
         return correct && open == close;
     }
 
-    public boolean checkComillas(String str) {
+    public static boolean checkComillas(String str) {
         int total = 0;
         int i = 0;
         while (i < str.length()) {
