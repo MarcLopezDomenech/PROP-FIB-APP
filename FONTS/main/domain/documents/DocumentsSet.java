@@ -125,11 +125,12 @@ public class DocumentsSet {
      */
     public void deleteDocument(String title, String author) throws ExceptionNoDocument {
         Map<String, Document> docTitlesAuthor = documents.get(author);
-        if (docTitlesAuthor == null) throw new ExceptionNoDocument(title, author);
+        if (docTitlesAuthor == null) throw new ExceptionNoDocument(title, author);      // No existeix l'autor --> no existeix el doc
         Document doc = docTitlesAuthor.get(title);
-        if (doc == null) throw new ExceptionNoDocument(title, author);
+        if (doc == null) throw new ExceptionNoDocument(title, author);                  // No existeix el títol per aquell autor --> no existeix el doc
         docTitlesAuthor.remove(title);
-        documents.put(author, docTitlesAuthor);
+        if (docTitlesAuthor.isEmpty()) documents.remove(author);        // Si l'autor es queda sense títols, el traiem
+        else documents.put(author, docTitlesAuthor);                    // Si no, l'actualitzem sense el títol esborrar
         --numDocuments;
 
         // Només queda actualitzar el vector de presència
@@ -176,10 +177,10 @@ public class DocumentsSet {
     public void updateContentDocument(String title, String author, String newContent) throws ExceptionNoDocument {
         Document doc = getDocument(title, author);
         Set<String> oldWords = doc.getRelevantWords();
-        removePresence(oldWords);
+        removePresence(oldWords);       // Esborrem les relevants words de l'antic contingut
         doc.setContent(newContent);
         Set<String> newWords = doc.getRelevantWords();
-        addPresence(newWords);
+        addPresence(newWords);          // Posem les relevants words del nou contingut
     }
 
     /**
