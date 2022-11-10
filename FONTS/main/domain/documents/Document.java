@@ -111,12 +111,14 @@ public class Document {
 
     /**
      * @brief Valora com de semblants son els continguts de dos documents A i B
-     * @details Utilitzant l'algoritme tf-idf, calcula la rellevancia de A per a les paraules del contingut 
+     * @details Utilitzant l'algoritme de pesos de tf-idf, calcula la rellevancia de A per a les paraules del contingut 
      * de B i la rellenvancia de B per a les paraules del contingut d'A
      * @param other Document amb el que es vol comparar el contingut
+     * @param num_docs nombre total de documents del sistema
+     * @param presence Mapa que ens diu en quants documents apareix 
      * @return Nombre que representa un index de semblança entre els documents A i B
      */
-    public double compare(Document other, Integer num_docs, Map<String,Integer> presence) {
+    public double compare_tf_idf(Document other, Integer num_docs, Map<String,Integer> presence) {
 
         Set<String> terms1 = other.getRelevantWords();
         Set<String> terms2 = this.getRelevantWords();
@@ -132,6 +134,21 @@ public class Document {
     }
 
     /**
+     * @brief Valora com de semblants son els continguts de dos documents A i B
+     * @details Utilitzant l'algoritme de tf escalat logaritmicament, calcula la rellevancia de A per a les paraules del contingut 
+     * de B i la rellenvancia de B per a les paraules del contingut d'A
+     * @param other Document amb el que es vol comparar el contingut
+     * @return Nombre que representa un index de semblança entre els documents A i B
+     */
+    public double compare_tf_boolean(Document other) {
+        Set<String> terms1 = other.getRelevantWords();
+        String terms1Array[] = new String[terms1.size()];
+        terms1.toArray(terms1Array);
+
+        double tf_1 = termRelevance_tf_boolean(terms1Array);
+        return tf_1;
+    }
+    /**
      * @brief Valora com de rellevant es el contingut del document donada una query
      * @details Utilitza l'algoritme de tf-idf per a calcular la rellevancia del contingut del document en relació a les paraules de la query. 
      * @pre El parametre query nomes conte paraules separades per espais (sense signes de puntuació, etc)
@@ -141,7 +158,7 @@ public class Document {
      * @return Nombre que quantifica la rellevancia d'una query per al contingut del document
      */
     public double queryRelevance(String query, Integer num_docs, Map<String,Integer> presence) {
-        String[] queryTerms = query.split(query);
+        String[] queryTerms = query.split(" ");
         double tf_idf = termRelevance_tf_idf(queryTerms, num_docs, presence);
 
         return tf_idf*100;
@@ -155,9 +172,9 @@ public class Document {
      * @param terms Termes dels que evaluar la rellevancia
      * @param num_docs Total de documents del conjunt de documents al que pertany el document
      * @param presence Mapa que guarda en quants documents del sistema apareix un paraula concreta: Map<paraula,cops>
-     * @return Nombre que quantifica la rellevancia d'una query per al contingut del document
+     * @return Nombre que quantifica la rellevancia d'una serie de termes per al contingut del document
      */
-    public double termRelevance_tf_idf(String[] terms, Integer num_docs, Map<String,Integer> presence) {
+    private double termRelevance_tf_idf(String[] terms, Integer num_docs, Map<String,Integer> presence) {
         double tf_idf = 0;
         double totalTerms = (double) internalDoc.getTotalWords();
         Map<String,Integer> relevantTerms = internalDoc.getRelevantWords(); 
@@ -167,6 +184,24 @@ public class Document {
             }
         }
         return tf_idf;
+    }
+
+    /**
+     * @brief Implementacio de l'algorisme tf-idf 
+     * @details Calcula com de rellevant es el contingut del document en relació a una serie de termes
+     * @pre El parametre terms es un conjunt de paraules atomiques (sense espais ni signes de puntuació, etc.)
+     * @param terms Termes dels que evaluar la rellevancia
+     * @param num_docs Total de documents del conjunt de documents al que pertany el document
+     * @param presence Mapa que guarda en quants documents del sistema apareix un paraula concreta: Map<paraula,cops>
+     * @return Nombre que quantifica la rellevancia d'una serie de termes per al contingut del document
+     */
+    private double termRelevance_tf_boolean(String[] terms) {
+        double tf_bool = 0;
+        Map<String,Integer> relevantTerms = internalDoc.getRelevantWords(); 
+        for (String term : terms) {
+            if (relevantTerms.containsKey(term)) tf_bool ++;
+        }
+        return tf_bool;
     }
 
 } 

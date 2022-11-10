@@ -225,7 +225,7 @@ public class DocumentsSet {
                 if (!(tit.equals(title) && aut.equals(author))) {
                     Document doc = titleDoc.getValue();
                     // Obtenim el valor i l'afegim a la llista
-                    Double value = original.compare(doc, numDocuments, presence);
+                    Double value = original.compare_tf_idf(doc, numDocuments, presence);
                     ordre.add(new Pair<>(new Pair<>(tit, aut), value));
                 }
             }
