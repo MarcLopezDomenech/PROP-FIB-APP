@@ -24,7 +24,7 @@ public class TestDocument {
     public void init(){ 
         num_docs = 10;
         presence = new HashMap<String,Integer>();
-        presence.put("tres", 7);
+        presence.put("Tres", 7);
         presence.put("tristes", 2);
         presence.put("tigres", 1);
         presence.put("comen", 3);
@@ -70,36 +70,50 @@ public class TestDocument {
 
     @Test (expected = ExceptionInvalidFormat.class)
     public void testInvalidFormatException() throws ExceptionInvalidFormat {
-        Document doc2 = new Document("Ari", "Titol del document", "Contingut", "invalid");
+        Document doc2 = new Document("Ari","Titol del document", "Contingut", "invalid");
         //Salta ExceptionInvalidFormat
         System.out.println("Això no apareix per pantalla");
     }
-
-    /**
-	 * Test dels setters
-	 */
-    @Test
-	public void testTermRelevance_tf_idf() throws ExceptionInvalidFormat {
-        Document doc = new Document("Ari", "Titol del document", "Tres tristes, tristes tigres comen trigo en un trigal.", "txt");
-        String[] words = {"tigres","trigo"};
-
-        assertEquals(0.1887, doc.termRelevance_tf_idf(words,num_docs,presence),0.01);
-    }
     
-    /**
-	 * Test dels setters
-	 */
     @Test
-	public void testQueryRelevance() throws ExceptionInvalidFormat {
-        Document doc = new Document("Ari", "Titol del document", "Tres tristes, tristes tigres comen trigo en un trigal", "txt");
-        String query = "deportes de equipo";
-        assertEquals(0.0, doc.queryRelevance(query,num_docs,presence),0.1);
+	public void testQueryRelevance() {
+        Document doc = new Document("Ari", "Titol del document", "Tres tristes, tristes tigres comen trigo en un trigal");
+        String query = "Mi mama me mima";
+        assertEquals(0.0, doc.queryRelevance(query,num_docs,presence),0.01);
+
+        String query2 = "tigres trigo";
+        assertEquals(18.877, doc.queryRelevance(query2,num_docs,presence),0.01);
+
+        String query3 = "Tres trigal en un tigre triste";
+        assertEquals(11.11, doc.queryRelevance(query3,num_docs,presence),0.01);
     }
 
     @Test
-	public void testCompare() throws ExceptionInvalidFormat {
-        Document doc = new Document("Ari", "Titol del document", "Tres tristes, tristes tigres comen trigo en un trigal", "txt");
-        String query = "deportes de equipo";
-        assertEquals(0.0, doc.queryRelevance(query,num_docs,presence),0.1);
+	public void testCompare_tf_idf() {
+        Document doc = new Document("Ari", "Titol del document", "Tres tristes, tristes tigres comen trigo en un trigal");
+
+        Document doc2 = new Document("Ari", "Titol del document", "Mi mama me mima");
+        assertEquals(0.0, doc.compare_tf_idf(doc2,num_docs,presence),0.1);
+
+        Document doc3 = new Document("Ari", "Titol del document", "Tres tristes palabras");
+        assertEquals(19.02, doc.compare_tf_idf(doc3,num_docs,presence),0.01);
+
+        Document doc4 = new Document("Ari", "Titol del document", "Tres trigal en un tigre triste");
+        assertEquals(13.61, doc.compare_tf_idf(doc4,num_docs,presence),0.01);
+    }
+
+    @Test
+	public void testCompare_tf_boolean() {
+        Document doc = new Document("Ari", "Titol del document", "Tres tristes, tristes tigres comen trigo en un trigal");
+
+        Document doc2 = new Document("Ari", "Titol del document", "Mi mama me mima");
+        assertEquals(0.0, doc.compare_tf_boolean(doc2),0.1);
+
+        Document doc3 = new Document("Ari", "Titol del document", "Tres tristes palabras");
+        assertEquals(2.0, doc.compare_tf_boolean(doc3),0.01);
+
+        Document doc4 = new Document("Ari", "Titol del document", "Tres trigal en un tigre triste");
+        assertEquals(4.0, doc.compare_tf_boolean(doc4),0.01);
     }
 }
+
