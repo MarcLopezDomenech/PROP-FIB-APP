@@ -174,7 +174,7 @@ public class DriverCtrlDomain {
         }
     }
 
-    public static void testListSimilars() throws ExceptionNoDocument {
+    public static void testListSimilars() throws ExceptionNoDocument, ExceptionInvalidStrategy {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Llistar els documents més semblants a un document");
         System.out.print("Introdueix un títol: ");
@@ -183,7 +183,9 @@ public class DriverCtrlDomain {
         String author = scanner.nextLine();
         System.out.print("Introdueix una k: ");
         int k = scanner.nextInt();
-        List<Pair<String, String>> result = cd.listSimilars(title, author, k);
+        System.out.println("Quina estratègia vols usar (idf/boolean)?: ");
+        String strategy = scanner.nextLine();
+        List<Pair<String, String>> result = cd.listSimilars(title, author, k, strategy);
         if (result == null || result.size() == 0) System.out.println("No hi ha resultats");
         for (Pair<String, String> r : result) {
             System.out.println(r.getFirst() + " " + r.getSecond());
