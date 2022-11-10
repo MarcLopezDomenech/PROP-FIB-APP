@@ -108,11 +108,11 @@ public abstract class Expression {
         return result;
     }
 
-    public static boolean is_dual_operator(Character a) {
+    private static boolean is_dual_operator(Character a) {
         return (a == '&' || a == '|');
     } 
 
-    public static boolean checkParentesis(String str) {
+    private static boolean checkParentesis(String str) {
         boolean correct = true;
         boolean first = true;
         int i = 0;
@@ -134,7 +134,7 @@ public abstract class Expression {
         return correct && open == close;
     }
 
-    public static boolean checkComillas(String str) {
+    private static boolean checkComillas(String str) {
         int total = 0;
         int i = 0;
         while (i < str.length()) {
