@@ -283,21 +283,15 @@ public class DocumentsSet {
         return expr_list;
     }
 
-    public List<String> listAuthorsByPrefix(String author) {
-        ArrayList<String> lista = new ArrayList<String>(); 
-        int len = author.length();
+    public List<String> listAuthorsByPrefix(String prefix) {
+        ArrayList<String> result = new ArrayList<String>();
+        int len = prefix.length();
         for (Map.Entry<String, Map<String,Document>> entry : documents.entrySet()) {
-            String nom=entry.getKey();
-            boolean no_err=true;
-            for (int i = 0; i < len; i++){
-                if (nom.charAt(i) != author.charAt(i)){
-                    no_err=false;
-                    break;
-                }
-            }
-            if(no_err) lista.add(nom);
+            String nom = entry.getKey();
+            String preAct = nom.substring(0, len);
+            if (prefix.equals(preAct)) result.add(nom);
         }
-        return lista;
+        return result;
     }
 
     public List<Pair<String, String>> listByQuery(String query, int k) {
