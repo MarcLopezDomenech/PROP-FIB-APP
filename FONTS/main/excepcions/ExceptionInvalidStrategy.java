@@ -13,6 +13,6 @@ public class ExceptionInvalidStrategy extends Exception{
      * @return ExceptionInvalidStrategy
      */
     public ExceptionInvalidStrategy(String strategy){
-        super("L'estratègia " + strategy + " no és vàlida. Es permet 'idf' o 'boolean'");
+        super("L'estratègia " + strategy + " no és vàlida. Es permet 'tf_idf' o 'tf_boolean'");
     }
 }

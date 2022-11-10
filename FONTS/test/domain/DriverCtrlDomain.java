@@ -181,10 +181,10 @@ public class DriverCtrlDomain {
         String title = scanner.nextLine();
         System.out.print("Introdueix un autor: ");
         String author = scanner.nextLine();
+        System.out.print("Quina estratègia vols usar (tf_idf/tf_boolean): ");
+        String strategy = scanner.nextLine();
         System.out.print("Introdueix una k: ");
         int k = scanner.nextInt();
-        System.out.println("Quina estratègia vols usar (idf/boolean)?: ");
-        String strategy = scanner.nextLine();
         List<Pair<String, String>> result = cd.listSimilars(title, author, k, strategy);
         if (result == null || result.size() == 0) System.out.println("No hi ha resultats");
         for (Pair<String, String> r : result) {

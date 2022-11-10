@@ -215,7 +215,7 @@ public class DocumentsSet {
      * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
      */
     public List<Pair<String, String>> listSimilars(String title, String author, int k, String strategy) throws ExceptionNoDocument, ExceptionInvalidStrategy {
-        if (!"idf".equals(strategy) || "boolean".equals(strategy)) throw new ExceptionInvalidStrategy(strategy);
+        if (!"tf_idf".equals(strategy) || !"tf_boolean".equals(strategy)) throw new ExceptionInvalidStrategy(strategy);
         Document original = getDocument(title, author);
         List<Pair<Pair<String, String>, Double>> ordre = new ArrayList<>();
         for (Map.Entry<String, Map<String, Document>> authorTitleDoc : documents.entrySet()) {
@@ -228,7 +228,7 @@ public class DocumentsSet {
                     Document doc = titleDoc.getValue();
                     // Obtenim el valor (en funció de l'estratègia triada) i l'afegim a la llista
                     Double value;
-                    if ("idf".equals(strategy)) value = original.compare_tf_idf(doc, numDocuments, presence);
+                    if ("tf_idf".equals(strategy)) value = original.compare_tf_idf(doc, numDocuments, presence);
                     else value = original.compare_tf_boolean(doc);
                     ordre.add(new Pair<>(new Pair<>(tit, aut), value));
                 }
