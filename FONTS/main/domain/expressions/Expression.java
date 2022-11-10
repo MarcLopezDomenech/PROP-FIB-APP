@@ -1,151 +1,143 @@
 package main.domain.expressions;
 
-import main.excepcions.ExceptionInvalidExpression;
-
-import java.util.ArrayList;
-import java.util.List;
+import main.excepcions.ExceptionInvalidExpresion;
 
 /**
  * @class Expression
  * @brief Classe que representa i evalua expressions booleanes
- * @author marc.valls.camps i pau.duran.manzano
+ * @author marc.valls.camps
  */
-public abstract class Expression {
-    public static void main(String[] args) throws ExceptionInvalidExpression {
-        Expression e = create("hola & !(adeu) & pa&&tata");
-    }
-    private static String keys_to_ands(String exp) throws ExceptionInvalidExpression {
-        int n = exp.length();
-        String result = "";
-        for(int i = 0; i < n; ++i) {
-            if (exp.charAt(i) == '{'){
-                int j = i + 1;                                                      // apunta primer char despres de {
-                while (i < n && exp.charAt(i) != '}') ++i;                          // desplaça i fins trobar }
-                if (i == n) throw new ExceptionInvalidExpression(exp);              // claus no tanquen
+public class Expression {
+    
+    private String value; 
+    private Expression left = null;
+    private Expression right = null;
 
-                int count = 0;
-                while (j < i) {
-                    while (j < i && exp.charAt(j) == ' ') ++j;                      // elimina espais al principi del Literal
-                    if (j < i) {
-                        int jj = j;
-                        if (exp.charAt(j) == '"') {
-                            ++j;
-                            while(j < i && exp.charAt(j) != '"') ++j;
-                            if (j == i) throw new ExceptionInvalidExpression(exp);  // cometes no tanquen
-                            ++j;                                                    // per incloure les " que tanquen
-                        }
-                        // else if (exp.charAt(j) == '(') // es poden posar controls, de moment saccepta ( i ) com a paraula
-                        else while(j < i && exp.charAt(j) != ' ') ++j;
-                        result += exp.substring(jj, j);
-                        result += " & ";
-                        ++count;
+    public static void main(String[] args) {
+        try {
+            Expression ex1 = new Expression(" ");
+            System.out.println("EXPRESSIO VALIDA");
+        } catch (ExceptionInvalidExpresion e) {
+            System.out.println("EXPRESSIO INVALIDA");
+        } 
+    }
+
+    public Expression(String str) throws ExceptionInvalidExpresion {
+        System.out.println("Iniciando analasi de " + str);
+        if (str.isEmpty()) throw new ExceptionInvalidExpresion(str);
+        while (str.charAt(0) == '(' && str.charAt(str.length()-1) == ')') str = str.substring(1, str.length()-1);
+        while (!str.isEmpty() && str.charAt(0) == ' ') str = str.substring(1, str.length());
+        while (!str.isEmpty() && str.charAt(str.length()-1) == ' ') str = str.substring(0, str.length()-1);
+        if (str.isEmpty()) throw new ExceptionInvalidExpresion(str);
+        if (is_dual_operator(str.charAt(0))) throw new ExceptionInvalidExpresion(str);
+        if (is_dual_operator(str.charAt(str.length()-1))) throw new ExceptionInvalidExpresion(str);
+        if (!checkComillas(str)) throw new ExceptionInvalidExpresion(str);
+        if (!checkParentesis(str)) throw new ExceptionInvalidExpresion(str);
+        System.out.println("Comillas, parenesis, operadors i espais... checked");
+
+        boolean or = false; 
+        boolean and = false; 
+        for(int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == '"') while (str.charAt(++i) != '"');
+            if (str.charAt(i) == '(') {
+                int diff = 1;
+                while (diff != 0) {
+                    if (str.charAt(++i) == '(') diff++;
+                    if (str.charAt(i) == ')') diff--;
+                }
+            }
+            if (str.charAt(i) == '|') {
+                System.out.println("Encontramos una | en la posicion " + i);
+                String strleft = str.substring(0, i);
+                String strright = str.substring(i+1, str.length());
+                value = "|";
+                left = new Expression(strleft);
+                right = new Expression(strright);
+                or = true;
+                break;
+            }
+        }
+        if (!or) {
+            for(int i = 0; i < str.length(); i++) {
+                if (str.charAt(i) == '"') while (str.charAt(++i) != '"');
+                if (str.charAt(i) == '(') {
+                    int diff = 1;
+                    while (diff != 0) {
+                        if (str.charAt(++i) == '(') diff++;
+                        if (str.charAt(i) == ')') diff--;
                     }
                 }
-                if (count > 0) result = result.substring(0,result.length()-3);
-            }
-            else if (exp.charAt(i) == '}') throw new ExceptionInvalidExpression(exp); // claus no tanquen
-            else result += String.valueOf(exp.charAt(i));
-        }
-        return result;
-    }
-
-    public static Expression create(String exp) throws ExceptionInvalidExpression {
-        String result = keys_to_ands(exp);
-        return create1(result);
-    }
-
-    public static Expression create1(String exp) throws ExceptionInvalidExpression {
-        int parentesis = 0;
-        Boolean cometes = false;
-        Boolean tocaOp = false;
-        int firstOr = -1;
-        int firstAnd = -1;
-
-        List<String> list = new ArrayList<>();
-
-        int n = exp.length();
-        int ini = 0;
-        for (int i = 0; i < n; ++i) {
-            char c = exp.charAt(i);
-            if (tocaOp && c != ' ') {
-                if (c == '&') {
-                    if (firstAnd == -1) firstAnd = list.size();
-                }
-                else if (c == '|') {
-                    if (firstOr == -1) firstOr = list.size();
-                }
-                else throw new ExceptionInvalidExpression(exp);
-            }
-            if (c == '(') {
-                if (!cometes) ++parentesis;
-            }
-            else if (c == ')') {
-                if (!cometes) {
-                    --parentesis;
-                    if (parentesis < 0) ; // ToDo: throw exception
+                if (str.charAt(i) == '&') {
+                    System.out.println("Encontramos una & en la posicion " + i);
+                    String strleft = str.substring(0, i);
+                    String strright = str.substring(i+1, str.length());
+                    value = "&";
+                    left = new Expression(strleft);
+                    right = new Expression(strright);
+                    and = true;
+                    break;
                 }
             }
-            else if (c == '"') cometes = !cometes;
-            else if ((c == ' ' || i == (n - 1)) && parentesis == 0 && !cometes) {
-                if (i == n - 1) ++i;
-                list.add(exp.substring(ini, i));
-                ini = i + 1;
-                tocaOp = !tocaOp;
+        }
+        if (!or && !and) {
+            if (str.charAt(0) == '!') {
+                System.out.println("Encontramos una not !");
+                value = "!";
+                left = new Expression(str.substring(1, str.length()));
+            } else {
+                if (str.charAt(0) == '"') {
+                    if (str.charAt(str.length()-1) == '"') {
+                        System.out.println(" Literal con comitas");
+                        value = str.substring(1, str.length()-1);
+                    } else {
+                        throw new ExceptionInvalidExpresion(str);
+                    }
+                }
+                else {
+                    System.out.println("Literal");
+                    value = str;
+                }
             }
         }
-        if (!tocaOp || parentesis != 0 || cometes); // ToDo: throw exception
-
-        if (firstOr != -1) {
-            Expression left = create2(list.subList(0, firstOr));
-            Expression right = create2(list.subList(firstOr + 1, list.size()));
-            return new Or(left, right);
-        }
-        else if (firstAnd != -1) {
-            Expression left = create2(list.subList(0, firstAnd));
-            Expression right = create2(list.subList(firstAnd + 1, list.size()));
-            return new And(left, right);
-        }
-        else {
-            return create3(list.get(0));
-        }
     }
 
-    public static Expression create2(List<String> list) throws ExceptionInvalidExpression {
-        if (list.size() == 1) return create3(list.get(0));
-        int firstAnd = -1;
-        int n = list.size();
-        for (int i = 0; i < n; ++i) {
-            if ("|".equals(list.get(i))) {
-                Expression left = create2(list.subList(0, i));
-                Expression right = create2(list.subList(i+1, n));
-                return new Or(left, right);
+    public boolean is_operator(Character a) {
+        return (a=='!' || a == '&' || a == '|');
+    } 
+
+    public boolean is_dual_operator(Character a) {
+        return (a == '&' || a == '|');
+    } 
+
+    public boolean checkParentesis(String str) {
+        boolean correct = true;
+        boolean first = true;
+        int i = 0;
+        int o = 0;
+        int c = 0;
+        while (correct && i < str.length()) {
+            if (str.charAt(i) == '"') while (str.charAt(++i) != '"');
+            if (str.charAt(i) == '(') {
+                o++;
+                first = false;
             }
-            else if ("&".equals(list.get(i)) && firstAnd == -1) firstAnd = i;
+            if (str.charAt(i) == ')') {
+                if (first) return false;
+                c++;
+            }
+            if (o < c) return false;
+            i++;
         }
-        if (firstAnd == -1) throw new ExceptionInvalidExpression("NOOOOOOO");
-        else {
-            Expression left = create2(list.subList(0, firstAnd));
-            Expression right = create2(list.subList(firstAnd + 1, list.size()));
-            return new And(left, right);
-        }
+        return correct && o == c;
     }
 
-    public static Expression create3(String exp) throws ExceptionInvalidExpression {
-        switch (exp.charAt(0)) {
-            case '!':
-                Expression expr = create3(exp.substring(1));
-                return new Not(expr);
-            case '(':
-                if (exp.charAt(exp.length()-1) != ')') throw new ExceptionInvalidExpression(exp);
-                return create3(exp.substring(1, exp.length()-1));
-            case '"':
-                if (exp.charAt(exp.length()-1) != '"') throw new ExceptionInvalidExpression(exp);
-                return create3(exp.substring(1, exp.length()-1));
-            default:
-                return new Literal(exp);
+    public boolean checkComillas(String str) {
+        int total = 0;
+        int i = 0;
+        while (i < str.length()) {
+            if (str.charAt(i) == '"') total++;
+            i++;
         }
+        return (total % 2 == 0);
     }
-
-    public abstract boolean evaluate(String content, boolean caseSensitive);
-
 }
