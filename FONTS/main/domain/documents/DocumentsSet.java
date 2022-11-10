@@ -282,7 +282,12 @@ public class DocumentsSet {
         }
         return expr_list;
     }
-
+    /**
+     * @brief Operació per conseguir els autors que el comencen per un prefix
+     * @details Retorna una llista dels autors que el seu nom comença pel prefix que rep la funció
+     * @param author prefix del author
+     * @post Tots els autors que comencen per el prefix author
+     */
     public List<String> listAuthorsByPrefix(String prefix) {
         ArrayList<String> result = new ArrayList<String>();
         int len = prefix.length();
