@@ -3,8 +3,9 @@ package main.domain.expressions;
 import java.util.Map;
 import java.util.HashMap;
 
-import test.domain.expressions.Expression;
+import main.domain.expressions.Expression;
 import main.excepcions.ExceptionExpressionExists;
+import main.excepcions.ExceptionInvalidExpression;
 import main.excepcions.ExceptionNoExpression;
 
 /**
@@ -76,8 +77,8 @@ public class ExpressionsSet {
      * @post Si no exisitia cap expressió identificada amb l'identificador donat, es dona d'alta una expressió que s'identificarà amb ell.
      * @throws ExceptionExpressionExists si l'string donnat ja identifica una expressió donada d'alta al sistema
      */
-    public void createExpression(String id_expression) throws ExceptionExpressionExists {
-        Expression newExpression = new Expression(id_expression);
+    public void createExpression(String id_expression) throws ExceptionExpressionExists, ExceptionInvalidExpression {
+        Expression newExpression = Expression.create(id_expression);
         Expression oldExpression = expressions.put(id_expression, newExpression);
 
         // Map.put() retorna el value que estava associada a la key donada o null si aquesta key no estava mapejada

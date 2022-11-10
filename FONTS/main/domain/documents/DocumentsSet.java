@@ -9,8 +9,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 
-import test.domain.expressions.Expression;
-import test.domain.documents.Document;
+import main.domain.expressions.Expression;
+import main.domain.documents.Document;
 import main.domain.util.Pair;
 import main.excepcions.ExceptionDocumentExists;
 import main.excepcions.ExceptionNoDocument;

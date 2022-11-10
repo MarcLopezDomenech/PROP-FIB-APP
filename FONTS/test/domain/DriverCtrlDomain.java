@@ -5,10 +5,7 @@ import java.util.List;
 
 import main.domain.util.Pair;
 import main.domain.CtrlDomain;
-import main.excepcions.ExceptionDocumentExists;
-import main.excepcions.ExceptionExpressionExists;
-import main.excepcions.ExceptionNoDocument;
-import main.excepcions.ExceptionNoExpression;
+import main.excepcions.*;
 
 /**
  * @class DriverCtrlDomain
@@ -247,7 +244,7 @@ public class DriverCtrlDomain {
         }
     }
 
-    public static void testCreateExpression() throws ExceptionExpressionExists {
+    public static void testCreateExpression() throws ExceptionExpressionExists, ExceptionInvalidExpression {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Crear una expressió booleana");
         System.out.print("Introdueix una expressió booleana: ");
@@ -265,7 +262,7 @@ public class DriverCtrlDomain {
         System.out.println("Expressió booleana esborrada");
     }
 
-    public static void testModifyExpression() throws ExceptionNoExpression, ExceptionExpressionExists {
+    public static void testModifyExpression() throws ExceptionNoExpression, ExceptionExpressionExists, ExceptionInvalidExpression {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Modificar una expressió booleana");
         System.out.print("Introdueix l'expressió booleana a modificar: ");

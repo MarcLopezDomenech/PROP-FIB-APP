@@ -5,13 +5,10 @@ import java.util.Map;
 
 import main.domain.documents.DocumentsSet;
 import main.domain.expressions.ExpressionsSet;
+import main.excepcions.*;
 import test.domain.documents.Document;
-import test.domain.expressions.Expression;
+import main.domain.expressions.Expression;
 import main.domain.util.Pair;
-import main.excepcions.ExceptionDocumentExists;
-import main.excepcions.ExceptionExpressionExists;
-import main.excepcions.ExceptionNoDocument;
-import main.excepcions.ExceptionNoExpression;
 
 
 /**
@@ -192,7 +189,7 @@ public class CtrlDomain {
      * @post En cas que la cadena de caràcters donada pugui ser una expressió vàlida i no existeixi prèviament, es dona d'alta una expressió booleana identificada amb aquesta cadena
      * @throws ExceptionExpressionExists si l'string donnat ja identifica una expressió donada d'alta al sistema
      */
-    public void createExpression(String expression) throws ExceptionExpressionExists {
+    public void createExpression(String expression) throws ExceptionExpressionExists, ExceptionInvalidExpression {
         es.createExpression(expression);
     }
 
@@ -218,7 +215,7 @@ public class CtrlDomain {
      * @throws ExceptionNoExpression si no existeix cap expressió identificada per (oldExpression)
      * @throws ExceptionExpressionExists en cas que el nou identificador que es vol donar ja és d'una altra expressió
      */
-    public void modifyExpression(String oldExpression, String newExpression) throws ExceptionNoExpression, ExceptionExpressionExists {
+    public void modifyExpression(String oldExpression, String newExpression) throws ExceptionNoExpression, ExceptionExpressionExists, ExceptionInvalidExpression {
         deleteExpression(oldExpression);
         createExpression(newExpression);
     }
