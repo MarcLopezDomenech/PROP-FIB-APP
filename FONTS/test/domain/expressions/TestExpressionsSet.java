@@ -4,8 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import main.excepcions.ExceptionExpressionExists;
+import main.excepcions.ExceptionInvalidExpression;
 import main.excepcions.ExceptionNoExpression;
 import main.domain.expressions.ExpressionsSet;
+import main.domain.expressions.Expression;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,11 +22,11 @@ public class TestExpressionsSet {
     private static Map<String, Expression> testValues;
 
     @Before
-    public void ini() {
+    public void ini() throws ExceptionInvalidExpression {
         testValues = new HashMap<>();
-        testValues.put("Primera expressió", new Expression("Primera expressió"));
-        testValues.put("Segona expressió", new Expression("Segona expressió"));
-        testValues.put("Tercera i última expressió", new Expression("Tercera i última expressió"));
+        testValues.put("Primera expressió", Expression.create("Primera expressió"));
+        testValues.put("Segona expressió", Expression.create("Segona expressió"));
+        testValues.put("Tercera i última expressió", Expression.create("Tercera i última expressió"));
     }
 
     @Test
@@ -61,18 +63,18 @@ public class TestExpressionsSet {
     }
 
     @Test
-    public void testCreateExpressionCorrect() throws ExceptionExpressionExists {
+    public void testCreateExpressionCorrect() throws ExceptionExpressionExists, ExceptionInvalidExpression {
         ExpressionsSet es = ExpressionsSet.getInstance();
         es.setExpressions(testValues);
         es.createExpression("Nova expressió");
         Map<String, Expression> returnValue = es.getExpressions();
         // Assegurem que s'ha creat l'entrada i que el valor associat és l'expressió correcta
         assertTrue(returnValue.containsKey("Nova expressió"));
-        assertTrue(returnValue.get("Nova expressió").getId().equals("Nova expressió"));
+        //assertTrue(returnValue.get("Nova expressió").getId().equals("Nova expressió"));
     }
 
     @Test (expected = ExceptionExpressionExists.class)
-    public void testCreateExpressionException() throws ExceptionExpressionExists {
+    public void testCreateExpressionException() throws ExceptionExpressionExists, ExceptionInvalidExpression {
         ExpressionsSet es = ExpressionsSet.getInstance();
         es.setExpressions(testValues);
         es.createExpression("Segona expressió");
