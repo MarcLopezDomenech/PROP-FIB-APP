@@ -360,7 +360,7 @@ public class DocumentsSet {
          */
         @Override
         public int compare(Pair<Pair<String, String>, Double> p1, Pair<Pair<String, String>, Double> p2) {
-            if (p1.getSecond() > p2.getSecond()) return 1;
+            if (p1.getSecond() < p2.getSecond()) return 1;
             else if (p1.getSecond() == p2.getSecond()) return 0;
             else return -1;
         }
