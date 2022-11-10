@@ -11,6 +11,10 @@ public abstract class Expression {
     public static Expression create(String str) throws ExceptionInvalidExpression {
         System.out.println("Iniciando analasi de " + str);
         str = keys_to_ands(str);
+        return initialize(str);
+    }
+
+    private static Expression initialize(String str) throws ExceptionInvalidExpression {
         if (str.isEmpty()) throw new ExceptionInvalidExpression(str);
         while (str.charAt(0) == '(' && str.charAt(str.length()-1) == ')') str = str.substring(1, str.length()-1);
         while (!str.isEmpty() && str.charAt(0) == ' ') str = str.substring(1, str.length());
