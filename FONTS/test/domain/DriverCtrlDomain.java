@@ -181,7 +181,7 @@ public class DriverCtrlDomain {
         String title = scanner.nextLine();
         System.out.print("Introdueix un autor: ");
         String author = scanner.nextLine();
-        System.out.print("Quina estratègia vols usar (tf_idf/tf_boolean): ");
+        System.out.print("Quina estratègia vols usar (tf-idf/tf-boolean): ");
         String strategy = scanner.nextLine();
         System.out.print("Introdueix una k: ");
         int k = scanner.nextInt();
