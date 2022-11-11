@@ -12,10 +12,7 @@ import java.util.Iterator;
 import main.domain.expressions.Expression;
 import main.domain.documents.Document;
 import main.domain.util.Pair;
-import main.excepcions.ExceptionDocumentExists;
-import main.excepcions.ExceptionInvalidK;
-import main.excepcions.ExceptionInvalidStrategy;
-import main.excepcions.ExceptionNoDocument;
+import main.excepcions.*;
 
 /**
  * @class DocumentsSet
@@ -98,9 +95,9 @@ public class DocumentsSet {
      * @post Es crea el document, es guarda i s'actualizen els atributs interns de la classe
      * @throws ExceptionDocumentExists en cas que ja existeixi un document identificat per (title, author) a l'aplicatiu
      */
-    public void createDocument(String title, String author, String content) throws ExceptionDocumentExists {
+    public void createDocument(String title, String author, String content, String language) throws ExceptionDocumentExists, ExceptionInvalidLanguage {
         if (existsDocument(title, author)) throw new ExceptionDocumentExists(title, author);
-        Document newDoc = new Document(title, author, content);
+        Document newDoc = new Document(title, author, content, language);
         Map<String, Document> docTitlesAuthor = documents.get(author);
 
         // Si l'autor no tenia cap títol registrat creem el seu map de títol-document
@@ -139,6 +136,7 @@ public class DocumentsSet {
         Set<String> oldWords = doc.getRelevantWords();
         removePresence(oldWords);
     }
+
     /**
      * @brief Operació per saber la existencia del document
      * @details Retorna un boolea de la existencia del doument identificat pels paràmetres
@@ -151,6 +149,7 @@ public class DocumentsSet {
         if (maptitle == null) return false;
         else return maptitle.containsKey(title);
     }
+
     /**
      * @brief Operació per conseguir el contingut d'un document
      * @details Retorna el contingut del document identificat pels paràmetres
@@ -183,6 +182,36 @@ public class DocumentsSet {
         doc.setContent(newContent);
         Set<String> newWords = doc.getRelevantWords();
         addPresence(newWords);          // Posem les relevants words del nou contingut
+    }
+
+    /**
+     * @brief Operació per conseguir l'idioma d'un document
+     * @details Retorna l'idioma del document identificat pels paràmetres
+     * @pre El document identificat per (title, author) existeix
+     * @param title títol del document del que volem el contingut
+     * @param author autor del document del que volem el contingut
+     * @post Es retorna l'idioma del document amb title i author
+     * @throws ExceptionNoDocument en el cas que no existeix un document identificat pels paràmetres donats
+     */
+    public String getLanguageDocument(String title, String author) throws ExceptionNoDocument {
+        Document resdoc = getDocument(title, author);
+        return resdoc.getLanguage();
+    }
+
+    /**
+     * @brief Operació per actualitzar l'idioma d'un document
+     * @details L'idioma del document identificat pels paràmetres passa a ser el donat per paràmetre
+     * @pre El document identificat per (title, author) existeix
+     * @param title títol del document a modificar
+     * @param author autor del document a modificar
+     * @param newLanguage nou idioma del document
+     * @post El document (title, author) té com a idioma newLanguage
+     * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
+     * @throws ExceptionInvalidLanguage quan l'idioma donat no és vàlid (ca, en o es)
+     */
+    public void updateLanguageDocument(String title, String author, String newLanguage) throws ExceptionNoDocument, ExceptionInvalidLanguage {
+        Document doc = getDocument(title, author);
+        doc.setLanguage(newLanguage);
     }
 
     /**

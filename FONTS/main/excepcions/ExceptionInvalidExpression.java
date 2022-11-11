@@ -13,6 +13,6 @@ public class ExceptionInvalidExpression extends Exception{
      * @return ExceptionInvalidExpression
      */
     public ExceptionInvalidExpression(String id_expressio){
-        super("Invalid format! " + id_expressio);
+        super("L'expressió " + id_expressio + " no té un format correcte");
     }
 }
