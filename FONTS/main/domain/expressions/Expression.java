@@ -5,7 +5,7 @@ import main.excepcions.ExceptionInvalidExpression;
 /**
  * @class Expression
  * @brief Classe que representa i evalua expressions booleanes
- * @author marc.valls.camps, ariadna.cortes.danes i pau.duran.manzano
+ * @author marc.valls.camps i pau.duran.manzano
  */
 public abstract class Expression {
     public static Expression create(String str) throws ExceptionInvalidExpression {

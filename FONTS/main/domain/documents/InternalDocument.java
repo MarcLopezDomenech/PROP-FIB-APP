@@ -21,10 +21,10 @@ public class InternalDocument {
 
      /**
      * @brief Constructora per defecte de InternalDocument
-     
+     */
     InternalDocument(){
         analizeContent("");
-    }*/
+    }
 
     /**
      * @brief Constructora de InternalDocument
