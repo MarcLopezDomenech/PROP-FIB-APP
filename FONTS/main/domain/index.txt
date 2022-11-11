@@ -1,0 +1,9 @@
+Directori domain
+
+En aquest paquet hi ha la implementació de totes les classes del domini que emprem en el nostre sistema.
+Per una banda, trobem un fitxer:
+- CtrlDomain: Que és el codi del controlador de domini del sistema.
+I per altra banda, un seguit de subpackages:
+- documents: On hi ha el codi de les classes relacionades amb la gestió de documents.
+- expressions: Pel codi de les classes que tenen relació amb la gestió de les expressions booleanes.
+- util: Amb classes que usem com a recolzament en altres classes per tal de poder realitzar funcions.

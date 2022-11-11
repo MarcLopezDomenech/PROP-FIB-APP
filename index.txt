@@ -1,0 +1,12 @@
+Directori subgrup-prop33.1
+
+En aquest directori trobem els directoris que es demanen per aquesta primera entrega:
+- DOCS: Amb la documentació demanada.
+- EXE: Amb la part corresponent als executables de tests, jocs de prova i descripció d'aquests jocs de prova.
+- FONTS: On hi ha totes les classes implementades, incloent tests i stubs.
+
+A més, trobem:
+- Directori lib: Que conté les llibreries externes descrites en la documentació lliurada.
+- Fitxer .gitignore: Necessari per evitar que es pugin al repositori emprat per desenvolupar el treball fitxers i carpetes concretes,
+- Fitxer doxyfile: Amb la informació necessària per poder generar la documentació de codi emprant Doxygen.
+- Fitxer readme.md: On apareix la informació bàsica de l'equip.

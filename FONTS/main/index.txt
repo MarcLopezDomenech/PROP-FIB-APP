@@ -1,0 +1,7 @@
+Direcotri main
+
+En aquest directori es troba la implementació de totes les classes repartides en diferents packages:
+- domain: Conté el codi de les classes del domini.
+- excepcions: On hi ha la definició de totes les excepcions que emprem en el nostre codi.
+- interface: Per ara buit, posteriorment hi haurà la implementació de la capa de presentació.
+- persistence: Per ara buit, posteriorment i haurà la implementació de la capa de persistència.
