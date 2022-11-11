@@ -1,0 +1,16 @@
+Directori EXE
+
+En aquest directori hi ha un subdirectori per cadascuna de les classes implementades de la capa de domini.
+Ens serveix per guardar el conjunt d'executables necessarism les dades dels jocs de prova i la descripció d'aquests jocs.
+Així doncs, trobem els subdirectoris:
+- And: Amb els corresponents fitxers per testejar la classe And
+- CtrlDomain: Amb els corresponents fitxers per testejar la classe CtrlDomain
+- Document: Amb els corresponents fitxers per testejar la classe Document
+- DocumentsSet: Amb els corresponents fitxers per testejar la classe DocumentsSet
+- Expression: Amb els corresponents fitxers per testejar la classe Expression
+- ExpressionsSet: Amb els corresponents fitxers per testejar la classe ExpressionsSet
+- InternalDocument: Amb els corresponents fitxers per testejar la classe InternalDocument
+- Literal: Amb els corresponents fitxers per testejar la classe Literal
+- Not: Amb els corresponents fitxers per testejar la classe Not
+- Or: Amb els corresponents fitxers per testejar la classe Or
+- Pair: Amb els corresponents fitxers per testejar la classe Pair

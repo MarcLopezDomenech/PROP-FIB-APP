@@ -1,0 +1,9 @@
+Directori expressions
+
+En aquest paquet hi ha el codi les classes del domini que permeten gestionar les expressions booleanes del sistema:
+- And: Per representar una expressió booleana on l'operador és una and.
+- Expression: És la classe genèrica que representa el concepte d'expressió.
+- ExpressionsSet: Encarregada d'emmagatzemar totes les expressions del sistema i permetre'n la gestió.
+- Literal: Que representa una expressió simple, formada només per una frase.
+- Not: Per representar una expressió booleana on l'operador és una not.
+- Or: Per represemtar una expressió booleana on l'operador és una or.
