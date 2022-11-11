@@ -13,6 +13,7 @@ import main.domain.expressions.Expression;
 import main.domain.documents.Document;
 import main.domain.util.Pair;
 import main.excepcions.ExceptionDocumentExists;
+import main.excepcions.ExceptionInvalidK;
 import main.excepcions.ExceptionInvalidStrategy;
 import main.excepcions.ExceptionNoDocument;
 
@@ -214,8 +215,9 @@ public class DocumentsSet {
      * @post L'estat del sistema no queda alterat
      * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
      */
-    public List<Pair<String, String>> listSimilars(String title, String author, int k, String strategy) throws ExceptionNoDocument, ExceptionInvalidStrategy {
+    public List<Pair<String, String>> listSimilars(String title, String author, int k, String strategy) throws ExceptionNoDocument, ExceptionInvalidStrategy, ExceptionInvalidK {
         if (!"tf-idf".equals(strategy) && !"tf-boolean".equals(strategy)) throw new ExceptionInvalidStrategy(strategy);
+        if (k < 0) throw new ExceptionInvalidK(k);
         Document original = getDocument(title, author);
         List<Pair<Pair<String, String>, Double>> ordre = new ArrayList<>();
         for (Map.Entry<String, Map<String, Document>> authorTitleDoc : documents.entrySet()) {
@@ -289,7 +291,8 @@ public class DocumentsSet {
      * @param k nombre de documents que volem retornar
      * @post Llista de authors i títuls que identifiquen a un document cada pair que cumpleix la query
      */
-    public List<Pair<String, String>> listByQuery(String query, int k) {
+    public List<Pair<String, String>> listByQuery(String query, int k) throws ExceptionInvalidK {
+        if (k < 0) throw new ExceptionInvalidK(k);
         List<Pair<Pair<String, String>, Double>> ordre = new ArrayList<>();
         for (Map.Entry<String, Map<String, Document>> authorTitleDoc : documents.entrySet()) {
             String author = authorTitleDoc.getKey();

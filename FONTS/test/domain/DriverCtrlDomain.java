@@ -1,5 +1,6 @@
 package test.domain;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.List;
 
@@ -179,7 +180,7 @@ public class DriverCtrlDomain {
         }
     }
 
-    public static void testListSimilars() throws ExceptionNoDocument, ExceptionInvalidStrategy {
+    public static void testListSimilars() throws ExceptionNoDocument, ExceptionInvalidStrategy, ExceptionInvalidK {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Llistar els documents més semblants a un document");
         System.out.print("Introdueix un títol: ");
@@ -196,9 +197,9 @@ public class DriverCtrlDomain {
             for (Pair<String, String> r : result) {
                 System.out.println(r.getFirst() + " " + r.getSecond());
             }
-        } catch (Exception InputMismatchException) {        // Excepció que llença scanner si no es rep un int
-        System.out.println("El valor de k ha de ser un enter");
-    }
+        } catch (java.util.InputMismatchException e) {        // Excepció que llença scanner si no es rep un int
+            throw new ExceptionInvalidK();
+        }
     }
 
     public static void testListTitlesOfAuthor() {
@@ -225,7 +226,7 @@ public class DriverCtrlDomain {
         }
     }
 
-    public static void testListByQuery() {
+    public static void testListByQuery() throws ExceptionInvalidK {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Llistar els documents a partir d'una query");
         System.out.print("Introdueix una query: ");
@@ -233,6 +234,7 @@ public class DriverCtrlDomain {
         System.out.print("Introdueix una k: ");
         try {
             int k = scanner.nextInt();
+            if (k < 0);
             List<Pair<String, String>> result = cd.listByQuery(query, k);
             if (result == null || result.size() == 0) System.out.println("No hi ha resultats");
             else {
@@ -240,8 +242,8 @@ public class DriverCtrlDomain {
                     System.out.println(r.getFirst() + " " + r.getSecond());
                 }
             }
-        } catch (Exception InputMismatchException) {        // Excepció que llença scanner si no es rep un int
-            System.out.println("El valor de k ha de ser un enter");
+        } catch (java.util.InputMismatchException e) {        // Excepció que llença scanner si no es rep un int
+            throw new ExceptionInvalidK();
         }
     }
 

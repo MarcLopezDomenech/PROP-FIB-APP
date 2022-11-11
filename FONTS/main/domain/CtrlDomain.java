@@ -129,7 +129,7 @@ public class CtrlDomain {
      * @post L'estat del sistema no queda alterat
      * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
      */
-    public List<Pair<String, String>> listSimilars(String title, String author, int k, String strategy) throws ExceptionNoDocument, ExceptionInvalidStrategy {
+    public List<Pair<String, String>> listSimilars(String title, String author, int k, String strategy) throws ExceptionNoDocument, ExceptionInvalidStrategy, ExceptionInvalidK {
         return ds.listSimilars(title, author, k, strategy);
     }
 
@@ -163,7 +163,7 @@ public class CtrlDomain {
      * @return Llista amb els identificadors (títol, autor) dels k documents més rellevants, pel que fa a contingut, de la query
      * @post L'estat del sistema no queda alterat
      */
-    public List<Pair<String, String>> listByQuery(String query, int  k) {
+    public List<Pair<String, String>> listByQuery(String query, int  k) throws ExceptionInvalidK {
         return ds.listByQuery(query, k);
     }
 
