@@ -129,8 +129,8 @@ public class CtrlDomain {
      * @post L'estat del sistema no queda alterat
      * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
      */
-    public List<Pair<String, String>> listSimilars(String title, String author, int k) throws ExceptionNoDocument {
-        return ds.listSimilars(title, author, k);
+    public List<Pair<String, String>> listSimilars(String title, String author, int k, String strategy) throws ExceptionNoDocument, ExceptionInvalidStrategy {
+        return ds.listSimilars(title, author, k, strategy);
     }
 
     /**

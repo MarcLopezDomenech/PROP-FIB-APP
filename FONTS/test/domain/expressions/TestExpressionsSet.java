@@ -7,7 +7,7 @@ import main.excepcions.ExceptionExpressionExists;
 import main.excepcions.ExceptionInvalidExpression;
 import main.excepcions.ExceptionNoExpression;
 import main.domain.expressions.ExpressionsSet;
-import main.domain.expressions.Expression;
+import main.domain.expressions.Expression;      // Per fer tests: Canviar això per test.domain.expressions.Expression
 
 import org.junit.Before;
 import org.junit.Test;
@@ -74,10 +74,18 @@ public class TestExpressionsSet {
     }
 
     @Test (expected = ExceptionExpressionExists.class)
-    public void testCreateExpressionException() throws ExceptionExpressionExists, ExceptionInvalidExpression {
+    public void testCreateExpressionExceptionExists() throws ExceptionExpressionExists, ExceptionInvalidExpression {
         ExpressionsSet es = ExpressionsSet.getInstance();
         es.setExpressions(testValues);
         es.createExpression("Segona expressió");
+        System.out.println("Això no apareix per pantalla");
+    }
+
+    @Test (expected =  ExceptionInvalidExpression.class)
+    public void testCreateExpressionExceptionInvalid() throws ExceptionInvalidExpression, ExceptionExpressionExists {
+        ExpressionsSet es = ExpressionsSet.getInstance();
+        es.setExpressions(testValues);
+        es.createExpression("invalid");     // En cas que introduíssim una expressió invàlida (en aquest test no ens centrem en comprovar si una expressió es detecta com a vàlida o no, només que un cop es detecti, es propagui l'excepció adientment)
         System.out.println("Això no apareix per pantalla");
     }
 
