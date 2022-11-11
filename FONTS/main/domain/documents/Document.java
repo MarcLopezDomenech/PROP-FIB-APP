@@ -3,7 +3,7 @@ package main.domain.documents;
 import java.util.*;
 import main.excepcions.ExceptionInvalidFormat;
 import main.excepcions.ExceptionInvalidLanguage;
-import test.domain.documents.InternalDocument;
+//import main.domain.documents.InternalDocument;
 
 /**
  * @class Document 
@@ -17,6 +17,7 @@ public class Document {
     private String author;
     private String title;
     private String originalFormat; //xml or txt
+    private String language; // ca, es, en
     private InternalDocument internalDoc;
 
     /**
@@ -36,6 +37,8 @@ public class Document {
         this.author = author;
         this.title = title;
         this.content = content;
+        if (!"ca".equals(language) && !"en".equals(language) && !"es".equals(language)) throw new ExceptionInvalidLanguage(language);
+        this.language = language;
         if (format != "txt" && format != "xml") throw new ExceptionInvalidFormat(format);
         this.originalFormat = format;
         this.internalDoc = new InternalDocument(content);
@@ -49,11 +52,26 @@ public class Document {
      */
     public Document(String author, String title, String content, String language) throws ExceptionInvalidLanguage {
         if (!"ca".equals(language) && !"en".equals(language) && !"es".equals(language)) throw new ExceptionInvalidLanguage(language);
-            /*ToDo: No sé si voldràs llençar l'excepció des d'aquí o dins de internalDoc, és per provar x ara :)
-                Si el string language fos buit, jo posaria per defecte 'ca' com idioma i no llençaria excepció*/
         this.author = author;
         this.title = title;
         this.content = content;
+        this.language = language;
+        this.originalFormat = null;
+        this.internalDoc = new InternalDocument(content);
+    }
+
+    /**
+     * @brief constructora de document sense format ni llenguatge especific
+     * @param author autor del document creat
+     * @param title titol del document creat
+     * @param content del document creat
+     * @details Es creara un document amb titol, autor, contingut i default language catala (ca)
+     */
+    public Document(String author, String title, String content) {
+        this.author = author;
+        this.title = title;
+        this.content = content;
+        this.language = "ca";
         this.originalFormat = null;
         this.internalDoc = new InternalDocument(content);
     }
@@ -96,6 +114,13 @@ public class Document {
         return originalFormat;
     }
 
+    /**
+     * @brief Getter de l'atribut language 
+     */
+    public String getLanguage() {
+        return language;      
+    }
+
      /**
      * @brief Retorna el set de paraules clau del contingut del document   
      * @details Paraules claus son totes aquelles paraules que apareixen en el contingut del document (sense repeticions)
@@ -114,13 +139,14 @@ public class Document {
         internalDoc.newContent(newContent);
     }
 
+    /**
+     * @brief Actualitza l'idioma del document
+     * @details S'assignara un nou idioma al document
+     * @param newLanguage El nou idioma a ser assignat al document
+     */
     public void setLanguage(String newLanguage) throws ExceptionInvalidLanguage {
         if (!"ca".equals(newLanguage) && !"en".equals(newLanguage) && !"es".equals(newLanguage)) throw new ExceptionInvalidLanguage(newLanguage);
-        // ToDo: igual que en la creadora.
-    }
-
-    public String getLanguage() {
-        return "ca";        // ToDo
+        language = newLanguage;
     }
 
     /**
@@ -133,6 +159,7 @@ public class Document {
      * @return Nombre que representa un index de semblança entre els documents A i B
      */
     public double compare_tf_idf(Document other, Integer num_docs, Map<String,Integer> presence) {
+        if (language != other.getLanguage()) return 0;
 
         Set<String> terms1 = other.getRelevantWords();
         Set<String> terms2 = this.getRelevantWords();
@@ -155,6 +182,8 @@ public class Document {
      * @return Nombre que representa un index de semblança entre els documents A i B
      */
     public double compare_tf_boolean(Document other) {
+        if (language != other.getLanguage()) return 0;
+
         Set<String> terms1 = other.getRelevantWords();
         String terms1Array[] = new String[terms1.size()];
         terms1.toArray(terms1Array);
