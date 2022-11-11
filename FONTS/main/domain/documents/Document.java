@@ -2,6 +2,7 @@ package main.domain.documents;
 
 import java.util.*;
 import main.excepcions.ExceptionInvalidFormat;
+import test.domain.documents.InternalDocument;
 
 /**
  * @class Document 
