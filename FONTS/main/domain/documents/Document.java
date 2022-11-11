@@ -2,6 +2,7 @@ package main.domain.documents;
 
 import java.util.*;
 import main.excepcions.ExceptionInvalidFormat;
+import main.excepcions.ExceptionInvalidLanguage;
 import test.domain.documents.InternalDocument;
 
 /**
@@ -31,7 +32,7 @@ public class Document {
      * @param format Format del document: "txt" or "xml"
      * @throws ExceptionInvalidFormat El format del document es invalid (no es txt o xml)
      */
-    public Document(String author, String title, String content, String format) throws ExceptionInvalidFormat {
+    public Document(String author, String title, String content, String language, String format) throws ExceptionInvalidFormat, ExceptionInvalidLanguage {
         this.author = author;
         this.title = title;
         this.content = content;
@@ -46,7 +47,10 @@ public class Document {
      * @param title titol del document creat
      * @param content del document creat
      */
-    public Document(String author, String title, String content) {
+    public Document(String author, String title, String content, String language) throws ExceptionInvalidLanguage {
+        if (!"ca".equals(language) && !"en".equals(language) && !"es".equals(language)) throw new ExceptionInvalidLanguage(language);
+            /*ToDo: No sé si voldràs llençar l'excepció des d'aquí o dins de internalDoc, és per provar x ara :)
+                Si el string language fos buit, jo posaria per defecte 'ca' com idioma i no llençaria excepció*/
         this.author = author;
         this.title = title;
         this.content = content;
@@ -108,6 +112,15 @@ public class Document {
     public void setContent(String newContent) {
         content = newContent;
         internalDoc.newContent(newContent);
+    }
+
+    public void setLanguage(String newLanguage) throws ExceptionInvalidLanguage {
+        if (!"ca".equals(newLanguage) && !"en".equals(newLanguage) && !"es".equals(newLanguage)) throw new ExceptionInvalidLanguage(newLanguage);
+        // ToDo: igual que en la creadora.
+    }
+
+    public String getLanguage() {
+        return "ca";        // ToDo
     }
 
     /**

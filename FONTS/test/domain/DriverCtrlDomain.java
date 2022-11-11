@@ -44,33 +44,39 @@ public class DriverCtrlDomain {
                             testUpdateContentDocument();
                             break;
                         case 6:
-                            testListAllDocuments();
+                            testGetLanguageDocument();
                             break;
                         case 7:
-                            testListSimilars();
+                            testUpdateLanguageDocument();
                             break;
                         case 8:
-                            testListTitlesOfAuthor();
+                            testListAllDocuments();
                             break;
                         case 9:
-                            testListAuthorsByPrefix();
+                            testListSimilars();
                             break;
                         case 10:
-                            testListByQuery();
+                            testListTitlesOfAuthor();
                             break;
                         case 11:
-                            testListByExpression();
+                            testListAuthorsByPrefix();
                             break;
                         case 12:
-                            testCreateExpression();
+                            testListByQuery();
                             break;
                         case 13:
-                            testDeleteExpression();
+                            testListByExpression();
                             break;
                         case 14:
-                            testModifyExpression();
+                            testCreateExpression();
                             break;
                         case 15:
+                            testDeleteExpression();
+                            break;
+                        case 16:
+                            testModifyExpression();
+                            break;
+                        case 17:
                             break;
                         default:
                             System.out.println("No has introduït un valor vàlid.");
@@ -81,7 +87,7 @@ public class DriverCtrlDomain {
                     System.out.println(missatge);
                 }
                 System.out.println();
-            } while (value != 14);
+            } while (value != 17);
             System.out.println("Sortim.");
         } catch (Exception e) {
             System.out.println("El valor introduït no es pot processar, abortem.");
@@ -96,27 +102,31 @@ public class DriverCtrlDomain {
         System.out.println("3 - Saber si existeix un document");
         System.out.println("4 - Consultar el contingut d'un document");
         System.out.println("5 - Modificar el contingut d'un document");
-        System.out.println("6 - Llistar tots els documents");
-        System.out.println("7 - Llistar els documents més semblants a un document");
-        System.out.println("8 - Llistar els títols d'un autor");
-        System.out.println("9 - Llistar els autors per prefix");
-        System.out.println("10 - Llistar els documents a partir d'una query");
-        System.out.println("11 - Llistar els documents a partir d'una expressió booleana");
-        System.out.println("12 - Crear una expressió booleana");
-        System.out.println("13 - Esborrar una expressió booleana");
-        System.out.println("14 - Modificar una expressió booleana");
-        System.out.println("15 - Sortir :)");
+        System.out.println("6 - Consultar l'idioma d'un document");
+        System.out.println("7 - Modificar l'idioma d'un document");
+        System.out.println("8 - Llistar tots els documents");
+        System.out.println("9 - Llistar els documents més semblants a un document");
+        System.out.println("10 - Llistar els títols d'un autor");
+        System.out.println("11 - Llistar els autors per prefix");
+        System.out.println("12 - Llistar els documents a partir d'una query");
+        System.out.println("13 - Llistar els documents a partir d'una expressió booleana");
+        System.out.println("14 - Crear una expressió booleana");
+        System.out.println("15 - Esborrar una expressió booleana");
+        System.out.println("16 - Modificar una expressió booleana");
+        System.out.println("17 - Sortir :)");
         System.out.print("Quina operació vols realitzar?: ");
     }
 
-    public static void testCreateEmptyDocument() throws ExceptionDocumentExists {
+    public static void testCreateEmptyDocument() throws ExceptionDocumentExists, ExceptionInvalidLanguage {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Crear un document buit");
         System.out.print("Introdueix un títol: ");
         String title = scanner.nextLine();
         System.out.print("Introdueix un autor: ");
         String author = scanner.nextLine();
-        cd.createEmptyDocument(title, author);
+        System.out.print("Introdueix un idioma(ca/en/es): ");
+        String language = scanner.nextLine();
+        cd.createEmptyDocument(title, author, language);
         System.out.println("Document buit creat");
     }
 
@@ -170,6 +180,32 @@ public class DriverCtrlDomain {
             System.out.println("Contingut modificat");
         }
         else System.out.println("S'ha sortit sense guardar");
+    }
+
+    public static void testGetLanguageDocument() throws ExceptionNoDocument {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Consultar l'idioma d'un document");
+        System.out.print("Introdueix un títol: ");
+        String title = scanner.nextLine();
+        System.out.print("Introdueix un autor: ");
+        String author = scanner.nextLine();
+        String language = cd.getLanguageDocument(title, author);
+        if ("ca".equals(language)) System.out.println("Català (ca)");
+        else if ("en".equals(language)) System.out.println("Anglès (en)");
+        else System.out.println("Castellà (es)");
+    }
+
+    public static void testUpdateLanguageDocument() throws ExceptionNoDocument, ExceptionInvalidLanguage {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Modificar l'idioma d'un document");
+        System.out.print("Introdueix un títol: ");
+        String title = scanner.nextLine();
+        System.out.print("Introdueix un autor: ");
+        String author = scanner.nextLine();
+        System.out.print("Introdueix el nou idioma(ca/en/es): ");
+        String language = scanner.nextLine();
+        cd.updateLanguageDocument(title, author, language);
+        System.out.println("Idioma modificat");
     }
 
     public static void testListAllDocuments() {

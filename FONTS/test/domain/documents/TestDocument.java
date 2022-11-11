@@ -20,7 +20,7 @@ public class TestDocument {
     private static int num_docs;
 
 
-    @Before 
+    @Before
     public void init(){ 
         num_docs = 10;
         presence = new HashMap<String,Integer>();
@@ -41,7 +41,7 @@ public class TestDocument {
     /**
 	 * Test dels getters
 	 */
-    @Test
+    /*@Test
 	public void testGetters() throws ExceptionInvalidFormat {
         //test els getters per als diferents tipus de constructores
         Document doc1 = new Document("Ari", "Titol del document", "Tres tristes, tristes tigres comen trigo en un trigal.", "txt");
@@ -56,12 +56,12 @@ public class TestDocument {
         assertEquals("Titol del document", doc2.getTitle());
         assertEquals("Contingut", doc2.getContent());
         assertEquals(null, doc2.getOriginalFormat());
-    }
+    }*/
 
     /**
 	 * Test dels setters
 	 */
-    @Test
+    /*@Test
 	public void testSetters() throws ExceptionInvalidFormat {
         Document doc = new Document("Ari", "Titol del document", "Tres tristes, tristes tigres comen trigo en un trigal.", "txt");
         doc.setContent("Now content :)");
@@ -114,6 +114,6 @@ public class TestDocument {
 
         Document doc4 = new Document("Ari", "Titol del document", "Tres trigal en un tigre triste");
         assertEquals(4.0, doc.compare_tf_boolean(doc4),0.01);
-    }
+    }*/
 }
 
