@@ -37,7 +37,7 @@ public class Document {
         this.author = author;
         this.title = title;
         this.content = content;
-        if (!"ca".equals(language) && !"en".equals(language) && !"es".equals(language)) throw new ExceptionInvalidLanguage(language);
+        if (!("ca" == language) && !("en" == language) && !("es" == language)) throw new ExceptionInvalidLanguage(language);
         this.language = language;
         if (format != "txt" && format != "xml") throw new ExceptionInvalidFormat(format);
         this.originalFormat = format;
@@ -51,27 +51,11 @@ public class Document {
      * @param content del document creat
      */
     public Document(String author, String title, String content, String language) throws ExceptionInvalidLanguage {
-        if (!"ca".equals(language) && !"en".equals(language) && !"es".equals(language)) throw new ExceptionInvalidLanguage(language);
+        if (!("ca" == language) && !("en" == language) && !("es" == language)) throw new ExceptionInvalidLanguage(language);
         this.author = author;
         this.title = title;
         this.content = content;
         this.language = language;
-        this.originalFormat = null;
-        this.internalDoc = new InternalDocument(content);
-    }
-
-    /**
-     * @brief constructora de document sense format ni llenguatge especific
-     * @param author autor del document creat
-     * @param title titol del document creat
-     * @param content del document creat
-     * @details Es creara un document amb titol, autor, contingut i default language catala (ca)
-     */
-    public Document(String author, String title, String content) {
-        this.author = author;
-        this.title = title;
-        this.content = content;
-        this.language = "ca";
         this.originalFormat = null;
         this.internalDoc = new InternalDocument(content);
     }
@@ -145,7 +129,7 @@ public class Document {
      * @param newLanguage El nou idioma a ser assignat al document
      */
     public void setLanguage(String newLanguage) throws ExceptionInvalidLanguage {
-        if (!"ca".equals(newLanguage) && !"en".equals(newLanguage) && !"es".equals(newLanguage)) throw new ExceptionInvalidLanguage(newLanguage);
+        if (!("ca" == language) && !("en" == language) && !("es" == language)) throw new ExceptionInvalidLanguage(language);
         language = newLanguage;
     }
 
@@ -242,7 +226,7 @@ public class Document {
         double tf_bool = 0;
         Map<String,Integer> relevantTerms = internalDoc.getRelevantWords(); 
         for (String term : terms) {
-            if (relevantTerms.containsKey(term)) tf_bool ++;
+            if (relevantTerms.containsKey(term)) tf_bool++;
         }
         return tf_bool;
     }
