@@ -162,8 +162,13 @@ public class DriverCtrlDomain {
         String author = scanner.nextLine();
         System.out.print("Introdueix el nou contingut: ");
         String content = scanner.nextLine();
-        cd.updateContentDocument(title, author, content);
-        System.out.println("Contingut modificat");
+        System.out.print("Vols guardar? (S/N): ");
+        Boolean save = scanner.nextLine().equals("S");
+        if (save) {
+            cd.updateContentDocument(title, author, content);
+            System.out.println("Contingut modificat");
+        }
+        else System.out.println("S'ha sortit sense guardar");
     }
 
     public static void testListAllDocuments() {
