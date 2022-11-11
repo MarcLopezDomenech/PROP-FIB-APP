@@ -2,5 +2,5 @@ Directori documents
 
 En aquest directori hi ha el codi de les tres classes del domini que permeten gestionar els documents del sistema:
 - Document: Que representa un document en el nostre aplicatiu.
-- DocumentsSet: Que emmagatzema el conjunt de documents que hi ha en el sistema i permetre'n la gestió.
-- InternalDocument: Encarregada de recollir la representació interna d'un document.
+- DocumentsSet: Que emmagatzema el conjunt de documents que hi ha en el sistema i permetre'n la gestio.
+- InternalDocument: Encarregada de recollir la representacio interna d'un document.

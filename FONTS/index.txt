@@ -1,5 +1,5 @@
 Directori FONTS
 
-Aquest és el directori on hi ha tota la implementació. Està repartida en dos subdirectoris, main i test.
-- Directori main: Amb tota la implementació de les classes que apareixen a la capa de domini, i posteriorment amb la resta de classes.
+Aquest es el directori on hi ha tota la implementacio. Esta repartida en dos subdirectoris, main i test.
+- Directori main: Amb tota la implementacio de les classes que apareixen a la capa de domini, i posteriorment amb la resta de classes.
 - Directori test: On hi ha el codi dels tests unitaris, el driver i els stubs que hem emprat per fer els tests de totes les classes.

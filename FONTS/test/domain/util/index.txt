@@ -1,5 +1,5 @@
 Directori util
 
-Recull els fitxers necessaris per realitzar tests sobre les classes que usem com a utilitats bàsiques en el sistema.
-Per ara, només tenim:
+Recull els fitxers necessaris per realitzar tests sobre les classes que usem com a utilitats basiques en el sistema.
+Per ara, nomes tenim:
 - TestPair: Per realitzar els tests unitaris sobre la classe Pair del domini.

@@ -5,4 +5,4 @@ Per estructurar-lo, hem seguit la mateixa estructura que FONTS.main, per tant te
 - Fitxer DriverCtrlDomain: Amb el codi del driver que usem desenvolupar tests sobre la classe CtrlDomain.
 - Directori documents: Amb els fitxers necessaris per realitzar tests sobre les classes del domini que gestionen documents.
 - Directori expressions: Amb els fitxers necessaris per realitzar tests sobre les classes del domini que gestionen expressions booleanes.
-- Directori utils: Amb els fitxers necessaris per realitzar tests sobre les classes que usem com a utilitats bàsiques en el sistema.
+- Directori utils: Amb els fitxers necessaris per realitzar tests sobre les classes que usem com a utilitats basiques en el sistema.
