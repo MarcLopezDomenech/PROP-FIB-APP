@@ -1,5 +1,5 @@
 Directori util
 
-Aquest directori serveix per recollir les classes bàsiques que hem implementat per tal de ser usades des d'altres classes com a recurs.
-A hores d'ara, només n'hi ha una:
-- Pair: En aquest fitxer està el codi d'una implementació senzilla del concepte de pair.
+Aquest directori serveix per recollir les classes basiques que hem implementat per tal de ser usades des d'altres classes com a recurs.
+A hores d'ara, nomes n'hi ha una:
+- Pair: En aquest fitxer esta el codi d'una implementacio senzilla del concepte de pair.

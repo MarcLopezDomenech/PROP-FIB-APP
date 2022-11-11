@@ -1,10 +1,10 @@
 Directori DOCS
 
-En aquest directori només hi ha un fitxer, que correspon amb la documentació demanada per aquesta primera entrega, és a dir:
-- El diagrama de casos d'ús.
-- L'especificació, emprant brief style, d'aquests casos d'ús.
+En aquest directori nomes hi ha un fitxer, que correspon amb la documentacio demanada per aquesta primera entrega, es a dir:
+- El diagrama de casos d'us.
+- L'especificacio, emprant brief style, d'aquests casos d'us.
 - El diagrama de classes en UML de la capa de domini.
-- L'especificació, classe per classe, de les que apareixen en el diagrama anterior.
-- L'explicació de les estructures de dades i algorismes emprades en la implementació de tals classes.
-- La relació entre les classes i qui n'ha realitzat la implementació.
-- L'explicació de les llibreries externes usades.
+- L'especificacio, classe per classe, de les que apareixen en el diagrama anterior.
+- L'explicacio de les estructures de dades i algorismes emprades en la implementacio de tals classes.
+- La relacio entre les classes i qui n'ha realitzat la implementacio.
+- L'explicacio de les llibreries externes usades.
