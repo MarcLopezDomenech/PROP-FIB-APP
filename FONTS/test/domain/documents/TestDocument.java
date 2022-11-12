@@ -82,6 +82,14 @@ public class TestDocument {
         System.out.println("Això no apareix per pantalla");
     }
 
+    @Test (expected = ExceptionInvalidLanguage.class)
+    public void testInvalidLanguageExceptionSetter() throws ExceptionInvalidFormat, ExceptionInvalidLanguage {
+        Document doc = new Document("Ari","Titol del document", "Contingut", "en");
+        doc.setLanguage("invalid");
+        //Salta ExceptionInvalidLanguage
+        System.out.println("Això no apareix per pantalla");
+    }
+
     @Test (expected = ExceptionInvalidFormat.class)
     public void testInvalidFormatException() throws ExceptionInvalidFormat, ExceptionInvalidLanguage {
         Document doc = new Document("Ari","Titol del document", "Contingut", "ca", "invalid");
@@ -110,7 +118,7 @@ public class TestDocument {
         assertEquals(0.0, doc.compare_tf_idf(doc2,num_docs,presence),0.1);
 
         Document doc3 = new Document("Ari", "t3", "Tres tristes palabras","es");
-        assertEquals(19.02, doc.compare_tf_idf(doc3,num_docs,presence),0.01);
+        assertEquals(21.57, doc.compare_tf_idf(doc3,num_docs,presence),0.01);
 
         Document doc4 = new Document("Ari", "t4", "Tres trigal en un tigre triste","es");
         assertEquals(13.61, doc.compare_tf_idf(doc4,num_docs,presence),0.01);

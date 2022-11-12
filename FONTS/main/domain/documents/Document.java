@@ -143,7 +143,7 @@ public class Document {
      * @return Nombre que representa un index de semblança entre els documents A i B
      */
     public double compare_tf_idf(Document other, Integer num_docs, Map<String,Integer> presence) {
-        if (language != other.getLanguage()) return 0;
+        if (!language.equals(other.getLanguage())) return 0;
 
         Set<String> terms1 = other.getRelevantWords();
         Set<String> terms2 = this.getRelevantWords();
@@ -207,7 +207,7 @@ public class Document {
         Map<String,Integer> relevantTerms = internalDoc.getRelevantWords(); 
         for (String term : terms) {
             if (relevantTerms.containsKey(term)) {
-                tf_idf += (relevantTerms.get(term)/totalTerms) * Math.log10(num_docs/presence.get(term));
+                tf_idf += (relevantTerms.get(term)/totalTerms) * Math.log10((double) num_docs/presence.get(term));
             }
         }
         return tf_idf;
