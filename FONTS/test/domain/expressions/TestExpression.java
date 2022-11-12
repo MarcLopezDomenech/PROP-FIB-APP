@@ -7,86 +7,144 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * @class TestExpressionsSet
+ * @class TestExpression
  * @brief Classe per provar de forma unitària la classe Expression
  * @author marc.valls.camps
  */
 
 public class TestExpression {
+
+    // CREATION TESTS
     @Test
-    public void caracters_estranys() throws ExceptionInvalidExpression {
+    public void rareCharacters() throws ExceptionInvalidExpression {
         Expression a = Expression.create(" -*//$$% & %%12");
     }
 
     @Test
-    public void and_simple() throws ExceptionInvalidExpression {
+    public void simpleNot() throws ExceptionInvalidExpression {
+        Expression a = Expression.create(" ! abcd ");
+    }
+
+    @Test
+    public void simpleAnd() throws ExceptionInvalidExpression {
         Expression a = Expression.create(" abcd & abcd ");
     }
 
     @Test
-    public void or_simple() throws ExceptionInvalidExpression {
+    public void simpleOr() throws ExceptionInvalidExpression {
         Expression a = Expression.create(" abcd | abcd ");
     }
 
     @Test
-    public void sense_espais() throws ExceptionInvalidExpression {
-        Expression a = Expression.create("a&b&c|d|e");
+    public void noSpaces() throws ExceptionInvalidExpression {
+        Expression a = Expression.create("a&b&c|(d|!e)");
     }
 
     @Test
-    public void molts_espais() throws ExceptionInvalidExpression {
-        Expression a = Expression.create("     abcd     & abcd|  abcd     ");
+    public void manySpaces() throws ExceptionInvalidExpression {
+        Expression a = Expression.create("     ( abcd)     & (abcd|  abcd   )  ");
+    }
+
+    @Test(expected = ExceptionInvalidExpression.class)
+    public void quotes1() throws ExceptionInvalidExpression {
+        Expression a = Expression.create("\" abcd \" \" efgh \"");
     }
 
     @Test
-    public void cometes1() throws ExceptionInvalidExpression {
+    public void quotes2() throws ExceptionInvalidExpression {
         Expression a = Expression.create("abcd | \"abcd abcd\" & abcd ");
     }
 
     @Test
-    public void cometes2() throws ExceptionInvalidExpression {
+    public void quotes3() throws ExceptionInvalidExpression {
         Expression a = Expression.create("abcd & \"( abcd\"");
     }
 
     @Test(expected = ExceptionInvalidExpression.class)
-    public void cometes3() throws ExceptionInvalidExpression {
+    public void quotes4() throws ExceptionInvalidExpression {
         Expression a = Expression.create("\"abcd | \"abcd\"");
     }
 
     @Test(expected = ExceptionInvalidExpression.class)
-    public void cometes4() throws ExceptionInvalidExpression {
-        Expression a = Expression.create("\"abcd");
+    public void quotes5() throws ExceptionInvalidExpression {
+        Expression a = Expression.create("abcd\"");
     }
 
     @Test
-    public void cometes5() throws ExceptionInvalidExpression {
+    public void quotes6() throws ExceptionInvalidExpression {
         Expression a = Expression.create("\"abcd | abcd\"");
     }
 
     @Test
-    public void claus() throws ExceptionInvalidExpression {
+    public void keys1() throws ExceptionInvalidExpression {
         Expression a = Expression.create("{abcd \"abcd abcd\"} & abcd & {abcd \"abcd abcd\"}");
     }
 
-    @Test
-    public void claus2() throws ExceptionInvalidExpression {
+    @Test(expected = ExceptionInvalidExpression.class)
+    public void keys2() throws ExceptionInvalidExpression {
         Expression a = Expression.create("{ { abcd }");
     }
 
     @Test(expected = ExceptionInvalidExpression.class)
-    public void claus3() throws ExceptionInvalidExpression {
-        Expression a = Expression.create("{ abcd } }");
+    public void keys3() throws ExceptionInvalidExpression {
+        Expression a = Expression.create("{ { abcd } }");
+    }
+
+    @Test(expected = ExceptionInvalidExpression.class)
+    public void keys4() throws ExceptionInvalidExpression {
+        Expression a = Expression.create("{ abcd } {");
+    }
+
+    @Test(expected = ExceptionInvalidExpression.class)
+    public void keys5() throws ExceptionInvalidExpression {
+        Expression a = Expression.create("{ abcd");
     }
 
     @Test
-    public void eval_claus2() throws ExceptionInvalidExpression {
-        Expression a = Expression.create("{ { abcd }");
-        assertTrue(a.evaluate("efgh abcd {", false));
+    public void parentheses1() throws ExceptionInvalidExpression {
+        Expression a = Expression.create("(a & (b | c))");
     }
 
+    @Test(expected = ExceptionInvalidExpression.class)
+    public void parentheses2() throws ExceptionInvalidExpression {
+        Expression a = Expression.create("(a (b | c))");
+    }
+
+    @Test(expected = ExceptionInvalidExpression.class)
+    public void parentheses3() throws ExceptionInvalidExpression {
+        Expression a = Expression.create("(a & (b | c)");
+    }
+
+    @Test(expected = ExceptionInvalidExpression.class)
+    public void parentheses4() throws ExceptionInvalidExpression {
+        Expression a = Expression.create("(a & (b | c)))");
+    }
+
+    @Test(expected = ExceptionInvalidExpression.class)
+    public void parentheses5() throws ExceptionInvalidExpression {
+        Expression a = Expression.create(")a & (b | c)");
+    }
+
+    @Test(expected = ExceptionInvalidExpression.class)
+    public void operandsAreNotWords1() throws ExceptionInvalidExpression {
+        Expression a = Expression.create("hola !");
+    }
+
+    @Test(expected = ExceptionInvalidExpression.class)
+    public void operandsAreNotWords2() throws ExceptionInvalidExpression {
+        Expression a = Expression.create("{ | abcd}");
+    }
+
+    @Test(expected = ExceptionInvalidExpression.class)
+    public void operandsAreNotWords3() throws ExceptionInvalidExpression {
+        Expression a = Expression.create("(abcd & (hola | &))");
+    }
+
+    // COMPLEX EVALUATE TESTS
     @Test
-    public void eval_exemple() throws ExceptionInvalidExpression {
+    public void exampleInStatement() throws ExceptionInvalidExpression {
         Expression a = Expression.create("{p1 p2 p3} & (\"hola adéu\" | pep) & !joan");
+
         assertTrue(a.evaluate("p3 pep p1 abcd p2", false));
         assertFalse(a.evaluate("p3 pep p1 joan abcd p2", false));
         assertTrue(a.evaluate("p3 pep p1 joanet abcd p2", false));
@@ -96,18 +154,43 @@ public class TestExpression {
     }
 
     @Test
-    public void quotes() throws ExceptionInvalidExpression {
-        Expression a = Expression.create("\" abcd \" \" efgh \"");
-    }
+    public void prefixesInfixesSuffixesNotConsidered() throws ExceptionInvalidExpression {
+        Expression a = Expression.create("(a | !b)");
 
+        assertTrue(a.evaluate("barca", false));
+        assertFalse(a.evaluate("b", false));
+        assertTrue(a.evaluate("b a", false));
+        assertFalse(a.evaluate("b hola", false));
+        assertFalse(a.evaluate("b sac", false));
+        assertFalse(a.evaluate("b aa", false));
+    }
 
     @Test
-    public void quotes2() throws ExceptionInvalidExpression {
-        Expression a = Expression.create("hola !");
+    public void caseSensitive() throws ExceptionInvalidExpression {
+        Expression a = Expression.create("{P1 p2 p3} & (\"hola adéu\" | pep) & !Joan");
+
+        assertFalse(a.evaluate("p3 pep p1 abcd p2", true));
+        assertTrue(a.evaluate("p3 pep P1 joan abcd p2", true));
+        assertFalse(a.evaluate("p3 Pep P1 joan abcd p2", true));
+        assertTrue(a.evaluate("p3 Pep P1 joan abcd p2 hola adéu", true));
+        assertFalse(a.evaluate("p3 Pep P1 joan abcd p2 hola aDéu", true));
     }
 
-    // fer tests amb lowercase
-    // fer tests amb prefixs, infixs, sufixs
-    // fer tests que comprovin la jerarquia natural dels operadors
-    // fer tests que comprovin que els parentesis poden alterar la jerarquia
+    @Test
+    public void naturalOrderOfOperandsRespected() throws ExceptionInvalidExpression {
+        Expression a = Expression.create("a & b | c & d");
+
+        assertTrue(a.evaluate("a b", false));
+        assertTrue(a.evaluate("c d", false));
+        assertFalse(a.evaluate("b c", false));
+    }
+
+    @Test
+    public void parenthesesNotFollowingNaturalOrder() throws ExceptionInvalidExpression {
+        Expression a = Expression.create("a & (b | c) & d");
+
+        assertFalse(a.evaluate("a b", false));
+        assertFalse(a.evaluate("c d", false));
+        assertFalse(a.evaluate("b c", false));
+    }
 }
