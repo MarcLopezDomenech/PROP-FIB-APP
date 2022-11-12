@@ -51,18 +51,18 @@ public class TestInternalDocument {
         
         //Test de getRelevantKeyWords
         Set<String> set = internal1.getRelevantKeyWords();
-        assertEquals(8, set.size());
+        assertEquals(6, set.size());
         assertTrue(set.contains("Tres"));
         assertTrue(set.contains("tristes"));
         assertTrue(set.contains("tigres"));
         assertTrue(set.contains("comen"));
         assertTrue(set.contains("trigo"));
-        assertTrue(set.contains("en"));
-        assertTrue(set.contains("un"));
+        assertFalse(set.contains("en"));
+        assertFalse(set.contains("un"));
         assertTrue(set.contains("trigal"));
 
         //Test de getTotalWords
-        assertEquals(9, internal1.getTotalWords());
+        assertEquals(7, internal1.getTotalWords());
 
         //Test de getRelevantWords
         Map<String,Integer> relevantWords = internal1.getRelevantWords();
@@ -71,8 +71,6 @@ public class TestInternalDocument {
         assertTrue(1 == relevantWords.get("tigres"));
         assertTrue(1 == relevantWords.get("comen"));
         assertTrue(1 == relevantWords.get("trigo"));
-        assertTrue(1 == relevantWords.get("en"));
-        assertTrue(1 == relevantWords.get("un"));
         assertTrue(1 == relevantWords.get("trigal"));
 
         //Alguns tests extres de casos més complicats
@@ -96,17 +94,17 @@ public class TestInternalDocument {
         intDoc.newContent("Tres tristes, tristes tigres comen trigo en un trigal.");
 
         //Comprovació que els atributs de internal document han canviat consequentment
-        assertEquals(9, intDoc.getTotalWords());
+        assertEquals(7, intDoc.getTotalWords());
         
         Set<String> set = intDoc.getRelevantKeyWords();
-        assertEquals(8, set.size());
+        assertEquals(6, set.size());
         assertTrue(set.contains("Tres"));
         assertTrue(set.contains("tristes"));
         assertTrue(set.contains("tigres"));
         assertTrue(set.contains("comen"));
         assertTrue(set.contains("trigo"));
-        assertTrue(set.contains("en"));
-        assertTrue(set.contains("un"));
+        assertFalse(set.contains("en"));        //Stop word
+        assertFalse(set.contains("un"));        //Stop word
         assertTrue(set.contains("trigal"));
     }
 }

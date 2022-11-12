@@ -227,7 +227,7 @@ public class DocumentsSet {
             Map<String, Document> titleDoc = titlesOfAuthor.getValue();
             for (Map.Entry<String, Document> documentsOfAuthor : titleDoc.entrySet()) {
                 String title = documentsOfAuthor.getKey();
-                all.add(new Pair(title, author));
+                all.add(new Pair<String,String>(title, author));
             }
         }
         return all;

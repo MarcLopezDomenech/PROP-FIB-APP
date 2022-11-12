@@ -7,12 +7,8 @@ import java.util.*;
 /**
  * @class InternalDocument 
  * @brief Classe que representa les dades internes que el sistema guarda per a cada document 
- * Aquesta informacio es utilitzada per a comparar documents i per a evaluar rellevancia  
- * @author Ariadna Cortes Danes
- * 
- * //TODO: 
- *  -- split content terms by non-word characters
- *  -- stop words?
+ * Aquesta informació és utilitzada per a comparar documents i per a evaluar rellevància  
+ * @author ariadna.cortes.danes
  */
 public class InternalDocument {
 
