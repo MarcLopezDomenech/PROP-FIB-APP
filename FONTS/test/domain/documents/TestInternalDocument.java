@@ -57,8 +57,6 @@ public class TestInternalDocument {
         assertTrue(set.contains("tigres"));
         assertTrue(set.contains("comen"));
         assertTrue(set.contains("trigo"));
-        assertFalse(set.contains("en"));
-        assertFalse(set.contains("un"));
         assertTrue(set.contains("trigal"));
 
         //Test de getTotalWords

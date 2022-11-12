@@ -3,7 +3,7 @@ package main.domain.documents;
 import java.util.*;
 import main.excepcions.ExceptionInvalidFormat;
 import main.excepcions.ExceptionInvalidLanguage;
-//import main.domain.documents.InternalDocument;
+import main.domain.documents.InternalDocument;
 
 /**
  * @class Document 
