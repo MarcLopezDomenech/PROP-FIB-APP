@@ -177,7 +177,11 @@ public abstract class Expression {
             return new Not(recursiveDeconstruction(inner));
         }
 
+        for (int i = 1; i < expression.length() - 1; ++i)
+            if (expression.charAt(i) == '"') throw new ExceptionInvalidExpression(expression);
+
         if (expression.charAt(0) == '"') {
+            if (expression.charAt(expression.length()-1) != '"') throw new ExceptionInvalidExpression(expression);
             String value = expression.substring(1, expression.length()-1);
             return new Literal(value);
         }
