@@ -177,8 +177,8 @@ public abstract class Expression {
             return new Not(recursiveDeconstruction(inner));
         }
 
-        for (int i = 1; i < expression.length() - 1; ++i)
-            if (expression.charAt(i) == '"') throw new ExceptionInvalidExpression(expression);
+        for (int k = 1; k < expression.length() - 1; ++k)
+            if (expression.charAt(k) == '"') throw new ExceptionInvalidExpression(expression);
 
         if (expression.charAt(0) == '"') {
             if (expression.charAt(expression.length()-1) != '"') throw new ExceptionInvalidExpression(expression);

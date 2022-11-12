@@ -95,6 +95,11 @@ public class TestExpression {
         assertFalse(a.evaluate("p3 p1 hola abcd adéu p2", false));
     }
 
+    @Test
+    public void quotes() throws ExceptionInvalidExpression {
+        Expression a = Expression.create("\" abcd \" \" efgh \"");
+    }
+
     // fer tests amb lowercase
     // fer tests amb prefixs, infixs, sufixs
     // fer tests que comprovin la jerarquia natural dels operadors
