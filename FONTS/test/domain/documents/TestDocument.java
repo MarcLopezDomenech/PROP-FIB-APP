@@ -52,10 +52,10 @@ public class TestDocument {
         assertEquals("txt", doc1.getOriginalFormat());
 
         //Test dels getters de una creadora sense format
-        Document doc2 = new Document("Ari", "Titol del document", "Contingut", "ca");
+        Document doc2 = new Document("Ari", "Titol del document", "Tres tristes, tristes tigres comen trigo en un trigal.", "ca");
         assertEquals("Ari", doc2.getAuthor());
         assertEquals("Titol del document", doc2.getTitle());
-        assertEquals("Contingut", doc2.getContent());
+        assertEquals("Tres tristes, tristes tigres comen trigo en un trigal.", doc2.getContent());
         assertEquals("ca", doc2.getLanguage());
         assertEquals(null, doc2.getOriginalFormat());
     }
@@ -97,7 +97,7 @@ public class TestDocument {
     
     @Test
 	public void testQueryRelevance() throws ExceptionInvalidLanguage {
-        Document doc = new Document("Ari", "t1", "Tres tristes, tristes tigres comen trigo en un trigal", "es");
+        Document doc = new Document("Ari", "t1", "Tres tristes, tristes tigres comen trigo en un trigal.", "es");
         String query = "Mi mama me mima";
         assertEquals(0.0, doc.queryRelevance(query,num_docs,presence),0.01);
 
@@ -110,7 +110,7 @@ public class TestDocument {
 
     @Test
 	public void testCompare_tf_idf() throws ExceptionInvalidLanguage {
-        Document doc = new Document("Ari", "Titol del document", "Tres tristes, tristes tigres comen trigo en un trigal","es");
+        Document doc = new Document("Ari", "Titol del document", "Tres tristes, tristes tigres comen trigo en un trigal.","es");
 
         Document doc2 = new Document("Ari", "t2", "Mi mama me mima","es");
         assertEquals(0.0, doc.compare_tf_idf(doc2,num_docs,presence),0.1);
@@ -128,7 +128,7 @@ public class TestDocument {
 
     @Test
 	public void testCompare_tf_boolean() throws ExceptionInvalidLanguage {
-        Document doc = new Document("Ari", "t1", "Tres tristes, tristes tigres comen trigo en un trigal", "es");
+        Document doc = new Document("Ari", "t1", "Tres tristes, tristes tigres comen trigo en un trigal.", "es");
 
         Document doc2 = new Document("Ari", "t2", "Mi mama me mima", "es");
         assertEquals(0.0, doc.compare_tf_boolean(doc2),0.1);
@@ -143,9 +143,6 @@ public class TestDocument {
         //Prova per a documents en diferents idiomes
         Document doc5 = new Document("Ari", "t5", "A cup of cafe con leche in Plaza Mayor", "en");
         assertEquals(0, doc.compare_tf_idf(doc5,num_docs,presence),0.01);
-
-        Document doc6 = new Document("Ari", "Tt4", "Tres trigal en un tigre triste","en");
-        assertEquals(0.0, doc.compare_tf_boolean(doc6),0.01);
     }
 }
 
