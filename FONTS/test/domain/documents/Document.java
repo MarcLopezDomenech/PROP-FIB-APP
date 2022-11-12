@@ -9,6 +9,7 @@ import java.util.*;
  */
 public class Document {
     private String content;
+    private String language;
 
     public Document() {}
 
@@ -51,5 +52,7 @@ public class Document {
         else return r;
     }
 
+    public void setLanguage(String language) {this.language = language;}
+    public String getLanguage() {return language;}
 
 }
