@@ -32,6 +32,10 @@ public class Document {
 
     public void setContent(String content) {this.content = content;}
 
+    public String getLanguage() {return language;}
+
+    public void setLanguage(String language) {this.language = language;}
+
     public Set<String> getRelevantWords() {
         Set<String> relevantWordsFake = new HashSet<>();
         for (Character c : content.toCharArray()) {
@@ -56,8 +60,5 @@ public class Document {
         if (r < 0) return -r;
         else return r;
     }
-
-    public void setLanguage(String language) {this.language = language;}
-    public String getLanguage() {return language;}
 
 }
