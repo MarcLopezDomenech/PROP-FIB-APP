@@ -322,8 +322,7 @@ public class DocumentsSet {
         int len = prefix.length();
         for (Map.Entry<String, Map<String,Document>> entry : documents.entrySet()) {
             String nom = entry.getKey();
-            String preAct = nom.substring(0, len);
-            if (prefix.equals(preAct)) result.add(nom);
+            if (nom.length() >= len && prefix.equals(nom.substring(0, len))) result.add(nom);
         }
         return result;
     }
