@@ -39,7 +39,7 @@ public class Document {
         this.content = content;
         if (!"ca".equals(language) && !"en".equals(language) && !"es".equals(language)) throw new ExceptionInvalidLanguage(language);
         this.language = language;
-        if (format != "txt" && format != "xml") throw new ExceptionInvalidFormat(format);
+        if (!format.equals("txt") && !format.equals("xml")) throw new ExceptionInvalidFormat(format);
         this.originalFormat = format;
         this.internalDoc = new InternalDocument(content);
     }
@@ -166,7 +166,7 @@ public class Document {
      * @return Nombre que representa un index de semblança entre els documents A i B
      */
     public double compare_tf_boolean(Document other) {
-        if (language != other.getLanguage()) return 0;
+        if (!language.equals(other.getLanguage())) return 0;
 
         Set<String> terms1 = other.getRelevantWords();
         String terms1Array[] = new String[terms1.size()];

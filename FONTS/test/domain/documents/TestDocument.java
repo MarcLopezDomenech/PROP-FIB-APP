@@ -31,8 +31,6 @@ public class TestDocument {
         presence.put("tigres", 1);
         presence.put("comen", 3);
         presence.put("trigo", 2);
-        presence.put("en", 6);
-        presence.put("un", 9);
         presence.put("trigal", 1);
         presence.put("test", 10);
         presence.put("mesTest", 9);
@@ -104,10 +102,10 @@ public class TestDocument {
         assertEquals(0.0, doc.queryRelevance(query,num_docs,presence),0.01);
 
         String query2 = "tigres trigo";
-        assertEquals(18.877, doc.queryRelevance(query2,num_docs,presence),0.01);
+        assertEquals(24.27, doc.queryRelevance(query2,num_docs,presence),0.01);
 
         String query3 = "Tres trigal en un tigre triste";
-        assertEquals(11.11, doc.queryRelevance(query3,num_docs,presence),0.01);
+        assertEquals(16.5, doc.queryRelevance(query3,num_docs,presence),0.01);
     }
 
     @Test
@@ -118,10 +116,10 @@ public class TestDocument {
         assertEquals(0.0, doc.compare_tf_idf(doc2,num_docs,presence),0.1);
 
         Document doc3 = new Document("Ari", "t3", "Tres tristes palabras","es");
-        assertEquals(21.57, doc.compare_tf_idf(doc3,num_docs,presence),0.01);
+        assertEquals(25.12, doc.compare_tf_idf(doc3,num_docs,presence),0.01);
 
         Document doc4 = new Document("Ari", "t4", "Tres trigal en un tigre triste","es");
-        assertEquals(13.61, doc.compare_tf_idf(doc4,num_docs,presence),0.01);
+        assertEquals(21.82, doc.compare_tf_idf(doc4,num_docs,presence),0.01);
 
         //Prova per a documents en diferents idiomes
         Document doc5 = new Document("Ari", "t5", "A cup of cafe con leche in Plaza Mayor", "en");
@@ -138,12 +136,16 @@ public class TestDocument {
         Document doc3 = new Document("Ari", "t3", "Tres tristes palabras","es");
         assertEquals(2.0, doc.compare_tf_boolean(doc3),0.01);
 
+        //Si posem stopWords no afecta
         Document doc4 = new Document("Ari", "Tt4", "Tres trigal en un tigre triste","es");
-        assertEquals(4.0, doc.compare_tf_boolean(doc4),0.01);
+        assertEquals(2.0, doc.compare_tf_boolean(doc4),0.01);
 
         //Prova per a documents en diferents idiomes
         Document doc5 = new Document("Ari", "t5", "A cup of cafe con leche in Plaza Mayor", "en");
         assertEquals(0, doc.compare_tf_idf(doc5,num_docs,presence),0.01);
+
+        Document doc6 = new Document("Ari", "Tt4", "Tres trigal en un tigre triste","en");
+        assertEquals(0.0, doc.compare_tf_boolean(doc6),0.01);
     }
 }
 
