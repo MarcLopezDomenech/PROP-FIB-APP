@@ -4,149 +4,210 @@ import main.excepcions.ExceptionInvalidExpression;
 
 /**
  * @class Expression
- * @brief Classe que representa i evalua expressions booleanes
+ * @brief Classe que representa i avalua expressions booleanes
  * @author marc.valls.camps, ariadna.cortes.danes i pau.duran.manzano
  */
 public abstract class Expression {
-    public static Expression create(String str) throws ExceptionInvalidExpression {
-        System.out.println("Iniciando analasi de " + str);
-        str = keys_to_ands(str);
-        return initialize(str);
+    /**
+     * @brief Comprova si tanquen les cometes ""
+     * @details Donat que el caràcter d'obrir i tancar cometes és el mateix, evidentment les cometes no són multinivell
+     * @param expression String a analitzar
+     * @return Cert ssi el nombre de cometes en el paràmetre expression és parell
+     */
+    private static boolean checkQuotes(String expression) {
+        boolean quotes = true;
+        for (int i = 0; i < expression.length(); ++i)
+            if (expression.charAt(i) == '"') quotes = !quotes;
+        return quotes;
     }
 
-    private static Expression initialize(String str) throws ExceptionInvalidExpression {
-        if (str.isEmpty()) throw new ExceptionInvalidExpression(str);
-        while (str.charAt(0) == '(' && str.charAt(str.length()-1) == ')') str = str.substring(1, str.length()-1);
-        while (!str.isEmpty() && str.charAt(0) == ' ') str = str.substring(1, str.length());
-        while (!str.isEmpty() && str.charAt(str.length()-1) == ' ') str = str.substring(0, str.length()-1);
-        if (str.isEmpty()) throw new ExceptionInvalidExpression(str);
-        if (is_dual_operator(str.charAt(0))) throw new ExceptionInvalidExpression(str);
-        if (is_dual_operator(str.charAt(str.length()-1))) throw new ExceptionInvalidExpression(str);
-        if (!checkComillas(str)) throw new ExceptionInvalidExpression(str);
-        if (!checkParentesis(str)) throw new ExceptionInvalidExpression(str);
-        System.out.println("Comillas, parenesis, operadors i espais... checked");
+    /**
+     * @brief Comprova si tanquen els parèntesis ()
+     * @details Els parèntesis són multinivell, i es comprova que estiguin ben enniuats
+     * @pre En el paràmetre expression les cometes "" tanquen
+     * @param expression String a analitzar
+     * @return Cert ssi els parèntesis tanquen, és a dir hi ha la mateixa quantitat de ( que de ),
+     * i a més a més, estan ben enniuats
+     */
+    private static boolean checkParentheses(String expression) {
+        int count = 0;
+        for (int i = 0; i < expression.length(); ++i) {
+            if (expression.charAt(i) == '"') while (expression.charAt(++i) != '"');
+            else if (expression.charAt(i) == '(') ++count;
+            else if (expression.charAt(i) == ')') --count;
 
-        for(int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) == '"') while (str.charAt(++i) != '"');
-            if (str.charAt(i) == '(') {
-                int diff = 1;
-                while (diff != 0) {
-                    if (str.charAt(++i) == '(') diff++;
-                    if (str.charAt(i) == ')') diff--;
-                }
-            }
-            if (str.charAt(i) == '|') {
-                System.out.println("Encontramos una | en la posicion " + i);
-                String strleft = str.substring(0, i);
-                String strright = str.substring(i+1, str.length());
-                return new Or(create(strleft), create(strright));
-            }
+            if (count < 0) return false;
         }
-        for(int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) == '"') while (str.charAt(++i) != '"');
-            if (str.charAt(i) == '(') {
-                int diff = 1;
-                while (diff != 0) {
-                    if (str.charAt(++i) == '(') diff++;
-                    if (str.charAt(i) == ')') diff--;
-                }
-            }
-            if (str.charAt(i) == '&') {
-                System.out.println("Encontramos una & en la posicion " + i);
-                String strleft = str.substring(0, i);
-                String strright = str.substring(i+1, str.length());
-                return new And(create(strleft), create(strright));
-            }
-        }
-        if (str.charAt(0) == '!') {
-            System.out.println("Encontramos una not !");
-            String strNot = str.substring(1);
-            return new Not(create(strNot));
-        } else {
-            if (str.charAt(0) == '"') {
-                if (str.charAt(str.length()-1) == '"') {
-                    System.out.println(" Literal con comitas");
-                    String strLiteral = str.substring(1, str.length()-1);
-                    return new Literal(strLiteral);
-                } else throw new ExceptionInvalidExpression(str);
-            }
-            else {
-                System.out.println("Literal");
-                return new Literal(str);
-            }
-        }
+        return count == 0;
     }
 
-    private static String keys_to_ands(String exp) throws ExceptionInvalidExpression {
-        int n = exp.length();
+    /**
+     * @brief Comprova si tanquen les claus {}, i tradueix cadascun d'aquests operadors a la fórmula lògica equivalent amb &
+     * @details Les claus no són multinivell, i es comprova que això es respecti
+     * @pre En el paràmetre expression les cometes "" tanquen
+     * @param expression String a analitzar
+     * @return Una String que representa la mateixa expressió, havent fet la traducció de claus {} a un seguit de &
+     * @throws ExceptionInvalidExpression Les claus {} no tanquen, o bé s'han intentat enniuar i per tant expression
+     * no representa una expressió booleana vàlida
+     */
+    private static String keysToAnds(String expression) throws ExceptionInvalidExpression {
+        int n = expression.length();
         String result = "";
-        for(int i = 0; i < n; ++i) {
-            if (exp.charAt(i) == '{'){
-                int j = i + 1;                                                      // apunta primer char despres de {
-                while (i < n && exp.charAt(i) != '}') ++i;                          // desplaça i fins trobar }
-                if (i == n) throw new ExceptionInvalidExpression(exp);              // claus no tanquen
 
-                int count = 0;
+        for (int i = 0; i < n; ++i) {
+            if (expression.charAt(i) == '{'){
+                int j = i + 1;
+                while (i < n && expression.charAt(i) != '}') {
+                    if (expression.charAt(i) == '"') while (expression.charAt(++i) != '"');
+                    ++i;
+                }
+                if (i == n) throw new ExceptionInvalidExpression(expression);                           // claus no tanquen
+
+                boolean operands = false;
                 while (j < i) {
-                    while (j < i && exp.charAt(j) == ' ') ++j;                      // elimina espais al principi del Literal
+                    while (j < i && expression.charAt(j) == ' ') ++j;
                     if (j < i) {
                         int jj = j;
-                        if (exp.charAt(j) == '"') {
+                        if (expression.charAt(j) == '"') {
+                            while(j < i && expression.charAt(++j) != '"');
                             ++j;
-                            while(j < i && exp.charAt(j) != '"') ++j;
-                            if (j == i) throw new ExceptionInvalidExpression(exp);  // cometes no tanquen
-                            ++j;                                                    // per incloure les " que tanquen
                         }
-                        // else if (exp.charAt(j) == '(') // es poden posar controls, de moment saccepta ( i ) com a paraula
-                        else while(j < i && exp.charAt(j) != ' ') ++j;
-                        result += exp.substring(jj, j);
+                        else while(j < i && expression.charAt(j) != ' ') {
+                            if (expression.charAt(i) == '{') throw new ExceptionInvalidExpression(expression);  // claus enniuades
+                            ++j;
+                        }
+                        result += expression.substring(jj, j);
                         result += " & ";
-                        ++count;
+                        operands = true;
                     }
                 }
-                if (count > 0) result = result.substring(0,result.length()-3);
+                if (operands) result = result.substring(0,result.length()-3);
             }
-            else if (exp.charAt(i) == '}') throw new ExceptionInvalidExpression(exp); // claus no tanquen
-            else result += String.valueOf(exp.charAt(i));
+            else if (expression.charAt(i) == '}') throw new ExceptionInvalidExpression(expression);     // claus no tanquen
+            else {
+                if (expression.charAt(i) == '"') {
+                    do { result += String.valueOf(expression.charAt(i)); ++i; } while (i < n && expression.charAt(i) != '"');
+                    result += "\"";
+                }
+                else result += String.valueOf(expression.charAt(i));
+            }
         }
         return result;
     }
 
-    private static boolean is_dual_operator(Character a) {
-        return (a == '&' || a == '|');
-    } 
+    /**
+     * @brief Desempaqueta l'expressió, eliminant espais i parèntesis
+     * @pre En el paràmetre expression les cometes "" i els parèntesis () tanquen, i a més no conté claus {}
+     * @param expression String a desempaquetar
+     * @return L'expressió desempaquetada, és a dir, una String que representa una fórmula equivalent sense espai al principi o al final,
+     * ni amb parèntesis envoltant tota l'expressió
+     * @throws ExceptionInvalidExpression El paràmetre expression representa una fórmula lògica equivalent a la fórmula buida,
+     * que no és una fórmula vàlida
+     */
+    private static String unpack(String expression) throws ExceptionInvalidExpression{
+        if (expression.isEmpty()) throw new ExceptionInvalidExpression(expression);
 
-    private static boolean checkParentesis(String str) {
-        boolean correct = true;
-        boolean first = true;
-        int i = 0;
-        int open = 0;
-        int close = 0;
-        while (correct && i < str.length()) {
-            if (str.charAt(i) == '"') while (str.charAt(++i) != '"');
-            if (str.charAt(i) == '(') {
-                open++;
-                first = false;
+        boolean changes = true;
+        while (changes) {
+            changes = false;
+            while (!expression.isEmpty() && expression.charAt(0) == '(' && expression.charAt(expression.length()-1) == ')') {
+                expression = expression.substring(1, expression.length()-1); changes = true;
             }
-            if (str.charAt(i) == ')') {
-                if (first) return false;
-                close++;
+            while (!expression.isEmpty() && expression.charAt(0) == ' ') {
+                expression = expression.substring(1); changes = true;
             }
-            if (open < close) return false;
-            i++;
+            while (!expression.isEmpty() && expression.charAt(expression.length()-1) == ' ') {
+                expression = expression.substring(0, expression.length()-1); changes = true;
+            }
         }
-        return correct && open == close;
+
+        if (expression.isEmpty()) throw new ExceptionInvalidExpression(expression);
+        return expression;
     }
 
-    private static boolean checkComillas(String str) {
-        int total = 0;
-        int i = 0;
-        while (i < str.length()) {
-            if (str.charAt(i) == '"') total++;
-            i++;
+    /**
+     * @brief Busca un operand en el nivell més extern de parèntesis
+     * @pre En el paràmetre expression les cometes "" i els parèntesis () tanquen, i a més no conté claus {}
+     * @param expression String on es busca l'operand
+     * @param operand Char que representa l'operand que s'ha de buscar a expression
+     * @return Retorna la posició del primer caràcter igual a operand dins de expression que no està afectat per cap parèntesis,
+     * o bé -1 si no n'existeix cap
+     */
+    private static int findTopLevelOperand(String expression, char operand) {
+        for(int i = 0; i < expression.length(); i++) {
+            if (expression.charAt(i) == '"') while (expression.charAt(++i) != '"');
+            if (expression.charAt(i) == '(') {
+                int count = 1;
+                while (count > 0) {
+                    if (expression.charAt(++i) == '(') ++count;
+                    if (expression.charAt(i) == ')') --count;
+                }
+            }
+            if (expression.charAt(i) == operand) return i;
         }
-        return (total % 2 == 0);
+        return -1;
     }
 
+    /**
+     * @brief Tradueix expression a una instància de Expression que representa la fórmula lògica del paràmetre, sempre que sigui vàlida
+     * @pre En el paràmetre expression les cometes "" i els parèntesis () tanquen, i a més no conté claus {}
+     * @param expression String a processar
+     * @return Una instància d'Expressió que representa a una fórmula booleana equivalent a la d'expression
+     * @throws ExceptionInvalidExpression El paràmetre expression no representa una expressió booleana vàlida
+     */
+    private static Expression recursiveDeconstruction(String expression) throws ExceptionInvalidExpression {
+        expression = unpack(expression);
+
+        int i = findTopLevelOperand(expression, '|');
+        if (i != -1) {
+            String left = expression.substring(0, i);
+            String right = expression.substring(i+1);
+            return new Or(recursiveDeconstruction(left), recursiveDeconstruction(right));
+        }
+
+        i = findTopLevelOperand(expression, '&');
+        if (i != -1) {
+            String left = expression.substring(0, i);
+            String right = expression.substring(i+1);
+            return new And(recursiveDeconstruction(left), recursiveDeconstruction(right));
+        }
+
+        if (expression.charAt(0) == '!') {
+            String inner = expression.substring(1);
+            return new Not(recursiveDeconstruction(inner));
+        }
+
+        if (expression.charAt(0) == '"') {
+            String value = expression.substring(1, expression.length()-1);
+            return new Literal(value);
+        }
+
+        return new Literal(expression);
+    }
+
+    /**
+     * @brief Tradueix expression a una instància de Expression que representa la fórmula lògica del paràmetre, sempre que sigui vàlida
+     * @param expression String a processar
+     * @return Una instància d'Expressió que representa a una fórmula booleana equivalent a la d'expression
+     * @throws ExceptionInvalidExpression El paràmetre expression no representa una expressió booleana vàlida
+     */
+    public static Expression create(String expression) throws ExceptionInvalidExpression {
+        // quotes close test
+        if (!checkQuotes(expression)) throw new ExceptionInvalidExpression(expression);
+        // parentheses close test
+        if (!checkParentheses(expression)) throw new ExceptionInvalidExpression(expression);
+        // keys close test and translation
+        expression = keysToAnds(expression);
+
+        return recursiveDeconstruction(expression);
+    }
+
+    /**
+     * @brief Avaluació lògica de l'expressió
+     * @param content Contingut on buscar i sobre el que s'evalua l'expressió
+     * @param caseSensitive Indica si és necessari diferenciar majúscules de minúscules
+     * @return Cert ssi l'Expression implícita avalua a cert per al contingut content, no es consideren prefixos, infixos ni
+     * sufixos, i el paràmetre caseSensitive indica si s'ha fet diferència entre majúscules i minúscules
+     */
     public abstract boolean evaluate(String content, boolean caseSensitive);
 }

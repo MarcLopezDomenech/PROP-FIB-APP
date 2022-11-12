@@ -3,13 +3,12 @@ package test.domain.expressions;
 import main.domain.expressions.Expression;
 
 import main.excepcions.ExceptionInvalidExpression;
-import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
  * @class TestExpressionsSet
- * @brief Classe per provar de forma unitària la classe ExpressionsSet
+ * @brief Classe per provar de forma unitària la classe Expression
  * @author marc.valls.camps
  */
 
@@ -69,7 +68,7 @@ public class TestExpression {
         Expression a = Expression.create("{abcd \"abcd abcd\"} & abcd & {abcd \"abcd abcd\"}");
     }
 
-    @Test(expected = ExceptionInvalidExpression.class)
+    @Test
     public void claus2() throws ExceptionInvalidExpression {
         Expression a = Expression.create("{ { abcd }");
     }
@@ -82,22 +81,22 @@ public class TestExpression {
     @Test
     public void eval_claus2() throws ExceptionInvalidExpression {
         Expression a = Expression.create("{ { abcd }");
-        assertTrue(a.evaluate("{", false));
-    }
-
-    @Test
-    public void eval_claus3() throws ExceptionInvalidExpression {
-        Expression a = Expression.create("{ abcd } }");
-        assertTrue(a.evaluate("}", false));
+        assertTrue(a.evaluate("efgh abcd {", false));
     }
 
     @Test
     public void eval_exemple() throws ExceptionInvalidExpression {
-        Expression a = Expression.create("(a | b) & c");
-        assertFalse(a.evaluate("abcd", false));
-        assertTrue(a.evaluate(" a b c d ", false));
-        assertTrue(a.evaluate(" c a ", false));
-        assertFalse(a.evaluate("b a", false));
-        assertTrue(a.evaluate("b c", false));
+        Expression a = Expression.create("{p1 p2 p3} & (\"hola adéu\" | pep) & !joan");
+        assertTrue(a.evaluate("p3 pep p1 abcd p2", false));
+        assertFalse(a.evaluate("p3 pep p1 joan abcd p2", false));
+        assertTrue(a.evaluate("p3 pep p1 joanet abcd p2", false));
+        assertTrue(a.evaluate("p3 p1 hola adéu p2", false));
+        assertTrue(a.evaluate("p3 (p1) hola adéu, p2!", false));
+        assertFalse(a.evaluate("p3 p1 hola abcd adéu p2", false));
     }
+
+    // fer tests amb lowercase
+    // fer tests amb prefixs, infixs, sufixs
+    // fer tests que comprovin la jerarquia natural dels operadors
+    // fer tests que comprovin que els parentesis poden alterar la jerarquia
 }
