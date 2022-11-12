@@ -28,6 +28,6 @@ public class Expression {
      * @return Retorna cert si el contingut donat és "true", altrament retorna fals.
      */
     public Boolean evaluate(String content, Boolean caseSensitive) {
-        return "true".equals(content);
+        return content.length() > 5;
     }
 }

@@ -1,5 +1,8 @@
 package test.domain.documents;
 
+import main.excepcions.ExceptionInvalidFormat;
+import main.excepcions.ExceptionInvalidLanguage;
+
 import java.util.*;
 
 /**
@@ -13,11 +16,13 @@ public class Document {
 
     public Document() {}
 
-    public Document(String title, String author, String content) {
+    public Document(String author, String title, String content, String language) throws ExceptionInvalidLanguage {
+        if (!"ca".equals(language) && !"en".equals(language) && !"es".equals(language)) throw new ExceptionInvalidLanguage(language);
         this.content = content;
+        this.language = language;
     }
 
-    public Document(String title, String author, String content, String format) {
+    public Document(String author, String title, String content, String language, String format) throws ExceptionInvalidFormat, ExceptionInvalidLanguage {
         this.content = content;
     }
 
