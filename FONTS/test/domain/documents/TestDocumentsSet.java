@@ -26,7 +26,7 @@ import static org.junit.Assert.*;
 /**
  * @class TestDocumentsSet
  * @brief Classe per provar de forma unitària la classe DocumentsSet
- * @author marc.lopez.domenech i pau.duran.manzano
+ * @author marc.lopez.domenech
  * @note Tal com hem implementat l'stub de Document per fer proves, el contingut de tots els documents ha de ser de lletres soltes, és a dir, un contingut pot ser "h o l a"
  */
 public class TestDocumentsSet {

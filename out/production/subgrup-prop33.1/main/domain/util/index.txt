@@ -1,0 +1,5 @@
+Directori util
+
+Aquest directori serveix per recollir les classes basiques que hem implementat per tal de ser usades des d'altres classes com a recurs.
+A hores d'ara, nomes n'hi ha una:
+- Pair: En aquest fitxer esta el codi d'una implementacio senzilla del concepte de pair.

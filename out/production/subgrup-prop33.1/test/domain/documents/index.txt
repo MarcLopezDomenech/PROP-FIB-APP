@@ -1,0 +1,8 @@
+Directori documents
+
+En aquest directori trobem el codi de les classes usades per testejar les classes de domini relacionades amb documents:
+- Document: Consisteix en el codi de la implementacio de l'stub de Document.
+- InternalDocument: Consisteix en el codi de la implementacio de l'stub de InternalDocument.
+- TestDocument: Que recull el conjunt de tests unitaris realitzats sobre la classe Document.
+- TestDocumentsSet: Que recull el conjunt de tests unitaris realitzats sobre la classe DocumentsSet.
+- TestInternalDocument: Que recull el conjunt de tests unitaris realitzats sobre la classe InternalDocument.
