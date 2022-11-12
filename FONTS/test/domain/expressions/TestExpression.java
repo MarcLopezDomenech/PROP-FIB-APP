@@ -100,6 +100,12 @@ public class TestExpression {
         Expression a = Expression.create("\" abcd \" \" efgh \"");
     }
 
+
+    @Test
+    public void quotes2() throws ExceptionInvalidExpression {
+        Expression a = Expression.create("hola !");
+    }
+
     // fer tests amb lowercase
     // fer tests amb prefixs, infixs, sufixs
     // fer tests que comprovin la jerarquia natural dels operadors
