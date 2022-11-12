@@ -35,12 +35,16 @@ public class Document {
         return relevantWordsFake;
     }
 
-    public double compare(Document other, Integer num_docs, Map<String,Integer> presence) {
+    public double compare_tf_idf(Document other, Integer num_docs, Map<String,Integer> presence) {
         Integer r = other.content.length() - content.length();
         if (r < 0) return -r;
         else return r;
     }
-
+    public double compare_tf_boolean(Document other) {
+        Integer r = other.content.length() - content.length();
+        if (r < 0) return -r;
+        else return r;
+    }
     public double queryRelevance(String query, Integer num_docs, Map<String,Integer> presence) {
         Integer r = query.length() - content.length();
         if (r < 0) return -r;

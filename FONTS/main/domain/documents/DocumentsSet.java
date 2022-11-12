@@ -9,8 +9,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 
-import main.domain.expressions.Expression;
-import main.domain.documents.Document;
+import test.domain.expressions.Expression;
+import test.domain.documents.Document;
+//import main.domain.documents.Document;
 import main.domain.util.Pair;
 import main.excepcions.*;
 
@@ -62,6 +63,20 @@ public class DocumentsSet {
      * @return Map de (autor, (títol, Document)) de tots els documents guardats a la classe
      */
     public Map<String, Map<String, Document>> getDocuments() {return documents;}
+
+    /**
+     * @brief Funció per obtenir el número de documents de la classe
+     * @details Aquesta funció és necessària per poder fer tests, tot i que no s'emprarà fora de les proves
+     * @return int amb el nombre de documents guardats a la classe
+     */
+    public int getnumDocuments() {return numDocuments;}
+
+    /**
+     * @brief Funció per obtenir el mapa de presencia de la classe
+     * @details Aquesta funció és necessària per poder fer tests, tot i que no s'emprarà fora de les proves
+     * @return Map de (paraula,vegades que apareix) amb les paraules que apareixen als documents de la classe
+     */
+    public Map<String, Integer> getpresence() {return presence;}
 
     /**
      * @brief Funció per assignar el conjunt de documents de la classe
