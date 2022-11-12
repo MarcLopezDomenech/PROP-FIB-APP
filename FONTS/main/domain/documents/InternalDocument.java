@@ -15,9 +15,9 @@ public class InternalDocument {
     private Map<String, Integer>  relevantWords;
     private int totalWords;
 
-    private static SortedSet<String> stopWords_ca = initializeSet("ca");
-    private static SortedSet<String> stopWords_es = initializeSet("es");
-    private static SortedSet<String> stopWords_en = initializeSet("en");
+    private static final SortedSet<String> stopWords_ca = initializeSet("ca");
+    private static final SortedSet<String> stopWords_es = initializeSet("es");
+    private static final SortedSet<String> stopWords_en = initializeSet("en");
 
      /**
      * @brief Constructora per defecte de InternalDocument
