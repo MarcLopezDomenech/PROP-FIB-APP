@@ -177,10 +177,9 @@ public abstract class Expression {
             return new Not(recursiveDeconstruction(inner));
         }
 
-        for (int k = 1; k < expression.length() - 1; ++k) {
+        for (int k = 1; k < expression.length() - 1; ++k)
             if (expression.charAt(k) == '"' || expression.charAt(k) == '!') throw new ExceptionInvalidExpression(expression);
-        }
-        if (expression.charAt(0) == '!' || expression.charAt(expression.length()-1) == '!') throw new ExceptionInvalidExpression(expression);
+        if (expression.charAt(expression.length()-1) == '!') throw new ExceptionInvalidExpression(expression);
 
         if (expression.charAt(0) == '"') {
             if (expression.charAt(expression.length()-1) != '"') throw new ExceptionInvalidExpression(expression);
