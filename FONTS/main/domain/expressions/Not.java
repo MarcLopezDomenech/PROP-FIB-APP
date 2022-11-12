@@ -2,17 +2,30 @@ package main.domain.expressions;
 
 /**
  * @class Not
- * @brief Classe que representa la negació d'una expressió booleana
+ * @brief Classe que representa a aquelles expressions booleanes que consisteixen en la negació d'una altra expressió lògica
  * @author marc.valls.camps
  */
 public class Not extends Expression {
-    private Expression op1;
+    /** \brief Atribut que representa la subexpressió negada */
+    private Expression inner;
 
-    Not(Expression op1){
-        this.op1 = op1;
+    /**
+     * @brief Constructora per valor
+     * @param inner Expressió que representa la subexpressió negada
+     * @return Una instància de Not que representa la negació lògica de l'expressió inner
+     */
+    public Not(Expression inner) {
+        this.inner = inner;
     }
 
-    public boolean evaluate(String content, boolean caseSensitive){
-        return !op1.evaluate(content, caseSensitive);
+    /**
+     * @brief Avaluació de la Not
+     * @param content Contingut on buscar
+     * @param caseSensitive Indica si és necessari diferenciar majúscules de minúscules
+     * @return Cert ssi la Not implícita avalua a cert per al contingut content, no es consideren prefixos, infixos ni
+     * sufixos, i el paràmetre caseSensitive indica si s'ha fet diferència entre majúscules i minúscules
+     */
+    public boolean evaluate(String content, boolean caseSensitive) {
+        return !inner.evaluate(content, caseSensitive);
     }
 }
