@@ -64,16 +64,32 @@ public class DocumentsSet {
     public Map<String, Map<String, Document>> getDocuments() {return documents;}
 
     /**
+     * @brief Funció per obtenir el número de documents de la classe
+     * @details Aquesta funció és necessària per poder fer tests, tot i que no s'emprarà fora de les proves
+     * @return int amb el nombre de documents guardats a la classe
+     */
+    public int getnumDocuments() {return numDocuments;}
+
+    /**
+     * @brief Funció per obtenir el mapa de presencia de la classe
+     * @details Aquesta funció és necessària per poder fer tests, tot i que no s'emprarà fora de les proves
+     * @return Map de (paraula,vegades que apareix) amb les paraules que apareixen als documents de la classe
+     */
+    public Map<String, Integer> getpresence() {return presence;}
+
+    /**
      * @brief Funció per assignar el conjunt de documents de la classe
      * @details Aquesta funció és necessària per poder fer tests, tot i que no s'emprarà fora de les proves
      * @param documents map de (autor, (títol, Document)) que es vol assignar a la classe
      */
     public void setDocuments(Map<String, Map<String, Document>> documents) {
         this.documents = documents;
-        numDocuments = documents.size();
+        numDocuments = 0;
+        presence = new HashMap<>();
         for (Map<String, Document> titlesAuthor : documents.values()) {
             for (Document d : titlesAuthor.values()) {
                 addPresence(d.getRelevantWords());
+                ++numDocuments;
             }
         }
     }
@@ -307,8 +323,7 @@ public class DocumentsSet {
         int len = prefix.length();
         for (Map.Entry<String, Map<String,Document>> entry : documents.entrySet()) {
             String nom = entry.getKey();
-            String preAct = nom.substring(0, len);
-            if (prefix.equals(preAct)) result.add(nom);
+            if (nom.length() >= len && prefix.equals(nom.substring(0, len))) result.add(nom);
         }
         return result;
     }

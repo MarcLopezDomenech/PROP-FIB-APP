@@ -73,7 +73,7 @@ public abstract class Expression {
                             ++j;
                         }
                         else while(j < i && expression.charAt(j) != ' ') {
-                            if (expression.charAt(i) == '{') throw new ExceptionInvalidExpression(expression);  // claus enniuades
+                            if (expression.charAt(j) == '{') throw new ExceptionInvalidExpression(expression);  // claus enniuades
                             ++j;
                         }
                         result += expression.substring(jj, j);
@@ -97,7 +97,7 @@ public abstract class Expression {
 
     /**
      * @brief Desempaqueta l'expressió, eliminant espais i parèntesis
-     * @pre En el paràmetre expression les cometes "" i els parèntesis () tanquen, i a més no conté claus {}
+     * @pre En el paràmetre expression les cometes "" tanquen, i a més no conté claus {}
      * @param expression String a desempaquetar
      * @return L'expressió desempaquetada, és a dir, una String que representa una fórmula equivalent sense espai al principi o al final,
      * ni amb parèntesis envoltant tota l'expressió
@@ -110,13 +110,15 @@ public abstract class Expression {
         boolean changes = true;
         while (changes) {
             changes = false;
-            while (!expression.isEmpty() && expression.charAt(0) == '(' && expression.charAt(expression.length()-1) == ')') {
-                expression = expression.substring(1, expression.length()-1); changes = true;
+            if (!expression.isEmpty() && expression.charAt(0) == '(' && expression.charAt(expression.length()-1) == ')') {
+                if (checkParentheses(expression.substring(1, expression.length()-1))) {
+                    expression = expression.substring(1, expression.length()-1); changes = true;
+                }
             }
-            while (!expression.isEmpty() && expression.charAt(0) == ' ') {
+            if (!expression.isEmpty() && expression.charAt(0) == ' ') {
                 expression = expression.substring(1); changes = true;
             }
-            while (!expression.isEmpty() && expression.charAt(expression.length()-1) == ' ') {
+            if (!expression.isEmpty() && expression.charAt(expression.length()-1) == ' ') {
                 expression = expression.substring(0, expression.length()-1); changes = true;
             }
         }
@@ -178,14 +180,17 @@ public abstract class Expression {
         }
 
         for (int k = 1; k < expression.length() - 1; ++k)
-            if (expression.charAt(k) == '"' || expression.charAt(k) == '!') throw new ExceptionInvalidExpression(expression);
-        if (expression.charAt(expression.length()-1) == '!') throw new ExceptionInvalidExpression(expression);
+            if (expression.charAt(k) == '"') throw new ExceptionInvalidExpression(expression);
 
         if (expression.charAt(0) == '"') {
             if (expression.charAt(expression.length()-1) != '"') throw new ExceptionInvalidExpression(expression);
             String value = expression.substring(1, expression.length()-1);
             return new Literal(value);
         }
+
+        for (int k = 1; k < expression.length() - 1; ++k)
+         if (expression.charAt(k) == '!' || expression.charAt(k) == '|' || expression.charAt(k) == '&' || expression.charAt(k) == ' ')
+             throw new ExceptionInvalidExpression(expression);
 
         return new Literal(expression);
     }
