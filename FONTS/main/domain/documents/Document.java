@@ -129,7 +129,7 @@ public class Document {
      * @param newLanguage El nou idioma a ser assignat al document
      */
     public void setLanguage(String newLanguage) throws ExceptionInvalidLanguage {
-        if (!"ca".equals(language) && !"en".equals(language) && !"es".equals(language)) throw new ExceptionInvalidLanguage(language);
+        if (!"ca".equals(newLanguage) && !"en".equals(newLanguage) && !"es".equals(newLanguage)) throw new ExceptionInvalidLanguage(newLanguage);
         language = newLanguage;
     }
 
