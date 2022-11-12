@@ -10,38 +10,6 @@ import org.junit.Test;
 public class TestInternalDocument {
 
     /**
-     * Few tests on the split method
-     */
-    @Test
-    public void testSplit() {
-        String c1 = "Tres,tristes, tigres, ";
-        String[] s1 = c1.split("[ ,!?.]+");
-        String[] expectedResult = {"Tres", "tristes", "tigres"};
-        assertArrayEquals(expectedResult, s1);
-
-        String c2 = "Tres!tristes ! tigres! ";
-        String[] s2 = c2.split("[- ,!?.]+");
-        assertArrayEquals(expectedResult, s2);
-
-        String c3 = "Tres?tristes ? tigres? ";
-        String[] s3 = c3.split("[- ,!?.]+");
-        assertArrayEquals(expectedResult, s3);
-
-        String c4 = "Tres. -.- tristes?. tigres...";
-        String[] s4 = c4.split("[- ,!?.]+");
-        assertArrayEquals(expectedResult, s4);
-        
-        String c5 = "Tres-tristes-tigres?! -";
-        String[] s5 = c5.split("[- ,!?.:]+");
-        assertArrayEquals(expectedResult, s5);
-
-        
-        String c6 = "Tres :tristes:tigres";
-        String[] s6 = c6.split("[- ,!?.:]+");
-        assertArrayEquals(expectedResult, s6);
-    }
-
-    /**
      * Test del getters
      */
     @Test
