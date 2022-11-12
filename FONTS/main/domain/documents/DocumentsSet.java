@@ -9,9 +9,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 
-import test.domain.expressions.Expression;
-import test.domain.documents.Document;
-//import main.domain.documents.Document;
+import main.domain.expressions.Expression;
+import main.domain.documents.Document;
 import main.domain.util.Pair;
 import main.excepcions.*;
 
@@ -85,10 +84,12 @@ public class DocumentsSet {
      */
     public void setDocuments(Map<String, Map<String, Document>> documents) {
         this.documents = documents;
-        numDocuments = documents.size();
+        numDocuments = 0;
+        presence = new HashMap<>();
         for (Map<String, Document> titlesAuthor : documents.values()) {
             for (Document d : titlesAuthor.values()) {
                 addPresence(d.getRelevantWords());
+                ++numDocuments;
             }
         }
     }

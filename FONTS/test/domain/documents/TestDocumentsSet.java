@@ -1,8 +1,9 @@
 package test.domain.documents;
 
 import main.domain.documents.DocumentsSet;
-import test.domain.expressions.Expression;
+import main.domain.expressions.Expression;
 import main.domain.util.Pair;
+import main.domain.documents.Document;
 
 import main.excepcions.ExceptionDocumentExists;
 import main.excepcions.ExceptionNoDocument;
@@ -32,21 +33,20 @@ public class TestDocumentsSet {
     private static Map<String, Map<String, Document>> testValues;
 
     @Before
-    public void ini() {
+    public void ini() throws ExceptionInvalidLanguage {
         testValues = new HashMap<>();
 
         Map<String, Document> titleDoc1 = new HashMap<>();
-        titleDoc1.put("t1", new Document("t1", "a1", "c 1"));
+        titleDoc1.put("t1", new Document("t1", "a1", "c 1", "ca"));
         testValues.put("a1", titleDoc1);
 
         Map<String, Document> titleDoc2 = new HashMap<>();
-        titleDoc1.put("t2", new Document("t2", "a2", "c 2 2 2 2 2 2 2"));
+        titleDoc2.put("t2", new Document("t2", "a2", "c 2 2 2 2 2 2 2", "ca"));
         testValues.put("a2", titleDoc2);
 
         // Igual autor que l'anterior
-        Map<String, Document> titleDoc3 = new HashMap<>();
-        titleDoc1.put("t2", new Document("t3", "a2", "c 2 3 2 3"));
-        testValues.put("a2", titleDoc3);
+        titleDoc2.put("t3", new Document("t3", "a2", "c 2 3 2 3", "ca"));
+        testValues.put("a2", titleDoc2);
     }
 
     @Test
@@ -77,8 +77,8 @@ public class TestDocumentsSet {
         Map<String, Integer> result = new HashMap<>();
         result.put("c", 3);
         result.put("1", 1);
-        result.put("2", 9);
-        result.put("3", 2);
+        result.put("2", 2);
+        result.put("3", 1);
         assertEquals(result, ds1.getpresence());
     }   
     @Test
@@ -86,17 +86,20 @@ public class TestDocumentsSet {
         DocumentsSet ds1 = DocumentsSet.getInstance();
         ds1.setDocuments(testValues);
 
-        ds1.createDocument("t1","a3","afggh","ca");
+        ds1.createDocument("t1","a3","a f g g h","ca");
         assertEquals(true, ds1.existsDocument("t1","a3"));
-        assertEquals("afggh 6 i", ds1.getContentDocument("t1","a3"));
+        assertEquals("a f g g h", ds1.getContentDocument("t1","a3"));
         assertEquals(4, ds1.getnumDocuments());
 
         Map<String, Integer> result = new HashMap<>();
         result.put("c", 3);
         result.put("1", 1);
-        result.put("2", 9);
-        result.put("3", 2);
-        result.put("afggh", 1);
+        result.put("2", 2);
+        result.put("3", 1);
+        result.put("a", 1);
+        result.put("f", 1);
+        result.put("g", 1);
+        result.put("h", 1);
         assertEquals(result, ds1.getpresence());
         //presence
     }
@@ -169,10 +172,15 @@ public class TestDocumentsSet {
         DocumentsSet ds1 = DocumentsSet.getInstance();
         ds1.setDocuments(testValues);
 
-        List<Pair<String, String>> result = new ArrayList<>();
-        result.add(new Pair<>("t3","a2"));
-        result.add(new Pair<>("t2","a2"));
-        assertEquals(result, ds1.listSimilars("t1", "a1", 2, "tf-idf"));
+        List<Pair<String, String>> expected = new ArrayList<>();
+        expected.add(new Pair<>("t2","a2"));
+        expected.add(new Pair<>("t3","a2"));
+        List<Pair<String, String>> result = ds1.listSimilars("t1", "a1", 2, "tf-idf");
+        for (int i = 0; i < result.size(); ++i) {
+            assertEquals(result.get(i).getFirst(), expected.get(i).getFirst());
+            assertEquals(result.get(i).getSecond(), expected.get(i).getSecond());
+        }
+
         assertEquals(testValues, ds1.getDocuments());
     }
     @Test (expected = ExceptionNoDocument.class)
@@ -217,12 +225,16 @@ public class TestDocumentsSet {
         ds1.setDocuments(testValues);
 
         List<Pair<String, String>> result= new ArrayList<Pair<String, String>>();
-        result.add(new Pair<>("t1","a1"));
         result.add(new Pair<>("t2","a2"));
         result.add(new Pair<>("t3","a2"));
         Expression a=Expression.create("hola");
         Boolean b=true;
-        assertEquals(result, ds1.listByExpression(a, b));
+        List<Pair<String, String>> expected = ds1.listByExpression(a, b);
+        for (int i = 0; i < result.size(); ++i) {
+            assertEquals(result.get(i).getFirst(), expected.get(i).getFirst());
+            assertEquals(result.get(i).getSecond(), expected.get(i).getSecond());
+        }
+
         assertEquals(testValues, ds1.getDocuments());
 
     }
@@ -233,9 +245,15 @@ public class TestDocumentsSet {
 
         List<Pair<String, String>> result = new ArrayList<Pair<String,String>>(); 
         result.add(new Pair<String, String>("t2", "a2"));
-        result.add(new Pair<String, String>("t3", "a2")); 
+        result.add(new Pair<String, String>("t3", "a2"));
+
+        List<Pair<String, String>> expected = ds1.listTitlesOfAuthor("a2");
+
+        for (int i = 0; i < result.size(); ++i) {
+            assertEquals(result.get(i).getFirst(), expected.get(i).getFirst());
+            assertEquals(result.get(i).getSecond(), expected.get(i).getSecond());
+        }
         
-        assertEquals(result, ds1.listTitlesOfAuthor("a2"));
         assertEquals(testValues, ds1.getDocuments());
 
         List<Pair<String, String>> result1 = new ArrayList<Pair<String,String>>();  
@@ -252,9 +270,13 @@ public class TestDocumentsSet {
         ArrayList<String> result = new ArrayList<String>();
         result.add("a1");
         result.add("a2");
-        result.add("a3");
 
-        assertEquals(result, ds1.listAuthorsByPrefix(""));
+        List<String> expected = ds1.listAuthorsByPrefix("");
+
+        for (int i = 0; i < result.size(); ++i) {
+            assertEquals(expected.get(i), result.get(i));
+        }
+
         assertEquals(testValues, ds1.getDocuments());
 
         ArrayList<String> result1 = new ArrayList<String>();
@@ -280,10 +302,16 @@ public class TestDocumentsSet {
         ds1.setDocuments(testValues);
         
         List<Pair<String, String>> result= new ArrayList<Pair<String, String>>();
-        result.add(new Pair<>("t1","a1"));
         result.add(new Pair<>("t2","a2"));
         result.add(new Pair<>("t3","a2"));
-        assertEquals(result, ds1.listByQuery("ho",2));
+        result.add(new Pair<>("t1","a1"));
+
+        List<Pair<String, String>> expected = ds1.listByQuery("ho",3);
+
+        for (int i = 0; i < result.size(); ++i) {
+            assertEquals(result.get(i).getFirst(), expected.get(i).getFirst());
+            assertEquals(result.get(i).getSecond(), expected.get(i).getSecond());
+        }
         assertEquals(testValues, ds1.getDocuments());
     }
 }
