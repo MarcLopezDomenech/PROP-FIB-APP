@@ -3,10 +3,10 @@ package main.domain;
 import java.util.List;
 import java.util.Map;
 
+import main.domain.documents.Document;
 import main.domain.documents.DocumentsSet;
 import main.domain.expressions.ExpressionsSet;
 import main.excepcions.*;
-import test.domain.documents.Document;
 import main.domain.expressions.Expression;
 import main.domain.util.Pair;
 
@@ -51,8 +51,8 @@ public class CtrlDomain {
      * @post Existeix a l'aplicatiu un document identificat per (title, author). Si no existia prèviament, el contingut serà buit.
      * @throws ExceptionDocumentExists en cas que ja existeixi un document identificat per (title, author) a l'aplicatiu
      */
-    public void createEmptyDocument(String title, String author) throws ExceptionDocumentExists {
-        ds.createDocument(title, author, "");
+    public void createEmptyDocument(String title, String author, String language) throws ExceptionDocumentExists, ExceptionInvalidLanguage {
+        ds.createDocument(title, author, "", language);
     }
 
     /**
@@ -109,6 +109,34 @@ public class CtrlDomain {
     }
 
     /**
+     * @brief Operació per conseguir l'idioma d'un document
+     * @details Retorna l'idioma del document identificat pels paràmetres
+     * @pre El document identificat per (title, author) existeix
+     * @param title títol del document del que volem el contingut
+     * @param author autor del document del que volem el contingut
+     * @post Es retorna l'idioma del document amb title i author
+     * @throws ExceptionNoDocument en el cas que no existeix un document identificat pels paràmetres donats
+     */
+    public String getLanguageDocument(String title, String author) throws ExceptionNoDocument {
+       return ds.getLanguageDocument(title, author);
+    }
+
+    /**
+     * @brief Operació per actualitzar l'idioma d'un document
+     * @details L'idioma del document identificat pels paràmetres passa a ser el donat per paràmetre
+     * @pre El document identificat per (title, author) existeix
+     * @param title títol del document a modificar
+     * @param author autor del document a modificar
+     * @param newLanguage nou idioma del document
+     * @post El document (title, author) té com a idioma newLanguage
+     * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
+     * @throws ExceptionInvalidLanguage quan l'idioma donat no és vàlid (ca, en o es)
+     */
+    public void updateLanguageDocument(String title, String author, String newLanguage) throws ExceptionNoDocument, ExceptionInvalidLanguage {
+        ds.updateLanguageDocument(title, author, newLanguage);
+    }
+
+    /**
      * @brief Funció per obtenir tots els identificadors dels documents del sistema
      * @details Aquesta funció permet consultar tots els documents que hi ha guardats en el sistema
      * @return Llistat de parells de tots els identificadors de documents de l'aplicatiu
@@ -129,7 +157,7 @@ public class CtrlDomain {
      * @post L'estat del sistema no queda alterat
      * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
      */
-    public List<Pair<String, String>> listSimilars(String title, String author, int k, String strategy) throws ExceptionNoDocument, ExceptionInvalidStrategy {
+    public List<Pair<String, String>> listSimilars(String title, String author, int k, String strategy) throws ExceptionNoDocument, ExceptionInvalidStrategy, ExceptionInvalidK {
         return ds.listSimilars(title, author, k, strategy);
     }
 
@@ -163,7 +191,7 @@ public class CtrlDomain {
      * @return Llista amb els identificadors (títol, autor) dels k documents més rellevants, pel que fa a contingut, de la query
      * @post L'estat del sistema no queda alterat
      */
-    public List<Pair<String, String>> listByQuery(String query, int  k) {
+    public List<Pair<String, String>> listByQuery(String query, int  k) throws ExceptionInvalidK {
         return ds.listByQuery(query, k);
     }
 

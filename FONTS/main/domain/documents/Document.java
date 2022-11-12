@@ -2,6 +2,8 @@ package main.domain.documents;
 
 import java.util.*;
 import main.excepcions.ExceptionInvalidFormat;
+import main.excepcions.ExceptionInvalidLanguage;
+//import main.domain.documents.InternalDocument;
 
 /**
  * @class Document 
@@ -15,6 +17,7 @@ public class Document {
     private String author;
     private String title;
     private String originalFormat; //xml or txt
+    private String language; // ca, es, en
     private InternalDocument internalDoc;
 
     /**
@@ -30,10 +33,12 @@ public class Document {
      * @param format Format del document: "txt" or "xml"
      * @throws ExceptionInvalidFormat El format del document es invalid (no es txt o xml)
      */
-    public Document(String author, String title, String content, String format) throws ExceptionInvalidFormat {
+    public Document(String author, String title, String content, String language, String format) throws ExceptionInvalidFormat, ExceptionInvalidLanguage {
         this.author = author;
         this.title = title;
         this.content = content;
+        if (!("ca" == language) && !("en" == language) && !("es" == language)) throw new ExceptionInvalidLanguage(language);
+        this.language = language;
         if (format != "txt" && format != "xml") throw new ExceptionInvalidFormat(format);
         this.originalFormat = format;
         this.internalDoc = new InternalDocument(content);
@@ -45,10 +50,12 @@ public class Document {
      * @param title titol del document creat
      * @param content del document creat
      */
-    public Document(String author, String title, String content) {
+    public Document(String author, String title, String content, String language) throws ExceptionInvalidLanguage {
+        if (!("ca" == language) && !("en" == language) && !("es" == language)) throw new ExceptionInvalidLanguage(language);
         this.author = author;
         this.title = title;
         this.content = content;
+        this.language = language;
         this.originalFormat = null;
         this.internalDoc = new InternalDocument(content);
     }
@@ -91,6 +98,13 @@ public class Document {
         return originalFormat;
     }
 
+    /**
+     * @brief Getter de l'atribut language 
+     */
+    public String getLanguage() {
+        return language;      
+    }
+
      /**
      * @brief Retorna el set de paraules clau del contingut del document   
      * @details Paraules claus son totes aquelles paraules que apareixen en el contingut del document (sense repeticions)
@@ -110,6 +124,16 @@ public class Document {
     }
 
     /**
+     * @brief Actualitza l'idioma del document
+     * @details S'assignara un nou idioma al document
+     * @param newLanguage El nou idioma a ser assignat al document
+     */
+    public void setLanguage(String newLanguage) throws ExceptionInvalidLanguage {
+        if (!("ca" == language) && !("en" == language) && !("es" == language)) throw new ExceptionInvalidLanguage(language);
+        language = newLanguage;
+    }
+
+    /**
      * @brief Valora com de semblants son els continguts de dos documents A i B
      * @details Utilitzant l'algoritme de pesos de tf-idf, calcula la rellevancia de A per a les paraules del contingut 
      * de B i la rellenvancia de B per a les paraules del contingut d'A
@@ -119,6 +143,7 @@ public class Document {
      * @return Nombre que representa un index de semblança entre els documents A i B
      */
     public double compare_tf_idf(Document other, Integer num_docs, Map<String,Integer> presence) {
+        if (language != other.getLanguage()) return 0;
 
         Set<String> terms1 = other.getRelevantWords();
         Set<String> terms2 = this.getRelevantWords();
@@ -141,6 +166,8 @@ public class Document {
      * @return Nombre que representa un index de semblança entre els documents A i B
      */
     public double compare_tf_boolean(Document other) {
+        if (language != other.getLanguage()) return 0;
+
         Set<String> terms1 = other.getRelevantWords();
         String terms1Array[] = new String[terms1.size()];
         terms1.toArray(terms1Array);
@@ -199,7 +226,7 @@ public class Document {
         double tf_bool = 0;
         Map<String,Integer> relevantTerms = internalDoc.getRelevantWords(); 
         for (String term : terms) {
-            if (relevantTerms.containsKey(term)) tf_bool ++;
+            if (relevantTerms.containsKey(term)) tf_bool++;
         }
         return tf_bool;
     }

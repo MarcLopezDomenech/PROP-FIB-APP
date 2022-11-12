@@ -1,0 +1,6 @@
+Directori lib
+
+Hi ha les dues llibreries externes que usem per realitzar tests unitaris.
+Les hem explicat amb mes detall en la documentacio que hi ha al directori DOC. Tot i aixo, les mencionem:
+- hamcrest-core-1.3.jar.
+- junit-4.12.jar

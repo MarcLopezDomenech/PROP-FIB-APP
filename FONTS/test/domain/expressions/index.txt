@@ -1,0 +1,6 @@
+Directori expressions
+
+En aquest directori trobem el codi de les classes usades per testejar les classes de domini relacionades amb expressions booleanes:
+- Expression: Amb el codi de l'stub de la classe Expression.
+- TestExpression: Que recull el conjunt de tests unitaris realitzats sobre la classe Expression.
+- TestExpressionsSet: Que recull el conjunt de tests unitaris realitzats sobre la classe ExpressionsSet.
