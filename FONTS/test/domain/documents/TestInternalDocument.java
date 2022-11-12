@@ -15,7 +15,7 @@ public class TestInternalDocument {
     @Test
     public void testGetters() {
         String content = "Tres tristes, tristes tigres comen trigo en un trigal.";
-        InternalDocument internal1 = new InternalDocument(content); //calls analize content
+        InternalDocument internal1 = new InternalDocument(content, "es"); //calls analize content
         
         //Test de getRelevantKeyWords
         Set<String> set = internal1.getRelevantKeyWords();
@@ -37,16 +37,7 @@ public class TestInternalDocument {
         assertTrue(1 == relevantWords.get("tigres"));
         assertTrue(1 == relevantWords.get("comen"));
         assertTrue(1 == relevantWords.get("trigo"));
-        assertTrue(1 == relevantWords.get("trigal"));
-
-        //Alguns tests extres de casos més complicats
-        String moreComplicatedContent = "Hola! Com estàs? Jo bé, gracies. (adeu) ";
-
-        InternalDocument internal2 = new InternalDocument(moreComplicatedContent);
-        Set<String> set2 = internal2.getRelevantKeyWords();
-
-        assertEquals(7, internal2.getTotalWords());
-        assertTrue(set2.contains("(adeu)")); //mal        
+        assertTrue(1 == relevantWords.get("trigal"));    
     }
 
 
@@ -56,8 +47,8 @@ public class TestInternalDocument {
     @Test
     public void testNewContent() {
         String initial = "Initial useless content";
-        InternalDocument intDoc = new InternalDocument(initial);
-        intDoc.newContent("Tres tristes, tristes tigres comen trigo en un trigal.");
+        InternalDocument intDoc = new InternalDocument(initial, "en");
+        intDoc.newContent("Tres tristes, tristes tigres comen trigo en un trigal.", "es");
 
         //Comprovació que els atributs de internal document han canviat consequentment
         assertEquals(7, intDoc.getTotalWords());

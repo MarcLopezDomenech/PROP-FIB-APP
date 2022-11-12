@@ -23,15 +23,16 @@ public class InternalDocument {
      * @brief Constructora per defecte de InternalDocument
      */
     InternalDocument(){
-        analizeContent("");
+
     }
 
     /**
      * @brief Constructora de InternalDocument
      * @param content contingut del que s'ha de guardar la representacio
+     * @language idioma del contingut que representara interna documents
      */
-    public InternalDocument(String content) {
-        analizeContent(content);
+    public InternalDocument(String content, String language) {
+        analizeContent(content, language);
     }   
 
     /**
@@ -68,23 +69,31 @@ public class InternalDocument {
     /**
      * @brief Canviar el contingut representat per internalDocument
      * @param content nou contingut del document 
+     * @param language idioma en el que esta el contingut 
      */
-    public void newContent(String content) {
-        analizeContent(content);
+    public void newContent(String content, String language) {
+        analizeContent(content, language);
     }
    
     /**
      * @brief Analitzar les dades que el sistema guarda pel contingut rebut
+     * @pre El llenguatge language es un llenguatge vàlid
      * @details aquesta funcio inicialitza/actualitza el contingut de revelantWords (Map<paraula,cops>) i de totalWords (nombre total de paraules del contingut)
      * @param content el contingut a analitzar
+     * @param language idioma en el que esta el contingut 
      */  
-    private void analizeContent (String content) {
+    private void analizeContent (String content, String language) {
         Map<String,Integer> words = new HashMap<String,Integer>();
         String[] splited = content.split("[- ,!?.:]+");     
         totalWords = 0;
+
+        Set<String> stopWords;
+        if (language.equals("ca")) stopWords = stopWords_ca;
+        if (language.equals("es")) stopWords = stopWords_es;
+        else stopWords = stopWords_en;
         
         for (String word : splited) {
-            if (!stopWords_ca.contains(word)) {
+            if (!stopWords.contains(word)) {
                 totalWords++;
                 if (words.containsKey(word)) words.replace(word, 1 + words.get(word));
                 else words.put(word, 1);

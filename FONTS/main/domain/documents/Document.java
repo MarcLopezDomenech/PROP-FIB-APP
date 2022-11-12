@@ -3,7 +3,7 @@ package main.domain.documents;
 import java.util.*;
 import main.excepcions.ExceptionInvalidFormat;
 import main.excepcions.ExceptionInvalidLanguage;
-import main.domain.documents.InternalDocument;
+import main.domain.documents.InternalDocument;         //Per fer tests unitaris, canviar aquest import a test.domain.documents.InternalDocument (on està l'stub)
 
 /**
  * @class Document 
@@ -16,8 +16,8 @@ public class Document {
     private String content;
     private String author;
     private String title;
-    private String originalFormat; //xml or txt
-    private String language; // ca, es, en
+    private String originalFormat;          //xml or txt
+    private String language;                // ca, es, en
     private InternalDocument internalDoc;
 
     /**
@@ -41,7 +41,7 @@ public class Document {
         this.language = language;
         if (!format.equals("txt") && !format.equals("xml")) throw new ExceptionInvalidFormat(format);
         this.originalFormat = format;
-        this.internalDoc = new InternalDocument(content);
+        this.internalDoc = new InternalDocument(content, language);
     }
 
     /**
@@ -57,7 +57,7 @@ public class Document {
         this.content = content;
         this.language = language;
         this.originalFormat = null;
-        this.internalDoc = new InternalDocument(content);
+        this.internalDoc = new InternalDocument(content, language);
     }
 
     /**
@@ -67,7 +67,7 @@ public class Document {
      * @param backUpInformation String que serà interpretat com les dades a recuperar del document 
      */
     public Document(String backUpInformation) {
-        //Aquest metode encara  no esta implementat
+        //Aquest metode encara  no esta implementat, pertany als casos d'ús associats a persistència
     }
 
     /**
@@ -120,7 +120,7 @@ public class Document {
      */
     public void setContent(String newContent) {
         content = newContent;
-        internalDoc.newContent(newContent);
+        internalDoc.newContent(newContent, language);
     }
 
     /**
@@ -131,6 +131,7 @@ public class Document {
     public void setLanguage(String newLanguage) throws ExceptionInvalidLanguage {
         if (!"ca".equals(newLanguage) && !"en".equals(newLanguage) && !"es".equals(newLanguage)) throw new ExceptionInvalidLanguage(newLanguage);
         language = newLanguage;
+        internalDoc.newContent(content, newLanguage);
     }
 
     /**
