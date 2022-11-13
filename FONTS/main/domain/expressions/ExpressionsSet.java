@@ -72,6 +72,7 @@ public class ExpressionsSet {
      */
     public Expression getExpression(String id_expression) throws ExceptionNoExpression {
         Expression expression = expressions.get(id_expression);
+        // El .get retorna null en cas de no trobar l'expressió, per tant si és així cal llençar l'excepció
         if (expression == null) throw new ExceptionNoExpression(id_expression);
         return expression;
     }
@@ -89,6 +90,7 @@ public class ExpressionsSet {
 
         // Map.put() retorna el value que estava associada a la key donada o null si aquesta key no estava mapejada
         if (oldExpression != null) {
+            // En cas que no retorni null, vol dir que ja existia una expressió amb aquell identificador. Llencem excepció i tornem a posar la original
             expressions.put(id_expression, oldExpression);
             throw new ExceptionExpressionExists(id_expression);
         }
