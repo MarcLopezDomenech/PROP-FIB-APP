@@ -10,7 +10,7 @@ import java.util.*;
 public class InternalDocument {
     int id;
 
-    public InternalDocument(String content) {
+    public InternalDocument(String content, String language) {
         if (content.equals("Tres tristes, tristes tigres comen trigo en un trigal.")) id = 1;
         if (content.equals("Mi mama me mima")) id = 2;
         if (content.equals("Tres tristes palabras")) id = 3;
@@ -52,32 +52,32 @@ public class InternalDocument {
     public Set<String> getRelevantKeyWords() {
         Set<String> words = new HashSet<>();
         if (id == 1) {
-            String keywords[] = {"Tres", "tristes", "tigres", "comen", "trigo", "trigal"};
+            String keywords[] = {"tristes", "tigres", "comen", "trigo", "trigal"};
             words.addAll(Arrays.asList(keywords));
         }
         else if (id == 2) {
-            String keywords[] = {"Mi", "mama", "me", "mima"};
+            String keywords[] = {"mama", "mima"};
             words.addAll(Arrays.asList(keywords));
         }
         else if (id == 3) {
-            String keywords[] = {"Tres", "tristes", "palabras"};
+            String keywords[] = {"tristes", "palabras"};
             words.addAll(Arrays.asList(keywords));
         }
         else if (id == 4) {
-            String keywords[] = {"Tres", "triste", "tigre", "trigal"};
+            String keywords[] = {"triste", "tigre", "trigal"};
             words.addAll(Arrays.asList(keywords));
         }
         return words;
     }
 
     public int getTotalWords() {
-        if (id == 1) return 7;
-        if (id == 2) return 4;
-        if (id == 3) return 3;
-        if (id == 4) return 4;
-        else return 3;
+        if (id == 1) return 6;
+        if (id == 2) return 2;
+        if (id == 3) return 2;
+        if (id == 4) return 3;
+        else return 0;
     }
 
-    public void newContent(String content) {
+    public void newContent(String content, String language) {
     }
 }
