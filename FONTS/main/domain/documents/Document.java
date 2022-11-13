@@ -193,6 +193,7 @@ public class Document {
      * @return Index numèric que quantifica la rellevancia d'una query per al contingut del document
      */
     public double queryRelevance(String query, Integer num_docs, Map<String,Integer> presence) {
+        query = query.toLowerCase();
         String[] queryTerms = query.split(" ");
         double tf_idf = termRelevance_tf_idf(queryTerms, num_docs, presence);
 
