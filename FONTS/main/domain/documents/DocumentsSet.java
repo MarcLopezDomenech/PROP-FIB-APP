@@ -22,7 +22,6 @@ import main.excepcions.*;
 public class DocumentsSet {
     /**
      * \brief Atribut que representa el conjunt de documents del sistema 
-     * \invariant  
     */
     private static DocumentsSet singletonObject;
     
@@ -39,7 +38,7 @@ public class DocumentsSet {
     private Map<String, Map<String, Document>> documents;
 
     /**
-     * \brief onjunt de paraules que apareixen en algun dels documents anteriors, amb el nombre de documents en què apareix
+     * \brief Conjunt de paraules que apareixen en algun dels documents anteriors, amb el nombre de documents en què apareix
      * \invariant Totes les paraules que estan a presence estan a mínim un document (el seu value > 0).
     */
     private Map<String, Integer> presence;
