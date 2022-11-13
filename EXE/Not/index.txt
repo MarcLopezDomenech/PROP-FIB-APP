@@ -1,0 +1,13 @@
+Directori Not
+
+En aquest directori hi ha els executables i les descripcions dels jocs de prova per tal de testejar de manera unitària la classe Not.
+
+En concret, trobem:
+- Directoris main i test: Repliquen l'estructura de FONTS amb els .class que necessita el test per executar-se.
+    Aquesta estructura s'ha aconseguit executant la comanda següent (des del direcotri arrel del projecte):
+    # javac -cp ./FONTS:./lib/junit-4.12.jar:./hamcrest-core-1.3.jar -d ./EXE/Not ./FONTS/test/domain/expressions/TestNot.java
+    Atenció: Abans de recompilar, cal canviar els imports necessaris en el projecte per usar els stubs emprats, si és el cas.
+- Fitxer descripcio_testNot.pdf: Amb les dades i la descripció dels jocs de proves realiztats
+
+Per executar el test, es pot executar (des del directori arrel del projecte):
+    # java -cp ./EXE/Not:./lib/junit-4.12.jar:./lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore test.domain.expressions.TestNot

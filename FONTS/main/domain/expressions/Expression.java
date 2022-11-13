@@ -159,7 +159,7 @@ public abstract class Expression {
      */
     private static Expression recursiveDeconstruction(String expression) throws ExceptionInvalidExpression {
         expression = unpack(expression);
-/*
+
         int i = findTopLevelOperand(expression, '|');
         if (i != -1) {
             String left = expression.substring(0, i);
@@ -192,8 +192,7 @@ public abstract class Expression {
          if (expression.charAt(k) == '!' || expression.charAt(k) == '|' || expression.charAt(k) == '&' || expression.charAt(k) == ' ')
              throw new ExceptionInvalidExpression(expression);
 
-        return new Literal(expression);*/
-        return null;
+        return new Literal(expression);
     }
 
     /**

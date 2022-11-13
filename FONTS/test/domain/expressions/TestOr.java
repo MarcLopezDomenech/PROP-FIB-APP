@@ -2,7 +2,7 @@ package test.domain.expressions;
 
 import main.domain.expressions.Or;
 import main.excepcions.ExceptionInvalidExpression;
-import test.domain.expressions.Expression;
+import main.domain.expressions.Expression;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
