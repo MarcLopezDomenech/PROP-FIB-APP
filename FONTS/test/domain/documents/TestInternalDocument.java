@@ -7,6 +7,12 @@ import java.util.*;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+/**
+ * @class TestInternalDocument
+ * @brief Classe per provar de forma unitària la classe InternalDocument
+ * @author ariadna.cortes.danes
+ */
 public class TestInternalDocument {
 
     /**
