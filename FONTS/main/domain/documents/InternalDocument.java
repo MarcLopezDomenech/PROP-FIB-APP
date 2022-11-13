@@ -83,6 +83,7 @@ public class InternalDocument {
      * @param language idioma en el que esta el contingut 
      */  
     private void analizeContent (String content, String language) {
+        content = content.toLowerCase();
         Map<String,Integer> words = new HashMap<String,Integer>();
         String[] splited = content.split("[- ,!?.:]+");     
         totalWords = 0;

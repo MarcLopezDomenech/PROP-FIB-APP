@@ -102,10 +102,10 @@ public class TestDocument {
         assertEquals(0.0, doc.queryRelevance(query,num_docs,presence),0.01);
 
         String query2 = "tigres trigo";
-        assertEquals(24.27, doc.queryRelevance(query2,num_docs,presence),0.01);
+        assertEquals(28.31, doc.queryRelevance(query2,num_docs,presence),0.01);
 
         String query3 = "Tres trigal en un tigre triste";
-        assertEquals(16.5, doc.queryRelevance(query3,num_docs,presence),0.01);
+        assertEquals(16.666, doc.queryRelevance(query3,num_docs,presence),0.01);
     }
 
     @Test
@@ -116,10 +116,10 @@ public class TestDocument {
         assertEquals(0.0, doc.compare_tf_idf(doc2,num_docs,presence),0.1);
 
         Document doc3 = new Document("Ari", "t3", "Tres tristes palabras","es");
-        assertEquals(25.12, doc.compare_tf_idf(doc3,num_docs,presence),0.01);
+        assertEquals(28.53, doc.compare_tf_idf(doc3,num_docs,presence),0.01);
 
         Document doc4 = new Document("Ari", "t4", "Tres trigal en un tigre triste","es");
-        assertEquals(21.82, doc.compare_tf_idf(doc4,num_docs,presence),0.01);
+        assertEquals(23.57, doc.compare_tf_idf(doc4,num_docs,presence),0.01);
 
         //Prova per a documents en diferents idiomes
         Document doc5 = new Document("Ari", "t5", "A cup of cafe con leche in Plaza Mayor", "en");
@@ -134,11 +134,11 @@ public class TestDocument {
         assertEquals(0.0, doc.compare_tf_boolean(doc2),0.1);
 
         Document doc3 = new Document("Ari", "t3", "Tres tristes palabras","es");
-        assertEquals(2.0, doc.compare_tf_boolean(doc3),0.01);
+        assertEquals(1.0, doc.compare_tf_boolean(doc3),0.01);
 
         //Si posem stopWords no afecta
         Document doc4 = new Document("Ari", "Tt4", "Tres trigal en un tigre triste","es");
-        assertEquals(2.0, doc.compare_tf_boolean(doc4),0.01);
+        assertEquals(1.0, doc.compare_tf_boolean(doc4),0.01);
 
         //Prova per a documents en diferents idiomes
         Document doc5 = new Document("Ari", "t5", "A cup of cafe con leche in Plaza Mayor", "en");

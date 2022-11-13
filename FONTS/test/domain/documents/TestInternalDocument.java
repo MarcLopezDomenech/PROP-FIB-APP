@@ -19,8 +19,8 @@ public class TestInternalDocument {
         
         //Test de getRelevantKeyWords
         Set<String> set = internal1.getRelevantKeyWords();
-        assertEquals(6, set.size());
-        assertTrue(set.contains("Tres"));
+        assertEquals(5, set.size());
+        assertFalse(set.contains("Tres"));
         assertTrue(set.contains("tristes"));
         assertTrue(set.contains("tigres"));
         assertTrue(set.contains("comen"));
@@ -28,11 +28,10 @@ public class TestInternalDocument {
         assertTrue(set.contains("trigal"));
 
         //Test de getTotalWords
-        assertEquals(7, internal1.getTotalWords());
+        assertEquals(6, internal1.getTotalWords());
 
         //Test de getRelevantWords
         Map<String,Integer> relevantWords = internal1.getRelevantWords();
-        assertTrue(1 == relevantWords.get("Tres"));
         assertTrue(2 == relevantWords.get("tristes"));
         assertTrue(1 == relevantWords.get("tigres"));
         assertTrue(1 == relevantWords.get("comen"));
@@ -51,11 +50,11 @@ public class TestInternalDocument {
         intDoc.newContent("Tres tristes, tristes tigres comen trigo en un trigal.", "es");
 
         //Comprovació que els atributs de internal document han canviat consequentment
-        assertEquals(7, intDoc.getTotalWords());
+        assertEquals(6, intDoc.getTotalWords());
         
         Set<String> set = intDoc.getRelevantKeyWords();
-        assertEquals(6, set.size());
-        assertTrue(set.contains("Tres"));
+        assertEquals(5, set.size());
+        assertFalse(set.contains("Tres"));       //Stop word
         assertTrue(set.contains("tristes"));
         assertTrue(set.contains("tigres"));
         assertTrue(set.contains("comen"));
