@@ -20,16 +20,28 @@ import main.excepcions.*;
  * @author marc.lopez.domenech i pau.duran.manzano
  */
 public class DocumentsSet {
+    /**
+     * \brief Atribut que representa el conjunt de documents del sistema 
+     * \invariant  
+    */
     private static DocumentsSet singletonObject;
-
-    // Nombre de documents que estan donats d'alta al sistema
+    
+    /**
+     * \brief Nombre de documents que estan donats d'alta al sistema
+     * \invariant  numDocuments serà sempre >= 0
+    */
     private int numDocuments;
 
-    // Conjunt de documents en format (autor(títol, document))
+    /**
+     * \brief Nombre de documents que estan donats d'alta al sistema
+     * \invariant un document es única i està identificar per un títul i un autor
+    */
     private Map<String, Map<String, Document>> documents;
 
-    // Conjunt de paraules que apareixen en algun dels documents anteriors, amb el nombre de documents en què apareix
-    // Invariant: Totes les paraules que estan a presence estan a mínim un document (el seu value > 0).
+    /**
+     * \brief onjunt de paraules que apareixen en algun dels documents anteriors, amb el nombre de documents en què apareix
+     * \invariant Totes les paraules que estan a presence estan a mínim un document (el seu value > 0).
+    */
     private Map<String, Integer> presence;
 
     /**
