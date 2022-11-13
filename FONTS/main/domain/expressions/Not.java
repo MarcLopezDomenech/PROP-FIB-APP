@@ -1,5 +1,7 @@
 package main.domain.expressions;
 
+import test.domain.expressions.Expression;
+
 /**
  * @class Not
  * @brief Classe que representa a aquelles expressions booleanes que consisteixen en la negació d'una altra expressió lògica

@@ -1,5 +1,7 @@
 package main.domain.expressions;
 
+import test.domain.expressions.Expression;
+
 /**
  * @class And
  * @brief Classe que representa a aquelles expressions booleanes que consisteixen en la conjunció de dues altres expressions lògiques
