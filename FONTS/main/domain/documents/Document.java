@@ -187,7 +187,7 @@ public class Document {
      * @brief Valora com de rellevant es el contingut del document donada una query
      * @details Utilitza l'algoritme de tf-idf per a calcular la rellevancia del contingut del document en relació a les paraules de la query. 
      * @pre El paràmetre query només conté paraules separades per espais (sense signes de puntuació, etc)
-     * @param query Conjunt de paraules en les que evaluar la rellevancia del document
+     * @param query Conjunt de paraules en les que avaluar la rellevancia del document
      * @param num_docs Total de documents del conjunt de documents al que pertany el document
      * @param presence Mapa que guarda en quants documents del sistema apareix un paraula concreta: Map<paraula,cops>
      * @return Index numèric que quantifica la rellevancia d'una query per al contingut del document
@@ -204,7 +204,7 @@ public class Document {
      * @brief Implementacio de l'algorisme tf-idf 
      * @details Calcula com de rellevant es el contingut del document en relació a una sèrie de termes mitjançant l'algorisme tf-idf 
      * @pre El paràmetre terms es un conjunt de paraules atòmiques (sense espais ni signes de puntuació, etc.)
-     * @param terms Termes dels que evaluar la rellevància
+     * @param terms Termes dels que avaluar la rellevància
      * @param num_docs Total de documents del conjunt de documents al que pertany el document
      * @param presence Mapa que guarda en quants documents del sistema apareix un paraula concreta: Map<paraula,cops>
      * @return Index numèric que quantifica la rellevància d'una serie de termes per al contingut del document
@@ -225,9 +225,7 @@ public class Document {
      * @brief Implementacio de l'algorisme tf booleà
      * @details Calcula com de rellevant es el contingut del document en relació a una serie de termes mitjançant l'algorisme tf booleà
      * @pre El paràmetre terms es un conjunt de paraules atòmiques (sense espais ni signes de puntuació, etc.)
-     * @param terms Termes dels que evaluar la rellevància
-     * @param num_docs Total de documents del conjunt de documents al que pertany el document
-     * @param presence Mapa que guarda en quants documents del sistema apareix un paraula concreta: Map<paraula,cops>
+     * @param terms Termes dels que avaluar la rellevància
      * @return Index numèric que quantifica la rellevància d'una sèrie de termes per al contingut del document
      */
     private double termRelevance_tf_boolean(String[] terms) {
