@@ -82,7 +82,7 @@ public class DocumentsSet {
     public int getnumDocuments() {return numDocuments;}
 
     /**
-     * @brief Funció per obtenir el mapa de presencia de la classe
+     * @brief Funció per obtenir el mapa de presència de la classe
      * @details Aquesta funció és necessària per poder fer tests, tot i que no s'emprarà fora de les proves
      * @return Map de (paraula,vegades que apareix) amb les paraules que apareixen als documents de la classe
      */
@@ -95,6 +95,8 @@ public class DocumentsSet {
      */
     public void setDocuments(Map<String, Map<String, Document>> documents) {
         this.documents = documents;
+
+        // A més, hem de contar el nombre de documents i posar les relevant words de cada documents a presence
         numDocuments = 0;
         presence = new HashMap<>();
         for (Map<String, Document> titlesAuthor : documents.values()) {
@@ -104,13 +106,6 @@ public class DocumentsSet {
             }
         }
     }
-
-    /**
-     * @brief Funció per obtenir l'atribut de presència de la classe
-     * @details Aquesta funció és necessària per poder fer tests, tot i que no s'emprarà fora de les proves
-     * @return Map de valor i quantitat d'aparicions de tots els documents guardats a la classe
-     */
-    public Map<String, Integer> getPresence() {return presence;}
 
     /**
      * @brief Operació per crear i registrar un nou document
@@ -133,6 +128,8 @@ public class DocumentsSet {
         // En qualsevol cas, afegim el títol-document a l'autor i el posem a tots els documents
         docTitlesAuthor.put(title, newDoc);
         documents.put(author, docTitlesAuthor);
+
+        // Ara tenim un document més
         ++numDocuments;
 
         // Només queda actualitzar el vector de presència
@@ -151,12 +148,20 @@ public class DocumentsSet {
      */
     public void deleteDocument(String title, String author) throws ExceptionNoDocument {
         Map<String, Document> docTitlesAuthor = documents.get(author);
-        if (docTitlesAuthor == null) throw new ExceptionNoDocument(title, author);      // No existeix l'autor --> no existeix el doc
+
+        // Si no existeix l'autor, podem afirmar que no existeix el doc
+        if (docTitlesAuthor == null) throw new ExceptionNoDocument(title, author);
         Document doc = docTitlesAuthor.get(title);
-        if (doc == null) throw new ExceptionNoDocument(title, author);                  // No existeix el títol per aquell autor --> no existeix el doc
+
+        // Si no existeix el títol per aquell autor vol dir que no existeix el doc
+        if (doc == null) throw new ExceptionNoDocument(title, author);
         docTitlesAuthor.remove(title);
-        if (docTitlesAuthor.isEmpty()) documents.remove(author);        // Si l'autor es queda sense títols, el traiem
-        else documents.put(author, docTitlesAuthor);                    // Si no, l'actualitzem sense el títol esborrar
+
+        // Si l'autor es queda sense títols, el traiem. Si no, l'actualitzem sense el títol esborrat
+        if (docTitlesAuthor.isEmpty()) documents.remove(author);
+        else documents.put(author, docTitlesAuthor);
+
+        // Hem eliminat un document del sistema
         --numDocuments;
 
         // Només queda actualitzar el vector de presència
@@ -186,8 +191,7 @@ public class DocumentsSet {
      * @post Es retorna el contingut del document amb title i author
      * @throws ExceptionNoDocument en el cas que no existeix un document identificat pels paràmetres donats
      */
-    public String getContentDocument(String title, String author) throws ExceptionNoDocument
-    {
+    public String getContentDocument(String title, String author) throws ExceptionNoDocument {
         Document resdoc = getDocument(title, author);
         return resdoc.getContent();
     }
@@ -204,11 +208,17 @@ public class DocumentsSet {
      */
     public void updateContentDocument(String title, String author, String newContent) throws ExceptionNoDocument {
         Document doc = getDocument(title, author);
+
+        // Esborrem les relevants words de l'antic contingut de presence
         Set<String> oldWords = doc.getRelevantWords();
-        removePresence(oldWords);       // Esborrem les relevants words de l'antic contingut
+        removePresence(oldWords);
+
+        // Modifiquem el contingut del document
         doc.setContent(newContent);
+
+        // Posem les relevants words del nou contingut a presence
         Set<String> newWords = doc.getRelevantWords();
-        addPresence(newWords);          // Posem les relevants words del nou contingut
+        addPresence(newWords);
     }
 
     /**
@@ -272,8 +282,12 @@ public class DocumentsSet {
      * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
      */
     public List<Pair<String, String>> listSimilars(String title, String author, int k, String strategy) throws ExceptionNoDocument, ExceptionInvalidStrategy, ExceptionInvalidK {
+        // Comprovem que l'estratègia és vàlida
         if (!"tf-idf".equals(strategy) && !"tf-boolean".equals(strategy)) throw new ExceptionInvalidStrategy(strategy);
+
+        // Comprovem que el valor de k és vàlid
         if (k < 0) throw new ExceptionInvalidK(k);
+
         Document original = getDocument(title, author);
         List<Pair<Pair<String, String>, Double>> ordre = new ArrayList<>();
         for (Map.Entry<String, Map<String, Document>> authorTitleDoc : documents.entrySet()) {
@@ -324,16 +338,18 @@ public class DocumentsSet {
     }
 
     /**
-     * @brief Operació per conseguir els autors que el comencen per un prefix
+     * @brief Operació per aconseguir els autors que el seu nom comença per un prefix donat
      * @details Retorna una llista dels autors que el seu nom comença pel prefix que rep la funció
      * @param prefix prefix del author
-     * @post Tots els autors que comencen per el prefix author
+     * @post Tots els autors que comencen pel prefix author
      */
     public List<String> listAuthorsByPrefix(String prefix) {
         ArrayList<String> result = new ArrayList<String>();
         int len = prefix.length();
         for (Map.Entry<String, Map<String,Document>> entry : documents.entrySet()) {
             String nom = entry.getKey();
+            // Afegim el nom de l'autor si el seu nom és més llarg o igual al prefix (si no, no té sentit)
+            // i a més si es compleix que realment el nom començar pel prefix donat
             if (nom.length() >= len && prefix.equals(nom.substring(0, len))) result.add(nom);
         }
         return result;
@@ -342,9 +358,9 @@ public class DocumentsSet {
     /**
      * @brief Operació per conseguir una llista dels k documents que compleixen millor la query
      * @details Retorna una llista de de titles i authors que identifiquen a documents que compleixen la query
-     * @param query que volem apkicar als documents
+     * @param query que volem aplicar als documents
      * @param k nombre de documents que volem retornar
-     * @post Llista de authors i títuls que identifiquen a un document cada pair que cumpleix la query
+     * @post Llista de authors i títols que identifiquen a un document cada pair que compleix la query
      */
     public List<Pair<String, String>> listByQuery(String query, int k) throws ExceptionInvalidK {
         if (k < 0) throw new ExceptionInvalidK(k);
@@ -375,7 +391,7 @@ public class DocumentsSet {
 
     /**
      * @brief Operació per conseguir els documents que compleixen una expressió
-     * @details Retorna una llista dels documents identificats per títul i autor que compleixen l'expressió booleana
+     * @details Retorna una llista dels documents identificats per títol i autor que compleixen l'expressió booleana
      * @pre L'expressió expression existeix
      * @param expression Expression en la que volem evaluar els documents
      * @param caseSensitive Boolea que identifica com s'evalua el contigut en l'expressió
@@ -389,8 +405,9 @@ public class DocumentsSet {
             for (Map.Entry<String, Document> d2 : titDoc.entrySet()) {
                 String tit = d2.getKey();
                 Document doc = d2.getValue();
-                if(expression.evaluate(doc.getContent(),caseSensitive)){
-                    expr_list.add(new Pair<String,String>(tit,aut));
+                // En cas que el contingut del document compleixi l'expressió, l'afegim al resultat
+                if(expression.evaluate(doc.getContent(), caseSensitive)){
+                    expr_list.add(new Pair<String,String>(tit, aut));
                 }
             }
         }
@@ -398,11 +415,11 @@ public class DocumentsSet {
     }
 
     /**
-     * @brief Operació per conseguir el document que te un títul i autor deteminat
-     * @details Retorna un document identificat per l'author igual a uthor i títul igual a title
+     * @brief Operació per conseguir el document que te un títol i autor deteminat
+     * @details Retorna un document identificat per l'author igual a uthor i títol igual a title
      * @param author author del document
      * * @param title title del document
-     * @post El document identificat per aquell títul i aquell author
+     * @post El document identificat per aquell títol i aquell author
      */
     private Document getDocument(String title, String author) throws ExceptionNoDocument {
         Map<String,Document> maptitle = documents.get(author);
