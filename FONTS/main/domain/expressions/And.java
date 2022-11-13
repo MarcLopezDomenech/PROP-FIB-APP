@@ -1,6 +1,6 @@
 package main.domain.expressions;
 
-import test.domain.expressions.Expression;
+import main.domain.expressions.Expression;
 
 /**
  * @class And
