@@ -6,8 +6,15 @@ package main.domain.util;
  * @author pau.duran.manzano
  */
 public class Pair<F, S> {
-    private F first;        // Primer camp del Pair
-    private S second;       // Segon camp del Pair
+    /**
+     * \brief Primer camp de la parella
+     */
+    private F first;
+
+    /**
+     * \brief Segon camp de la parella
+     */
+    private S second;
 
     /**
      * @brief Constructora per defecte

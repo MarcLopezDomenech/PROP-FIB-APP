@@ -14,9 +14,15 @@ import main.excepcions.ExceptionNoExpression;
  * @author pau.duran.manzano
  */
 public class ExpressionsSet {
+    /**
+     * \brief Objecte singleton que guarda la única instància d'ExpressionsSet
+     */
     private static ExpressionsSet singletonObject;
 
-    // Atribut que emmagatzema totes les expressions que hi ha donades d'alta al sistema, mapejades amb el seu identificador
+    /**
+     * \brief Atribut que emmagatzema totes les expressions que hi ha donades d'alta al sistema, mapejades amb el seu identificador
+     * \invariant La clau de cada entrada identifica l'expressió que té assignada com a valor
+     */
     private Map<String, Expression> expressions;
 
     /**

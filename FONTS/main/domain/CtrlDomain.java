@@ -17,9 +17,19 @@ import main.domain.util.Pair;
  * @author pau.duran.manzano
  */
 public class CtrlDomain {
+    /**
+     * \brief Objecte singleton que guarda la única instància del CtrlDomain
+     */
     private static CtrlDomain singletonObject;
 
+    /**
+     * \brief Instància del conjunt de documents del sistema (DocumentsSet)
+     */
     private static DocumentsSet ds;
+
+    /**
+     * \brief Instància del conjunt d'expressions del sistema (ExpressionsSet)
+     */
     private static ExpressionsSet es;
 
     /**
