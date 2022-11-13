@@ -2,9 +2,11 @@ Directori expressions
 
 En aquest directori trobem el codi de les classes usades per testejar les classes de domini relacionades amb expressions booleanes:
 - Expression: Amb el codi de l'stub de la classe Expression.
+- Fase: Amb el codi d'un stub d'herència de Expression, que sempre avalua a fals.
 - TestAnd: Que recull el conjunt de tests unitaris realitzats sobre la classe And.
 - TestExpression: Que recull el conjunt de tests unitaris realitzats sobre la classe Expression.
 - TestExpressionsSet: Que recull el conjunt de tests unitaris realitzats sobre la classe ExpressionsSet.
 - TestLiteral: Que recull el conjunt de tests unitaris realitzats sobre la classe Literal.
 - TestNot: Que recull el conjunt de tests unitaris realitzats sobre la classe Not.
 - TestOr: Que recull el conjunt de tests unitaris realitzats sobre la classe Or.
+- True: Amb el codi d'un stub d'herència de Expression, que sempre avalua cert.
