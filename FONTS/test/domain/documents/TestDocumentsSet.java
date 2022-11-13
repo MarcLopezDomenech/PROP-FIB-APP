@@ -1,9 +1,9 @@
 package test.domain.documents;
 
 import main.domain.documents.DocumentsSet;
-import main.domain.expressions.Expression;
+import main.domain.expressions.Expression;  // Canviar per per test.domain.expressions.Expression fer tests
 import main.domain.util.Pair;
-import main.domain.documents.Document;
+import main.domain.documents.Document;      // Canviar per test.domain.documents.Document per fer tests
 
 import main.excepcions.ExceptionDocumentExists;
 import main.excepcions.ExceptionNoDocument;

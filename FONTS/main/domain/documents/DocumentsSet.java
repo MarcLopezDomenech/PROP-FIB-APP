@@ -9,8 +9,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 
-import main.domain.expressions.Expression;
-import main.domain.documents.Document;
+import main.domain.expressions.Expression;      // Canviar per test.domain.expressions.Expression per fer tests
+import main.domain.documents.Document;          // Canviar per test.domain.documents.Document per fer tests
 import main.domain.util.Pair;
 import main.excepcions.*;
 

@@ -3,7 +3,7 @@ package main.domain.expressions;
 import java.util.Map;
 import java.util.HashMap;
 
-import main.domain.expressions.Expression;
+import main.domain.expressions.Expression;          // Canviar per test.domain.expressions.Expression per fer tests
 import main.excepcions.ExceptionExpressionExists;
 import main.excepcions.ExceptionInvalidExpression;
 import main.excepcions.ExceptionNoExpression;
