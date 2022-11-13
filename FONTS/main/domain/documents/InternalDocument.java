@@ -1,8 +1,7 @@
 package main.domain.documents;
 
-//External include
+//External includes
 import java.util.*;
-//Project includes
 
 /**
  * @class InternalDocument 
@@ -12,8 +11,14 @@ import java.util.*;
  */
 public class InternalDocument {
 
-    /**\brief Atribut que representa la primera subexpressió de la conjunció \invariant  */
+    /**@brief Atribut que guarda les paraules clau d'un document i quants cops apareix en el document
+     * @invariant El nombre de cops que apareix una paraula es estrictament positiu
+     * */
     private Map<String, Integer>  relevantWords;
+
+    /**@brief Atribut que guarda el nombre de paraules totals del document
+     * @invariant Major o igual a 0
+     * */
     private int totalWords;
 
     private static final SortedSet<String> stopWords_ca = initializeSet("ca");
@@ -37,31 +42,21 @@ public class InternalDocument {
     }   
 
     /**
-     * @brief Constructora per a fer backUps de InternalDocument
-     * @param relevantWords Map<paraula,cops> que correspon a l'analisi del contingut d'un document
-     * @param totalWords nombre total de paraules que te el contingut del document
-     */
-    public InternalDocument(Map<String,Integer> relevantWords, int totalWords) {
-        this.relevantWords = relevantWords;
-        this.totalWords = totalWords;
-    } 
-
-    /**
-     * @brief get de l'atribut relevantWords
+     * @brief Get de l'atribut relevantWords
      */
     public Map<String,Integer> getRelevantWords() {
         return relevantWords;
     }
 
     /**
-     * @brief get del set de claus de l'atribut relevantWords
+     * @brief Get del set de claus de l'atribut relevantWords
      */
     public Set<String> getRelevantKeyWords() {
         return relevantWords.keySet();
     }
 
     /**
-     * @brief get de l'atribut totalWords (nombre total de paraules del contingut)
+     * @brief Get de l'atribut totalWords (nombre total de paraules del contingut)
      */
     public int getTotalWords() {
         return totalWords;
@@ -69,8 +64,8 @@ public class InternalDocument {
 
     /**
      * @brief Canviar el contingut representat per internalDocument
-     * @param content nou contingut del document 
-     * @param language idioma en el que esta el contingut 
+     * @param content Nou contingut del document 
+     * @param language Idioma en el que esta el contingut 
      */
     public void newContent(String content, String language) {
         analizeContent(content, language);
@@ -79,9 +74,9 @@ public class InternalDocument {
     /**
      * @brief Analitzar les dades que el sistema guarda pel contingut rebut
      * @pre El llenguatge language es un llenguatge vàlid
-     * @details aquesta funcio inicialitza/actualitza el contingut de revelantWords (Map<paraula,cops>) i de totalWords (nombre total de paraules del contingut)
-     * @param content el contingut a analitzar
-     * @param language idioma en el que esta el contingut 
+     * @details Aquesta funcio inicialitza/actualitza el contingut de revelantWords (Map<paraula,cops>) i de totalWords (nombre total de paraules del contingut)
+     * @param content El contingut a analitzar
+     * @param language Idioma en el que esta el contingut 
      */  
     private void analizeContent (String content, String language) {
         content = content.toLowerCase();
@@ -106,9 +101,9 @@ public class InternalDocument {
 
 
     /**
-     * @brief Analitzar les estructures que guarden les stopwords de cada idioma
-     * @details Tant els atributs com les funcions son estatiques, ja que sn identiques per a totes les instancies de la clase InternalDocument
-     * @param content el contingut a analitzar
+     * @brief Inicialitza les estructures que guarden les stopwords de cada idioma
+     * @details Tant els atributs com les funcions son estatiques, ja que son identiques per a totes les instancies de la clase InternalDocument
+     * @param set_lenguage Idioma de les stopwords
      */  
     private static SortedSet<String> initializeSet(String set_language) {
         SortedSet<String> set = new TreeSet<String>();
@@ -123,17 +118,5 @@ public class InternalDocument {
             set.addAll(Arrays.asList(stopwords));
         }
         return set;
-    }
-
-
-    //IO (no cal implementar de moment)
-
-    /**
-     * @brief Writes the data stored in the map<keywords,times> in a printable format in order to save information
-     * @details 
-     * @return Un format de text que emmagatzema les dades del internalDocument
-     */  
-    public String writeBackUp () {
-        return "Aqui va el map escrit en format {(key1, valor1),(key2,valor2)}";
     }
 } 

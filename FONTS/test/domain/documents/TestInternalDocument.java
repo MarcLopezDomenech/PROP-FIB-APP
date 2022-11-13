@@ -10,7 +10,7 @@ import org.junit.Test;
 public class TestInternalDocument {
 
     /**
-     * Test del getters
+     * @brief Test del getters
      */
     @Test
     public void testGetters() {
@@ -41,7 +41,7 @@ public class TestInternalDocument {
 
 
     /**
-     * @brief Getter testing and content analysis
+     * @brief Test dels Setters
      */
     @Test
     public void testNewContent() {

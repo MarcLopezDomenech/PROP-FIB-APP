@@ -21,7 +21,7 @@ public class TestDocument {
     private static  Map<String,Integer> presence;
     private static int num_docs;
 
-
+    /// Estat inicial del joc de proves
     @Before
     public void init(){ 
         num_docs = 10;
@@ -39,7 +39,7 @@ public class TestDocument {
     }
 
     /**
-	 * Test dels getters
+	 * @brief Test dels Getters
 	 */
     @Test
 	public void testGetters() throws ExceptionInvalidFormat, ExceptionInvalidLanguage {
@@ -61,7 +61,7 @@ public class TestDocument {
     }
 
     /**
-	 * Test dels setters
+	 * @brief Test dels Setters i les seves excepcions
 	 */
     @Test
 	public void testSetters() throws ExceptionInvalidFormat, ExceptionInvalidLanguage {
@@ -73,6 +73,9 @@ public class TestDocument {
         assertEquals("es", doc.getLanguage());
     }
 
+    /**
+	 * @brief Test dels Setters i les seves excepcions
+	 */
     @Test (expected = ExceptionInvalidLanguage.class)
     public void testInvalidLanguageException() throws ExceptionInvalidFormat, ExceptionInvalidLanguage {
         Document doc = new Document("Ari","Titol del document", "Contingut", "invalid");
@@ -80,6 +83,9 @@ public class TestDocument {
         System.out.println("Això no apareix per pantalla");
     }
 
+    /**
+	 * @brief Test dels Setters i les seves excepcions
+	 */
     @Test (expected = ExceptionInvalidLanguage.class)
     public void testInvalidLanguageExceptionSetter() throws ExceptionInvalidFormat, ExceptionInvalidLanguage {
         Document doc = new Document("Ari","Titol del document", "Contingut", "en");
@@ -88,6 +94,9 @@ public class TestDocument {
         System.out.println("Això no apareix per pantalla");
     }
 
+    /**
+	 * @brief Test dels Setters i les seves excepcions
+	 */
     @Test (expected = ExceptionInvalidFormat.class)
     public void testInvalidFormatException() throws ExceptionInvalidFormat, ExceptionInvalidLanguage {
         Document doc = new Document("Ari","Titol del document", "Contingut", "ca", "invalid");
@@ -95,6 +104,9 @@ public class TestDocument {
         System.out.println("Això no apareix per pantalla");
     }
     
+    /**
+	 * @brief Test del mètode públic queryRelevance
+	 */
     @Test
 	public void testQueryRelevance() throws ExceptionInvalidLanguage {
         Document doc = new Document("Ari", "t1", "Tres tristes, tristes tigres comen trigo en un trigal.", "es");
@@ -108,6 +120,9 @@ public class TestDocument {
         assertEquals(16.666, doc.queryRelevance(query3,num_docs,presence),0.01);
     }
 
+    /**
+	 * @brief Test del mètode públic compare_tf_idf
+	 */
     @Test
 	public void testCompare_tf_idf() throws ExceptionInvalidLanguage {
         Document doc = new Document("Ari", "Titol del document", "Tres tristes, tristes tigres comen trigo en un trigal.","es");
@@ -126,6 +141,10 @@ public class TestDocument {
         assertEquals(0, doc.compare_tf_idf(doc5,num_docs,presence),0.01);
     }
 
+    
+    /**
+	 * @brief Test del mètode públic compare_tf_boolean
+	 */
     @Test
 	public void testCompare_tf_boolean() throws ExceptionInvalidLanguage {
         Document doc = new Document("Ari", "t1", "Tres tristes, tristes tigres comen trigo en un trigal.", "es");
