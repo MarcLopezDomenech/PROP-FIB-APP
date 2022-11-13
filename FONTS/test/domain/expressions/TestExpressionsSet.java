@@ -19,6 +19,9 @@ import static org.junit.Assert.*;
  * @author pau.duran.manzano
  */
 public class TestExpressionsSet {
+    /**
+     * \brief Atribut per guardar valors de prova usats en diferents tests. Inicialitzats a l'inici de cada test
+     */
     private static Map<String, Expression> testValues;
 
     @Before

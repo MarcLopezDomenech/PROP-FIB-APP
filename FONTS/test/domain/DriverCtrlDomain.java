@@ -14,6 +14,9 @@ import main.excepcions.*;
  * @author pau.duran.manzano
  */
 public class DriverCtrlDomain {
+    /**
+     * \brief Instància del controlador de domini del sistema (CtrlDomain)
+     */
     private static CtrlDomain cd;
 
     public static void main(String[] args) {
