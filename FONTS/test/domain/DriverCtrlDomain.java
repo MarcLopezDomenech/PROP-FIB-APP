@@ -79,7 +79,7 @@ public class DriverCtrlDomain {
                         case 17:
                             break;
                         default:
-                            System.out.println("No has introduït un valor vàlid.");
+                            System.out.println("No has introduit un valor valid.");
                             break;
                     }
                 } catch(Exception e) {
@@ -90,7 +90,7 @@ public class DriverCtrlDomain {
             } while (value != 17);
             System.out.println("Sortim.");
         } catch (Exception e) {
-            System.out.println("El valor introduït no es pot processar, abortem.");
+            System.out.println("El valor introduit no es pot processar, abortem.");
             return;
         }
     }
@@ -105,22 +105,22 @@ public class DriverCtrlDomain {
         System.out.println("6 - Consultar l'idioma d'un document");
         System.out.println("7 - Modificar l'idioma d'un document");
         System.out.println("8 - Llistar tots els documents");
-        System.out.println("9 - Llistar els documents més semblants a un document");
-        System.out.println("10 - Llistar els títols d'un autor");
+        System.out.println("9 - Llistar els documents mes semblants a un document");
+        System.out.println("10 - Llistar els titols d'un autor");
         System.out.println("11 - Llistar els autors per prefix");
         System.out.println("12 - Llistar els documents a partir d'una query");
-        System.out.println("13 - Llistar els documents a partir d'una expressió booleana");
-        System.out.println("14 - Crear una expressió booleana");
-        System.out.println("15 - Esborrar una expressió booleana");
-        System.out.println("16 - Modificar una expressió booleana");
+        System.out.println("13 - Llistar els documents a partir d'una expressio booleana");
+        System.out.println("14 - Crear una expressio booleana");
+        System.out.println("15 - Esborrar una expressio booleana");
+        System.out.println("16 - Modificar una expressio booleana");
         System.out.println("17 - Sortir :)");
-        System.out.print("Quina operació vols realitzar?: ");
+        System.out.print("Quina operacio vols realitzar?: ");
     }
 
     public static void testCreateEmptyDocument() throws ExceptionDocumentExists, ExceptionInvalidLanguage {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Crear un document buit");
-        System.out.print("Introdueix un títol: ");
+        System.out.print("Introdueix un titol: ");
         String title = scanner.nextLine();
         System.out.print("Introdueix un autor: ");
         String author = scanner.nextLine();
@@ -133,7 +133,7 @@ public class DriverCtrlDomain {
     public static void testDeleteDocument() throws ExceptionNoDocument {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Esborrar un document");
-        System.out.print("Introdueix un títol: ");
+        System.out.print("Introdueix un titol: ");
         String title = scanner.nextLine();
         System.out.print("Introdueix un autor: ");
         String author = scanner.nextLine();
@@ -144,30 +144,30 @@ public class DriverCtrlDomain {
     public static void testExistsDocument() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Saber si existeix un document");
-        System.out.print("Introdueix un títol: ");
+        System.out.print("Introdueix un titol: ");
         String title = scanner.nextLine();
         System.out.print("Introdueix un autor: ");
         String author = scanner.nextLine();
-        if (cd.existsDocument(title, author)) System.out.println("Sí que existeix el document");
+        if (cd.existsDocument(title, author)) System.out.println("Si que existeix el document");
         else System.out.println("No existeix el document");
     }
 
     public static void testGetContentDocument() throws ExceptionNoDocument {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Consultar el contingut d'un document");
-        System.out.print("Introdueix un títol: ");
+        System.out.print("Introdueix un titol: ");
         String title = scanner.nextLine();
         System.out.print("Introdueix un autor: ");
         String author = scanner.nextLine();
         String content = cd.getContentDocument(title, author);
-        if ("".equals(content)) System.out.println("El contingut del document és buit");
+        if ("".equals(content)) System.out.println("El contingut del document es buit");
         else System.out.println(content);
     }
 
     public static void testUpdateContentDocument() throws ExceptionNoDocument {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Modificar el contingut d'un document");
-        System.out.print("Introdueix un títol: ");
+        System.out.print("Introdueix un titol: ");
         String title = scanner.nextLine();
         System.out.print("Introdueix un autor: ");
         String author = scanner.nextLine();
@@ -185,20 +185,20 @@ public class DriverCtrlDomain {
     public static void testGetLanguageDocument() throws ExceptionNoDocument {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Consultar l'idioma d'un document");
-        System.out.print("Introdueix un títol: ");
+        System.out.print("Introdueix un titol: ");
         String title = scanner.nextLine();
         System.out.print("Introdueix un autor: ");
         String author = scanner.nextLine();
         String language = cd.getLanguageDocument(title, author);
-        if ("ca".equals(language)) System.out.println("Català (ca)");
-        else if ("en".equals(language)) System.out.println("Anglès (en)");
-        else System.out.println("Castellà (es)");
+        if ("ca".equals(language)) System.out.println("Catala (ca)");
+        else if ("en".equals(language)) System.out.println("Angles (en)");
+        else System.out.println("Castella (es)");
     }
 
     public static void testUpdateLanguageDocument() throws ExceptionNoDocument, ExceptionInvalidLanguage {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Modificar l'idioma d'un document");
-        System.out.print("Introdueix un títol: ");
+        System.out.print("Introdueix un titol: ");
         String title = scanner.nextLine();
         System.out.print("Introdueix un autor: ");
         String author = scanner.nextLine();
@@ -218,12 +218,12 @@ public class DriverCtrlDomain {
 
     public static void testListSimilars() throws ExceptionNoDocument, ExceptionInvalidStrategy, ExceptionInvalidK {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Llistar els documents més semblants a un document");
-        System.out.print("Introdueix un títol: ");
+        System.out.println("Llistar els documents mes semblants a un document");
+        System.out.print("Introdueix un titol: ");
         String title = scanner.nextLine();
         System.out.print("Introdueix un autor: ");
         String author = scanner.nextLine();
-        System.out.print("Quina estratègia vols usar (tf-idf/tf-boolean): ");
+        System.out.print("Quina estrategia vols usar (tf-idf/tf-boolean): ");
         String strategy = scanner.nextLine();
         System.out.print("Introdueix una k: ");
         try {
@@ -240,7 +240,7 @@ public class DriverCtrlDomain {
 
     public static void testListTitlesOfAuthor() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Llistar els títols d'un autor");
+        System.out.println("Llistar els titols d'un autor");
         System.out.print("Introdueix un autor: ");
         String author = scanner.nextLine();
         List<Pair<String, String>> result = cd.listTitlesOfAuthor(author);
@@ -285,8 +285,8 @@ public class DriverCtrlDomain {
 
     public static void testListByExpression() throws ExceptionNoExpression {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Llistar els documents a partir d'una expressió booleana");
-        System.out.print("Introdueix una expressió booleana: ");
+        System.out.println("Llistar els documents a partir d'una expressio booleana");
+        System.out.print("Introdueix una expressio booleana: ");
         String expression = scanner.nextLine();
         System.out.print("Vols que sigui case sensitive (S/N): ");
         Boolean caseSensitive = scanner.nextLine().equals("S");
@@ -299,30 +299,30 @@ public class DriverCtrlDomain {
 
     public static void testCreateExpression() throws ExceptionExpressionExists, ExceptionInvalidExpression {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Crear una expressió booleana");
-        System.out.print("Introdueix una expressió booleana: ");
+        System.out.println("Crear una expressio booleana");
+        System.out.print("Introdueix una expressio booleana: ");
         String expression = scanner.nextLine();
         cd.createExpression(expression);
-        System.out.println("Expressió booleana creada");
+        System.out.println("Expressio booleana creada");
     }
 
     public static void testDeleteExpression() throws ExceptionNoExpression {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Esborrar una expressió booleana");
-        System.out.print("Introdueix una expressió booleana: ");
+        System.out.println("Esborrar una expressio booleana");
+        System.out.print("Introdueix una expressio booleana: ");
         String expression = scanner.nextLine();
         cd.deleteExpression(expression);
-        System.out.println("Expressió booleana esborrada");
+        System.out.println("Expressio booleana esborrada");
     }
 
     public static void testModifyExpression() throws ExceptionNoExpression, ExceptionExpressionExists, ExceptionInvalidExpression {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Modificar una expressió booleana");
-        System.out.print("Introdueix l'expressió booleana a modificar: ");
+        System.out.println("Modificar una expressio booleana");
+        System.out.print("Introdueix l'expressio booleana a modificar: ");
         String oldExpression = scanner.nextLine();
-        System.out.print("Introdueix l'expressió booleana modificada: ");
+        System.out.print("Introdueix l'expressio booleana modificada: ");
         String newExpression = scanner.nextLine();
         cd.modifyExpression(oldExpression, newExpression);
-        System.out.println("Expressió booleana modificada");
+        System.out.println("Expressio booleana modificada");
     }
 }
