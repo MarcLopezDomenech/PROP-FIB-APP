@@ -103,7 +103,7 @@ public class InternalDocument {
     /**
      * @brief Inicialitza les estructures que guarden les stopwords de cada idioma
      * @details Tant els atributs com les funcions son estatiques, ja que son identiques per a totes les instancies de la clase InternalDocument
-     * @param set_lenguage Idioma de les stopwords
+     * @param set_language Idioma de les stopwords
      */  
     private static SortedSet<String> initializeSet(String set_language) {
         SortedSet<String> set = new TreeSet<String>();
