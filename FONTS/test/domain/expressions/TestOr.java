@@ -1,7 +1,7 @@
 package test.domain.expressions;
 
 import main.domain.expressions.Or;
-import main.domain.expressions.Literal;
+import test.domain.expressions.Expression;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
@@ -16,14 +16,17 @@ import static org.junit.Assert.assertTrue;
 public class TestOr {
     @Test
     public void basic_constructor() {
-        Literal l1 = new Literal("abcd");
-        Literal l2 = new Literal("efgh");
-        Or o = new Or(l1, l2);
+        Expression e1 = Expression.create("true");
+        Expression e2 = Expression.create("false");
+        Or o1 = new Or(e1, e1);
+        Or o2 = new Or(e1, e2);
+        Or o3 = new Or(e2, e1);
+        Or o4 = new Or(e2, e2);
 
         // es prova tota la taula de veritat de la connectiva
-        assertFalse(o.evaluate("nothing", false));
-        assertTrue(o.evaluate("abcd other", false));
-        assertTrue(o.evaluate("efgh other", false));
-        assertTrue(o.evaluate("abcd efgh", false));
+        assertTrue(o1.evaluate("content", false));
+        assertTrue(o2.evaluate("content", false));
+        assertTrue(o3.evaluate("content", false));
+        assertFalse(o4.evaluate("content", false));
     }
 }
