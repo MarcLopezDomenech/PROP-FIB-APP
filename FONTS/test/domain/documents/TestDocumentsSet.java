@@ -128,6 +128,13 @@ public class TestDocumentsSet {
 
         ds1.deleteDocument("t1","a1");
         assertFalse(ds1.existsDocument("t1","a1"));
+        assertEquals(2, ds1.getnumDocuments());
+        Map<String, Integer> result = new HashMap<>();
+        result.put("c", 2);
+        result.put("2", 2);
+        result.put("3", 1);
+        assertEquals(result, ds1.getpresence());
+        
     }
     @Test (expected = ExceptionNoDocument.class)
     public void testDeleteDocumentException() throws ExceptionNoDocument{
