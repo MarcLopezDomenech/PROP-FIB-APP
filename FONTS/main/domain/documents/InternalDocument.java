@@ -12,6 +12,7 @@ import java.util.*;
  */
 public class InternalDocument {
 
+    /**\brief Atribut que representa la primera subexpressió de la conjunció \invariant  */
     private Map<String, Integer>  relevantWords;
     private int totalWords;
 
