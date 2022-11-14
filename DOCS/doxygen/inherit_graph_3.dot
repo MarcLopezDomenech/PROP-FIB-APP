@@ -1,0 +1,10 @@
+digraph "Jerarquia Gràfica de la Classe"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="FreeSans",fontsize="10",labelfontname="FreeSans",labelfontsize="10"];
+  node [fontname="FreeSans",fontsize="10",shape=record];
+  rankdir="LR";
+  Node38 [label="Comparator",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node38 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node0 [label="main.domain.documents.Documents\lSet.ValueComparator",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classmain_1_1domain_1_1documents_1_1_documents_set_1_1_value_comparator.html",tooltip="Classe que permet comparar Pair<Pair<String, String>, Double>"];
+}

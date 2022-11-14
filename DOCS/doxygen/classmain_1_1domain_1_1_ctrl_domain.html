@@ -1,0 +1,1091 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Gestor de Documents: Referència de la Classe main.domain.CtrlDomain</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Gestor de Documents
+   &#160;<span id="projectnumber">version 0 10-11-22</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generat per Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Cerca','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Cerca');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>main</b></li><li class="navelem"><a class="el" href="namespacemain_1_1domain.html">domain</a></li><li class="navelem"><a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html">CtrlDomain</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Mètodes públics</a> &#124;
+<a href="#pub-static-methods">Mètodes Públics Estàtics</a> &#124;
+<a href="#pri-methods">Mètodes Privats</a> &#124;
+<a href="#pri-static-attribs">Atributs Privats Estàtics</a> &#124;
+<a href="classmain_1_1domain_1_1_ctrl_domain-members.html">Llista de tots els membres</a>  </div>
+  <div class="headertitle">
+<div class="title">Referència de la Classe main.domain.CtrlDomain</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Controlador de la capa de domini de l'aplicatiu. S'encarrega de rebre peticions de la capa de presentació, aconseguir les dades a partir de les altres classes del domini o de la capa de persistència, i retorna els resultats a la presentació  
+ <a href="classmain_1_1domain_1_1_ctrl_domain.html#details">Més...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Mètodes públics</h2></td></tr>
+<tr class="memitem:ab9886a755b54baad6a7175cfe0ac09f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html#ab9886a755b54baad6a7175cfe0ac09f3">createEmptyDocument</a> (String title, String author, String language)  throws ExceptionDocumentExists, ExceptionInvalidLanguage </td></tr>
+<tr class="memdesc:ab9886a755b54baad6a7175cfe0ac09f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mètode per donar d'alta un nou document.  <a href="classmain_1_1domain_1_1_ctrl_domain.html#ab9886a755b54baad6a7175cfe0ac09f3">Més...</a><br /></td></tr>
+<tr class="separator:ab9886a755b54baad6a7175cfe0ac09f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a784e90c0679fec19129a5235bbba2b71"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html#a784e90c0679fec19129a5235bbba2b71">deleteDocument</a> (String title, String author)  throws ExceptionNoDocument </td></tr>
+<tr class="memdesc:a784e90c0679fec19129a5235bbba2b71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operació per donar de baixa un document.  <a href="classmain_1_1domain_1_1_ctrl_domain.html#a784e90c0679fec19129a5235bbba2b71">Més...</a><br /></td></tr>
+<tr class="separator:a784e90c0679fec19129a5235bbba2b71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b338a49954b464ed1d87f1c7b1f07a4"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html#a4b338a49954b464ed1d87f1c7b1f07a4">existsDocument</a> (String title, String author)</td></tr>
+<tr class="memdesc:a4b338a49954b464ed1d87f1c7b1f07a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funció per saber si existeix un document concret.  <a href="classmain_1_1domain_1_1_ctrl_domain.html#a4b338a49954b464ed1d87f1c7b1f07a4">Més...</a><br /></td></tr>
+<tr class="separator:a4b338a49954b464ed1d87f1c7b1f07a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a098623ab38153bfa4381b5562e961efd"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html#a098623ab38153bfa4381b5562e961efd">getContentDocument</a> (String title, String author)  throws ExceptionNoDocument </td></tr>
+<tr class="memdesc:a098623ab38153bfa4381b5562e961efd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funció per obtenir el contingut d'un document.  <a href="classmain_1_1domain_1_1_ctrl_domain.html#a098623ab38153bfa4381b5562e961efd">Més...</a><br /></td></tr>
+<tr class="separator:a098623ab38153bfa4381b5562e961efd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c6036ca8fcaf7569b3877e05cfabab6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html#a5c6036ca8fcaf7569b3877e05cfabab6">updateContentDocument</a> (String title, String author, String content)  throws ExceptionNoDocument </td></tr>
+<tr class="memdesc:a5c6036ca8fcaf7569b3877e05cfabab6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funció per actualitzar el contingut d'un document.  <a href="classmain_1_1domain_1_1_ctrl_domain.html#a5c6036ca8fcaf7569b3877e05cfabab6">Més...</a><br /></td></tr>
+<tr class="separator:a5c6036ca8fcaf7569b3877e05cfabab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4ff4fef401b1c06245bd7feec0f88df"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html#aa4ff4fef401b1c06245bd7feec0f88df">getLanguageDocument</a> (String title, String author)  throws ExceptionNoDocument </td></tr>
+<tr class="memdesc:aa4ff4fef401b1c06245bd7feec0f88df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operació per conseguir l'idioma d'un document.  <a href="classmain_1_1domain_1_1_ctrl_domain.html#aa4ff4fef401b1c06245bd7feec0f88df">Més...</a><br /></td></tr>
+<tr class="separator:aa4ff4fef401b1c06245bd7feec0f88df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a0a60e681be5e7983b56619a4367088"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html#a3a0a60e681be5e7983b56619a4367088">updateLanguageDocument</a> (String title, String author, String newLanguage)  throws ExceptionNoDocument, ExceptionInvalidLanguage </td></tr>
+<tr class="memdesc:a3a0a60e681be5e7983b56619a4367088"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operació per actualitzar l'idioma d'un document.  <a href="classmain_1_1domain_1_1_ctrl_domain.html#a3a0a60e681be5e7983b56619a4367088">Més...</a><br /></td></tr>
+<tr class="separator:a3a0a60e681be5e7983b56619a4367088"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cebf7cfcbd826d2e231a60f9ae523ed"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="classmain_1_1domain_1_1util_1_1_pair.html">Pair</a>&lt; String, String &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html#a6cebf7cfcbd826d2e231a60f9ae523ed">listAllDocuments</a> ()</td></tr>
+<tr class="memdesc:a6cebf7cfcbd826d2e231a60f9ae523ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funció per obtenir tots els identificadors dels documents del sistema.  <a href="classmain_1_1domain_1_1_ctrl_domain.html#a6cebf7cfcbd826d2e231a60f9ae523ed">Més...</a><br /></td></tr>
+<tr class="separator:a6cebf7cfcbd826d2e231a60f9ae523ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb44ee87e327980137b94a90b59acd66"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="classmain_1_1domain_1_1util_1_1_pair.html">Pair</a>&lt; String, String &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html#afb44ee87e327980137b94a90b59acd66">listSimilars</a> (String title, String author, int k, String strategy)  throws ExceptionNoDocument, ExceptionInvalidStrategy, ExceptionInvalidK </td></tr>
+<tr class="memdesc:afb44ee87e327980137b94a90b59acd66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funció per obtenir els identificadors dels k documents més similars a un document.  <a href="classmain_1_1domain_1_1_ctrl_domain.html#afb44ee87e327980137b94a90b59acd66">Més...</a><br /></td></tr>
+<tr class="separator:afb44ee87e327980137b94a90b59acd66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56f149998243fea98476649a228ef53b"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="classmain_1_1domain_1_1util_1_1_pair.html">Pair</a>&lt; String, String &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html#a56f149998243fea98476649a228ef53b">listTitlesOfAuthor</a> (String author)</td></tr>
+<tr class="memdesc:a56f149998243fea98476649a228ef53b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funció per aconseguir els títols d'un autor.  <a href="classmain_1_1domain_1_1_ctrl_domain.html#a56f149998243fea98476649a228ef53b">Més...</a><br /></td></tr>
+<tr class="separator:a56f149998243fea98476649a228ef53b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f90f9e65e3aa3dfe968fbce703e99da"><td class="memItemLeft" align="right" valign="top">List&lt; String &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html#a3f90f9e65e3aa3dfe968fbce703e99da">listAuthorsByPrefix</a> (String prefix)</td></tr>
+<tr class="memdesc:a3f90f9e65e3aa3dfe968fbce703e99da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operació per aconseguir els autors que comencen per un cert prefix.  <a href="classmain_1_1domain_1_1_ctrl_domain.html#a3f90f9e65e3aa3dfe968fbce703e99da">Més...</a><br /></td></tr>
+<tr class="separator:a3f90f9e65e3aa3dfe968fbce703e99da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa57ed4bd06eb0a8b284a81ad6b1fc144"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="classmain_1_1domain_1_1util_1_1_pair.html">Pair</a>&lt; String, String &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html#aa57ed4bd06eb0a8b284a81ad6b1fc144">listByQuery</a> (String query, int k)  throws ExceptionInvalidK </td></tr>
+<tr class="memdesc:aa57ed4bd06eb0a8b284a81ad6b1fc144"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operació per obtenir identificadors dels documents rellevants a partir d'una query.  <a href="classmain_1_1domain_1_1_ctrl_domain.html#aa57ed4bd06eb0a8b284a81ad6b1fc144">Més...</a><br /></td></tr>
+<tr class="separator:aa57ed4bd06eb0a8b284a81ad6b1fc144"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e49ea0d0baf93b0c16d74771a04d166"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="classmain_1_1domain_1_1util_1_1_pair.html">Pair</a>&lt; String, String &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html#a5e49ea0d0baf93b0c16d74771a04d166">listByExpression</a> (String expression, Boolean caseSensitive)  throws ExceptionNoExpression </td></tr>
+<tr class="memdesc:a5e49ea0d0baf93b0c16d74771a04d166"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funció per aconseguir els identificadors dels documents que compleixen una expressió booleana.  <a href="classmain_1_1domain_1_1_ctrl_domain.html#a5e49ea0d0baf93b0c16d74771a04d166">Més...</a><br /></td></tr>
+<tr class="separator:a5e49ea0d0baf93b0c16d74771a04d166"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab725742635b50b5d7385862273dc900b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html#ab725742635b50b5d7385862273dc900b">createExpression</a> (String expression)  throws ExceptionExpressionExists, ExceptionInvalidExpression </td></tr>
+<tr class="memdesc:ab725742635b50b5d7385862273dc900b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mètode per donar d'alta una expressió booleana.  <a href="classmain_1_1domain_1_1_ctrl_domain.html#ab725742635b50b5d7385862273dc900b">Més...</a><br /></td></tr>
+<tr class="separator:ab725742635b50b5d7385862273dc900b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2af3f2076c4b817b559d8d513bcba59"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html#aa2af3f2076c4b817b559d8d513bcba59">deleteExpression</a> (String expression)  throws ExceptionNoExpression </td></tr>
+<tr class="memdesc:aa2af3f2076c4b817b559d8d513bcba59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funció per donar de baixa una expressió booleana.  <a href="classmain_1_1domain_1_1_ctrl_domain.html#aa2af3f2076c4b817b559d8d513bcba59">Més...</a><br /></td></tr>
+<tr class="separator:aa2af3f2076c4b817b559d8d513bcba59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e29a29caaa5e0ba058c122802496b58"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html#a8e29a29caaa5e0ba058c122802496b58">modifyExpression</a> (String oldExpression, String newExpression)  throws ExceptionNoExpression, ExceptionExpressionExists, ExceptionInvalidExpression </td></tr>
+<tr class="memdesc:a8e29a29caaa5e0ba058c122802496b58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operació que permet modificar una expressió booleana.  <a href="classmain_1_1domain_1_1_ctrl_domain.html#a8e29a29caaa5e0ba058c122802496b58">Més...</a><br /></td></tr>
+<tr class="separator:a8e29a29caaa5e0ba058c122802496b58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Mètodes Públics Estàtics</h2></td></tr>
+<tr class="memitem:a72d1c93e27e283053fe0893b7b4d3869"><td class="memItemLeft" align="right" valign="top">static synchronized <a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html">CtrlDomain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html#a72d1c93e27e283053fe0893b7b4d3869">getInstance</a> ()</td></tr>
+<tr class="memdesc:a72d1c93e27e283053fe0893b7b4d3869"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funció per aconseguir la instància de <a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html" title="Controlador de la capa de domini de l&#39;aplicatiu. S&#39;encarrega de rebre peticions de la capa de present...">CtrlDomain</a>.  <a href="classmain_1_1domain_1_1_ctrl_domain.html#a72d1c93e27e283053fe0893b7b4d3869">Més...</a><br /></td></tr>
+<tr class="separator:a72d1c93e27e283053fe0893b7b4d3869"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Mètodes Privats</h2></td></tr>
+<tr class="memitem:a049acf88be7aaab7808df89cc2be94fa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html#a049acf88be7aaab7808df89cc2be94fa">CtrlDomain</a> ()</td></tr>
+<tr class="memdesc:a049acf88be7aaab7808df89cc2be94fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructora per defecte de <a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html" title="Controlador de la capa de domini de l&#39;aplicatiu. S&#39;encarrega de rebre peticions de la capa de present...">CtrlDomain</a>.  <a href="classmain_1_1domain_1_1_ctrl_domain.html#a049acf88be7aaab7808df89cc2be94fa">Més...</a><br /></td></tr>
+<tr class="separator:a049acf88be7aaab7808df89cc2be94fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Atributs Privats Estàtics</h2></td></tr>
+<tr class="memitem:a29bf0158aaf32bd4f43934feef7a82d3"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html">CtrlDomain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html#a29bf0158aaf32bd4f43934feef7a82d3">singletonObject</a></td></tr>
+<tr class="memdesc:a29bf0158aaf32bd4f43934feef7a82d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Objecte singleton que guarda la única instància del <a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html" title="Controlador de la capa de domini de l&#39;aplicatiu. S&#39;encarrega de rebre peticions de la capa de present...">CtrlDomain</a>.  <a href="classmain_1_1domain_1_1_ctrl_domain.html#a29bf0158aaf32bd4f43934feef7a82d3">Més...</a><br /></td></tr>
+<tr class="separator:a29bf0158aaf32bd4f43934feef7a82d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3187d8c3e4425be67508cf5534447bed"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classmain_1_1domain_1_1documents_1_1_documents_set.html">DocumentsSet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html#a3187d8c3e4425be67508cf5534447bed">ds</a></td></tr>
+<tr class="memdesc:a3187d8c3e4425be67508cf5534447bed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instància del conjunt de documents del sistema (DocumentsSet)  <a href="classmain_1_1domain_1_1_ctrl_domain.html#a3187d8c3e4425be67508cf5534447bed">Més...</a><br /></td></tr>
+<tr class="separator:a3187d8c3e4425be67508cf5534447bed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4de46372005dace6267cbee7519185c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classmain_1_1domain_1_1expressions_1_1_expressions_set.html">ExpressionsSet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html#ac4de46372005dace6267cbee7519185c">es</a></td></tr>
+<tr class="memdesc:ac4de46372005dace6267cbee7519185c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instància del conjunt d'expressions del sistema (ExpressionsSet)  <a href="classmain_1_1domain_1_1_ctrl_domain.html#ac4de46372005dace6267cbee7519185c">Més...</a><br /></td></tr>
+<tr class="separator:ac4de46372005dace6267cbee7519185c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descripció Detallada</h2>
+<div class="textblock"><p>Controlador de la capa de domini de l'aplicatiu. S'encarrega de rebre peticions de la capa de presentació, aconseguir les dades a partir de les altres classes del domini o de la capa de persistència, i retorna els resultats a la presentació </p>
+<dl class="section author"><dt>Autor</dt><dd>pau.duran.manzano </dd></dl>
+
+<p class="definition">Definició a la línia <a class="el" href="_ctrl_domain_8java_source.html#l00019">19</a> del fitxer <a class="el" href="_ctrl_domain_8java_source.html">CtrlDomain.java</a>.</p>
+</div><h2 class="groupheader">Documentació del Constructor i el Destructor</h2>
+<a id="a049acf88be7aaab7808df89cc2be94fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a049acf88be7aaab7808df89cc2be94fa">&#9670;&nbsp;</a></span>CtrlDomain()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">main.domain.CtrlDomain.CtrlDomain </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructora per defecte de <a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html" title="Controlador de la capa de domini de l&#39;aplicatiu. S&#39;encarrega de rebre peticions de la capa de present...">CtrlDomain</a>. </p>
+<p>Es defineix com a privada perquè <a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html" title="Controlador de la capa de domini de l&#39;aplicatiu. S&#39;encarrega de rebre peticions de la capa de present...">CtrlDomain</a> és singleton </p><dl class="section pre"><dt>Precondició</dt><dd>No existeix cap instància de <a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html" title="Controlador de la capa de domini de l&#39;aplicatiu. S&#39;encarrega de rebre peticions de la capa de present...">CtrlDomain</a> ja creada </dd></dl>
+<dl class="section return"><dt>Retorna</dt><dd><a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html" title="Controlador de la capa de domini de l&#39;aplicatiu. S&#39;encarrega de rebre peticions de la capa de present...">CtrlDomain</a> </dd></dl>
+
+<p class="definition">Definició a la línia <a class="el" href="_ctrl_domain_8java_source.html#l00041">41</a> del fitxer <a class="el" href="_ctrl_domain_8java_source.html">CtrlDomain.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                         {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="classmain_1_1domain_1_1_ctrl_domain.html#a3187d8c3e4425be67508cf5534447bed">ds</a> = DocumentsSet.<a class="code" href="classmain_1_1domain_1_1documents_1_1_documents_set.html#aa86961d250e1b2a4b1ac34bfab59204d">getInstance</a>();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <a class="code" href="classmain_1_1domain_1_1_ctrl_domain.html#ac4de46372005dace6267cbee7519185c">es</a> = ExpressionsSet.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_expressions_set.html#acbc2984b47c609f75cea83fc37b3317a">getInstance</a>();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
+<div class="ttc" id="aclassmain_1_1domain_1_1_ctrl_domain_html_a3187d8c3e4425be67508cf5534447bed"><div class="ttname"><a href="classmain_1_1domain_1_1_ctrl_domain.html#a3187d8c3e4425be67508cf5534447bed">main.domain.CtrlDomain.ds</a></div><div class="ttdeci">static DocumentsSet ds</div><div class="ttdoc">Instància del conjunt de documents del sistema (DocumentsSet)</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_domain_8java_source.html#l00028">CtrlDomain.java:28</a></div></div>
+<div class="ttc" id="aclassmain_1_1domain_1_1_ctrl_domain_html_ac4de46372005dace6267cbee7519185c"><div class="ttname"><a href="classmain_1_1domain_1_1_ctrl_domain.html#ac4de46372005dace6267cbee7519185c">main.domain.CtrlDomain.es</a></div><div class="ttdeci">static ExpressionsSet es</div><div class="ttdoc">Instància del conjunt d'expressions del sistema (ExpressionsSet)</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_domain_8java_source.html#l00033">CtrlDomain.java:33</a></div></div>
+<div class="ttc" id="aclassmain_1_1domain_1_1documents_1_1_documents_set_html_aa86961d250e1b2a4b1ac34bfab59204d"><div class="ttname"><a href="classmain_1_1domain_1_1documents_1_1_documents_set.html#aa86961d250e1b2a4b1ac34bfab59204d">main.domain.documents.DocumentsSet.getInstance</a></div><div class="ttdeci">static synchronized DocumentsSet getInstance()</div><div class="ttdoc">Funció per aconseguir la instància de DocumentsSet.</div><div class="ttdef"><b>Definition:</b> <a href="_documents_set_8java_source.html#l00063">DocumentsSet.java:63</a></div></div>
+<div class="ttc" id="aclassmain_1_1domain_1_1expressions_1_1_expressions_set_html_acbc2984b47c609f75cea83fc37b3317a"><div class="ttname"><a href="classmain_1_1domain_1_1expressions_1_1_expressions_set.html#acbc2984b47c609f75cea83fc37b3317a">main.domain.expressions.ExpressionsSet.getInstance</a></div><div class="ttdeci">static synchronized ExpressionsSet getInstance()</div><div class="ttdoc">Funció per aconseguir la instància de ExpressionsSet.</div><div class="ttdef"><b>Definition:</b> <a href="_expressions_set_8java_source.html#l00043">ExpressionsSet.java:43</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Documentació de les Funcions Membre</h2>
+<a id="a72d1c93e27e283053fe0893b7b4d3869"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72d1c93e27e283053fe0893b7b4d3869">&#9670;&nbsp;</a></span>getInstance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static synchronized <a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html">CtrlDomain</a> main.domain.CtrlDomain.getInstance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Funció per aconseguir la instància de <a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html" title="Controlador de la capa de domini de l&#39;aplicatiu. S&#39;encarrega de rebre peticions de la capa de present...">CtrlDomain</a>. </p>
+<p>Com que <a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html" title="Controlador de la capa de domini de l&#39;aplicatiu. S&#39;encarrega de rebre peticions de la capa de present...">CtrlDomain</a> és singleton, cal aquesta funció per retornar la seva única instància </p><dl class="section return"><dt>Retorna</dt><dd><a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html" title="Controlador de la capa de domini de l&#39;aplicatiu. S&#39;encarrega de rebre peticions de la capa de present...">CtrlDomain</a>: Retorna la instància de <a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html" title="Controlador de la capa de domini de l&#39;aplicatiu. S&#39;encarrega de rebre peticions de la capa de present...">CtrlDomain</a> </dd></dl>
+
+<p class="definition">Definició a la línia <a class="el" href="_ctrl_domain_8java_source.html#l00051">51</a> del fitxer <a class="el" href="_ctrl_domain_8java_source.html">CtrlDomain.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                                                        {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classmain_1_1domain_1_1_ctrl_domain.html#a29bf0158aaf32bd4f43934feef7a82d3">singletonObject</a> == <span class="keyword">null</span>) <a class="code" href="classmain_1_1domain_1_1_ctrl_domain.html#a29bf0158aaf32bd4f43934feef7a82d3">singletonObject</a> = <span class="keyword">new</span> <a class="code" href="classmain_1_1domain_1_1_ctrl_domain.html#a049acf88be7aaab7808df89cc2be94fa">CtrlDomain</a>();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classmain_1_1domain_1_1_ctrl_domain.html#a29bf0158aaf32bd4f43934feef7a82d3">singletonObject</a>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    }</div>
+<div class="ttc" id="aclassmain_1_1domain_1_1_ctrl_domain_html_a049acf88be7aaab7808df89cc2be94fa"><div class="ttname"><a href="classmain_1_1domain_1_1_ctrl_domain.html#a049acf88be7aaab7808df89cc2be94fa">main.domain.CtrlDomain.CtrlDomain</a></div><div class="ttdeci">CtrlDomain()</div><div class="ttdoc">Constructora per defecte de CtrlDomain.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_domain_8java_source.html#l00041">CtrlDomain.java:41</a></div></div>
+<div class="ttc" id="aclassmain_1_1domain_1_1_ctrl_domain_html_a29bf0158aaf32bd4f43934feef7a82d3"><div class="ttname"><a href="classmain_1_1domain_1_1_ctrl_domain.html#a29bf0158aaf32bd4f43934feef7a82d3">main.domain.CtrlDomain.singletonObject</a></div><div class="ttdeci">static CtrlDomain singletonObject</div><div class="ttdoc">Objecte singleton que guarda la única instància del CtrlDomain.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_domain_8java_source.html#l00023">CtrlDomain.java:23</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ab9886a755b54baad6a7175cfe0ac09f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9886a755b54baad6a7175cfe0ac09f3">&#9670;&nbsp;</a></span>createEmptyDocument()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void main.domain.CtrlDomain.createEmptyDocument </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>title</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>author</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>language</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> throws <a class="el" href="classmain_1_1excepcions_1_1_exception_document_exists.html">ExceptionDocumentExists</a>, <a class="el" href="classmain_1_1excepcions_1_1_exception_invalid_language.html">ExceptionInvalidLanguage</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mètode per donar d'alta un nou document. </p>
+<p>L'operació rep el nom i el títol del nou document a donar d'alta a l'aplicatiu, i sempre que no n'existeixi un amb els mateixos identificadors, així ho fa amb contingut buit. </p><dl class="params"><dt>Paràmetres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>Títol del nou document </td></tr>
+    <tr><td class="paramname">author</td><td>Autor del nou document </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section post"><dt>Postcondició</dt><dd>Existeix a l'aplicatiu un document identificat per (title, author). Si no existia prèviament, el contingut serà buit. </dd></dl>
+<dl class="exception"><dt>Excepcions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ExceptionDocumentExists</td><td>en cas que ja existeixi un document identificat per (title, author) a l'aplicatiu </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definició a la línia <a class="el" href="_ctrl_domain_8java_source.html#l00064">64</a> del fitxer <a class="el" href="_ctrl_domain_8java_source.html">CtrlDomain.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                                                                                                                                           {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <a class="code" href="classmain_1_1domain_1_1_ctrl_domain.html#a3187d8c3e4425be67508cf5534447bed">ds</a>.<a class="code" href="classmain_1_1domain_1_1documents_1_1_documents_set.html#a0a905211e6a0b85a82cb6b2cae077910">createDocument</a>(title, author, <span class="stringliteral">&quot;&quot;</span>, language);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
+<div class="ttc" id="aclassmain_1_1domain_1_1documents_1_1_documents_set_html_a0a905211e6a0b85a82cb6b2cae077910"><div class="ttname"><a href="classmain_1_1domain_1_1documents_1_1_documents_set.html#a0a905211e6a0b85a82cb6b2cae077910">main.domain.documents.DocumentsSet.createDocument</a></div><div class="ttdeci">void createDocument(String title, String author, String content, String language)</div><div class="ttdoc">Operació per crear i registrar un nou document.</div><div class="ttdef"><b>Definition:</b> <a href="_documents_set_8java_source.html#l00120">DocumentsSet.java:120</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a784e90c0679fec19129a5235bbba2b71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a784e90c0679fec19129a5235bbba2b71">&#9670;&nbsp;</a></span>deleteDocument()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void main.domain.CtrlDomain.deleteDocument </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>title</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>author</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> throws <a class="el" href="classmain_1_1excepcions_1_1_exception_no_document.html">ExceptionNoDocument</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Operació per donar de baixa un document. </p>
+<p>La funció s'encarrega d'esborrar el document de l'aplicatiu identificat pels paràmetres donats. </p><dl class="section pre"><dt>Precondició</dt><dd>Existeix un document a l'aplicatiu identificat pels paràmetres donats. </dd></dl>
+<dl class="params"><dt>Paràmetres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>Títol del document a esborrar </td></tr>
+    <tr><td class="paramname">author</td><td>Autor del document a esborrar </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section post"><dt>Postcondició</dt><dd>No existeix cap document a l'aplicatiu identificat per (title, author) </dd></dl>
+<dl class="exception"><dt>Excepcions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ExceptionNoDocument</td><td>quan no hi ha cap document identificat per (title, author) donat d'alta </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definició a la línia <a class="el" href="_ctrl_domain_8java_source.html#l00077">77</a> del fitxer <a class="el" href="_ctrl_domain_8java_source.html">CtrlDomain.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                                                                                       {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <a class="code" href="classmain_1_1domain_1_1_ctrl_domain.html#a3187d8c3e4425be67508cf5534447bed">ds</a>.<a class="code" href="classmain_1_1domain_1_1documents_1_1_documents_set.html#afd6da64f5d8262ae5d90cdb2447a8d17">deleteDocument</a>(title, author);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div>
+<div class="ttc" id="aclassmain_1_1domain_1_1documents_1_1_documents_set_html_afd6da64f5d8262ae5d90cdb2447a8d17"><div class="ttname"><a href="classmain_1_1domain_1_1documents_1_1_documents_set.html#afd6da64f5d8262ae5d90cdb2447a8d17">main.domain.documents.DocumentsSet.deleteDocument</a></div><div class="ttdeci">void deleteDocument(String title, String author)</div><div class="ttdoc">Aquest mètode permet esborrar un document de l'aplicatiu.</div><div class="ttdef"><b>Definition:</b> <a href="_documents_set_8java_source.html#l00149">DocumentsSet.java:149</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a4b338a49954b464ed1d87f1c7b1f07a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b338a49954b464ed1d87f1c7b1f07a4">&#9670;&nbsp;</a></span>existsDocument()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Boolean main.domain.CtrlDomain.existsDocument </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>title</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>author</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Funció per saber si existeix un document concret. </p>
+<p>La funció retorna un booleà per indicar si el document identificat pels paràmetres donats existeix o no </p><dl class="params"><dt>Paràmetres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>Títol del document que es vol saber si existeix </td></tr>
+    <tr><td class="paramname">author</td><td>Autor del document que es vol saber si existeix </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Booleà que indica cert si existeix el document (title, author) i fals altrament </dd></dl>
+<dl class="section post"><dt>Postcondició</dt><dd>L'estat del sistema no queda alterat </dd></dl>
+
+<p class="definition">Definició a la línia <a class="el" href="_ctrl_domain_8java_source.html#l00089">89</a> del fitxer <a class="el" href="_ctrl_domain_8java_source.html">CtrlDomain.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                                                               {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classmain_1_1domain_1_1_ctrl_domain.html#a3187d8c3e4425be67508cf5534447bed">ds</a>.<a class="code" href="classmain_1_1domain_1_1documents_1_1_documents_set.html#a396122b86116d047c6f3dfcbd0b95b3f">existsDocument</a>(title, author);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div>
+<div class="ttc" id="aclassmain_1_1domain_1_1documents_1_1_documents_set_html_a396122b86116d047c6f3dfcbd0b95b3f"><div class="ttname"><a href="classmain_1_1domain_1_1documents_1_1_documents_set.html#a396122b86116d047c6f3dfcbd0b95b3f">main.domain.documents.DocumentsSet.existsDocument</a></div><div class="ttdeci">Boolean existsDocument(String title, String author)</div><div class="ttdoc">Operació per saber la existencia del document.</div><div class="ttdef"><b>Definition:</b> <a href="_documents_set_8java_source.html#l00179">DocumentsSet.java:179</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a098623ab38153bfa4381b5562e961efd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a098623ab38153bfa4381b5562e961efd">&#9670;&nbsp;</a></span>getContentDocument()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String main.domain.CtrlDomain.getContentDocument </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>title</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>author</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> throws <a class="el" href="classmain_1_1excepcions_1_1_exception_no_document.html">ExceptionNoDocument</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Funció per obtenir el contingut d'un document. </p>
+<p>Amb aquesta operació es pot aconseguir el contingut d'un document, els paràmetres del qual s'han de donar com a paràmetres </p><dl class="section pre"><dt>Precondició</dt><dd>El document identificat pels paràmetres existeix </dd></dl>
+<dl class="params"><dt>Paràmetres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>Títol del document al qual se li vol consultar el contingut </td></tr>
+    <tr><td class="paramname">author</td><td>Autor del document al qual se li vol consultar el contingut </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>String amb el contingut del document (title, author) </dd></dl>
+<dl class="section post"><dt>Postcondició</dt><dd>L'estat del sistema no queda alterat </dd></dl>
+<dl class="exception"><dt>Excepcions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ExceptionNoDocument</td><td>en el cas que no existeix un document identificat pels paràmetres donats </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definició a la línia <a class="el" href="_ctrl_domain_8java_source.html#l00103">103</a> del fitxer <a class="el" href="_ctrl_domain_8java_source.html">CtrlDomain.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                                                                                             {</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classmain_1_1domain_1_1_ctrl_domain.html#a3187d8c3e4425be67508cf5534447bed">ds</a>.<a class="code" href="classmain_1_1domain_1_1documents_1_1_documents_set.html#aaa7d5500adbcda86b9061448d17bdb59">getContentDocument</a>(title, author);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    }</div>
+<div class="ttc" id="aclassmain_1_1domain_1_1documents_1_1_documents_set_html_aaa7d5500adbcda86b9061448d17bdb59"><div class="ttname"><a href="classmain_1_1domain_1_1documents_1_1_documents_set.html#aaa7d5500adbcda86b9061448d17bdb59">main.domain.documents.DocumentsSet.getContentDocument</a></div><div class="ttdeci">String getContentDocument(String title, String author)</div><div class="ttdoc">Operació per conseguir el contingut d'un document.</div><div class="ttdef"><b>Definition:</b> <a href="_documents_set_8java_source.html#l00194">DocumentsSet.java:194</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a5c6036ca8fcaf7569b3877e05cfabab6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c6036ca8fcaf7569b3877e05cfabab6">&#9670;&nbsp;</a></span>updateContentDocument()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void main.domain.CtrlDomain.updateContentDocument </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>title</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>author</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>content</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> throws <a class="el" href="classmain_1_1excepcions_1_1_exception_no_document.html">ExceptionNoDocument</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Funció per actualitzar el contingut d'un document. </p>
+<p>Aquesta operació permet substituir el contingut d'un document de l'aplcatiu per un de nou </p><dl class="section pre"><dt>Precondició</dt><dd>El document identificat amb els paràmetres existeix en l'aplicatiu </dd></dl>
+<dl class="params"><dt>Paràmetres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>Títol del document a modificar </td></tr>
+    <tr><td class="paramname">author</td><td>Autor del document a modificar </td></tr>
+    <tr><td class="paramname">content</td><td>Nou contingut a assignar al document </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section post"><dt>Postcondició</dt><dd>El document identificat per (title, author) té com a contingut content </dd></dl>
+<dl class="exception"><dt>Excepcions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ExceptionNoDocument</td><td>quan no existeix un document identificat per (title, author) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definició a la línia <a class="el" href="_ctrl_domain_8java_source.html#l00117">117</a> del fitxer <a class="el" href="_ctrl_domain_8java_source.html">CtrlDomain.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                                                                                                              {</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <a class="code" href="classmain_1_1domain_1_1_ctrl_domain.html#a3187d8c3e4425be67508cf5534447bed">ds</a>.<a class="code" href="classmain_1_1domain_1_1documents_1_1_documents_set.html#a540e2306cd8b9b71790342fc2504d76b">updateContentDocument</a>(title, author, content);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    }</div>
+<div class="ttc" id="aclassmain_1_1domain_1_1documents_1_1_documents_set_html_a540e2306cd8b9b71790342fc2504d76b"><div class="ttname"><a href="classmain_1_1domain_1_1documents_1_1_documents_set.html#a540e2306cd8b9b71790342fc2504d76b">main.domain.documents.DocumentsSet.updateContentDocument</a></div><div class="ttdeci">void updateContentDocument(String title, String author, String newContent)</div><div class="ttdoc">Operació per actualitzar el contingut d'un document.</div><div class="ttdef"><b>Definition:</b> <a href="_documents_set_8java_source.html#l00209">DocumentsSet.java:209</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aa4ff4fef401b1c06245bd7feec0f88df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4ff4fef401b1c06245bd7feec0f88df">&#9670;&nbsp;</a></span>getLanguageDocument()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String main.domain.CtrlDomain.getLanguageDocument </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>title</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>author</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> throws <a class="el" href="classmain_1_1excepcions_1_1_exception_no_document.html">ExceptionNoDocument</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Operació per conseguir l'idioma d'un document. </p>
+<p>Retorna l'idioma del document identificat pels paràmetres </p><dl class="section pre"><dt>Precondició</dt><dd>El document identificat per (title, author) existeix </dd></dl>
+<dl class="params"><dt>Paràmetres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>títol del document del que volem el contingut </td></tr>
+    <tr><td class="paramname">author</td><td>autor del document del que volem el contingut </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section post"><dt>Postcondició</dt><dd>Es retorna l'idioma del document amb title i author </dd></dl>
+<dl class="exception"><dt>Excepcions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ExceptionNoDocument</td><td>en el cas que no existeix un document identificat pels paràmetres donats </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definició a la línia <a class="el" href="_ctrl_domain_8java_source.html#l00130">130</a> del fitxer <a class="el" href="_ctrl_domain_8java_source.html">CtrlDomain.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                                                                                              {</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;       <span class="keywordflow">return</span> <a class="code" href="classmain_1_1domain_1_1_ctrl_domain.html#a3187d8c3e4425be67508cf5534447bed">ds</a>.<a class="code" href="classmain_1_1domain_1_1documents_1_1_documents_set.html#a36224be4aa3044d18d4118de6c4bfd10">getLanguageDocument</a>(title, author);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    }</div>
+<div class="ttc" id="aclassmain_1_1domain_1_1documents_1_1_documents_set_html_a36224be4aa3044d18d4118de6c4bfd10"><div class="ttname"><a href="classmain_1_1domain_1_1documents_1_1_documents_set.html#a36224be4aa3044d18d4118de6c4bfd10">main.domain.documents.DocumentsSet.getLanguageDocument</a></div><div class="ttdeci">String getLanguageDocument(String title, String author)</div><div class="ttdoc">Operació per conseguir l'idioma d'un document.</div><div class="ttdef"><b>Definition:</b> <a href="_documents_set_8java_source.html#l00233">DocumentsSet.java:233</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a3a0a60e681be5e7983b56619a4367088"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a0a60e681be5e7983b56619a4367088">&#9670;&nbsp;</a></span>updateLanguageDocument()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void main.domain.CtrlDomain.updateLanguageDocument </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>title</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>author</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>newLanguage</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> throws <a class="el" href="classmain_1_1excepcions_1_1_exception_no_document.html">ExceptionNoDocument</a>, <a class="el" href="classmain_1_1excepcions_1_1_exception_invalid_language.html">ExceptionInvalidLanguage</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Operació per actualitzar l'idioma d'un document. </p>
+<p>L'idioma del document identificat pels paràmetres passa a ser el donat per paràmetre </p><dl class="section pre"><dt>Precondició</dt><dd>El document identificat per (title, author) existeix </dd></dl>
+<dl class="params"><dt>Paràmetres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>títol del document a modificar </td></tr>
+    <tr><td class="paramname">author</td><td>autor del document a modificar </td></tr>
+    <tr><td class="paramname">newLanguage</td><td>nou idioma del document </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section post"><dt>Postcondició</dt><dd>El document (title, author) té com a idioma newLanguage </dd></dl>
+<dl class="exception"><dt>Excepcions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ExceptionNoDocument</td><td>quan no existeix un document identificat per (title, author) </td></tr>
+    <tr><td class="paramname">ExceptionInvalidLanguage</td><td>quan l'idioma donat no és vàlid (ca, en o es) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definició a la línia <a class="el" href="_ctrl_domain_8java_source.html#l00145">145</a> del fitxer <a class="el" href="_ctrl_domain_8java_source.html">CtrlDomain.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                                                                                                                                             {</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        <a class="code" href="classmain_1_1domain_1_1_ctrl_domain.html#a3187d8c3e4425be67508cf5534447bed">ds</a>.<a class="code" href="classmain_1_1domain_1_1documents_1_1_documents_set.html#aaf71399497df4a9662b530eebcdce6e8">updateLanguageDocument</a>(title, author, newLanguage);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    }</div>
+<div class="ttc" id="aclassmain_1_1domain_1_1documents_1_1_documents_set_html_aaf71399497df4a9662b530eebcdce6e8"><div class="ttname"><a href="classmain_1_1domain_1_1documents_1_1_documents_set.html#aaf71399497df4a9662b530eebcdce6e8">main.domain.documents.DocumentsSet.updateLanguageDocument</a></div><div class="ttdeci">void updateLanguageDocument(String title, String author, String newLanguage)</div><div class="ttdoc">Operació per actualitzar l'idioma d'un document.</div><div class="ttdef"><b>Definition:</b> <a href="_documents_set_8java_source.html#l00249">DocumentsSet.java:249</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a6cebf7cfcbd826d2e231a60f9ae523ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cebf7cfcbd826d2e231a60f9ae523ed">&#9670;&nbsp;</a></span>listAllDocuments()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="classmain_1_1domain_1_1util_1_1_pair.html">Pair</a>&lt;String, String&gt; &gt; main.domain.CtrlDomain.listAllDocuments </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Funció per obtenir tots els identificadors dels documents del sistema. </p>
+<p>Aquesta funció permet consultar tots els documents que hi ha guardats en el sistema </p><dl class="section return"><dt>Retorna</dt><dd>Llistat de parells de tots els identificadors de documents de l'aplicatiu </dd></dl>
+<dl class="section post"><dt>Postcondició</dt><dd>L'estat del sistema no queda alterat </dd></dl>
+
+<p class="definition">Definició a la línia <a class="el" href="_ctrl_domain_8java_source.html#l00155">155</a> del fitxer <a class="el" href="_ctrl_domain_8java_source.html">CtrlDomain.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                                                         {</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classmain_1_1domain_1_1_ctrl_domain.html#a3187d8c3e4425be67508cf5534447bed">ds</a>.<a class="code" href="classmain_1_1domain_1_1documents_1_1_documents_set.html#af703d330fde17f472051fde96842cab2">listAll</a>();</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    }</div>
+<div class="ttc" id="aclassmain_1_1domain_1_1documents_1_1_documents_set_html_af703d330fde17f472051fde96842cab2"><div class="ttname"><a href="classmain_1_1domain_1_1documents_1_1_documents_set.html#af703d330fde17f472051fde96842cab2">main.domain.documents.DocumentsSet.listAll</a></div><div class="ttdeci">List&lt; Pair&lt; String, String &gt; &gt; listAll()</div><div class="ttdoc">Funció per obtenir tots els identificadors dels documents del sistema.</div><div class="ttdef"><b>Definition:</b> <a href="_documents_set_8java_source.html#l00260">DocumentsSet.java:260</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="afb44ee87e327980137b94a90b59acd66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb44ee87e327980137b94a90b59acd66">&#9670;&nbsp;</a></span>listSimilars()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="classmain_1_1domain_1_1util_1_1_pair.html">Pair</a>&lt;String, String&gt; &gt; main.domain.CtrlDomain.listSimilars </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>title</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>author</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>k</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>strategy</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> throws <a class="el" href="classmain_1_1excepcions_1_1_exception_no_document.html">ExceptionNoDocument</a>, <a class="el" href="classmain_1_1excepcions_1_1_exception_invalid_strategy.html">ExceptionInvalidStrategy</a>, <a class="el" href="classmain_1_1excepcions_1_1_exception_invalid_k.html">ExceptionInvalidK</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Funció per obtenir els identificadors dels k documents més similars a un document. </p>
+<p>Amb aquesta operació es poden consultar els documents més similars a un document. En concret, a partir de l'identificador (títol i autor) d'un document, s'obtenen els identificadors dels k documents que són més similars a aquest. </p><dl class="section pre"><dt>Precondició</dt><dd>El document identificat pels paràmetres donats està donat d'alta a l'aplicatiu </dd></dl>
+<dl class="params"><dt>Paràmetres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>Títol del document a què se li vol buscar els similars </td></tr>
+    <tr><td class="paramname">author</td><td>Autor del document a què se li vol buscar els similars </td></tr>
+    <tr><td class="paramname">k</td><td>Nombre d'identificadors de documents similars que es vol obtenir </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Llista amb parells dels identificadors (títol, autor) dels com a molt k documents més similars al document donat </dd></dl>
+<dl class="section post"><dt>Postcondició</dt><dd>L'estat del sistema no queda alterat </dd></dl>
+<dl class="exception"><dt>Excepcions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ExceptionNoDocument</td><td>quan no existeix un document identificat per (title, author) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definició a la línia <a class="el" href="_ctrl_domain_8java_source.html#l00170">170</a> del fitxer <a class="el" href="_ctrl_domain_8java_source.html">CtrlDomain.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                                                                                                                                                                                {</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classmain_1_1domain_1_1_ctrl_domain.html#a3187d8c3e4425be67508cf5534447bed">ds</a>.<a class="code" href="classmain_1_1domain_1_1documents_1_1_documents_set.html#adcd3768ba2f3c997da54c873394890fc">listSimilars</a>(title, author, k, strategy);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    }</div>
+<div class="ttc" id="aclassmain_1_1domain_1_1documents_1_1_documents_set_html_adcd3768ba2f3c997da54c873394890fc"><div class="ttname"><a href="classmain_1_1domain_1_1documents_1_1_documents_set.html#adcd3768ba2f3c997da54c873394890fc">main.domain.documents.DocumentsSet.listSimilars</a></div><div class="ttdeci">List&lt; Pair&lt; String, String &gt; &gt; listSimilars(String title, String author, int k, String strategy)</div><div class="ttdoc">Funció per obtenir els identificadors dels k documents més similars a un document.</div><div class="ttdef"><b>Definition:</b> <a href="_documents_set_8java_source.html#l00284">DocumentsSet.java:284</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a56f149998243fea98476649a228ef53b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56f149998243fea98476649a228ef53b">&#9670;&nbsp;</a></span>listTitlesOfAuthor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="classmain_1_1domain_1_1util_1_1_pair.html">Pair</a>&lt;String, String&gt; &gt; main.domain.CtrlDomain.listTitlesOfAuthor </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>author</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Funció per aconseguir els títols d'un autor. </p>
+<p>La funció obté els identificadors (títol i autor) dels documents que tenen com a autor el que es dona com a paràmetre </p><dl class="params"><dt>Paràmetres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">author</td><td>Autor a qui se li volen obtenir els títols </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Llista amb els identificadors (títol, autor) dels documents que tenen com a autor l'autor donat </dd></dl>
+<dl class="section post"><dt>Postcondició</dt><dd>L'estat del sistema no queda alterat </dd></dl>
+
+<p class="definition">Definició a la línia <a class="el" href="_ctrl_domain_8java_source.html#l00181">181</a> del fitxer <a class="el" href="_ctrl_domain_8java_source.html">CtrlDomain.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                                                                        {</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classmain_1_1domain_1_1_ctrl_domain.html#a3187d8c3e4425be67508cf5534447bed">ds</a>.<a class="code" href="classmain_1_1domain_1_1documents_1_1_documents_set.html#a44c23820e6d19e3eacf41a3bbae2bf16">listTitlesOfAuthor</a>(author);</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    }</div>
+<div class="ttc" id="aclassmain_1_1domain_1_1documents_1_1_documents_set_html_a44c23820e6d19e3eacf41a3bbae2bf16"><div class="ttname"><a href="classmain_1_1domain_1_1documents_1_1_documents_set.html#a44c23820e6d19e3eacf41a3bbae2bf16">main.domain.documents.DocumentsSet.listTitlesOfAuthor</a></div><div class="ttdeci">List&lt; Pair&lt; String, String &gt; &gt; listTitlesOfAuthor(String author)</div><div class="ttdoc">Operació per conseguir els títols dels documents d'un autor.</div><div class="ttdef"><b>Definition:</b> <a href="_documents_set_8java_source.html#l00328">DocumentsSet.java:328</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a3f90f9e65e3aa3dfe968fbce703e99da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f90f9e65e3aa3dfe968fbce703e99da">&#9670;&nbsp;</a></span>listAuthorsByPrefix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;String&gt; main.domain.CtrlDomain.listAuthorsByPrefix </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>prefix</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Operació per aconseguir els autors que comencen per un cert prefix. </p>
+<p>Aquesta funció serveix per obtenir un llistat amb tots els autors que comencen per un cert prefix </p><dl class="params"><dt>Paràmetres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">prefix</td><td>Prefix que es vol que tinguin els autors </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Llista amb els autors (string) que comencen pel prefix donat </dd></dl>
+<dl class="section post"><dt>Postcondició</dt><dd>L'estat del sistema no queda alterat </dd></dl>
+
+<p class="definition">Definició a la línia <a class="el" href="_ctrl_domain_8java_source.html#l00192">192</a> del fitxer <a class="el" href="_ctrl_domain_8java_source.html">CtrlDomain.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                                                           {</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classmain_1_1domain_1_1_ctrl_domain.html#a3187d8c3e4425be67508cf5534447bed">ds</a>.<a class="code" href="classmain_1_1domain_1_1documents_1_1_documents_set.html#ada888d43367248968b5986188a69af33">listAuthorsByPrefix</a>(prefix);</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    }</div>
+<div class="ttc" id="aclassmain_1_1domain_1_1documents_1_1_documents_set_html_ada888d43367248968b5986188a69af33"><div class="ttname"><a href="classmain_1_1domain_1_1documents_1_1_documents_set.html#ada888d43367248968b5986188a69af33">main.domain.documents.DocumentsSet.listAuthorsByPrefix</a></div><div class="ttdeci">List&lt; String &gt; listAuthorsByPrefix(String prefix)</div><div class="ttdoc">Operació per aconseguir els autors que el seu nom comença per un prefix donat.</div><div class="ttdef"><b>Definition:</b> <a href="_documents_set_8java_source.html#l00346">DocumentsSet.java:346</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aa57ed4bd06eb0a8b284a81ad6b1fc144"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa57ed4bd06eb0a8b284a81ad6b1fc144">&#9670;&nbsp;</a></span>listByQuery()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="classmain_1_1domain_1_1util_1_1_pair.html">Pair</a>&lt;String, String&gt; &gt; main.domain.CtrlDomain.listByQuery </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>query</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>k</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> throws <a class="el" href="classmain_1_1excepcions_1_1_exception_invalid_k.html">ExceptionInvalidK</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Operació per obtenir identificadors dels documents rellevants a partir d'una query. </p>
+<p>Es permet aconseguir els identificadors dels k documents més rellevants en quant a contingut d'una certa query </p><dl class="params"><dt>Paràmetres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">query</td><td>Seguit de paraules a partir de les quals es volen obtenir els documents rellevants </td></tr>
+    <tr><td class="paramname">k</td><td>Nombre de documents màxims que es vol obtenir </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Llista amb els identificadors (títol, autor) dels k documents més rellevants, pel que fa a contingut, de la query </dd></dl>
+<dl class="section post"><dt>Postcondició</dt><dd>L'estat del sistema no queda alterat </dd></dl>
+
+<p class="definition">Definició a la línia <a class="el" href="_ctrl_domain_8java_source.html#l00204">204</a> del fitxer <a class="el" href="_ctrl_domain_8java_source.html">CtrlDomain.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                                                                                                 {</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classmain_1_1domain_1_1_ctrl_domain.html#a3187d8c3e4425be67508cf5534447bed">ds</a>.<a class="code" href="classmain_1_1domain_1_1documents_1_1_documents_set.html#a4f65368dfe6c788961a2841fb1eed3d4">listByQuery</a>(query, k);</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    }</div>
+<div class="ttc" id="aclassmain_1_1domain_1_1documents_1_1_documents_set_html_a4f65368dfe6c788961a2841fb1eed3d4"><div class="ttname"><a href="classmain_1_1domain_1_1documents_1_1_documents_set.html#a4f65368dfe6c788961a2841fb1eed3d4">main.domain.documents.DocumentsSet.listByQuery</a></div><div class="ttdeci">List&lt; Pair&lt; String, String &gt; &gt; listByQuery(String query, int k)</div><div class="ttdoc">Operació per conseguir una llista dels k documents que compleixen millor la query.</div><div class="ttdef"><b>Definition:</b> <a href="_documents_set_8java_source.html#l00365">DocumentsSet.java:365</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a5e49ea0d0baf93b0c16d74771a04d166"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e49ea0d0baf93b0c16d74771a04d166">&#9670;&nbsp;</a></span>listByExpression()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="classmain_1_1domain_1_1util_1_1_pair.html">Pair</a>&lt;String, String&gt; &gt; main.domain.CtrlDomain.listByExpression </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>expression</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Boolean&#160;</td>
+          <td class="paramname"><em>caseSensitive</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> throws <a class="el" href="classmain_1_1excepcions_1_1_exception_no_expression.html">ExceptionNoExpression</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Funció per aconseguir els identificadors dels documents que compleixen una expressió booleana. </p>
+<p>Donada una expressió booleana, aquesta funció permet obtenir els identificadors dels documents que contenen alguna frase que la compleixen </p><dl class="section pre"><dt>Precondició</dt><dd>La cadena de caràcters donada com a paràmetre identifica una expressió vàlida i ja registrada en el sistema </dd></dl>
+<dl class="params"><dt>Paràmetres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">expression</td><td>Expressió booleana a partir de la qual es vol realitzar la consulta </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Llista dels identificadors (títol, autor) dels documents que tenen alguna frase que compleix l'expressió donada </dd></dl>
+<dl class="section post"><dt>Postcondició</dt><dd>L'estat del sistema no queda alterat </dd></dl>
+<dl class="exception"><dt>Excepcions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ExceptionNoExpression</td><td>en cas que l'expressió identificada per (expression) no estigui donada d'alta a l'aplicatiu </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definició a la línia <a class="el" href="_ctrl_domain_8java_source.html#l00218">218</a> del fitxer <a class="el" href="_ctrl_domain_8java_source.html">CtrlDomain.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                                                                                                                              {</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        Expression expr = <a class="code" href="classmain_1_1domain_1_1_ctrl_domain.html#ac4de46372005dace6267cbee7519185c">es</a>.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_expressions_set.html#afe262cff4ba970a6bc9611016b54f440">getExpression</a>(expression);</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classmain_1_1domain_1_1_ctrl_domain.html#a3187d8c3e4425be67508cf5534447bed">ds</a>.<a class="code" href="classmain_1_1domain_1_1documents_1_1_documents_set.html#aeebc8a3491f925e09032139feb2a9827">listByExpression</a>(expr, caseSensitive);</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    }</div>
+<div class="ttc" id="aclassmain_1_1domain_1_1documents_1_1_documents_set_html_aeebc8a3491f925e09032139feb2a9827"><div class="ttname"><a href="classmain_1_1domain_1_1documents_1_1_documents_set.html#aeebc8a3491f925e09032139feb2a9827">main.domain.documents.DocumentsSet.listByExpression</a></div><div class="ttdeci">List&lt; Pair&lt; String, String &gt; &gt; listByExpression(Expression expression, Boolean caseSensitive)</div><div class="ttdoc">Operació per conseguir els documents que compleixen una expressió</div><div class="ttdef"><b>Definition:</b> <a href="_documents_set_8java_source.html#l00400">DocumentsSet.java:400</a></div></div>
+<div class="ttc" id="aclassmain_1_1domain_1_1expressions_1_1_expressions_set_html_afe262cff4ba970a6bc9611016b54f440"><div class="ttname"><a href="classmain_1_1domain_1_1expressions_1_1_expressions_set.html#afe262cff4ba970a6bc9611016b54f440">main.domain.expressions.ExpressionsSet.getExpression</a></div><div class="ttdeci">Expression getExpression(String id_expression)</div><div class="ttdoc">Funció per aconseguir una expressió</div><div class="ttdef"><b>Definition:</b> <a href="_expressions_set_8java_source.html#l00073">ExpressionsSet.java:73</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ab725742635b50b5d7385862273dc900b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab725742635b50b5d7385862273dc900b">&#9670;&nbsp;</a></span>createExpression()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void main.domain.CtrlDomain.createExpression </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>expression</em></td><td>)</td>
+          <td> throws <a class="el" href="classmain_1_1excepcions_1_1_exception_expression_exists.html">ExceptionExpressionExists</a>, <a class="el" href="classmain_1_1excepcions_1_1_exception_invalid_expression.html">ExceptionInvalidExpression</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mètode per donar d'alta una expressió booleana. </p>
+<p>La funció permet donar d'alta una expressió booleana que s'identificarà amb la cadena de caràcters donada </p><dl class="params"><dt>Paràmetres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">expression</td><td>Cadena de caràcters que identificarà la nova expressió booleana </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section post"><dt>Postcondició</dt><dd>En cas que la cadena de caràcters donada pugui ser una expressió vàlida i no existeixi prèviament, es dona d'alta una expressió booleana identificada amb aquesta cadena </dd></dl>
+<dl class="exception"><dt>Excepcions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ExceptionExpressionExists</td><td>si l'string donnat ja identifica una expressió donada d'alta al sistema </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definició a la línia <a class="el" href="_ctrl_domain_8java_source.html#l00230">230</a> del fitxer <a class="el" href="_ctrl_domain_8java_source.html">CtrlDomain.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                                                                                                                 {</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;        <a class="code" href="classmain_1_1domain_1_1_ctrl_domain.html#ac4de46372005dace6267cbee7519185c">es</a>.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_expressions_set.html#a717e36ceabd3b54a54e7f74775e5abfb">createExpression</a>(expression);</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    }</div>
+<div class="ttc" id="aclassmain_1_1domain_1_1expressions_1_1_expressions_set_html_a717e36ceabd3b54a54e7f74775e5abfb"><div class="ttname"><a href="classmain_1_1domain_1_1expressions_1_1_expressions_set.html#a717e36ceabd3b54a54e7f74775e5abfb">main.domain.expressions.ExpressionsSet.createExpression</a></div><div class="ttdeci">void createExpression(String id_expression)</div><div class="ttdoc">Mètode per donar d'alta una expressió</div><div class="ttdef"><b>Definition:</b> <a href="_expressions_set_8java_source.html#l00087">ExpressionsSet.java:87</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aa2af3f2076c4b817b559d8d513bcba59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2af3f2076c4b817b559d8d513bcba59">&#9670;&nbsp;</a></span>deleteExpression()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void main.domain.CtrlDomain.deleteExpression </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>expression</em></td><td>)</td>
+          <td> throws <a class="el" href="classmain_1_1excepcions_1_1_exception_no_expression.html">ExceptionNoExpression</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Funció per donar de baixa una expressió booleana. </p>
+<p>Donada una cadena de caràcters que identifica una expressió booleana del sistema, aquesta es dona de bixa de l'aplicatiu </p><dl class="section pre"><dt>Precondició</dt><dd>Existeix una expressió identificada per la cadena de caràcters donada </dd></dl>
+<dl class="params"><dt>Paràmetres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">expression</td><td>Identificador de l'expressió booleana que es vol esborrar </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section post"><dt>Postcondició</dt><dd>Deixa d'estar registrada en l'aplicatiu l'expressió booleana identificada pel paràmetre </dd></dl>
+<dl class="exception"><dt>Excepcions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ExceptionNoExpression</td><td>en cas que no existeixi cap expressió booleana identificada per (expression) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definició a la línia <a class="el" href="_ctrl_domain_8java_source.html#l00242">242</a> del fitxer <a class="el" href="_ctrl_domain_8java_source.html">CtrlDomain.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;                                                                                 {</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        <a class="code" href="classmain_1_1domain_1_1_ctrl_domain.html#ac4de46372005dace6267cbee7519185c">es</a>.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_expressions_set.html#a902988502958928bc9765da2d2356e38">deleteExpression</a>(expression);</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    }</div>
+<div class="ttc" id="aclassmain_1_1domain_1_1expressions_1_1_expressions_set_html_a902988502958928bc9765da2d2356e38"><div class="ttname"><a href="classmain_1_1domain_1_1expressions_1_1_expressions_set.html#a902988502958928bc9765da2d2356e38">main.domain.expressions.ExpressionsSet.deleteExpression</a></div><div class="ttdeci">void deleteExpression(String id_expression)</div><div class="ttdoc">Mètode per donar de baixa una expressió</div><div class="ttdef"><b>Definition:</b> <a href="_expressions_set_8java_source.html#l00107">ExpressionsSet.java:107</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a8e29a29caaa5e0ba058c122802496b58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e29a29caaa5e0ba058c122802496b58">&#9670;&nbsp;</a></span>modifyExpression()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void main.domain.CtrlDomain.modifyExpression </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>oldExpression</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>newExpression</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> throws <a class="el" href="classmain_1_1excepcions_1_1_exception_no_expression.html">ExceptionNoExpression</a>, <a class="el" href="classmain_1_1excepcions_1_1_exception_expression_exists.html">ExceptionExpressionExists</a>, <a class="el" href="classmain_1_1excepcions_1_1_exception_invalid_expression.html">ExceptionInvalidExpression</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Operació que permet modificar una expressió booleana. </p>
+<p>Amb aquesta funció es permet substituir l'identificador d'una expressió booleana per un de nou </p><dl class="section pre"><dt>Precondició</dt><dd>Existeix una expressió booleana que té com a identificador oldExpression </dd></dl>
+<dl class="params"><dt>Paràmetres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">oldExpression</td><td>Identificador de l'expressió booleana a modificar </td></tr>
+    <tr><td class="paramname">newExpression</td><td>Nou identificador que es vol donar a l'expressió booleana </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section post"><dt>Postcondició</dt><dd>En cas que no existeixi cap expressió booleana identificada per newExpression, es modifica l'identificador de l'expressió identificada per oldExpression pel nou </dd></dl>
+<dl class="exception"><dt>Excepcions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ExceptionNoExpression</td><td>si no existeix cap expressió identificada per (oldExpression) </td></tr>
+    <tr><td class="paramname">ExceptionExpressionExists</td><td>en cas que el nou identificador que es vol donar ja és d'una altra expressió </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definició a la línia <a class="el" href="_ctrl_domain_8java_source.html#l00256">256</a> del fitxer <a class="el" href="_ctrl_domain_8java_source.html">CtrlDomain.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;                                                                                                                                                                 {</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;        <a class="code" href="classmain_1_1domain_1_1_ctrl_domain.html#aa2af3f2076c4b817b559d8d513bcba59">deleteExpression</a>(oldExpression);</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        <a class="code" href="classmain_1_1domain_1_1_ctrl_domain.html#ab725742635b50b5d7385862273dc900b">createExpression</a>(newExpression);</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    }</div>
+<div class="ttc" id="aclassmain_1_1domain_1_1_ctrl_domain_html_aa2af3f2076c4b817b559d8d513bcba59"><div class="ttname"><a href="classmain_1_1domain_1_1_ctrl_domain.html#aa2af3f2076c4b817b559d8d513bcba59">main.domain.CtrlDomain.deleteExpression</a></div><div class="ttdeci">void deleteExpression(String expression)</div><div class="ttdoc">Funció per donar de baixa una expressió booleana.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_domain_8java_source.html#l00242">CtrlDomain.java:242</a></div></div>
+<div class="ttc" id="aclassmain_1_1domain_1_1_ctrl_domain_html_ab725742635b50b5d7385862273dc900b"><div class="ttname"><a href="classmain_1_1domain_1_1_ctrl_domain.html#ab725742635b50b5d7385862273dc900b">main.domain.CtrlDomain.createExpression</a></div><div class="ttdeci">void createExpression(String expression)</div><div class="ttdoc">Mètode per donar d'alta una expressió booleana.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_domain_8java_source.html#l00230">CtrlDomain.java:230</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Documentació de les Dades Membre</h2>
+<a id="a29bf0158aaf32bd4f43934feef7a82d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29bf0158aaf32bd4f43934feef7a82d3">&#9670;&nbsp;</a></span>singletonObject</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html">CtrlDomain</a> main.domain.CtrlDomain.singletonObject</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Objecte singleton que guarda la única instància del <a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html" title="Controlador de la capa de domini de l&#39;aplicatiu. S&#39;encarrega de rebre peticions de la capa de present...">CtrlDomain</a>. </p>
+
+<p class="definition">Definició a la línia <a class="el" href="_ctrl_domain_8java_source.html#l00023">23</a> del fitxer <a class="el" href="_ctrl_domain_8java_source.html">CtrlDomain.java</a>.</p>
+
+</div>
+</div>
+<a id="a3187d8c3e4425be67508cf5534447bed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3187d8c3e4425be67508cf5534447bed">&#9670;&nbsp;</a></span>ds</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmain_1_1domain_1_1documents_1_1_documents_set.html">DocumentsSet</a> main.domain.CtrlDomain.ds</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Instància del conjunt de documents del sistema (DocumentsSet) </p>
+
+<p class="definition">Definició a la línia <a class="el" href="_ctrl_domain_8java_source.html#l00028">28</a> del fitxer <a class="el" href="_ctrl_domain_8java_source.html">CtrlDomain.java</a>.</p>
+
+</div>
+</div>
+<a id="ac4de46372005dace6267cbee7519185c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4de46372005dace6267cbee7519185c">&#9670;&nbsp;</a></span>es</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmain_1_1domain_1_1expressions_1_1_expressions_set.html">ExpressionsSet</a> main.domain.CtrlDomain.es</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Instància del conjunt d'expressions del sistema (ExpressionsSet) </p>
+
+<p class="definition">Definició a la línia <a class="el" href="_ctrl_domain_8java_source.html#l00033">33</a> del fitxer <a class="el" href="_ctrl_domain_8java_source.html">CtrlDomain.java</a>.</p>
+
+</div>
+</div>
+<hr/>La documentació d'aquesta classe es va generar a partir del següent fitxer:<ul>
+<li><a class="el" href="_ctrl_domain_8java_source.html">CtrlDomain.java</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generat per&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

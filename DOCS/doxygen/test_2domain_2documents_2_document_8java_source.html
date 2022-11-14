@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Gestor de Documents: Fitxer de Codi Document.java</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Gestor de Documents
+   &#160;<span id="projectnumber">version 0 10-11-22</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generat per Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Cerca','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Cerca');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d2a81fcb9e0344d06f49c2bd6fcf908f.html">FONTS</a></li><li class="navelem"><a class="el" href="dir_8b5fe5f88de8947ae038b2ab30954ea6.html">test</a></li><li class="navelem"><a class="el" href="dir_16151eba57ee2cf0e7a09d1b533daf20.html">domain</a></li><li class="navelem"><a class="el" href="dir_063dd3ba955c9edff9091b23b8437d0c.html">documents</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">test/domain/documents/Document.java</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="test_2domain_2documents_2_document_8java.html">Veure la documentació d'aquest fitxer.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="namespacetest_1_1domain_1_1documents.html">    1</a></span>&#160;<span class="keyword">package </span>test.domain.documents;</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">import</span> main.excepcions.ExceptionInvalidFormat;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">import</span> main.excepcions.ExceptionInvalidLanguage;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">import</span> java.util.*;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="classtest_1_1domain_1_1documents_1_1_document.html">   13</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html">Document</a> {</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="classtest_1_1domain_1_1documents_1_1_document.html#a45d5546af810230a8a07a3205658ee69">   14</a></span>&#160;    <span class="keyword">private</span> String <a class="code" href="classtest_1_1domain_1_1documents_1_1_document.html#a45d5546af810230a8a07a3205658ee69">content</a>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classtest_1_1domain_1_1documents_1_1_document.html#acc2338d01f9f4b2bbd584bd8079f674d">   15</a></span>&#160;    <span class="keyword">private</span> String <a class="code" href="classtest_1_1domain_1_1documents_1_1_document.html#acc2338d01f9f4b2bbd584bd8079f674d">language</a>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classtest_1_1domain_1_1documents_1_1_document.html#a76e0030304caecf025c9322617d83f86">   17</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classtest_1_1domain_1_1documents_1_1_document.html#a76e0030304caecf025c9322617d83f86">Document</a>() {}</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classtest_1_1domain_1_1documents_1_1_document.html#ab576c62475d35d64ede98a78c63d07f6">   19</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classtest_1_1domain_1_1documents_1_1_document.html#ab576c62475d35d64ede98a78c63d07f6">Document</a>(String <a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#a9d07984230a1c5d4b9201d24d3f459ba">author</a>, String <a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#a22cdf90d611fb5a4dcbc20d766fb6c75">title</a>, String <a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#ab087d53bfb00ae6eacfeddfaf3cec70a">content</a>, String <a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#ae6d7ccb2cbad67c22ed6702ea2f425f2">language</a>) <span class="keywordflow">throws</span> <a class="code" href="classmain_1_1excepcions_1_1_exception_invalid_language.html">ExceptionInvalidLanguage</a> {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keywordflow">if</span> (!<span class="stringliteral">&quot;ca&quot;</span>.equals(<a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#ae6d7ccb2cbad67c22ed6702ea2f425f2">language</a>) &amp;&amp; !<span class="stringliteral">&quot;en&quot;</span>.equals(<a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#ae6d7ccb2cbad67c22ed6702ea2f425f2">language</a>) &amp;&amp; !<span class="stringliteral">&quot;es&quot;</span>.equals(<a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#ae6d7ccb2cbad67c22ed6702ea2f425f2">language</a>)) <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="classmain_1_1excepcions_1_1_exception_invalid_language.html">ExceptionInvalidLanguage</a>(<a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#ae6d7ccb2cbad67c22ed6702ea2f425f2">language</a>);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        this.content = <a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#ab087d53bfb00ae6eacfeddfaf3cec70a">content</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        this.language = <a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#ae6d7ccb2cbad67c22ed6702ea2f425f2">language</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    }</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classtest_1_1domain_1_1documents_1_1_document.html#a215ab062c836f93f089901805fc26c26">   25</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classtest_1_1domain_1_1documents_1_1_document.html#a215ab062c836f93f089901805fc26c26">Document</a>(String <a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#a9d07984230a1c5d4b9201d24d3f459ba">author</a>, String <a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#a22cdf90d611fb5a4dcbc20d766fb6c75">title</a>, String <a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#ab087d53bfb00ae6eacfeddfaf3cec70a">content</a>, String <a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#ae6d7ccb2cbad67c22ed6702ea2f425f2">language</a>, String format) <span class="keywordflow">throws</span> <a class="code" href="classmain_1_1excepcions_1_1_exception_invalid_format.html">ExceptionInvalidFormat</a>, <a class="code" href="classmain_1_1excepcions_1_1_exception_invalid_language.html">ExceptionInvalidLanguage</a> {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        this.content = <a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#ab087d53bfb00ae6eacfeddfaf3cec70a">content</a>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    }</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classtest_1_1domain_1_1documents_1_1_document.html#a460486acbee0e73c9d5cf18040e6fac5">   29</a></span>&#160;    <span class="keyword">public</span> String <a class="code" href="classtest_1_1domain_1_1documents_1_1_document.html#a460486acbee0e73c9d5cf18040e6fac5">getContent</a>() {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#ab087d53bfb00ae6eacfeddfaf3cec70a">content</a>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classtest_1_1domain_1_1documents_1_1_document.html#a62a8dc76b6ff20f9b40b8719ed900d6d">   33</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classtest_1_1domain_1_1documents_1_1_document.html#a62a8dc76b6ff20f9b40b8719ed900d6d">setContent</a>(String <a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#ab087d53bfb00ae6eacfeddfaf3cec70a">content</a>) {this.content = <a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#ab087d53bfb00ae6eacfeddfaf3cec70a">content</a>;}</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classtest_1_1domain_1_1documents_1_1_document.html#a8f6a1cca20c14aceb127696f55130fa4">   35</a></span>&#160;    <span class="keyword">public</span> String <a class="code" href="classtest_1_1domain_1_1documents_1_1_document.html#a8f6a1cca20c14aceb127696f55130fa4">getLanguage</a>() {<span class="keywordflow">return</span> <a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#ae6d7ccb2cbad67c22ed6702ea2f425f2">language</a>;}</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classtest_1_1domain_1_1documents_1_1_document.html#a215d1b2a81d61d60f8bdea9e546b6f13">   37</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classtest_1_1domain_1_1documents_1_1_document.html#a215d1b2a81d61d60f8bdea9e546b6f13">setLanguage</a>(String <a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#ae6d7ccb2cbad67c22ed6702ea2f425f2">language</a>) {this.language = <a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#ae6d7ccb2cbad67c22ed6702ea2f425f2">language</a>;}</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classtest_1_1domain_1_1documents_1_1_document.html#a4c1c85af915163bd2550336a7750a7bb">   39</a></span>&#160;    <span class="keyword">public</span> Set&lt;String&gt; <a class="code" href="classtest_1_1domain_1_1documents_1_1_document.html#a4c1c85af915163bd2550336a7750a7bb">getRelevantWords</a>() {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        Set&lt;String&gt; relevantWordsFake = <span class="keyword">new</span> HashSet&lt;&gt;();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordflow">for</span> (Character c : <a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#ab087d53bfb00ae6eacfeddfaf3cec70a">content</a>.toCharArray()) {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            String s = c.toString();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <span class="keywordflow">if</span> (!<span class="stringliteral">&quot; &quot;</span>.equals(s)) relevantWordsFake.add(s);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">return</span> relevantWordsFake;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classtest_1_1domain_1_1documents_1_1_document.html#a7feabe1877aeca23e8dfe3a73d1f021a">   48</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">double</span> <a class="code" href="classtest_1_1domain_1_1documents_1_1_document.html#a7feabe1877aeca23e8dfe3a73d1f021a">compare_tf_idf</a>(<a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html">Document</a> other, Integer num_docs, Map&lt;String,Integer&gt; presence) {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        Integer r = other.<a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#ab087d53bfb00ae6eacfeddfaf3cec70a">content</a>.length() - <a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#ab087d53bfb00ae6eacfeddfaf3cec70a">content</a>.length();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordflow">if</span> (r &lt; 0) <span class="keywordflow">return</span> -r;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">return</span> r;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classtest_1_1domain_1_1documents_1_1_document.html#a56961835018695a69d62e371fb15c28b">   53</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">double</span> <a class="code" href="classtest_1_1domain_1_1documents_1_1_document.html#a56961835018695a69d62e371fb15c28b">compare_tf_boolean</a>(<a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html">Document</a> other) {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        Integer r = other.<a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#ab087d53bfb00ae6eacfeddfaf3cec70a">content</a>.length() - <a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#ab087d53bfb00ae6eacfeddfaf3cec70a">content</a>.length();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">if</span> (r &lt; 0) <span class="keywordflow">return</span> -r;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">return</span> r;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classtest_1_1domain_1_1documents_1_1_document.html#accd415967c93b89231735e507bb6cbf3">   58</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">double</span> <a class="code" href="classtest_1_1domain_1_1documents_1_1_document.html#accd415967c93b89231735e507bb6cbf3">queryRelevance</a>(String query, Integer num_docs, Map&lt;String,Integer&gt; presence) {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        Integer r = query.length() - <a class="code" href="classmain_1_1domain_1_1documents_1_1_document.html#ab087d53bfb00ae6eacfeddfaf3cec70a">content</a>.length();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">if</span> (r &lt; 0) <span class="keywordflow">return</span> -r;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">return</span> r;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;}</div>
+<div class="ttc" id="aclassmain_1_1domain_1_1documents_1_1_document_html"><div class="ttname"><a href="classmain_1_1domain_1_1documents_1_1_document.html">main.domain.documents.Document</a></div><div class="ttdoc">Classe que representa un document dins el sistema, identificat per un títol i un autor Els documents ...</div><div class="ttdef"><b>Definition:</b> <a href="main_2domain_2documents_2_document_8java_source.html#l00014">main/domain/documents/Document.java:14</a></div></div>
+<div class="ttc" id="aclassmain_1_1domain_1_1documents_1_1_document_html_a22cdf90d611fb5a4dcbc20d766fb6c75"><div class="ttname"><a href="classmain_1_1domain_1_1documents_1_1_document.html#a22cdf90d611fb5a4dcbc20d766fb6c75">main.domain.documents.Document.title</a></div><div class="ttdeci">String title</div><div class="ttdoc">El contingut del document.</div><div class="ttdef"><b>Definition:</b> <a href="main_2domain_2documents_2_document_8java_source.html#l00023">main/domain/documents/Document.java:23</a></div></div>
+<div class="ttc" id="aclassmain_1_1domain_1_1documents_1_1_document_html_a9d07984230a1c5d4b9201d24d3f459ba"><div class="ttname"><a href="classmain_1_1domain_1_1documents_1_1_document.html#a9d07984230a1c5d4b9201d24d3f459ba">main.domain.documents.Document.author</a></div><div class="ttdeci">String author</div><div class="ttdoc">L'autor del document.</div><div class="ttdef"><b>Definition:</b> <a href="main_2domain_2documents_2_document_8java_source.html#l00020">main/domain/documents/Document.java:20</a></div></div>
+<div class="ttc" id="aclassmain_1_1domain_1_1documents_1_1_document_html_ab087d53bfb00ae6eacfeddfaf3cec70a"><div class="ttname"><a href="classmain_1_1domain_1_1documents_1_1_document.html#ab087d53bfb00ae6eacfeddfaf3cec70a">main.domain.documents.Document.content</a></div><div class="ttdeci">String content</div><div class="ttdoc">El títol del document.</div><div class="ttdef"><b>Definition:</b> <a href="main_2domain_2documents_2_document_8java_source.html#l00017">main/domain/documents/Document.java:17</a></div></div>
+<div class="ttc" id="aclassmain_1_1domain_1_1documents_1_1_document_html_ae6d7ccb2cbad67c22ed6702ea2f425f2"><div class="ttname"><a href="classmain_1_1domain_1_1documents_1_1_document.html#ae6d7ccb2cbad67c22ed6702ea2f425f2">main.domain.documents.Document.language</a></div><div class="ttdeci">String language</div><div class="ttdoc">L'idioma del document.</div><div class="ttdef"><b>Definition:</b> <a href="main_2domain_2documents_2_document_8java_source.html#l00033">main/domain/documents/Document.java:33</a></div></div>
+<div class="ttc" id="aclassmain_1_1excepcions_1_1_exception_invalid_format_html"><div class="ttname"><a href="classmain_1_1excepcions_1_1_exception_invalid_format.html">main.excepcions.ExceptionInvalidFormat</a></div><div class="ttdoc">Excepció que es llença quan no es troba una expressió al sistema.</div><div class="ttdef"><b>Definition:</b> <a href="_exception_invalid_format_8java_source.html#l00008">ExceptionInvalidFormat.java:8</a></div></div>
+<div class="ttc" id="aclassmain_1_1excepcions_1_1_exception_invalid_language_html"><div class="ttname"><a href="classmain_1_1excepcions_1_1_exception_invalid_language.html">main.excepcions.ExceptionInvalidLanguage</a></div><div class="ttdoc">Excepció que es llença quan el paràmetre d'idioma d'un document no és vàlid.</div><div class="ttdef"><b>Definition:</b> <a href="_exception_invalid_language_8java_source.html#l00008">ExceptionInvalidLanguage.java:8</a></div></div>
+<div class="ttc" id="aclasstest_1_1domain_1_1documents_1_1_document_html_a215ab062c836f93f089901805fc26c26"><div class="ttname"><a href="classtest_1_1domain_1_1documents_1_1_document.html#a215ab062c836f93f089901805fc26c26">test.domain.documents.Document.Document</a></div><div class="ttdeci">Document(String author, String title, String content, String language, String format)</div><div class="ttdef"><b>Definition:</b> <a href="test_2domain_2documents_2_document_8java_source.html#l00025">test/domain/documents/Document.java:25</a></div></div>
+<div class="ttc" id="aclasstest_1_1domain_1_1documents_1_1_document_html_a215d1b2a81d61d60f8bdea9e546b6f13"><div class="ttname"><a href="classtest_1_1domain_1_1documents_1_1_document.html#a215d1b2a81d61d60f8bdea9e546b6f13">test.domain.documents.Document.setLanguage</a></div><div class="ttdeci">void setLanguage(String language)</div><div class="ttdef"><b>Definition:</b> <a href="test_2domain_2documents_2_document_8java_source.html#l00037">test/domain/documents/Document.java:37</a></div></div>
+<div class="ttc" id="aclasstest_1_1domain_1_1documents_1_1_document_html_a45d5546af810230a8a07a3205658ee69"><div class="ttname"><a href="classtest_1_1domain_1_1documents_1_1_document.html#a45d5546af810230a8a07a3205658ee69">test.domain.documents.Document.content</a></div><div class="ttdeci">String content</div><div class="ttdef"><b>Definition:</b> <a href="test_2domain_2documents_2_document_8java_source.html#l00014">test/domain/documents/Document.java:14</a></div></div>
+<div class="ttc" id="aclasstest_1_1domain_1_1documents_1_1_document_html_a460486acbee0e73c9d5cf18040e6fac5"><div class="ttname"><a href="classtest_1_1domain_1_1documents_1_1_document.html#a460486acbee0e73c9d5cf18040e6fac5">test.domain.documents.Document.getContent</a></div><div class="ttdeci">String getContent()</div><div class="ttdef"><b>Definition:</b> <a href="test_2domain_2documents_2_document_8java_source.html#l00029">test/domain/documents/Document.java:29</a></div></div>
+<div class="ttc" id="aclasstest_1_1domain_1_1documents_1_1_document_html_a4c1c85af915163bd2550336a7750a7bb"><div class="ttname"><a href="classtest_1_1domain_1_1documents_1_1_document.html#a4c1c85af915163bd2550336a7750a7bb">test.domain.documents.Document.getRelevantWords</a></div><div class="ttdeci">Set&lt; String &gt; getRelevantWords()</div><div class="ttdef"><b>Definition:</b> <a href="test_2domain_2documents_2_document_8java_source.html#l00039">test/domain/documents/Document.java:39</a></div></div>
+<div class="ttc" id="aclasstest_1_1domain_1_1documents_1_1_document_html_a56961835018695a69d62e371fb15c28b"><div class="ttname"><a href="classtest_1_1domain_1_1documents_1_1_document.html#a56961835018695a69d62e371fb15c28b">test.domain.documents.Document.compare_tf_boolean</a></div><div class="ttdeci">double compare_tf_boolean(Document other)</div><div class="ttdef"><b>Definition:</b> <a href="test_2domain_2documents_2_document_8java_source.html#l00053">test/domain/documents/Document.java:53</a></div></div>
+<div class="ttc" id="aclasstest_1_1domain_1_1documents_1_1_document_html_a62a8dc76b6ff20f9b40b8719ed900d6d"><div class="ttname"><a href="classtest_1_1domain_1_1documents_1_1_document.html#a62a8dc76b6ff20f9b40b8719ed900d6d">test.domain.documents.Document.setContent</a></div><div class="ttdeci">void setContent(String content)</div><div class="ttdef"><b>Definition:</b> <a href="test_2domain_2documents_2_document_8java_source.html#l00033">test/domain/documents/Document.java:33</a></div></div>
+<div class="ttc" id="aclasstest_1_1domain_1_1documents_1_1_document_html_a76e0030304caecf025c9322617d83f86"><div class="ttname"><a href="classtest_1_1domain_1_1documents_1_1_document.html#a76e0030304caecf025c9322617d83f86">test.domain.documents.Document.Document</a></div><div class="ttdeci">Document()</div><div class="ttdef"><b>Definition:</b> <a href="test_2domain_2documents_2_document_8java_source.html#l00017">test/domain/documents/Document.java:17</a></div></div>
+<div class="ttc" id="aclasstest_1_1domain_1_1documents_1_1_document_html_a7feabe1877aeca23e8dfe3a73d1f021a"><div class="ttname"><a href="classtest_1_1domain_1_1documents_1_1_document.html#a7feabe1877aeca23e8dfe3a73d1f021a">test.domain.documents.Document.compare_tf_idf</a></div><div class="ttdeci">double compare_tf_idf(Document other, Integer num_docs, Map&lt; String, Integer &gt; presence)</div><div class="ttdef"><b>Definition:</b> <a href="test_2domain_2documents_2_document_8java_source.html#l00048">test/domain/documents/Document.java:48</a></div></div>
+<div class="ttc" id="aclasstest_1_1domain_1_1documents_1_1_document_html_a8f6a1cca20c14aceb127696f55130fa4"><div class="ttname"><a href="classtest_1_1domain_1_1documents_1_1_document.html#a8f6a1cca20c14aceb127696f55130fa4">test.domain.documents.Document.getLanguage</a></div><div class="ttdeci">String getLanguage()</div><div class="ttdef"><b>Definition:</b> <a href="test_2domain_2documents_2_document_8java_source.html#l00035">test/domain/documents/Document.java:35</a></div></div>
+<div class="ttc" id="aclasstest_1_1domain_1_1documents_1_1_document_html_ab576c62475d35d64ede98a78c63d07f6"><div class="ttname"><a href="classtest_1_1domain_1_1documents_1_1_document.html#ab576c62475d35d64ede98a78c63d07f6">test.domain.documents.Document.Document</a></div><div class="ttdeci">Document(String author, String title, String content, String language)</div><div class="ttdef"><b>Definition:</b> <a href="test_2domain_2documents_2_document_8java_source.html#l00019">test/domain/documents/Document.java:19</a></div></div>
+<div class="ttc" id="aclasstest_1_1domain_1_1documents_1_1_document_html_acc2338d01f9f4b2bbd584bd8079f674d"><div class="ttname"><a href="classtest_1_1domain_1_1documents_1_1_document.html#acc2338d01f9f4b2bbd584bd8079f674d">test.domain.documents.Document.language</a></div><div class="ttdeci">String language</div><div class="ttdef"><b>Definition:</b> <a href="test_2domain_2documents_2_document_8java_source.html#l00015">test/domain/documents/Document.java:15</a></div></div>
+<div class="ttc" id="aclasstest_1_1domain_1_1documents_1_1_document_html_accd415967c93b89231735e507bb6cbf3"><div class="ttname"><a href="classtest_1_1domain_1_1documents_1_1_document.html#accd415967c93b89231735e507bb6cbf3">test.domain.documents.Document.queryRelevance</a></div><div class="ttdeci">double queryRelevance(String query, Integer num_docs, Map&lt; String, Integer &gt; presence)</div><div class="ttdef"><b>Definition:</b> <a href="test_2domain_2documents_2_document_8java_source.html#l00058">test/domain/documents/Document.java:58</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generat per&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>
