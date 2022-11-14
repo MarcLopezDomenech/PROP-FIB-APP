@@ -59,6 +59,8 @@ goto :EOF
 REM === DOCUMENT ===
 javac -cp ".;../lib/junit-4.12.jar;../hamcrest-core-1.3.jar" -d ../EXE/Document test/domain/documents/TestDocument.java
 
+REM java -jar ../EXE/CtrlDomain/TestCtrlDomain.jar
+
 :document
 echo Running test for Document...
 java -cp "../EXE/Document;../lib/junit-4.12.jar;../lib/hamcrest-core-1.3.jar" org.junit.runner.JUnitCore test.domain.documents.TestDocument
