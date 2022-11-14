@@ -7,7 +7,8 @@ En concret, trobem:
     Aquesta estructura s'ha aconseguit executant la comanda següent (des del direcotri arrel del projecte):
     # javac -cp ./FONTS -d ./EXE/CtrlDomain ./FONTS/test/domain/DriverCtrlDomain.java
 - Fitxer descripcio_testCtrlDomain.pdf: Amb les dades i la descripció dels jocs de proves realiztats
-- El fitxer .jar amb l'executable del Driver.
+- El fitxer .jar amb l'executable del Driver, que es pot executar amb:
+
 
 Per executar el test, es pot executar (des del directori arrel del projecte):
     # java -cp ./EXE/CtrlDomain test.domain.DriverCtrlDomain
