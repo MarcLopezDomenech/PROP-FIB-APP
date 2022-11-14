@@ -3,3 +3,7 @@ Directori FONTS
 Aquest es el directori on hi ha tota la implementacio. Esta repartida en dos subdirectoris, main i test.
 - Directori main: Amb tota la implementacio de les classes que apareixen a la capa de domini, i posteriorment amb la resta de classes.
 - Directori test: On hi ha el codi dels tests unitaris, el driver i els stubs que hem emprat per fer els tests de totes les classes.
+
+A mes, aquest directori conte el fitxer run.bat. L'execucio d'aquest s'ha de fer des del directori FONTS. 
+Aquest fixter rep un unic parametre que indica el test o driver que es vol executar. 
+Per exemple, "run.bat TestDocument" executa el test de la classe Document i "run.bat Driver" recompila i executa el driver (del controlaor de domini)
