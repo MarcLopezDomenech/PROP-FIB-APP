@@ -14,3 +14,7 @@ Aixi doncs, trobem els subdirectoris:
 - Not: Amb els corresponents fitxers per testejar la classe Not
 - Or: Amb els corresponents fitxers per testejar la classe Or
 - Pair: Amb els corresponents fitxers per testejar la classe Pair
+
+Per tal d'executar correctament els test, cal anar a la carpeta FONTS i executar el fitxer run.bat
+Aquest fitxer rep per parametres TestClasse on Classe es la classe del test que es vol executar.
+Aquest fitxer tambe es pot executar amb el parametre "Driver", que executara el driver de l'aplicacio.
