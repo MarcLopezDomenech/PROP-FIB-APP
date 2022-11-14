@@ -9,4 +9,4 @@ En aquest directori nomes hi ha un fitxer, que correspon amb la documentacio dem
 - La relacio entre les classes i qui n'ha realitzat la implementacio.
 - L'explicacio de les llibreries externes usades.
 
-En aquest directori tambe trobem el directori DOC, amb tota l'especificacio de les classes amb Doxygen.
+En aquest directori tambe trobem el directori doxygen, amb tota l'especificacio de les classes amb Doxygen.
