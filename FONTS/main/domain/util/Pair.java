@@ -57,5 +57,4 @@ public class Pair<F, S> {
      * @post El Pair no queda alterat
      */
     public S getSecond() {return this.second;}
-
 }
