@@ -16,12 +16,12 @@ public class Trie {
      */
     private class Node {
         /**
-         * \brief Nodes descendents, representant cadascun una lletra extenent el prefix del node pare
+         * \brief Nodes descendents, representant cadascun una lletra extenent el prefix del Node pare
          */
         public HashMap<Character,Node> descendants;
 
         /**
-         * \brief Booleà que guarda si el prefix representat per aquest node és una paraula
+         * \brief Booleà que guarda si el prefix representat per aquest Node és una paraula
          */
         public boolean isEndWord;
 
@@ -35,6 +35,9 @@ public class Trie {
         }
     }
 
+    /**
+     * \brief El Node arrel de l'estructura
+     */
     private Node t;
 
     /**
@@ -46,7 +49,7 @@ public class Trie {
     }
 
     /**
-     * @brief Recorre l'arbre fins al node que representa el prefix word
+     * @brief Recorre l'arbre fins al Node que representa el prefix word
      * @param word Paraula que s'ha de cercar en l'arbre
      * @param create Booleà que indica si s'ha de crear els Nodes que faltin
      * @return El Node a buscar si existia. Si no existia i el paràmetre create és cert aleshores s'ha creat i es retorna el nou Node,
