@@ -80,6 +80,17 @@ public class Document {
     }
 
     /**
+     * @brief Constructora del document utilitzada al fer un back-up de l'aplicació
+     * @details String backUpInformation conte les etiquetes author, title, format i content,
+     * que identifiquen cada un dels atributs del document. 
+     * @param backUpInformation String que serà interpretat com les dades a recuperar del document 
+     */
+    public Document(String backUpInformation) {
+        //Aquest metode encara  no esta implementat, pertany als casos d'ús associats a persistència
+    }
+
+
+    /**
      * @brief Getter de l'atribut autor 
      */
     public String getAuthor() {
