@@ -1,7 +1,10 @@
 package main.domain;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import main.domain.documents.Document;
 import main.domain.documents.DocumentsSet;
@@ -9,6 +12,7 @@ import main.domain.expressions.ExpressionsSet;
 import main.excepcions.*;
 import main.domain.expressions.Expression;
 import main.domain.util.Pair;
+import main.persistence.CtrlPersistence;
 
 
 /**
@@ -33,6 +37,11 @@ public class CtrlDomain {
     private static ExpressionsSet es;
 
     /**
+     * \brief Instància del controlador de persistència (CtrlPersistence)
+     */
+    private static CtrlPersistence cp;
+
+    /**
      * @brief Constructora per defecte de CtrlDomain
      * @details Es defineix com a privada perquè CtrlDomain és singleton
      * @pre No existeix cap instància de CtrlDomain ja creada
@@ -41,6 +50,7 @@ public class CtrlDomain {
     private CtrlDomain() {
         ds = DocumentsSet.getInstance();
         es = ExpressionsSet.getInstance();
+        cp = CtrlPersistence.getInstance();
     }
 
     /**
@@ -256,6 +266,38 @@ public class CtrlDomain {
     public void modifyExpression(String oldExpression, String newExpression) throws ExceptionNoExpression, ExceptionExpressionExists, ExceptionInvalidExpression {
         deleteExpression(oldExpression);
         createExpression(newExpression);
+    }
+
+    public void importDocument(String path) throws ExceptionInvalidFormat, FileNotFoundException {
+        String newDoc = cp.importDocument(path);
+        ds.importDocument(newDoc);
+    }
+
+    public void exportDocument(String title, String author, String path) throws ExceptionNoDocument, ExceptionInvalidFormat, IOException {
+        String docRepresentation = ds.getDocumentRepresentation(title, author);
+        cp.exportDocument(docRepresentation, path);
+    }
+
+    public void saveSystem() throws IOException {
+        Set<String> documents = ds.getAllDocumentRepresentations();
+        Set<String> expressions = es.getAllExpressions();
+        cp.saveSystem(documents, expressions);
+    }
+
+    public void restoreSystem() throws FileNotFoundException {
+        Pair<Set<String>,Set<String>> system = cp.restoreSystem();
+        Set<String> documents = system.getFirst();
+        for (String doc : documents) ds.importDocument(doc);
+
+        Set<String> expressions = system.getSecond();
+        try {
+            for (String expr : expressions) es.createExpression(expr);
+        } catch (ExceptionInvalidExpression e) {
+            // No és possible
+        } catch (ExceptionExpressionExists e) {
+            // No és possible
+        }
+
     }
 
 }

@@ -2,6 +2,7 @@ package main.domain.expressions;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Set;
 
 import main.domain.expressions.Expression;          // Canviar per test.domain.expressions.Expression per fer tests
 import main.excepcions.ExceptionExpressionExists;
@@ -75,6 +76,10 @@ public class ExpressionsSet {
         // El .get retorna null en cas de no trobar l'expressió, per tant si és així cal llençar l'excepció
         if (expression == null) throw new ExceptionNoExpression(id_expression);
         return expression;
+    }
+
+    public Set<String> getAllExpressions() {
+        return expressions.keySet();
     }
 
     /**
