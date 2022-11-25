@@ -292,9 +292,7 @@ public class CtrlDomain {
         Set<String> expressions = system.getSecond();
         try {
             for (String expr : expressions) es.createExpression(expr);
-        } catch (ExceptionInvalidExpression e) {
-            // No és possible
-        } catch (ExceptionExpressionExists e) {
+        } catch (ExceptionInvalidExpression | ExceptionExpressionExists e) {
             // No és possible
         }
 
