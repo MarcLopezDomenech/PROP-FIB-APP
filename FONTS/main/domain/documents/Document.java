@@ -249,4 +249,9 @@ public class Document {
         return tf_bool;
     }
 
+    //IO
+    public String getRepresentation() {
+        return "AAAAAAAAAAAAAAAAAAA";
+    }
+
 } 
