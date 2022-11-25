@@ -414,6 +414,20 @@ public class DocumentsSet {
         return expr_list;
     }
 
+    public void importDocument(String document) {
+        Document newDoc = new Document(document);
+        // ToDo
+    }
+
+    public String getDocumentRepresentation(String title, String author) throws ExceptionNoDocument {
+        // ToDo: Excepcions
+        return getDocument(title, author).getRepresentation();
+    }
+
+    public Set<String> getAllDocumentRepresentations() {
+        return null;
+    }
+
     /**
      * @brief Operació per conseguir el document que te un títol i autor deteminat
      * @details Retorna un document identificat per l'author igual a uthor i títol igual a title
