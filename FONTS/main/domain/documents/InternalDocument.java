@@ -21,9 +21,9 @@ public class InternalDocument {
      * */
     private int totalWords;
 
-    private static final SortedSet<String> stopWords_ca = initializeSet("ca");
-    private static final SortedSet<String> stopWords_es = initializeSet("es");
-    private static final SortedSet<String> stopWords_en = initializeSet("en");
+    private static final HashSet<String> stopWords_ca = initializeSet("ca");
+    private static final HashSet<String> stopWords_es = initializeSet("es");
+    private static final HashSet<String> stopWords_en = initializeSet("en");
 
      /**
      * @brief Constructora per defecte de InternalDocument
@@ -84,7 +84,7 @@ public class InternalDocument {
         String[] splited = content.split("[- ,!?.:]+");     
         totalWords = 0;
 
-        Set<String> stopWords;
+        HashSet<String> stopWords;
         if (language.equals("ca")) stopWords = stopWords_ca;
         if (language.equals("es")) stopWords = stopWords_es;
         else stopWords = stopWords_en;
@@ -105,8 +105,8 @@ public class InternalDocument {
      * @details Tant els atributs com les funcions son estatiques, ja que son identiques per a totes les instancies de la clase InternalDocument
      * @param set_language Idioma de les stopwords
      */  
-    private static SortedSet<String> initializeSet(String set_language) {
-        SortedSet<String> set = new TreeSet<String>();
+    private static HashSet<String> initializeSet(String set_language) {
+        HashSet<String> set = new HashSet<String>();
         if (set_language.equals("ca")) {
             String stopwords[] = {"últim","última","últimes","últims","a","abans","això","al","algun","alguna","algunes","alguns","allà","allí","allò","als","altra","altre","altres","amb","aprop","aquí","aquell","aquella","aquelles","aquells","aquest","aquesta","aquestes","aquests","cada","catorze","cent","cert","certa","certes","certs","cinc","com","cosa","d'","darrer","darrera","darreres","darrers","davant","de","del","dels","després","deu","dinou","disset","divuit","dos","dotze","durant","el","ell","ella","elles","ells","els","en","encara","et","extra","fins","hi","i","jo","l'","la","les","li","llur","lo","los","més","m'","ma","massa","mateix","mateixa","mateixes","mateixos","mes","meu","meva","mig","molt","molta","moltes","molts","mon","mons","n'","na","ni","no","nosaltres","nostra","nostre","nou","ns","o","on","onze","pel","per","però","perquè","perque","poc","poca","pocs","poques","primer","primera","primeres","primers","prop","què","qual","quals","qualsevol","qualssevol","quan","quant","quanta","quantes","quants","quatre","que","qui","quin","quina","quines","quins","quinze","res","s'","sa","segon","segona","segones","segons","sense","ses","set","setze","seu","seus","seva","seves","sino","sis","sobre","son","sons","sota","t'","ta","tal","tals","tan","tant","tanta","tantes","tants","tes","teu","teus","teva","teves","ton","tons","tot","tota","totes","tots","tres","tretze","tu","un","una","unes","uns","vint","vos","vosaltres","vosté","vostés","vostra","vostre","vuit",};
             set.addAll(Arrays.asList(stopwords));
