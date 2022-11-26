@@ -273,7 +273,7 @@ public class CtrlDomain {
     }
 
     public void importDocument(String path) throws ExceptionInvalidFormat, FileNotFoundException {
-        String newDoc = cp.importDocument(path);
+        String newDoc = cp.importDocument(path, "ca"); //HARDCODED CUIDADO, idioama hauria de venir de presentacio
         ds.importDocument(newDoc);
     }
 
