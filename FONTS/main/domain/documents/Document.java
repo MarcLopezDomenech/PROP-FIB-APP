@@ -102,9 +102,21 @@ public class Document {
         //Obtenir el contingut i el llenguatge
         data = representation.split("@content@");
         content = data[0];
-        language = data[1];
+        representation = data[1];
 
-        internalDoc.newContent(content, language);
+        //Obtenir el contingut i el llenguatge
+        data = representation.split("@language@");
+        language = data[0];
+
+        if (data[1].equals("yes")) {
+            fav = true;
+            internalDoc = new InternalDocument(content, language);
+        } if (data[1].equals("no")) {
+            fav = false;
+            internalDoc = new InternalDocument(content, language);
+        } else {
+            //Aqui recuperem de forma eficient docuemnts guardats en format propietari
+        }
     }
 
     /**
@@ -283,7 +295,8 @@ public class Document {
 
     //IO
     public String getRepresentation() {
-        return title + "@title@" + author + "@author@" + content + "@content@" + language;
+        String isFav = fav ? "yes" : "no";
+        return title + "@title@" + author + "@author@" + content + "@content@" + language + "@language@" + isFav;
     }
 
 } 
