@@ -1,5 +1,7 @@
 package test.domain;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.List;
@@ -81,6 +83,12 @@ public class DriverCtrlDomain {
                             break;
                         case 17:
                             break;
+                        case 18:
+                            testImportDocument();
+                            break;
+                        case 19:
+                            testExportDocument();
+                            break;
                         default:
                             System.out.println("No has introduit un valor valid.");
                             break;
@@ -115,8 +123,10 @@ public class DriverCtrlDomain {
         System.out.println("13 - Llistar els documents a partir d'una expressio booleana");
         System.out.println("14 - Crear una expressio booleana");
         System.out.println("15 - Esborrar una expressio booleana");
-        System.out.println("16 - Modificar una expressio booleana");
+        System.out.println("16 - Modificar una expressio booleana"); 
         System.out.println("17 - Sortir :)");
+        System.out.println("18- Carregar document");
+        System.out.println("19- Exportar document");
         System.out.print("Quina operacio vols realitzar?: ");
     }
 
@@ -327,5 +337,27 @@ public class DriverCtrlDomain {
         String newExpression = scanner.nextLine();
         cd.modifyExpression(oldExpression, newExpression);
         System.out.println("Expressio booleana modificada");
+    }
+
+    public static void testImportDocument() throws ExceptionInvalidFormat, FileNotFoundException  {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Importar un document");
+        System.out.println("Introdueix el path");
+        String path = scanner.nextLine();
+        cd.importDocument(path);
+        System.out.println("Document importat");
+    }
+
+    public static void testExportDocument() throws ExceptionNoDocument, IOException, ExceptionInvalidFormat {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Exportar un document");
+        System.out.print("Introdueix un titol: ");
+        String title = scanner.nextLine();
+        System.out.print("Introdueix un autor: ");
+        String author = scanner.nextLine();
+        System.out.println("Introdueix el path");
+        String path = scanner.nextLine();
+        cd.exportDocument(title,author,path);
+        System.out.println("Document exportat");
     }
 }
