@@ -53,7 +53,7 @@ public class Document {
      * @throws ExceptionInvalidFormat El format del document es invalid (no es txt o xml)
      * @throws ExceptionInvalidLanguage L'idioma del document no es vàlid (no es ca, es o en)
      */
-    public Document(String author, String title, String content, String language, String format) throws ExceptionInvalidFormat, ExceptionInvalidLanguage {
+    public Document(String title, String author, String content, String language, String format) throws ExceptionInvalidFormat, ExceptionInvalidLanguage {
         this.author = author;
         this.title = title;
         this.content = content;
@@ -72,7 +72,7 @@ public class Document {
      * @param language Idioma del document
      * @throws ExceptionInvalidLanguage L'idioma del document no es vàlid (no es ca, es o en)
      */
-    public Document(String author, String title, String content, String language) throws ExceptionInvalidLanguage {
+    public Document(String title, String author, String content, String language) throws ExceptionInvalidLanguage {
         if (!"ca".equals(language) && !"en".equals(language) && !"es".equals(language)) throw new ExceptionInvalidLanguage(language);
         this.author = author;
         this.title = title;
