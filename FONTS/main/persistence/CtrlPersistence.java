@@ -23,9 +23,9 @@ public class CtrlPersistence {
         CtrlPersistence cp = getInstance();
         try {
             Set<String> docs = new HashSet<>();
-            docs.add("abc@@@mar@@@abc abc abc");
-            docs.add("tres tristes tigres@@@ari@@@comen trigo");
-            docs.add("abc@@@mar2@@@abc abc abc");
+            docs.add("abc@title@mar@author@abc abc abc@content@ca");
+            docs.add("tres tristes tigres@title@ari@author@comen trigo@content@es");
+            docs.add("abc@title@mar2@author@abc abc abc@content@en");
             Set<String> exprs = new HashSet<>();
             exprs.add("hola & adeuuu");
             exprs.add("!tuiafhbvuz");
@@ -38,8 +38,10 @@ public class CtrlPersistence {
 
             for(String doc: sets.getFirst()) System.out.print(doc + "\n");
             for(String expr: sets.getSecond()) System.out.print(expr + "\n");
-        //} catch (ExceptionInvalidFormat e) {
-        //   System.out.println("Salta la merda de format");
+
+            cp.exportDocument("tres tristes tigres@title@ari@author@comen trigooooo@content@es", "tigres.txt");
+        } catch (ExceptionInvalidFormat e) {
+           System.out.println("Salta la merda de format");
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         } catch (IOException e) {
@@ -93,7 +95,6 @@ public class CtrlPersistence {
      */
     public void exportDocument(String doc, String path) throws ExceptionInvalidFormat, IOException{
         if (path.endsWith(".txt")) {
-            System.out.print("txt");
             TxtParser par = new TxtParser();
             par.write(doc, path);
         } else if (path.endsWith(".xml")) {
