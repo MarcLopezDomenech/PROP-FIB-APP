@@ -22,6 +22,9 @@ public class Document {
     /**@brief El contingut del document */
     private String title;
 
+    /**@brief Bool per a marcar si l'usuari te el document com a preferit del document */
+    private boolean fav = false;
+
     /**@brief El format original del document 
      * @invariant Pot prendre per valors "xml" o "txt"
      */
@@ -83,12 +86,26 @@ public class Document {
      * @brief Constructora del document utilitzada al fer un back-up de l'aplicació
      * @details String backUpInformation conte les etiquetes author, title, format i content,
      * que identifiquen cada un dels atributs del document. 
-     * @param backUpInformation String que serà interpretat com les dades a recuperar del document 
+     * @param representation String que serà interpretat com les dades a recuperar del document 
      */
-    public Document(String backUpInformation) {
-        //Aquest metode encara  no esta implementat, pertany als casos d'ús associats a persistència
-    }
+    public Document(String representation) throws InternalError {
+        //Obtenir el titol
+        String[] data = representation.split("@title@");
+        title = data[0];
+        representation = data[1];
 
+        //Obtenir el autor
+        data = representation.split("@author@");
+        author = data[0];
+        representation = data[1];
+
+        //Obtenir el contingut i el llenguatge
+        data = representation.split("@content@");
+        content = data[0];
+        language = data[1];
+
+        internalDoc.newContent(content, language);
+    }
 
     /**
      * @brief Getter de l'atribut autor 
@@ -109,6 +126,13 @@ public class Document {
      */
     public String getContent() {
         return content;
+    }
+
+    /**
+     * @brief Getter de l'atribut contingut 
+     */
+    public boolean isFavourite() {
+        return fav;
     }
 
     /**
@@ -141,6 +165,14 @@ public class Document {
     public void setContent(String newContent) {
         content = newContent;
         internalDoc.newContent(newContent, language);
+    }
+
+    /**
+     * @brief Actualitza valor de favorit del document
+     * @param favourite El nou valor a ser assignat a la variable que ens diu si el document esta a preferits o no
+     */
+    public void setFavourite(boolean favourite) {
+        fav = favourite;
     }
 
     /**
@@ -194,6 +226,7 @@ public class Document {
         double tf_1 = termRelevance_tf_boolean(terms1Array);
         return tf_1;
     }
+
     /**
      * @brief Valora com de rellevant es el contingut del document donada una query
      * @details Utilitza l'algoritme de tf-idf per a calcular la rellevancia del contingut del document en relació a les paraules de la query. 
@@ -210,7 +243,6 @@ public class Document {
 
         return tf_idf*100;
     }
-
 
     /**
      * @brief Implementacio de l'algorisme tf-idf 
@@ -251,7 +283,7 @@ public class Document {
 
     //IO
     public String getRepresentation() {
-        return "AAAAAAAAAAAAAAAAAAA";
+        return title + "@title@" + author + "@author@" + content + "@content@" + language;
     }
 
 } 
