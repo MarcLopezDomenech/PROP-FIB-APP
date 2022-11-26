@@ -13,6 +13,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Set;
 
+/**
+ * @class ExpressionsView
+ * @brief Vista per gestionar les expressions del sistema
+ * @author pau.duran.manzano
+ */
 public class ExpressionsView {
     private CtrlPresentation cp;
     private JFrame frame;

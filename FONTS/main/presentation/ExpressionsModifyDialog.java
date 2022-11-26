@@ -8,6 +8,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * @class ExpressionsModifyDialog
+ * @brief Dialog per modificar expressions
+ * @author pau.duran.manzano
+ */
 public class ExpressionsModifyDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonSave;
