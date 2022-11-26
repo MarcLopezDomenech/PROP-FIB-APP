@@ -7,6 +7,7 @@ import main.excepcions.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -272,6 +273,14 @@ public class CtrlPresentation {
         cd.modifyExpression(oldExpression, newExpression);
     }
 
+    public Set<String> getAllExpressions() {
+        Set<String> expressions = new HashSet<>();
+        expressions.addAll(cd.getAllExpressions());
+        expressions.add("prooova");
+        expressions.add("més de proves");
+        return expressions;
+    }
+
     public void importDocument(String path) throws ExceptionInvalidFormat, FileNotFoundException {
         cd.importDocument(path);
     }
@@ -281,7 +290,9 @@ public class CtrlPresentation {
     }
 
     public static void main(String[] args) {
-        showError("hooola");
+        //showError("hooola");
+        ExpressionsView ew = new ExpressionsView();
+        ew.initialize();
     }
 
 }

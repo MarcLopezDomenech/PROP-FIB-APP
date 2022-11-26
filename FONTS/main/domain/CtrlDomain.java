@@ -268,6 +268,10 @@ public class CtrlDomain {
         createExpression(newExpression);
     }
 
+    public Set<String> getAllExpressions() {
+        return es.getAllExpressions();
+    }
+
     public void importDocument(String path) throws ExceptionInvalidFormat, FileNotFoundException {
         String newDoc = cp.importDocument(path);
         ds.importDocument(newDoc);
