@@ -39,7 +39,7 @@ public class CtrlPersistence {
             for(String doc: sets.getFirst()) System.out.print(doc + "\n");
             for(String expr: sets.getSecond()) System.out.print(expr + "\n");
 
-            cp.exportDocument("tres tristes tigres@title@ari@author@comen trigooooo@content@es", "tigres.txt");
+            cp.exportDocument("tres tristes tigres@title@ari@author@comen trigooooo@content@es", "tigres.xml");
         } catch (ExceptionInvalidFormat e) {
            System.out.println("Salta la merda de format");
         } catch (FileNotFoundException e) {
@@ -74,16 +74,16 @@ public class CtrlPersistence {
      * @return Un string en format JSON del que cada document n'extreurà les dades que necessiti
      */
     
-    public String importDocument(String path) throws ExceptionInvalidFormat, FileNotFoundException {
+    public String importDocument(String path, String language) throws ExceptionInvalidFormat, FileNotFoundException {
         if (path.endsWith(".txt")) {
             TxtParser l = new TxtParser();
-            return l.read(path);
+            return l.read(path) + language + "@language@no";
         } else if (path.endsWith(".xml")) {
             XmlParser l = new XmlParser();
-            return l.read(path);
+            return l.read(path) + language + "@language@no";
         } else if (path.endsWith(".fp")) {     //en format json
             FpParser l = new FpParser();
-            return l.read(path);
+            return l.read(path) + language + "@language@no";
         } else throw new ExceptionInvalidFormat("del fitxer");
     } 
     

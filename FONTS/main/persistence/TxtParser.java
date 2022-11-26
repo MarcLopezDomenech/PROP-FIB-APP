@@ -1,8 +1,15 @@
 package main.persistence;
 
-import java.io.IOException;
-import java.io.FileNotFoundException; 
+import java.io.File;  
+import java.io.FileNotFoundException;  
 
+import java.nio.file.Path;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.Reader;
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.Set;
 /**
  * @class TxtParser
  * @brief Classe responsable de la lectura i escriptura de fitxers en format txt
@@ -20,7 +27,18 @@ public class TxtParser extends Parser {
      * @brief Llegeix el contingut d'un fitxer en txt i el retorna en format propietari del sistema
      */
     public String read(String path) throws FileNotFoundException{
-        return readFromFile(path);
+        File myObj = new File(path);
+       
+        Scanner myReader = new Scanner(myObj);
+        String title = myReader.nextLine();
+        String author = myReader.nextLine();
+        String content = "";
+
+        while (myReader.hasNextLine()) {
+            content += myReader.nextLine() + "\n";
+        }
+        myReader.close();
+        return title + "@title@" + author + "@author@" + content + "@content@";
     }
 
     /**

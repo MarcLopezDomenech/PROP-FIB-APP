@@ -59,15 +59,6 @@ public abstract class Parser {
     /**
      * @brief Constructora de la classe
      */
-    public void appendToFile(String str, String path) throws IOException {
-        FileWriter myWriter = new FileWriter(path);
-        myWriter.append(str);
-        myWriter.close();
-    }
-
-    /**
-     * @brief Constructora de la classe
-     */
     public void saveSystem(Set<String> docs, Set<String> exprs, String path) throws IOException{
         String data = "Documents\n";
         for(String doc : docs) {
