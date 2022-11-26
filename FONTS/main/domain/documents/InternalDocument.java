@@ -32,6 +32,13 @@ public class InternalDocument {
 
     }
 
+     /**
+     * @brief Constructora per recuperar informacio en format propietari de InternalDocument
+     */
+    public InternalDocument(String representation){
+        //ToDo
+    }
+
     /**
      * @brief Constructora de InternalDocument
      * @param content contingut del que s'ha de guardar la representacio
@@ -99,7 +106,6 @@ public class InternalDocument {
         relevantWords = words;
     }
 
-
     /**
      * @brief Inicialitza les estructures que guarden les stopwords de cada idioma
      * @details Tant els atributs com les funcions son estatiques, ja que son identiques per a totes les instancies de la clase InternalDocument
@@ -118,5 +124,15 @@ public class InternalDocument {
             set.addAll(Arrays.asList(stopwords));
         }
         return set;
+    }
+
+    //IO 
+    /**
+     * @brief Writes the data stored in the map<keywords,times> in a printable format in order to save information
+     * @details 
+     * @return Un format de text que emmagatzema les dades del internalDocument
+     */  
+    public String writeBackUp () {
+        return "Aqui va el map escrit en format {(key1, valor1),(key2,valor2)}";
     }
 } 
