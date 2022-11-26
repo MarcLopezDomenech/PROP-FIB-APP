@@ -251,6 +251,15 @@ public class DocumentsSet {
         doc.setLanguage(newLanguage);
     }
 
+    public boolean getStaredDocument(String title, String author) {
+        // ToDo
+        return true;
+    }
+
+    public void setStaredDocument(String title, String author) {
+        // ToDo
+    }
+
     /**
      * @brief Funció per obtenir tots els identificadors dels documents del sistema
      * @details Aquesta funció permet consultar tots els documents que hi ha guardats en el sistema
