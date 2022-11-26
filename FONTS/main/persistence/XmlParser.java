@@ -17,18 +17,26 @@ public class XmlParser extends Parser {
 
     }
 
-    
+
     public String read(String path) throws FileNotFoundException{
         return "aaaa";
     }
 
     public void write(String document, String path) throws IOException {
 
-        String[] information = document.split("@@@");
-        if (information.length < 3) throw new IOException(); //Aixo equival a un internal error
+        //Obtenir el titol
+        String[] information = document.split("@title@");
         String title = information[0];
-        String author = information[1];
-        String content = information[2];
+        document = information[1];
+    
+        //obtenir el autor
+        information = document.split("@author@");
+        String author = information[0];
+        document = information[1];
+
+        //Obtenir el contingut 
+        information = document.split("@content@");
+        String content = information[0];
 
         String str = "<title>" + title + "<title>\n<author>" + author + "<author>\n<content>" + content + "<content>";
         writeToFile(str, path);
