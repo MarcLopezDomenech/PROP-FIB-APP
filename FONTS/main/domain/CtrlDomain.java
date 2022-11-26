@@ -156,6 +156,14 @@ public class CtrlDomain {
         ds.updateLanguageDocument(title, author, newLanguage);
     }
 
+    public boolean getStaredDocument(String title, String author) {
+        return ds.getStaredDocument(title, author);
+    }
+
+    public void setStaredDocument(String title, String author) {
+        ds.setStaredDocument(title, author);
+    }
+
     /**
      * @brief Funció per obtenir tots els identificadors dels documents del sistema
      * @details Aquesta funció permet consultar tots els documents que hi ha guardats en el sistema

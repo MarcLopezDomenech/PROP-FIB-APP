@@ -68,6 +68,11 @@ public class CtrlPresentation {
         dialog.setVisible(true);
     }
 
+    public Object[][] getDocumentsData() {
+        // ToDo
+        return new Object[][] {{true, "que", "tal"}, {false, "pep", "pepa"}};
+    }
+
     // FUNCIONS DEL CTRLDOMAIN
 
     /**
@@ -163,6 +168,14 @@ public class CtrlPresentation {
         cd.updateLanguageDocument(title, author, newLanguage);
     }
 
+    public boolean getStaredDocument(String title, String author) {
+        return cd.getStaredDocument(title, author);
+    }
+
+    public void setStaredDocument(String title, String author) {
+        cd.setStaredDocument(title, author);
+    }
+
     /**
      * @brief Funció per obtenir tots els identificadors dels documents del sistema
      * @details Aquesta funció permet consultar tots els documents que hi ha guardats en el sistema
@@ -184,8 +197,10 @@ public class CtrlPresentation {
      * @post L'estat del sistema no queda alterat
      * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
      */
-    public List<Pair<String, String>> listSimilars(String title, String author, int k, String strategy) throws ExceptionNoDocument, ExceptionInvalidStrategy, ExceptionInvalidK {
-        return cd.listSimilars(title, author, k, strategy);
+    public Object[][] listSimilars(String title, String author, int k, String strategy) throws ExceptionNoDocument, ExceptionInvalidStrategy, ExceptionInvalidK {
+        // ToDo
+        return new Object[][] {{true, "que", "pataaaaata"}, {false, "pep", "pepa"}};
+        //return cd.listSimilars(title, author, k, strategy);
     }
 
     /**
@@ -291,8 +306,10 @@ public class CtrlPresentation {
 
     public static void main(String[] args) {
         //showError("hooola");
-        ExpressionsView ew = new ExpressionsView();
-        ew.initialize();
+        /*ExpressionsView ew = new ExpressionsView();
+        ew.initialize();*/
+        MainView mw = new MainView();
+        mw.initialize();
     }
 
 }
