@@ -280,8 +280,8 @@ public class CtrlDomain {
         return es.getAllExpressions();
     }
 
-    public void importDocument(String path) throws ExceptionInvalidFormat, FileNotFoundException {
-        String newDoc = cp.importDocument(path, "ca"); //HARDCODED CUIDADO, idioama hauria de venir de presentacio
+    public void importDocument(String path, String language) throws ExceptionInvalidFormat, FileNotFoundException, ExceptionDocumentExists {
+        String newDoc = cp.importDocument(path, language);
         ds.importDocument(newDoc);
     }
 
@@ -296,7 +296,7 @@ public class CtrlDomain {
         cp.saveSystem(documents, expressions);
     }
 
-    public void restoreSystem() throws FileNotFoundException {
+    public void restoreSystem() throws FileNotFoundException, ExceptionDocumentExists {
         Pair<Set<String>,Set<String>> system = cp.restoreSystem();
         Set<String> documents = system.getFirst();
         for (String doc : documents) ds.importDocument(doc);
@@ -307,7 +307,11 @@ public class CtrlDomain {
         } catch (ExceptionInvalidExpression | ExceptionExpressionExists e) {
             // No és possible
         }
+    }
 
+    public void resetSystem() {
+        ds.reset();
+        es.reset();
     }
 
 }

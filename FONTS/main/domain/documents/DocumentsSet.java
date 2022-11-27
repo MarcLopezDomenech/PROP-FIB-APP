@@ -118,23 +118,8 @@ public class DocumentsSet {
      * @throws ExceptionDocumentExists en cas que ja existeixi un document identificat per (title, author) a l'aplicatiu
      */
     public void createDocument(String title, String author, String content, String language) throws ExceptionDocumentExists, ExceptionInvalidLanguage {
-        if (existsDocument(title, author)) throw new ExceptionDocumentExists(title, author);
         Document newDoc = new Document(title, author, content, language);
-        Map<String, Document> docTitlesAuthor = documents.get(author);
-
-        // Si l'autor no tenia cap títol registrat creem el seu map de títol-document
-        if (docTitlesAuthor == null) docTitlesAuthor = new HashMap<>();
-
-        // En qualsevol cas, afegim el títol-document a l'autor i el posem a tots els documents
-        docTitlesAuthor.put(title, newDoc);
-        documents.put(author, docTitlesAuthor);
-
-        // Ara tenim un document més
-        ++numDocuments;
-
-        // Només queda actualitzar el vector de presència
-        Set<String> newWords = newDoc.getRelevantWords();
-        addPresence(newWords);
+        registerDocument(newDoc);
     }
 
     /**
@@ -423,9 +408,9 @@ public class DocumentsSet {
         return expr_list;
     }
 
-    public void importDocument(String document) {
+    public void importDocument(String document) throws ExceptionDocumentExists {
         Document newDoc = new Document(document);
-        // ToDo
+        registerDocument(newDoc);
     }
 
     public String getDocumentRepresentation(String title, String author) throws ExceptionNoDocument {
@@ -435,6 +420,10 @@ public class DocumentsSet {
 
     public Set<String> getAllDocumentRepresentations() {
         return null;
+    }
+
+    public void reset() {
+        singletonObject = new DocumentsSet();
     }
 
     /**
@@ -450,6 +439,28 @@ public class DocumentsSet {
         Document resdoc = maptitle.get(title);
         if (resdoc == null) throw new ExceptionNoDocument(title, author);
         return resdoc;
+    }
+
+    private void registerDocument(Document newDoc) throws ExceptionDocumentExists {
+        String title = newDoc.getTitle();
+        String author = newDoc.getAuthor();
+
+        if (existsDocument(title, author)) throw new ExceptionDocumentExists(title, author);
+        Map<String, Document> docTitlesAuthor = documents.get(author);
+
+        // Si l'autor no tenia cap títol registrat creem el seu map de títol-document
+        if (docTitlesAuthor == null) docTitlesAuthor = new HashMap<>();
+
+        // En qualsevol cas, afegim el títol-document a l'autor i el posem a tots els documents
+        docTitlesAuthor.put(title, newDoc);
+        documents.put(author, docTitlesAuthor);
+
+        // Ara tenim un document més
+        ++numDocuments;
+
+        // Només queda actualitzar el vector de presència
+        Set<String> newWords = newDoc.getRelevantWords();
+        addPresence(newWords);
     }
 
     /**
