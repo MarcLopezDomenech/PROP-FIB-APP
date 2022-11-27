@@ -222,7 +222,12 @@ public class MainView {
     private void createUIComponents() {
         Object[][] data = cp.listAllDocuments();
         String[] headers = new String[]{"favs", "Titol", "Autor"};
-        documentsModel = new DefaultTableModel(data, headers);
+        documentsModel = new DefaultTableModel(data, headers) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return column == 0;
+            }
+        };
         documents = new JTable(documentsModel);
 
         TableColumn tc = documents.getColumnModel().getColumn(0);
