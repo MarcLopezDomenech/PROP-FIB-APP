@@ -147,14 +147,17 @@ public class ExpressionsView {
         delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    cp.deleteExpression(selected);
-                } catch (ExceptionNoExpression ex) {
-                    // No es pot donar, garantit per presentació
-                    cp.showInternalError(frame.getLocation());
+                boolean confirm = cp.askConfirmation(frame.getLocation(), "Segur/a que vols esborrar l'expressio " + selected + "?");
+                if (confirm) {
+                    try {
+                        cp.deleteExpression(selected);
+                    } catch (ExceptionNoExpression ex) {
+                        // No es pot donar, garantit per presentació
+                        cp.showInternalError(frame.getLocation());
+                    }
+                    listModel.removeElement(selected);
+                    text.grabFocus();
                 }
-                listModel.removeElement(selected);
-                text.grabFocus();
             }
         });
         panel.registerKeyboardAction(new ActionListener() {
