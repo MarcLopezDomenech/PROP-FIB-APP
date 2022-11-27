@@ -9,6 +9,8 @@ import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -98,13 +100,15 @@ public class Loader extends JDialog {
 
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     File[] files = fc.getSelectedFiles();
-                    for (File f : files) {
-                        path.setText(path.getText() + f.getAbsolutePath() + "; ");
-                        System.out.println(f.getAbsolutePath());
-                    }
+                    for (File f : files) path.setText(path.getText() + f.getAbsolutePath() + "; ");
                     path.setText(path.getText().substring(0,path.getText().length()-2));
-                    enableButtonIfCorrect();
                 }
+            }
+        });
+        path.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                enableButtonIfCorrect();
             }
         });
         cat.addChangeListener(new ChangeListener() {
@@ -128,7 +132,7 @@ public class Loader extends JDialog {
     }
 
     private void enableButtonIfCorrect() {
-        buttonOK.setEnabled(fc.getSelectedFiles().length > 0 && (cat.isSelected() || esp.isSelected() || eng.isSelected()));
+        buttonOK.setEnabled(!path.getText().equals("") && (cat.isSelected() || esp.isSelected() || eng.isSelected()));
     }
 
     private void onOK() throws ExceptionInvalidFormat, FileNotFoundException, ExceptionDocumentExists {
@@ -137,8 +141,9 @@ public class Loader extends JDialog {
         else if (esp.isSelected()) lang = "es";
         else lang = "en";
 
-        for (File f : fc.getSelectedFiles()) {
-            CtrlPresentation.getInstance().importDocument(f.getAbsolutePath(), lang);
+        for (String p : path.getText().split(";[ ]*")) {
+            System.out.println(p);
+            //CtrlPresentation.getInstance().importDocument(p, lang);
         }
 
         dispose();
