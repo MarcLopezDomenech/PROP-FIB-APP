@@ -2,6 +2,7 @@ package main.presentation;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
+import main.excepcions.ExceptionDocumentExists;
 import main.excepcions.ExceptionExpressionExists;
 import main.excepcions.ExceptionInvalidExpression;
 import main.excepcions.ExceptionNoExpression;
@@ -11,6 +12,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
 import java.util.Set;
 
 /**
@@ -150,7 +152,10 @@ public class ExpressionsView {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    public void initialize() {
+    public void initialize() throws FileNotFoundException, ExceptionDocumentExists {
+
+        cp.restoreSystem();
+
         listModel = new DefaultListModel();
         list.setModel(listModel);
         Set<String> expressions = cp.getAllExpressions();

@@ -314,12 +314,17 @@ public class CtrlPresentation {
         cd.exportDocument(title, author, path);
     }
 
-    public static void main(String[] args) {
+    public void restoreSystem() throws FileNotFoundException, ExceptionDocumentExists {
+        cd.restoreSystem();
+    }
+
+    public static void main(String[] args) throws FileNotFoundException, ExceptionDocumentExists {
         //showError("hooola");
-        /*ExpressionsView ew = new ExpressionsView();
-        ew.initialize();*/
-        MainView mw = new MainView();
-        mw.initialize();
+        ExpressionsView ew = new ExpressionsView();
+        ew.initialize();
+
+        /*MainView mw = new MainView();
+        mw.initialize();*/
     }
 
 }
