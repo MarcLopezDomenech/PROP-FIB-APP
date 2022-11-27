@@ -306,10 +306,10 @@ public class CtrlPresentation {
 
     public static void main(String[] args) {
         //showError("hooola");
-        /*ExpressionsView ew = new ExpressionsView();
-        ew.initialize();*/
-        MainView mw = new MainView();
-        mw.initialize();
+        ExpressionsView ew = new ExpressionsView();
+        ew.initialize();
+        /*MainView mw = new MainView();
+        mw.initialize();*/
     }
 
 }
