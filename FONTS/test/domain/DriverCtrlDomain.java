@@ -222,10 +222,10 @@ public class DriverCtrlDomain {
     }
 
     public static void testListAllDocuments() {
-        List<Pair<String, String>> result = cd.listAllDocuments();
+        List<Object[]> result = cd.listAllDocuments();
         if (result == null || result.size() == 0) System.out.println("No hi ha cap document");
-        for (Pair<String, String> r : result) {
-            System.out.println(r.getFirst() + " " + r.getSecond());
+        for (Object[] r : result) {
+            System.out.println(r[1] + " " + r[2]);
         }
     }
 
@@ -241,10 +241,10 @@ public class DriverCtrlDomain {
         System.out.print("Introdueix una k: ");
         try {
             int k = scanner.nextInt();
-            List<Pair<String, String>> result = cd.listSimilars(title, author, k, strategy);
+            List<Object[]> result = cd.listSimilars(title, author, k, strategy);
             if (result == null || result.size() == 0) System.out.println("No hi ha resultats");
-            for (Pair<String, String> r : result) {
-                System.out.println(r.getFirst() + " " + r.getSecond());
+            for (Object[] r : result) {
+                System.out.println(r[1] + " " + r[2]);
             }
         } catch (java.util.InputMismatchException e) {        // Excepció que llença scanner si no es rep un int
             throw new ExceptionInvalidK();
@@ -256,10 +256,10 @@ public class DriverCtrlDomain {
         System.out.println("Llistar els titols d'un autor");
         System.out.print("Introdueix un autor: ");
         String author = scanner.nextLine();
-        List<Pair<String, String>> result = cd.listTitlesOfAuthor(author);
+        List<Object[]> result = cd.listTitlesOfAuthor(author);
         if (result == null || result.size() == 0) System.out.println("No hi ha resultats");
-        for (Pair<String, String> r : result) {
-            System.out.println(r.getFirst() + " " + r.getSecond());
+        for (Object[] r : result) {
+            System.out.println(r[1] + " " + r[2]);
         }
     }
 
@@ -284,11 +284,11 @@ public class DriverCtrlDomain {
         try {
             int k = scanner.nextInt();
             if (k < 0);
-            List<Pair<String, String>> result = cd.listByQuery(query, k);
+            List<Object[]> result = cd.listByQuery(query, k);
             if (result == null || result.size() == 0) System.out.println("No hi ha resultats");
             else {
-                for (Pair<String, String> r : result) {
-                    System.out.println(r.getFirst() + " " + r.getSecond());
+                for (Object[] r : result) {
+                    System.out.println(r[1] + " " + r[2]);
                 }
             }
         } catch (java.util.InputMismatchException e) {        // Excepció que llença scanner si no es rep un int
@@ -303,10 +303,10 @@ public class DriverCtrlDomain {
         String expression = scanner.nextLine();
         System.out.print("Vols que sigui case sensitive (S/N): ");
         Boolean caseSensitive = scanner.nextLine().equals("S");
-        List<Pair<String, String>> result = cd.listByExpression(expression, caseSensitive);
+        List<Object[]> result = cd.listByExpression(expression, caseSensitive);
         if (result == null || result.size() == 0) System.out.println("No hi ha resultats");
-        for (Pair<String, String> r : result) {
-            System.out.println(r.getFirst() + " " + r.getSecond());
+        for (Object[] r : result) {
+            System.out.println(r[1] + " " + r[2]);
         }
     }
 

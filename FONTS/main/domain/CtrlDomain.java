@@ -170,7 +170,7 @@ public class CtrlDomain {
      * @return Llistat de parells de tots els identificadors de documents de l'aplicatiu
      * @post L'estat del sistema no queda alterat
      */
-    public List<Pair<String, String>> listAllDocuments() {
+    public List<Object[]> listAllDocuments() {
         return ds.listAll();
     }
 
@@ -185,7 +185,7 @@ public class CtrlDomain {
      * @post L'estat del sistema no queda alterat
      * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
      */
-    public List<Pair<String, String>> listSimilars(String title, String author, int k, String strategy) throws ExceptionNoDocument, ExceptionInvalidStrategy, ExceptionInvalidK {
+    public List<Object[]> listSimilars(String title, String author, int k, String strategy) throws ExceptionNoDocument, ExceptionInvalidStrategy, ExceptionInvalidK {
         return ds.listSimilars(title, author, k, strategy);
     }
 
@@ -196,7 +196,7 @@ public class CtrlDomain {
      * @return Llista amb els identificadors (títol, autor) dels documents que tenen com a autor l'autor donat
      * @post L'estat del sistema no queda alterat
      */
-    public List<Pair<String, String>> listTitlesOfAuthor(String author) {
+    public List<Object[]> listTitlesOfAuthor(String author) {
         return ds.listTitlesOfAuthor(author);
     }
 
@@ -219,7 +219,7 @@ public class CtrlDomain {
      * @return Llista amb els identificadors (títol, autor) dels k documents més rellevants, pel que fa a contingut, de la query
      * @post L'estat del sistema no queda alterat
      */
-    public List<Pair<String, String>> listByQuery(String query, int  k) throws ExceptionInvalidK {
+    public List<Object[]> listByQuery(String query, int  k) throws ExceptionInvalidK {
         return ds.listByQuery(query, k);
     }
 
@@ -233,7 +233,7 @@ public class CtrlDomain {
      * @post L'estat del sistema no queda alterat
      * @throws ExceptionNoExpression en cas que l'expressió identificada per (expression) no estigui donada d'alta a l'aplicatiu
      */
-    public List<Pair<String, String>> listByExpression(String expression, Boolean caseSensitive) throws ExceptionNoExpression {
+    public List<Object[]> listByExpression(String expression, Boolean caseSensitive) throws ExceptionNoExpression {
         Expression expr = es.getExpression(expression);
         return ds.listByExpression(expr, caseSensitive);
     }

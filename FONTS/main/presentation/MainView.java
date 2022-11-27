@@ -19,6 +19,7 @@ import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import javax.swing.filechooser.FileFilter;
+import javax.swing.table.TableColumn;
 
 public class MainView {
     private CtrlPresentation cp;
@@ -235,10 +236,14 @@ public class MainView {
     }
 
     private void createUIComponents() {
-        Object[][] data = cp.getDocumentsData();
+        Object[][] data = cp.listAllDocuments();
         String[] headers = new String[]{"favs", "Titol", "Autor"};
         documentsModel = new DefaultTableModel(data, headers);
         documents = new JTable(documentsModel);
+
+        TableColumn tc = documents.getColumnModel().getColumn(0);
+        tc.setCellEditor(documents.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer(documents.getDefaultRenderer(Boolean.class));
 
         JTableHeader header = documents.getTableHeader();
         Font font = new Font("Arial", Font.BOLD, 14);

@@ -245,14 +245,16 @@ public class DocumentsSet {
      * @return Llistat de parells de tots els identificadors de documents de l'aplicatiu
      * @post L'estat del sistema no queda alterat
      */
-    public List<Pair<String, String>> listAll() {
-        List<Pair<String, String>> all = new ArrayList<Pair<String, String>>();
+    public List<Object[]> listAll() {
+        List<Object[]> all = new ArrayList<Object[]>();
         for (Map.Entry<String, Map<String, Document>> titlesOfAuthor : documents.entrySet()) {
             String author = titlesOfAuthor.getKey();
             Map<String, Document> titleDoc = titlesOfAuthor.getValue();
             for (Map.Entry<String, Document> documentsOfAuthor : titleDoc.entrySet()) {
                 String title = documentsOfAuthor.getKey();
-                all.add(new Pair<String,String>(title, author));
+                Document document = documentsOfAuthor.getValue();
+                boolean favourite = document.isFavourite();
+                all.add(new Object[]{favourite, title, author});
             }
         }
         return all;
@@ -269,7 +271,7 @@ public class DocumentsSet {
      * @post L'estat del sistema no queda alterat
      * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
      */
-    public List<Pair<String, String>> listSimilars(String title, String author, int k, String strategy) throws ExceptionNoDocument, ExceptionInvalidStrategy, ExceptionInvalidK {
+    public List<Object[]> listSimilars(String title, String author, int k, String strategy) throws ExceptionNoDocument, ExceptionInvalidStrategy, ExceptionInvalidK {
         // Comprovem que l'estratègia és vàlida
         if (!"tf-idf".equals(strategy) && !"tf-boolean".equals(strategy)) throw new ExceptionInvalidStrategy(strategy);
 
@@ -277,7 +279,7 @@ public class DocumentsSet {
         if (k < 0) throw new ExceptionInvalidK(k);
 
         Document original = getDocument(title, author);
-        List<Pair<Pair<String, String>, Double>> ordre = new ArrayList<>();
+        List<Pair<Object[], Double>> ordre = new ArrayList<>();
         for (Map.Entry<String, Map<String, Document>> authorTitleDoc : documents.entrySet()) {
             String aut = authorTitleDoc.getKey();
             Map<String, Document> titleDocs = authorTitleDoc.getValue();
@@ -286,18 +288,19 @@ public class DocumentsSet {
                 // En cas que no estiguem en el document original
                 if (!(tit.equals(title) && aut.equals(author))) {
                     Document doc = titleDoc.getValue();
+                    boolean favourite = doc.isFavourite();
                     // Obtenim el valor (en funció de l'estratègia triada) i l'afegim a la llista
                     Double value;
                     if ("tf-idf".equals(strategy)) value = original.compare_tf_idf(doc, numDocuments, presence);
                     else value = original.compare_tf_boolean(doc);
-                    ordre.add(new Pair<>(new Pair<>(tit, aut), value));
+                    ordre.add(new Pair<>(new Object[]{favourite, tit, aut}, value));
                 }
             }
         }
         // Ordenem la llista en funció dels valors
         Collections.sort(ordre, new ValueComparator());
-        List<Pair<String, String>> result = new ArrayList<>();
-        Iterator<Pair<Pair<String, String>, Double>> iterator = ordre.listIterator();
+        List<Object[]> result = new ArrayList<Object[]>();
+        Iterator<Pair<Object[], Double>> iterator = ordre.listIterator();
         int i = 0;
         // Iterem per tota la llista ordenada fins que arribem a k o al final, per guardar el resultat que retornem
         while(i < k && iterator.hasNext()) {
@@ -313,13 +316,15 @@ public class DocumentsSet {
      * @param author autor dels documents que busquem
      * @post Tots els docuemnts de la llista son del autor author
      */
-    public List<Pair<String, String>> listTitlesOfAuthor(String author) {
-        List<Pair<String, String>> expr_list= new ArrayList<Pair<String,String>>();
+    public List<Object[]> listTitlesOfAuthor(String author) {
+        List<Object[]> expr_list= new ArrayList<Object[]>();
         Map<String,Document> maptitle = documents.get(author);
         if (maptitle != null) {
             for (Map.Entry<String, Document> d2 : maptitle.entrySet()) {
                 String tit = d2.getKey();
-                expr_list.add(new Pair<String, String>(tit, author));
+                Document doc = d2.getValue();
+                boolean favourite = doc.isFavourite();
+                expr_list.add(new Object[]{favourite, tit, author});
             }
         }
         return expr_list;
@@ -350,24 +355,25 @@ public class DocumentsSet {
      * @param k nombre de documents que volem retornar
      * @post Llista de authors i títols que identifiquen a un document cada pair que compleix la query
      */
-    public List<Pair<String, String>> listByQuery(String query, int k) throws ExceptionInvalidK {
+    public List<Object[]> listByQuery(String query, int k) throws ExceptionInvalidK {
         if (k < 0) throw new ExceptionInvalidK(k);
-        List<Pair<Pair<String, String>, Double>> ordre = new ArrayList<>();
+        List<Pair<Object[], Double>> ordre = new ArrayList<>();
         for (Map.Entry<String, Map<String, Document>> authorTitleDoc : documents.entrySet()) {
             String author = authorTitleDoc.getKey();
             Map<String, Document> titleDocs = authorTitleDoc.getValue();
             for (Map.Entry<String, Document> titleDoc : titleDocs.entrySet()) {
                 String title = titleDoc.getKey();
                 Document doc = titleDoc.getValue();
+                boolean favourite = doc.isFavourite();
                 // Obtenim el valor i l'afegim a la llista
                 Double value = doc.queryRelevance(query, numDocuments, presence);
-                ordre.add(new Pair<>(new Pair<>(title, author), value));
+                ordre.add(new Pair<>(new Object[]{favourite, title, author}, value));
             }
         }
         // Ordenem la llista en funció dels valors
         Collections.sort(ordre, new ValueComparator());
-        List<Pair<String, String>> result = new ArrayList<>();
-        Iterator<Pair<Pair<String, String>, Double>> iterator = ordre.listIterator();
+        List<Object[]> result = new ArrayList<Object[]>();
+        Iterator<Pair<Object[], Double>> iterator = ordre.listIterator();
         int i = 0;
         // Iterem per tota la llista ordenada fins que arribem a k o al final, per guardar el resultat que retornem
         while(i < k && iterator.hasNext()) {
@@ -385,17 +391,18 @@ public class DocumentsSet {
      * @param caseSensitive Boolea que identifica com s'evalua el contigut en l'expressió
      * @post Tots els docuemnts de la llista existeixen i compleixen l'expressió booleana en el cas de caseSensitive
      */
-    public List<Pair<String, String>> listByExpression(Expression expression, Boolean caseSensitive) {
-        List<Pair<String, String>> expr_list= new ArrayList<Pair<String, String>>();
+    public List<Object[]> listByExpression(Expression expression, Boolean caseSensitive) {
+        List<Object[]> expr_list= new ArrayList<Object[]>();
         for (Map.Entry<String, Map<String, Document>> d : documents.entrySet()) {
             String aut = d.getKey();
             Map<String, Document> titDoc = d.getValue();
             for (Map.Entry<String, Document> d2 : titDoc.entrySet()) {
                 String tit = d2.getKey();
                 Document doc = d2.getValue();
+                boolean favourite = doc.isFavourite();
                 // En cas que el contingut del document compleixi l'expressió, l'afegim al resultat
                 if(expression.evaluate(doc.getContent(), caseSensitive)){
-                    expr_list.add(new Pair<String,String>(tit, aut));
+                    expr_list.add(new Object[]{favourite, tit, aut});
                 }
             }
         }
@@ -505,7 +512,7 @@ public class DocumentsSet {
      * @brief Classe que permet comparar Pair<Pair<String, String>, Double>
      * @author pau.duran.manzano
      */
-    private class ValueComparator implements Comparator<Pair<Pair<String, String>, Double>> {
+    private class ValueComparator implements Comparator<Pair<Object[], Double>> {
         /**
          * @brief Operació per comparar en funció del segon valor (el second) d'un pair
          * @pre Cap dels valors dels camps de dins dels pairs és null
@@ -514,7 +521,7 @@ public class DocumentsSet {
          * @return Es retorna 1 si p1 té un second major que p2, 0 si són iguals i -1 altrament
          */
         @Override
-        public int compare(Pair<Pair<String, String>, Double> p1, Pair<Pair<String, String>, Double> p2) {
+        public int compare(Pair<Object[], Double> p1, Pair<Object[], Double> p2) {
             if (p1.getSecond() < p2.getSecond()) return 1;
             else if (p1.getSecond() == p2.getSecond()) return 0;
             else return -1;

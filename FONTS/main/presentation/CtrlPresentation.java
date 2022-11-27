@@ -105,11 +105,6 @@ public class CtrlPresentation {
         ew.initialize();
     }
 
-    public Object[][] getDocumentsData() {
-        // ToDo
-        return new Object[][] {{true, "que", "tal"}, {false, "pep", "pepa"}};
-    }
-
 
 
     // Crides al domini
@@ -215,18 +210,15 @@ public class CtrlPresentation {
         cd.setFavouriteDocument(title, author);
     }
 
-    /*public Object[][] getAllDocuments() {
-
-    }*/
-
     /**
      * @brief Funció per obtenir tots els identificadors dels documents del sistema
      * @details Aquesta funció permet consultar tots els documents que hi ha guardats en el sistema
      * @return Llistat de parells de tots els identificadors de documents de l'aplicatiu
      * @post L'estat del sistema no queda alterat
      */
-    public List<Pair<String, String>> listAllDocuments() {
-        return cd.listAllDocuments();
+    public Object[][] listAllDocuments() {
+        List<Object[]> result = cd.listAllDocuments();
+        return result.toArray(new Object[0][]);
     }
 
     /**
@@ -253,8 +245,9 @@ public class CtrlPresentation {
      * @return Llista amb els identificadors (títol, autor) dels documents que tenen com a autor l'autor donat
      * @post L'estat del sistema no queda alterat
      */
-    public List<Pair<String, String>> listTitlesOfAuthor(String author) {
-        return cd.listTitlesOfAuthor(author);
+    public Object[][] listTitlesOfAuthor(String author) {
+        List<Object[]> result = cd.listTitlesOfAuthor(author);
+        return result.toArray(new Object[0][]);
     }
 
     /**
@@ -276,8 +269,9 @@ public class CtrlPresentation {
      * @return Llista amb els identificadors (títol, autor) dels k documents més rellevants, pel que fa a contingut, de la query
      * @post L'estat del sistema no queda alterat
      */
-    public List<Pair<String, String>> listByQuery(String query, int  k) throws ExceptionInvalidK {
-        return cd.listByQuery(query, k);
+    public Object[][] listByQuery(String query, int  k) throws ExceptionInvalidK {
+        List<Object[]> result = cd.listByQuery(query, k);
+        return result.toArray(new Object[0][]);
     }
 
 
@@ -290,8 +284,9 @@ public class CtrlPresentation {
      * @post L'estat del sistema no queda alterat
      * @throws ExceptionNoExpression en cas que l'expressió identificada per (expression) no estigui donada d'alta a l'aplicatiu
      */
-    public List<Pair<String, String>> listByExpression(String expression, Boolean caseSensitive) throws ExceptionNoExpression {
-        return cd.listByExpression(expression, caseSensitive);
+    public Object[][] listByExpression(String expression, Boolean caseSensitive) throws ExceptionNoExpression {
+        List<Object[]> result = cd.listByExpression(expression, caseSensitive);
+        return result.toArray(new Object[0][]);
     }
 
     /**
