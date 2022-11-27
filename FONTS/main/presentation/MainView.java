@@ -8,11 +8,15 @@ import main.excepcions.ExceptionNoDocument;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.plaf.FileChooserUI;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import javax.swing.filechooser.FileFilter;
 
 public class MainView {
     private CtrlPresentation cp;
@@ -34,11 +38,46 @@ public class MainView {
     private JMenuItem listByExpression;
     private JMenuItem listByTitleAuthor;
     private int selectedIndex;
+    private JFileChooser loader;
+    private JFileChooser exporter;
 
     public MainView() {
         cp = CtrlPresentation.getInstance();
         frame = new JFrame("Gestió de documents");
         selectedIndex = -1;
+
+        UIManager.put("FileChooser.cancelButtonText", "Cancel·lar");
+        UIManager.put("FileChooser.lookInLabelText", "Buscar en");
+        UIManager.put("FileChooser.directoryOpenButtonText", "Obrir");
+        UIManager.put("FileChooser.fileNameLabelText", "Nom del document:");
+        UIManager.put("FileChooser.filesOfTypeLabelText", "Tipus");
+        // TODO: traduir tots els tooltips, es poden customitzar icones!
+
+        loader = new JFileChooser(".");
+        loader.setApproveButtonText("Carregar");
+        loader.setDialogTitle("Carregar document");
+        loader.setDialogType(JFileChooser.OPEN_DIALOG);
+        FileFilter xml = new FileNameExtensionFilter("XML", "xml");
+        FileFilter txt = new FileNameExtensionFilter("Text pla", "txt");
+        FileFilter fp = new FileNameExtensionFilter("Format propietari", "fp");
+        loader.setAcceptAllFileFilterUsed(false);
+        loader.setFileFilter(txt);
+        loader.addChoosableFileFilter(xml);
+        loader.addChoosableFileFilter(fp);
+        loader.setMultiSelectionEnabled(true);
+
+        UIManager.put("FileChooser.directoryOpenButtonText", "Seleccionar");
+        exporter = new JFileChooser(".");
+        exporter.setApproveButtonText("Descarregar");
+        exporter.setDialogTitle("Descarregar document");
+        exporter.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        exporter.setDialogType(JFileChooser.SAVE_DIALOG);
+        exporter.setAcceptAllFileFilterUsed(false);
+        exporter.setFileFilter(txt);
+        exporter.addChoosableFileFilter(xml);
+        exporter.addChoosableFileFilter(fp);
+        exporter.setMultiSelectionEnabled(true);
+
 
         $$$setupUI$$$();
         menubar = new JMenuBar();
@@ -93,6 +132,34 @@ public class MainView {
                     // No és possible
                 }
                 documentsModel.removeRow(selectedIndex);
+            }
+        });
+
+        load.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int returnVal = loader.showOpenDialog(MainView.this.$$$getRootComponent$$$());
+
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    File[] files = loader.getSelectedFiles();
+                    for (File f : files){
+                        System.out.println(f.getAbsolutePath());
+                    }
+                }
+            }
+        });
+
+        export.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int returnVal = exporter.showOpenDialog(MainView.this.$$$getRootComponent$$$());
+
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    File[] files = exporter.getSelectedFiles();
+                    for (File f : files){
+                        System.out.println(f.getAbsolutePath());
+                    }
+                }
             }
         });
     }
@@ -167,7 +234,7 @@ public class MainView {
         documents = new JTable(documentsModel);
 
         JTableHeader header = documents.getTableHeader();
-        Font font = new Font("Arial", Font.BOLD, 20);
+        Font font = new Font("Arial", Font.BOLD, 14);
         header.setFont(font);
     }
 }
