@@ -105,7 +105,8 @@ public class ExpressionsView {
                 String newExpression = text.getText();
                 try {
                     cp.createExpression(newExpression);
-                    listModel.addElement(newExpression);
+                    listModel.add(0, newExpression);
+                    //listModel.addElement(newExpression);
                     list.setSelectedIndex(listModel.indexOf(newExpression));
                     list.grabFocus();
                     text.setText("");
@@ -123,7 +124,7 @@ public class ExpressionsView {
             public void actionPerformed(ActionEvent event) {
                 ExpressionsModifyDialog modifyExpression = new ExpressionsModifyDialog();
                 String newValue = modifyExpression.initialize(selected);
-                if (newValue != null) {
+                if (newValue != null && !"".equals(newValue)) {
                     try {
                         cp.modifyExpression(selected, newValue);
                         int index = listModel.indexOf(selected);
@@ -132,12 +133,11 @@ public class ExpressionsView {
                         selected = newValue;
                         list.grabFocus();
                         list.setSelectedIndex(listModel.indexOf(newValue));
-                    } catch (ExceptionInvalidExpression e) {
+                    } catch (ExceptionInvalidExpression | ExceptionExpressionExists e) {
                         cp.showError(e.getMessage());
                     } catch (ExceptionNoExpression e) {
                         // No es pot donar el cas, ho garantim per presentació
-                    } catch (ExceptionExpressionExists e) {
-                        cp.showError(e.getMessage());
+                        cp.showInternalError();
                     }
                 }
             }
@@ -148,9 +148,11 @@ public class ExpressionsView {
                 try {
                     cp.deleteExpression(selected);
                 } catch (ExceptionNoExpression ex) {
-                    // No es pot donar
+                    // No es pot donar, garantit per presentació
+                    cp.showInternalError();
                 }
                 listModel.removeElement(selected);
+                text.grabFocus();
             }
         });
         panel.registerKeyboardAction(new ActionListener() {

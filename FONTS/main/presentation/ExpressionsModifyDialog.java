@@ -67,8 +67,8 @@ public class ExpressionsModifyDialog extends JDialog {
 
     private void onCancel() {
         // add your code here if necessary
-        dispose();
         text.setText(null);
+        dispose();
     }
 
     {
