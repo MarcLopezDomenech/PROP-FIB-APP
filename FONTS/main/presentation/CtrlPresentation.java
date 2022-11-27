@@ -104,6 +104,11 @@ public class CtrlPresentation {
         dialog.initialize(location);
     }
 
+    public void showNewDocument(Point location) {
+        NewDocumentDialog dialog = new NewDocumentDialog();
+        dialog.initialize(location);
+    }
+
     public void showDocuments(Point location, Dimension size) {
         MainView mw = new MainView();
         mw.initialize(location, size);

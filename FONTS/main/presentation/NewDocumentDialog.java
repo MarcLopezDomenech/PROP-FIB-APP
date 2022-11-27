@@ -94,6 +94,12 @@ public class NewDocumentDialog extends JDialog {
         });
     }
 
+    public void initialize(Point p){
+        pack();
+        setLocation(new Point ((int) p.getX() + 100, (int) p.getY() + 100));
+        setVisible(true);
+    }
+
     private void enableButtonIfCorrect() {
         buttonOK.setEnabled(!titleDoc.getText().equals("") && !authorDoc.getText().equals("") && (cat.isSelected() || esp.isSelected() || eng.isSelected()));
     }

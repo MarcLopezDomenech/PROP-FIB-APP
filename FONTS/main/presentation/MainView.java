@@ -154,10 +154,7 @@ public class MainView {
         create.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                NewDocumentDialog dialog = new NewDocumentDialog();
-                dialog.pack();
-                dialog.setLocationRelativeTo(frame);
-                dialog.setVisible(true);
+                cp.showNewDocument(frame.getLocation());
             }
         });
     }
