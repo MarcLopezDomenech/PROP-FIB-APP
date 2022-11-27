@@ -19,7 +19,7 @@ public class InternalDocument {
     /**@brief Atribut que guarda el nombre de paraules totals del document
      * @invariant Major o igual a 0
      * */
-    private int totalWords;
+    private Integer totalWords;
 
     private static final HashSet<String> stopWords_ca = initializeSet("ca");
     private static final HashSet<String> stopWords_es = initializeSet("es");
@@ -36,7 +36,12 @@ public class InternalDocument {
      * @brief Constructora per recuperar informacio en format propietari de InternalDocument
      */
     public InternalDocument(String representation){
-        //ToDo
+        String[] pairs = representation.split("]");
+        for (String pair : pairs) {
+            String[] key_value = pair.split("[");
+            if (key_value.length == 1) totalWords = Integer.valueOf( key_value[0]);
+            else relevantWords.put(key_value[0], Integer.parseInt(key_value[1]));
+        }
     }
 
     /**
@@ -133,6 +138,11 @@ public class InternalDocument {
      * @return Un format de text que emmagatzema les dades del internalDocument
      */  
     public String writeBackUp () {
-        return "Aqui va el map escrit en format {(key1, valor1),(key2,valor2)}";
+        String representation = "";
+        for(String key : relevantWords.keySet()) {
+            representation += key + "[" + relevantWords.get(key).toString() + "]";
+        }
+        representation += totalWords.toString();
+        return representation;
     }
 } 

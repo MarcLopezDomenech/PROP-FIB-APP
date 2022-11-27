@@ -116,6 +116,10 @@ public class Document {
             internalDoc = new InternalDocument(content, language);
         } else {
             //Aqui recuperem de forma eficient docuemnts guardats en format propietari
+            data = representation.split("@internal@");
+            fav = data[0].equals("yes");
+
+            internalDoc = new InternalDocument(data[1]);
         }
     }
 
@@ -296,7 +300,8 @@ public class Document {
     //IO
     public String getRepresentation() {
         String isFav = fav ? "yes" : "no";
-        return title + "@title@" + author + "@author@" + content + "@content@" + language + "@language@" + isFav;
+        String internalRepresentation = internalDoc.writeBackUp();
+        return title + "@title@" + author + "@author@" + content + "@content@" + language + "@language@" + isFav + "@internal@" + internalRepresentation;
     }
 
 } 
