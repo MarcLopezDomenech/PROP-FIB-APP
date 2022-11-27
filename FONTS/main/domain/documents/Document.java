@@ -86,6 +86,7 @@ public class Document {
      * @brief Constructora del document utilitzada al fer un back-up de l'aplicació
      * @details String backUpInformation conte les etiquetes author, title, format i content,
      * que identifiquen cada un dels atributs del document. 
+     * @pre El format de representation es correcte
      * @param representation String que serà interpretat com les dades a recuperar del document 
      */
     public Document(String representation) throws InternalError {
@@ -298,6 +299,10 @@ public class Document {
     }
 
     //IO
+    /**
+     * @brief Retorna la representacio interna en format propietari del document 
+     * @return Representacio interna en format propietari del document
+     */
     public String getRepresentation() {
         String isFav = fav ? "yes" : "no";
         String internalRepresentation = internalDoc.writeBackUp();
