@@ -318,10 +318,12 @@ public class CtrlPresentation {
         cd.restoreSystem();
     }
 
-    public static void main(String[] args) throws FileNotFoundException, ExceptionDocumentExists {
+    public static void main(String[] args) throws IOException, ExceptionDocumentExists {
         //showError("hooola");
         ExpressionsView ew = new ExpressionsView();
         ew.initialize();
+        cd.saveSystem();
+
 
         /*MainView mw = new MainView();
         mw.initialize();*/
