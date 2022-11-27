@@ -157,6 +157,16 @@ public class MainView {
                 }
             }
         });
+
+        create.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                NewDocument dialog = new NewDocument();
+                dialog.pack();
+                dialog.setLocationRelativeTo(frame);
+                dialog.setVisible(true);
+            }
+        });
     }
 
     public void initialize() {
