@@ -151,6 +151,15 @@ public class MainView {
             }
         });
 
+        expressions.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cp.showExpressions();
+                frame.dispose();
+
+            }
+        });
+
         export.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -166,16 +175,11 @@ public class MainView {
         });
     }
 
-    public void initialize() throws FileNotFoundException, ExceptionDocumentExists {
-
-        //documents.setFillsViewportHeight(true);
-        //panel = new JPanel();
-        //panel.add(documents);
-        //documents.setAutoCreateRowSorter(true);
-
+    public void initialize() {
         frame.setContentPane(panel);
         frame.setVisible(true);
         frame.setSize(600, 400);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**
