@@ -95,6 +95,8 @@ public class Loader extends JDialog {
                     for (File f : files) path.setText(path.getText() + f.getAbsolutePath() + "; ");
                     path.setText(path.getText().substring(0,path.getText().length()-2));
                 }
+
+                enableButtonIfCorrect();
             }
         });
         path.addPropertyChangeListener(new PropertyChangeListener() {
@@ -138,7 +140,7 @@ public class Loader extends JDialog {
                 CtrlPresentation.getInstance().importDocument(p, lang);
             } catch (ExceptionInvalidFormat e) {
                 // NO hauria de passar
-                CtrlPresentation.showError("El format és invàlid!");
+                CtrlPresentation.showError("L'extensió del document és invàlida!");
             } catch (FileNotFoundException e) {
                 CtrlPresentation.showError("La ruta no és correcta!");
             } catch (ExceptionDocumentExists e) {

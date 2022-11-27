@@ -84,6 +84,7 @@ public class CtrlPresentation {
     public static void showError(String message) {
         DialogError dialog = new DialogError(message);
         dialog.pack();
+        dialog.setLocation(600, 300);
         dialog.setVisible(true);
     }
 
