@@ -55,6 +55,23 @@ public class ExpressionsView {
         menuBar.add(menuOptions);
         frame.setJMenuBar(menuBar);
 
+        loadOption.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cp.showLoader(frame.getLocation());
+            }
+        });
+
+        createOption.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                NewDocumentDialog dialog = new NewDocumentDialog();
+                dialog.pack();
+                dialog.setLocationRelativeTo(frame);
+                dialog.setVisible(true);
+            }
+        });
+
         listOption.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
