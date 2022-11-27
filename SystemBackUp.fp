@@ -1,7 +1,6 @@
-Documents
-{{tres tristes tigres@@@ari@@@comen trigo}} 
-{{abc@@@mar2@@@abc abc abc}} 
-{{abc@@@mar@@@abc abc abc}} 
-Expressions
-{{!tuiafhbvuz}} 
-{{hola & adeuuu}} 
+abc@title@mar@author@abc abc 
+ abc@content@ca<doc>
+tres tristes tigres@title@ari@author@comen trigo@content@es<doc>
+abc@title@mar2@author@abc abc abc@content@en<doc>
+!tuiafhbvuz<expr>
+hola & adeuuu<expr>

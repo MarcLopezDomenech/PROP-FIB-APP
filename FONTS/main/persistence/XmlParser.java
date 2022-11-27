@@ -18,8 +18,22 @@ public class XmlParser extends Parser {
     }
 
 
-    public String read(String path) throws FileNotFoundException{
-        return "aaaa";
+    public String read(String path) throws FileNotFoundException {
+        String input = readFromFile(path);
+        String[] information = input.split("<title>");
+        String title = information[1];
+        input = information[2];
+    
+        //obtenir el autor
+        information = input.split("<author>");
+        String author = information[1];
+        input = information[2];
+
+        //Obtenir el contingut 
+        information = input.split("<content>");
+        String content = information[1];
+
+        return  title + "@title@" + author + "@author@" + content + "@content@";
     }
 
     public void write(String document, String path) throws IOException {

@@ -23,7 +23,7 @@ public class CtrlPersistence {
         CtrlPersistence cp = getInstance();
         try {
             Set<String> docs = new HashSet<>();
-            docs.add("abc@title@mar@author@abc abc abc@content@ca");
+            docs.add("abc@title@mar@author@abc abc \n abc@content@ca");
             docs.add("tres tristes tigres@title@ari@author@comen trigo@content@es");
             docs.add("abc@title@mar2@author@abc abc abc@content@en");
             Set<String> exprs = new HashSet<>();
@@ -39,7 +39,9 @@ public class CtrlPersistence {
             for(String doc: sets.getFirst()) System.out.print(doc + "\n");
             for(String expr: sets.getSecond()) System.out.print(expr + "\n");
 
-            cp.exportDocument("tres tristes tigres@title@ari@author@comen trigooooo@content@es", "tigres.xml");
+            cp.exportDocument("tres tristes tigres@title@ari@author@comen \n trigooooo@content@es@language@no", "tigres.xml");
+            String rep = cp.importDocument("tigres.xml", "ca");
+            System.out.println(rep);
         } catch (ExceptionInvalidFormat e) {
            System.out.println("Salta la merda de format");
         } catch (FileNotFoundException e) {
@@ -83,7 +85,7 @@ public class CtrlPersistence {
             return l.read(path) + language + "@language@no";
         } else if (path.endsWith(".fp")) {     //en format json
             FpParser l = new FpParser();
-            return l.read(path) + language + "@language@no";
+            return l.read(path);
         } else throw new ExceptionInvalidFormat("del fitxer");
     } 
     
