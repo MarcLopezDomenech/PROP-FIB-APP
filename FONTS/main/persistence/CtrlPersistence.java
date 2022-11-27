@@ -49,6 +49,8 @@ public class CtrlPersistence {
             System.out.println("File not found");
         } catch (IOException e) {
             System.out.println("IO");
+        } catch (ExceptionInvalidLanguage e) {
+            e.printStackTrace();
         }
     }
 

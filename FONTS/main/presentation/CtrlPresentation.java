@@ -337,7 +337,7 @@ public class CtrlPresentation {
         return cd.getAllExpressions();
     }
 
-    public void importDocument(String path, String language) throws ExceptionInvalidFormat, FileNotFoundException, ExceptionDocumentExists {
+    public void importDocument(String path, String language) throws ExceptionInvalidFormat, FileNotFoundException, ExceptionDocumentExists, ExceptionInvalidLanguage {
         cd.importDocument(path, language);
     }
 

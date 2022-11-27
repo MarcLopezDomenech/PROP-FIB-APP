@@ -5,6 +5,7 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import main.excepcions.ExceptionDocumentExists;
 import main.excepcions.ExceptionInvalidFormat;
+import main.excepcions.ExceptionInvalidLanguage;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -148,12 +149,10 @@ public class Loader extends JDialog {
         for (String p : path.getText().split(";[ ]*")) {
             try {
                 CtrlPresentation.getInstance().importDocument(p, lang);
-            } catch (ExceptionInvalidFormat e) {
+            } catch (ExceptionInvalidFormat | ExceptionDocumentExists |  ExceptionInvalidLanguage e) {
                 CtrlPresentation.getInstance().showError(e.getMessage());
             } catch (FileNotFoundException e) {
                 CtrlPresentation.getInstance().showError("La ruta no és correcta!");
-            } catch (ExceptionDocumentExists e) {
-                CtrlPresentation.getInstance().showError(e.getMessage());
             }
         }
 

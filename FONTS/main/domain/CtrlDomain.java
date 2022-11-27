@@ -280,7 +280,7 @@ public class CtrlDomain {
         return es.getAllExpressions();
     }
 
-    public void importDocument(String path, String language) throws ExceptionInvalidFormat, FileNotFoundException, ExceptionDocumentExists {
+    public void importDocument(String path, String language) throws ExceptionInvalidFormat, FileNotFoundException, ExceptionDocumentExists, ExceptionInvalidLanguage {
         String newDoc = cp.importDocument(path, language);
         ds.importDocument(newDoc);
     }
