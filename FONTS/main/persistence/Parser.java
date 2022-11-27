@@ -60,13 +60,12 @@ public abstract class Parser {
      * @brief Constructora de la classe
      */
     public void saveSystem(Set<String> docs, Set<String> exprs, String path) throws IOException{
-        String data = "Documents\n";
+        String data = "";
         for(String doc : docs) {
-            data += "{{" + doc + "}} \n";
+            data += doc + "<doc>\n";
         }
-        data += "Expressions\n";
         for(String expr : exprs) {
-            data += "{{" + expr + "}} \n";
+            data += expr + "<expr>\n";
         }
         writeToFile(data, path);
     }
@@ -74,16 +73,25 @@ public abstract class Parser {
     public void restoreSystem(Set<String> docs, Set<String> exprs, String path) throws FileNotFoundException{
         File myObj = new File(path);
         Scanner myReader = new Scanner(myObj);
-        boolean expressions = false;
-        String data = myReader.nextLine();
+        String input = "";
+        String content = "";
         while (myReader.hasNextLine()) {
-            data = myReader.nextLine();
-            if (data.equals("Expressions")) expressions = true;
-            else {
-                data = data.substring(2, data.length() - 3);
-                if (!expressions) docs.add(data);
-                else exprs.add(data);
+            input = myReader.nextLine();
+
+            if (input.endsWith("<doc>")) {
+                input = input.substring(0, input.length() - 5); 
+                content += input;
+                docs.add(content);
+                content = "";
             }
+            else if (input.endsWith("<expr>")) {
+                input = input.substring(0, input.length() - 6); 
+                content += input;
+                exprs.add(content);
+                content = "";
+            } else {
+                content += input + "\n";
+            }           
         }
         myReader.close();
     }
