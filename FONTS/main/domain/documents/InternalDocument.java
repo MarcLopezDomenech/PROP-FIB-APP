@@ -37,8 +37,9 @@ public class InternalDocument {
      */
     public InternalDocument(String representation){
         String[] pairs = representation.split("]");
+        relevantWords = new HashMap<>();
         for (String pair : pairs) {
-            String[] key_value = pair.split("[");
+            String[] key_value = pair.split("\\[");
             if (key_value.length == 1) totalWords = Integer.valueOf( key_value[0]);
             else relevantWords.put(key_value[0], Integer.parseInt(key_value[1]));
         }
