@@ -55,6 +55,14 @@ public class ExpressionsView {
         menuBar.add(menuOptions);
         frame.setJMenuBar(menuBar);
 
+        listOption.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cp.showDocuments();
+                frame.dispose();
+            }
+        });
+
         list.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent event) {
@@ -152,10 +160,7 @@ public class ExpressionsView {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    public void initialize() throws FileNotFoundException, ExceptionDocumentExists {
-
-        cp.restoreSystem();
-
+    public void initialize() {
         listModel = new DefaultListModel();
         list.setModel(listModel);
         Set<String> expressions = cp.getAllExpressions();

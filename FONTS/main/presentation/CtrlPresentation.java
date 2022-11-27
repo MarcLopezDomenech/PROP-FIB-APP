@@ -47,7 +47,10 @@ public class CtrlPresentation {
         return singletonObject;
     }
 
-    public static void initiateApp() throws FileNotFoundException {
+
+    // Gestió de l'aplicació i back-ups
+
+    public static void initiateApp() {
         // Restaurar sistema
         try {
             cd.restoreSystem();
@@ -68,6 +71,18 @@ public class CtrlPresentation {
         }
     }
 
+    public void restoreSystem() throws FileNotFoundException, ExceptionDocumentExists {
+        try {
+            cd.restoreSystem();
+        } catch(FileNotFoundException |ExceptionDocumentExists e) {
+            // No podem restaurar el sistema
+            showError("Aquesta còpia de seguretat no és vàlida.");
+        }
+    }
+
+
+    // Dialogs d'error
+
     public static void showError(String message) {
         DialogError dialog = new DialogError(message);
         dialog.pack();
@@ -78,12 +93,27 @@ public class CtrlPresentation {
         // ToDo
     }
 
+
+
+    // Opcions del menú
+
+    public void showDocuments() {
+        MainView mw = new MainView();
+        mw.initialize();
+    }
+
+    public void showExpressions() {
+        ExpressionsView ew = new ExpressionsView();
+        ew.initialize();
+    }
+
     public Object[][] getDocumentsData() {
         // ToDo
         return new Object[][] {{true, "que", "tal"}, {false, "pep", "pepa"}};
     }
 
-    // FUNCIONS DEL CTRLDOMAIN
+
+    // Crides al domini
 
     /**
      * @brief Mètode per donar d'alta un nou document
@@ -314,19 +344,14 @@ public class CtrlPresentation {
         cd.exportDocument(title, author, path);
     }
 
-    public void restoreSystem() throws FileNotFoundException, ExceptionDocumentExists {
-        cd.restoreSystem();
-    }
-
-    public static void main(String[] args) throws IOException, ExceptionDocumentExists {
-        //showError("hooola");
-        ExpressionsView ew = new ExpressionsView();
-        ew.initialize();
-        cd.saveSystem();
 
 
-        /*MainView mw = new MainView();
-        mw.initialize();*/
+    // ToDo: Treure això d'aquí
+    public static void main(String[] args) {
+        CtrlPresentation cp = CtrlPresentation.getInstance();
+        cp.initiateApp();
+        cp.showDocuments();
+        cp.closeApp();
     }
 
 }
