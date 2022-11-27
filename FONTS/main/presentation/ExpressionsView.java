@@ -164,6 +164,7 @@ public class ExpressionsView {
         frame.setContentPane(panel);
         frame.setVisible(true);
         frame.setSize(600, 400);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     {
