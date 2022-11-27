@@ -104,11 +104,6 @@ public class CtrlPresentation {
         dialog.initialize(location);
     }
 
-    public void showNewDocument(Point location) {
-        NewDocumentDialog dialog = new NewDocumentDialog();
-        dialog.initialize(location);
-    }
-
     public void showDocuments(Point location, Dimension size) {
         MainView mw = new MainView();
         mw.initialize(location, size);
@@ -358,7 +353,7 @@ public class CtrlPresentation {
     public static void main(String[] args) {
         CtrlPresentation cp = CtrlPresentation.getInstance();
         cp.initiateApp();
-        cp.showDocuments(new Point(600, 300), new Dimension(600, 500));
+        cp.showDocuments(new Point(600, 300), new Dimension(450, 500));
         cp.closeApp();
     }
 
