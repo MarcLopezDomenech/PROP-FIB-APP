@@ -52,7 +52,15 @@ public class Loader extends JDialog {
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onOK();
+                try {
+                    onOK();
+                } catch (ExceptionInvalidFormat ex) {
+                    throw new RuntimeException(ex);
+                } catch (FileNotFoundException ex) {
+                    throw new RuntimeException(ex);
+                } catch (ExceptionDocumentExists ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 
@@ -139,13 +147,4 @@ public class Loader extends JDialog {
     private void onCancel() {
         dispose();
     }
-
-    public static void main(String[] args) {
-        Loader dialog = new Loader();
-        dialog.pack();
-        dialog.setLocation(700, 350);
-        dialog.setVisible(true);
-        System.exit(0);
-    }
-
 }

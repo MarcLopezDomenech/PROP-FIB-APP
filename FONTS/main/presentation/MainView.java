@@ -41,7 +41,6 @@ public class MainView {
     private JMenuItem listByExpression;
     private JMenuItem listByTitleAuthor;
     private int selectedIndex;
-    private JFileChooser loader;
     private JFileChooser exporter;
 
     public MainView() {
@@ -54,21 +53,6 @@ public class MainView {
         UIManager.put("FileChooser.directoryOpenButtonText", "Obrir");
         UIManager.put("FileChooser.fileNameLabelText", "Nom del document:");
         UIManager.put("FileChooser.filesOfTypeLabelText", "Tipus");
-        // TODO: traduir tots els tooltips, es poden customitzar icones!
-
-        loader = new JFileChooser(".");
-        loader.setApproveButtonText("Carregar");
-        loader.setDialogTitle("Carregar document");
-        loader.setDialogType(JFileChooser.OPEN_DIALOG);
-        FileFilter xml = new FileNameExtensionFilter("XML", "xml");
-        FileFilter txt = new FileNameExtensionFilter("Text pla", "txt");
-        FileFilter fp = new FileNameExtensionFilter("Format propietari", "fp");
-        loader.setAcceptAllFileFilterUsed(false);
-        loader.setFileFilter(txt);
-        loader.addChoosableFileFilter(xml);
-        loader.addChoosableFileFilter(fp);
-        loader.setMultiSelectionEnabled(true);
-
         UIManager.put("FileChooser.directoryOpenButtonText", "Seleccionar");
         exporter = new JFileChooser(".");
         exporter.setApproveButtonText("Descarregar");
@@ -76,6 +60,9 @@ public class MainView {
         exporter.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         exporter.setDialogType(JFileChooser.SAVE_DIALOG);
         exporter.setAcceptAllFileFilterUsed(false);
+        FileFilter xml = new FileNameExtensionFilter("XML", "xml");
+        FileFilter txt = new FileNameExtensionFilter("Text pla", "txt");
+        FileFilter fp = new FileNameExtensionFilter("Format propietari", "fp");
         exporter.setFileFilter(txt);
         exporter.addChoosableFileFilter(xml);
         exporter.addChoosableFileFilter(fp);
@@ -141,14 +128,10 @@ public class MainView {
         load.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int returnVal = loader.showOpenDialog(MainView.this.$$$getRootComponent$$$());
-
-                if (returnVal == JFileChooser.APPROVE_OPTION) {
-                    File[] files = loader.getSelectedFiles();
-                    for (File f : files) {
-                        System.out.println(f.getAbsolutePath());
-                    }
-                }
+                Loader dialog = new Loader();
+                dialog.pack();
+                dialog.setLocationRelativeTo(frame);
+                dialog.setVisible(true);
             }
         });
 
@@ -180,6 +163,7 @@ public class MainView {
         frame.setContentPane(panel);
         frame.setVisible(true);
         frame.setSize(600, 400);
+        frame.setLocation(600, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
