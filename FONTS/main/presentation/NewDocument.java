@@ -107,10 +107,10 @@ public class NewDocument extends JDialog {
         try {
             CtrlPresentation.getInstance().createEmptyDocument(titleDoc.getText(), authorDoc.getText(), lang);
         } catch (ExceptionDocumentExists e) {
-            CtrlPresentation.showError("Ja existeix el document al sistema!");
+            CtrlPresentation.getInstance().showError(e.getMessage());
         } catch (ExceptionInvalidLanguage e) {
             // NO hauria de passar
-            CtrlPresentation.showError("El llenguatge no és vàlid!");
+            CtrlPresentation.getInstance().showInternalError();
         }
         // reenviar a la vista de modificar
         dispose();

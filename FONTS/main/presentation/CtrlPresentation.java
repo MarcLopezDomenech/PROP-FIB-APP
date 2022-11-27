@@ -5,6 +5,7 @@ import main.domain.expressions.Expression;
 import main.domain.util.Pair;
 import main.excepcions.*;
 
+import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashSet;
@@ -50,7 +51,7 @@ public class CtrlPresentation {
 
     // Gestió de l'aplicació i back-ups
 
-    public static void initiateApp() {
+    public void initiateApp() {
         // Restaurar sistema
         try {
             cd.restoreSystem();
@@ -81,14 +82,14 @@ public class CtrlPresentation {
 
     // Dialogs d'error
 
-    public static void showError(String message) {
+    public void showError(String message) {
         DialogError dialog = new DialogError(message);
         dialog.pack();
         dialog.setLocation(600, 300);
         dialog.setVisible(true);
     }
 
-    public static void showInternalError() {
+    public void showInternalError() {
         showError("Hi ha hagut un error intern al sistema. Si no és el primer cop que succeeix, si us plau contacta amb l'administrador.");
     }
 
@@ -96,14 +97,19 @@ public class CtrlPresentation {
 
     // Opcions del menú
 
-    public void showDocuments() {
-        MainView mw = new MainView();
-        mw.initialize();
+    public void showLoader(Point location) {
+        Loader dialog = new Loader();
+        dialog.initialize(location);
     }
 
-    public void showExpressions() {
+    public void showDocuments(Point location, Dimension size) {
+        MainView mw = new MainView();
+        mw.initialize(location, size);
+    }
+
+    public void showExpressions(Point location, Dimension size) {
         ExpressionsView ew = new ExpressionsView();
-        ew.initialize();
+        ew.initialize(location, size);
     }
 
 
@@ -345,7 +351,7 @@ public class CtrlPresentation {
     public static void main(String[] args) {
         CtrlPresentation cp = CtrlPresentation.getInstance();
         cp.initiateApp();
-        cp.showDocuments();
+        cp.showDocuments(new Point(600, 300), new Dimension(450, 500));
         cp.closeApp();
     }
 

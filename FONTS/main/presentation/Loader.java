@@ -129,6 +129,12 @@ public class Loader extends JDialog {
         });
     }
 
+    public void initialize(Point location) {
+        pack();
+        setLocation(location);
+        setVisible(true);
+    }
+
     private void enableButtonIfCorrect() {
         buttonOK.setEnabled(!path.getText().equals("") && (cat.isSelected() || esp.isSelected() || eng.isSelected()));
     }
@@ -143,12 +149,11 @@ public class Loader extends JDialog {
             try {
                 CtrlPresentation.getInstance().importDocument(p, lang);
             } catch (ExceptionInvalidFormat e) {
-                // NO hauria de passar
-                CtrlPresentation.showError("L'extensió del document és invàlida!");
+                CtrlPresentation.getInstance().showError(e.getMessage());
             } catch (FileNotFoundException e) {
-                CtrlPresentation.showError("La ruta no és correcta!");
+                CtrlPresentation.getInstance().showError("La ruta no és correcta!");
             } catch (ExceptionDocumentExists e) {
-                CtrlPresentation.showError("Ja existeix el document al sistema!");
+                CtrlPresentation.getInstance().showError(e.getMessage());
             }
         }
 

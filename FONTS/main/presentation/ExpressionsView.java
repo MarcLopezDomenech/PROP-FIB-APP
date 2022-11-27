@@ -58,7 +58,7 @@ public class ExpressionsView {
         listOption.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cp.showDocuments();
+                cp.showDocuments(frame.getLocation(), frame.getSize());
                 frame.dispose();
             }
         });
@@ -123,7 +123,9 @@ public class ExpressionsView {
             @Override
             public void actionPerformed(ActionEvent event) {
                 ExpressionsModifyDialog modifyExpression = new ExpressionsModifyDialog();
-                String newValue = modifyExpression.initialize(selected);
+                Point point = new Point((int) (frame.getLocation().getX() + 100), (int) (frame.getLocation().getY() + 100));
+
+                String newValue = modifyExpression.initialize(point, selected);
                 if (newValue != null && !"".equals(newValue)) {
                     try {
                         cp.modifyExpression(selected, newValue);
@@ -162,7 +164,7 @@ public class ExpressionsView {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    public void initialize() {
+    public void initialize(Point location, Dimension size) {
         listModel = new DefaultListModel();
         list.setModel(listModel);
         Set<String> expressions = cp.getAllExpressions();
@@ -170,7 +172,8 @@ public class ExpressionsView {
 
         frame.setContentPane(panel);
         frame.setVisible(true);
-        frame.setSize(600, 400);
+        frame.setSize(size);
+        frame.setLocation(location);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 

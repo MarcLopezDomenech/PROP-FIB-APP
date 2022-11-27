@@ -128,17 +128,14 @@ public class MainView {
         load.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Loader dialog = new Loader();
-                dialog.pack();
-                dialog.setLocationRelativeTo(frame);
-                dialog.setVisible(true);
+                cp.showLoader(frame.getLocation());
             }
         });
 
         expressions.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cp.showExpressions();
+                cp.showExpressions(frame.getLocation(), frame.getSize());
                 frame.dispose();
 
             }
@@ -169,11 +166,11 @@ public class MainView {
         });
     }
 
-    public void initialize() {
+    public void initialize(Point location, Dimension size) {
         frame.setContentPane(panel);
         frame.setVisible(true);
-        frame.setSize(600, 400);
-        frame.setLocation(600, 300);
+        frame.setSize(size);
+        frame.setLocation(location);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
