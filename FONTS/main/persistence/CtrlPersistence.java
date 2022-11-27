@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 import main.excepcions.ExceptionInvalidFormat;
+import main.excepcions.ExceptionInvalidLanguage;
 import main.domain.util.Pair;
 
 /**
@@ -74,13 +75,16 @@ public class CtrlPersistence {
      * @brief Funció per obrir un document guardat en local de l'usuari
      * @param p el path a obrir
      * @return Un string en format JSON del que cada document n'extreurà les dades que necessiti
+     * @throws ExceptionInvalidLanguage
      */
     
-    public String importDocument(String path, String language) throws ExceptionInvalidFormat, FileNotFoundException {
+    public String importDocument(String path, String language) throws ExceptionInvalidFormat, FileNotFoundException, ExceptionInvalidLanguage {
         if (path.endsWith(".txt")) {
+            if (!(language.equals("ca") || language.equals("es") || language.equals("en"))) throw new ExceptionInvalidLanguage(language);
             TxtParser l = new TxtParser();
             return l.read(path) + language + "@language@no";
         } else if (path.endsWith(".xml")) {
+            if (!(language.equals("ca") || language.equals("es") || language.equals("en"))) throw new ExceptionInvalidLanguage(language);
             XmlParser l = new XmlParser();
             return l.read(path) + language + "@language@no";
         } else if (path.endsWith(".fp")) {     //en format json
