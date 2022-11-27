@@ -51,21 +51,31 @@ public class CtrlPresentation {
         // Restaurar sistema
         try {
             cd.restoreSystem();
-        } catch (FileNotFoundException e) {}; // ToDo: Plorem?
+        } catch (FileNotFoundException | ExceptionDocumentExists e) {
+            // No es poden donar
+        }
 
         // ToDo: Mostrar vista principal
 
     }
 
-    public void closeApp() throws IOException {
-        cd.saveSystem();
-        // ToDo: Algo més?
+    public void closeApp() {
+        try {
+            cd.saveSystem();
+        } catch (IOException e) {
+            // Tenim un problema greu
+            showInternalError();
+        }
     }
 
     public static void showError(String message) {
         DialogError dialog = new DialogError(message);
         dialog.pack();
         dialog.setVisible(true);
+    }
+
+    public static void showInternalError() {
+        // ToDo
     }
 
     public Object[][] getDocumentsData() {
@@ -296,8 +306,8 @@ public class CtrlPresentation {
         return expressions;
     }
 
-    public void importDocument(String path) throws ExceptionInvalidFormat, FileNotFoundException {
-        cd.importDocument(path);
+    public void importDocument(String path, String language) throws ExceptionInvalidFormat, FileNotFoundException, ExceptionDocumentExists {
+        cd.importDocument(path, language);
     }
 
     public void exportDocument(String title, String author, String path) throws ExceptionNoDocument, ExceptionInvalidFormat, IOException {
@@ -306,10 +316,10 @@ public class CtrlPresentation {
 
     public static void main(String[] args) {
         //showError("hooola");
-        ExpressionsView ew = new ExpressionsView();
-        ew.initialize();
-        /*MainView mw = new MainView();
-        mw.initialize();*/
+        /*ExpressionsView ew = new ExpressionsView();
+        ew.initialize();*/
+        MainView mw = new MainView();
+        mw.initialize();
     }
 
 }

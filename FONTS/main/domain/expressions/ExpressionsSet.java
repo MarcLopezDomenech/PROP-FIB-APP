@@ -115,4 +115,8 @@ public class ExpressionsSet {
         // Map.remove() retorna el value que estava associada a la key donada o null si aquesta key no estava mapejada
         if (oldExpression == null) throw new ExceptionNoExpression(id_expression);
     }
+
+    public void reset() {
+        singletonObject = new ExpressionsSet();
+    }
 }

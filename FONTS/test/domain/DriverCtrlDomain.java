@@ -339,12 +339,14 @@ public class DriverCtrlDomain {
         System.out.println("Expressio booleana modificada");
     }
 
-    public static void testImportDocument() throws ExceptionInvalidFormat, FileNotFoundException  {
+    public static void testImportDocument() throws ExceptionInvalidFormat, FileNotFoundException, ExceptionDocumentExists {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Importar un document");
         System.out.println("Introdueix el path");
         String path = scanner.nextLine();
-        cd.importDocument(path);
+        System.out.println("Introdueix l'idioma");
+        String language = scanner.nextLine();
+        cd.importDocument(path, language);
         System.out.println("Document importat");
     }
 
