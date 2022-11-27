@@ -3,21 +3,17 @@ package main.presentation;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
-import main.excepcions.ExceptionDocumentExists;
 import main.excepcions.ExceptionNoDocument;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.plaf.FileChooserUI;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-import java.io.FileNotFoundException;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.table.TableColumn;
 
@@ -158,7 +154,7 @@ public class MainView {
         create.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                NewDocument dialog = new NewDocument();
+                NewDocumentDialog dialog = new NewDocumentDialog();
                 dialog.pack();
                 dialog.setLocationRelativeTo(frame);
                 dialog.setVisible(true);

@@ -8,13 +8,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class DialogConfirm extends JDialog {
+public class ConfirmDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonSi;
     private JButton buttonNo;
     private JLabel text;
 
-    public DialogConfirm(String confirm) {
+    public ConfirmDialog(String confirm) {
         setTitle("Confirmar");
         text.setText(confirm);
         setContentPane(contentPane);
@@ -60,7 +60,7 @@ public class DialogConfirm extends JDialog {
     }
 
     public static void main(String[] args) {
-        DialogConfirm dialog = new DialogConfirm("Prova");
+        ConfirmDialog dialog = new ConfirmDialog("Prova");
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);

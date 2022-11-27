@@ -19,7 +19,7 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-public class Loader extends JDialog {
+public class LoaderDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
@@ -30,7 +30,7 @@ public class Loader extends JDialog {
     private JRadioButton eng;
     private JFileChooser fc;
 
-    public Loader() {
+    public LoaderDialog() {
         setTitle("Carregar documents");
         setResizable(false);
         setContentPane(contentPane);

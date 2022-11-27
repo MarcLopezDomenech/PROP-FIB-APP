@@ -14,7 +14,7 @@ import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class NewDocument extends JDialog {
+public class NewDocumentDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
@@ -24,7 +24,7 @@ public class NewDocument extends JDialog {
     private JRadioButton esp;
     private JRadioButton eng;
 
-    public NewDocument() {
+    public NewDocumentDialog() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -121,7 +121,7 @@ public class NewDocument extends JDialog {
     }
 
     public static void main(String[] args) {
-        NewDocument dialog = new NewDocument();
+        NewDocumentDialog dialog = new NewDocumentDialog();
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);

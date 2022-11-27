@@ -9,12 +9,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class DialogError extends JDialog {
+public class ErrorDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JLabel missatge;
 
-    public DialogError(String error) {
+    public ErrorDialog(String error) {
         setTitle("Error");
         missatge.setText(error);
         setContentPane(contentPane);

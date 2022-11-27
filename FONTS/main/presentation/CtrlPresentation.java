@@ -1,14 +1,11 @@
 package main.presentation;
 
 import main.domain.CtrlDomain;
-import main.domain.expressions.Expression;
-import main.domain.util.Pair;
 import main.excepcions.*;
 
 import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -83,7 +80,7 @@ public class CtrlPresentation {
     // Dialogs d'error
 
     public void showError(String message) {
-        DialogError dialog = new DialogError(message);
+        ErrorDialog dialog = new ErrorDialog(message);
         dialog.pack();
         dialog.setLocation(600, 300);
         dialog.setVisible(true);
@@ -98,7 +95,7 @@ public class CtrlPresentation {
     // Opcions del menú
 
     public void showLoader(Point location) {
-        Loader dialog = new Loader();
+        LoaderDialog dialog = new LoaderDialog();
         dialog.initialize(location);
     }
 
