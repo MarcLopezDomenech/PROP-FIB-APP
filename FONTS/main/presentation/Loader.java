@@ -54,15 +54,7 @@ public class Loader extends JDialog {
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                try {
-                    onOK();
-                } catch (ExceptionInvalidFormat ex) {
-                    throw new RuntimeException(ex);
-                } catch (FileNotFoundException ex) {
-                    throw new RuntimeException(ex);
-                } catch (ExceptionDocumentExists ex) {
-                    throw new RuntimeException(ex);
-                }
+                onOK();
             }
         });
 
@@ -135,15 +127,23 @@ public class Loader extends JDialog {
         buttonOK.setEnabled(!path.getText().equals("") && (cat.isSelected() || esp.isSelected() || eng.isSelected()));
     }
 
-    private void onOK() throws ExceptionInvalidFormat, FileNotFoundException, ExceptionDocumentExists {
+    private void onOK(){
         String lang;
         if (cat.isSelected()) lang = "ca";
         else if (esp.isSelected()) lang = "es";
         else lang = "en";
 
         for (String p : path.getText().split(";[ ]*")) {
-            System.out.println(p);
-            //CtrlPresentation.getInstance().importDocument(p, lang);
+            try {
+                CtrlPresentation.getInstance().importDocument(p, lang);
+            } catch (ExceptionInvalidFormat e) {
+                // NO hauria de passar
+                CtrlPresentation.showError("El format és invàlid!");
+            } catch (FileNotFoundException e) {
+                CtrlPresentation.showError("La ruta no és correcta!");
+            } catch (ExceptionDocumentExists e) {
+                CtrlPresentation.showError("Ja existeix el document al sistema!");
+            }
         }
 
         dispose();
