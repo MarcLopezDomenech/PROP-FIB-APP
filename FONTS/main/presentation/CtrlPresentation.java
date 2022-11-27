@@ -215,6 +215,10 @@ public class CtrlPresentation {
         cd.setFavouriteDocument(title, author);
     }
 
+    /*public Object[][] getAllDocuments() {
+
+    }*/
+
     /**
      * @brief Funció per obtenir tots els identificadors dels documents del sistema
      * @details Aquesta funció permet consultar tots els documents que hi ha guardats en el sistema
@@ -328,11 +332,7 @@ public class CtrlPresentation {
     }
 
     public Set<String> getAllExpressions() {
-        Set<String> expressions = new HashSet<>();
-        expressions.addAll(cd.getAllExpressions());
-        expressions.add("prooova");
-        expressions.add("més de proves");
-        return expressions;
+        return cd.getAllExpressions();
     }
 
     public void importDocument(String path, String language) throws ExceptionInvalidFormat, FileNotFoundException, ExceptionDocumentExists {
