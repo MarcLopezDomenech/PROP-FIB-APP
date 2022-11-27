@@ -14,9 +14,9 @@ import java.awt.event.*;
 import java.util.Set;
 
 /**
+ * @author pau.duran.manzano
  * @class ExpressionsView
  * @brief Vista per gestionar les expressions del sistema
- * @author pau.duran.manzano
  */
 public class ExpressionsView {
     private CtrlPresentation cp;
@@ -29,12 +29,29 @@ public class ExpressionsView {
     private JButton modify;
     private JTextField text;
     private JPanel buttons;
+    private JMenuBar menuBar;
+    private JMenu menuOptions;
+    private JMenuItem loadOption;
+    private JMenuItem createOption;
+    private JMenuItem listOption;
     private String selected;
 
     public ExpressionsView() {
         cp = CtrlPresentation.getInstance();
         frame = new JFrame("Gestió de les expressions");
         selected = null;
+
+        menuBar = new JMenuBar();
+
+        menuOptions = new JMenu("Opcions");
+        loadOption = new JMenuItem("Carregar document");
+        menuOptions.add(loadOption);
+        createOption = new JMenuItem("Nou document");
+        menuOptions.add(createOption);
+        listOption = new JMenuItem("Gestió de documents");
+        menuOptions.add(listOption);
+        menuBar.add(menuOptions);
+        frame.setJMenuBar(menuBar);
 
         list.addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -164,6 +181,9 @@ public class ExpressionsView {
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         panel.add(panel1, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        menuBar = new JMenuBar();
+        menuBar.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel1.add(menuBar, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         buttons = new JPanel();
         buttons.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
         panel.add(buttons, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
