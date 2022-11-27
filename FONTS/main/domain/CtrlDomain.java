@@ -156,12 +156,12 @@ public class CtrlDomain {
         ds.updateLanguageDocument(title, author, newLanguage);
     }
 
-    public boolean getStaredDocument(String title, String author) {
-        return ds.getStaredDocument(title, author);
+    public boolean isFavouriteDocument(String title, String author) throws ExceptionNoDocument {
+        return ds.isFavouriteDocument(title, author);
     }
 
-    public void setStaredDocument(String title, String author) {
-        ds.setStaredDocument(title, author);
+    public void setFavouriteDocument(String title, String author) throws ExceptionNoDocument {
+        ds.setFavouriteDocument(title, author);
     }
 
     /**
@@ -296,17 +296,13 @@ public class CtrlDomain {
         cp.saveSystem(documents, expressions);
     }
 
-    public void restoreSystem() throws FileNotFoundException, ExceptionDocumentExists {
+    public void restoreSystem() throws FileNotFoundException, ExceptionDocumentExists, ExceptionInvalidExpression, ExceptionExpressionExists {
         Pair<Set<String>,Set<String>> system = cp.restoreSystem();
         Set<String> documents = system.getFirst();
         for (String doc : documents) ds.importDocument(doc);
 
         Set<String> expressions = system.getSecond();
-        try {
-            for (String expr : expressions) es.createExpression(expr);
-        } catch (ExceptionInvalidExpression | ExceptionExpressionExists e) {
-            // No és possible
-        }
+        for (String expr : expressions) es.createExpression(expr);
     }
 
     public void resetSystem() {
