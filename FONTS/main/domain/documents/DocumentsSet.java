@@ -1,13 +1,6 @@
 package main.domain.documents;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
+import java.util.*;
 
 import main.domain.expressions.Expression;      // Canviar per test.domain.expressions.Expression per fer tests
 import main.domain.documents.Document;          // Canviar per test.domain.documents.Document per fer tests
@@ -236,13 +229,14 @@ public class DocumentsSet {
         doc.setLanguage(newLanguage);
     }
 
-    public boolean getStaredDocument(String title, String author) {
-        // ToDo
-        return true;
+    public boolean isFavouriteDocument(String title, String author) throws ExceptionNoDocument {
+        Document document = getDocument(title, author);
+        return document.isFavourite();
     }
 
-    public void setStaredDocument(String title, String author) {
-        // ToDo
+    public void setFavouriteDocument(String title, String author) throws ExceptionNoDocument {
+        Document document = getDocument(title, author);
+        document.setFavourite(true);
     }
 
     /**
@@ -414,12 +408,22 @@ public class DocumentsSet {
     }
 
     public String getDocumentRepresentation(String title, String author) throws ExceptionNoDocument {
-        // ToDo: Excepcions
-        return getDocument(title, author).getRepresentation();
+        Document document = getDocument(title, author);
+        return document.getRepresentation();
     }
 
     public Set<String> getAllDocumentRepresentations() {
-        return null;
+        Set<String> representations = new HashSet<String>();
+        for (Map.Entry<String, Map<String, Document>> d : documents.entrySet()) {
+            String author = d.getKey();
+            Map<String, Document> titlesDoc = d.getValue();
+            for (Map.Entry<String, Document> d2 : titlesDoc.entrySet()) {
+                Document document = d2.getValue();
+                String representation = document.getRepresentation();
+                representations.add(representation);
+            }
+        }
+        return representations;
     }
 
     public void reset() {

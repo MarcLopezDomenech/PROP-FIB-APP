@@ -54,12 +54,10 @@ public class CtrlPresentation {
         // Restaurar sistema
         try {
             cd.restoreSystem();
-        } catch (FileNotFoundException | ExceptionDocumentExists e) {
-            // No es poden donar
+        } catch (FileNotFoundException | ExceptionDocumentExists | ExceptionInvalidExpression | ExceptionExpressionExists e) {
+            // No hauría de passar mai
+            showInternalError();
         }
-
-        // ToDo: Mostrar vista principal
-
     }
 
     public void closeApp() {
@@ -74,7 +72,7 @@ public class CtrlPresentation {
     public void restoreSystem() throws FileNotFoundException, ExceptionDocumentExists {
         try {
             cd.restoreSystem();
-        } catch(FileNotFoundException |ExceptionDocumentExists e) {
+        } catch(FileNotFoundException | ExceptionDocumentExists |ExceptionInvalidExpression | ExceptionExpressionExists e) {
             // No podem restaurar el sistema
             showError("Aquesta còpia de seguretat no és vàlida.");
         }
@@ -90,7 +88,7 @@ public class CtrlPresentation {
     }
 
     public static void showInternalError() {
-        // ToDo
+        showError("Hi ha hagut un error intern al sistema. Si no és el primer cop que succeeix, si us plau contacta amb l'administrador.");
     }
 
 
@@ -111,6 +109,7 @@ public class CtrlPresentation {
         // ToDo
         return new Object[][] {{true, "que", "tal"}, {false, "pep", "pepa"}};
     }
+
 
 
     // Crides al domini
@@ -208,12 +207,12 @@ public class CtrlPresentation {
         cd.updateLanguageDocument(title, author, newLanguage);
     }
 
-    public boolean getStaredDocument(String title, String author) {
-        return cd.getStaredDocument(title, author);
+    public boolean isFavouriteDocument(String title, String author) throws ExceptionNoDocument {
+        return cd.isFavouriteDocument(title, author);
     }
 
-    public void setStaredDocument(String title, String author) {
-        cd.setStaredDocument(title, author);
+    public void setFavouriteDocument(String title, String author) throws ExceptionNoDocument {
+        cd.setFavouriteDocument(title, author);
     }
 
     /**
