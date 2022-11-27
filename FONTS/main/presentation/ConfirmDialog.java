@@ -13,13 +13,11 @@ public class ConfirmDialog extends JDialog {
     private JButton buttonSi;
     private JButton buttonNo;
     private JLabel text;
+    private boolean confirmation;
 
-    public ConfirmDialog(String confirm) {
-        setTitle("Confirmar");
-        text.setText(confirm);
+    public ConfirmDialog() {
         setContentPane(contentPane);
-        setModal(true);
-        getRootPane().setDefaultButton(buttonSi);
+        confirmation = false;
 
         buttonSi.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -49,21 +47,26 @@ public class ConfirmDialog extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
+    public boolean initialize(Point location, String confirm) {
+        text.setText(confirm);
+        setContentPane(contentPane);
+        setModal(true);
+        setTitle("Confirmar");
+        setLocation(location);
+        pack();
+        getRootPane().setDefaultButton(buttonSi);
+        setVisible(true);
+        return confirmation;
+    }
+
     private void onOK() {
-        // add your code here
+        confirmation = true;
         dispose();
     }
 
     private void onCancel() {
-        // add your code here if necessary
+        confirmation = false;
         dispose();
-    }
-
-    public static void main(String[] args) {
-        ConfirmDialog dialog = new ConfirmDialog("Prova");
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
     }
 
     {

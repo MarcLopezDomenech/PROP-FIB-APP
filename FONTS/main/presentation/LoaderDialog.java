@@ -150,9 +150,9 @@ public class LoaderDialog extends JDialog {
             try {
                 CtrlPresentation.getInstance().importDocument(p, lang);
             } catch (ExceptionInvalidFormat | ExceptionDocumentExists |  ExceptionInvalidLanguage e) {
-                CtrlPresentation.getInstance().showError(e.getMessage());
+                CtrlPresentation.getInstance().showError(getLocation(), e.getMessage());
             } catch (FileNotFoundException e) {
-                CtrlPresentation.getInstance().showError("La ruta no és correcta!");
+                CtrlPresentation.getInstance().showError(getLocation(), "La ruta no és correcta!");
             }
         }
 

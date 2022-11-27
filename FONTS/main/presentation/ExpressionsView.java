@@ -112,10 +112,10 @@ public class ExpressionsView {
                     text.setText("");
                     add.setEnabled(false);
                 } catch (ExceptionExpressionExists e) {
-                    cp.showError(e.getMessage());
+                    cp.showError(frame.getLocation(), e.getMessage());
                     list.setSelectedIndex(listModel.indexOf(newExpression));
                 } catch (ExceptionInvalidExpression e) {
-                    cp.showError(e.getMessage());
+                    cp.showError(frame.getLocation(), e.getMessage());
                 }
             }
         });
@@ -136,10 +136,10 @@ public class ExpressionsView {
                         list.grabFocus();
                         list.setSelectedIndex(listModel.indexOf(newValue));
                     } catch (ExceptionInvalidExpression | ExceptionExpressionExists e) {
-                        cp.showError(e.getMessage());
+                        cp.showError(frame.getLocation(), e.getMessage());
                     } catch (ExceptionNoExpression e) {
                         // No es pot donar el cas, ho garantim per presentació
-                        cp.showInternalError();
+                        cp.showInternalError(frame.getLocation());
                     }
                 }
             }
@@ -151,7 +151,7 @@ public class ExpressionsView {
                     cp.deleteExpression(selected);
                 } catch (ExceptionNoExpression ex) {
                     // No es pot donar, garantit per presentació
-                    cp.showInternalError();
+                    cp.showInternalError(frame.getLocation());
                 }
                 listModel.removeElement(selected);
                 text.grabFocus();

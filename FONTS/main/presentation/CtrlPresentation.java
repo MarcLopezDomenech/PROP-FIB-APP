@@ -54,7 +54,7 @@ public class CtrlPresentation {
             cd.restoreSystem();
         } catch (FileNotFoundException | ExceptionDocumentExists | ExceptionInvalidExpression | ExceptionExpressionExists e) {
             // No hauría de passar mai
-            showInternalError();
+            showInternalError(new Point(600, 300));
         }
     }
 
@@ -63,7 +63,7 @@ public class CtrlPresentation {
             cd.saveSystem();
         } catch (IOException e) {
             // Tenim un problema greu
-            showInternalError();
+            showInternalError(new Point(600, 300));
         }
     }
 
@@ -72,22 +72,27 @@ public class CtrlPresentation {
             cd.restoreSystem();
         } catch(FileNotFoundException | ExceptionDocumentExists |ExceptionInvalidExpression | ExceptionExpressionExists e) {
             // No podem restaurar el sistema
-            showError("Aquesta còpia de seguretat no és vàlida.");
+            showError(new Point(600, 300), "Aquesta còpia de seguretat no és vàlida.");
         }
     }
 
 
-    // Dialogs d'error
+    // Dialogs d'error i confirmació
 
-    public void showError(String message) {
+    public void showError(Point location, String message) {
         ErrorDialog dialog = new ErrorDialog(message);
         dialog.pack();
         dialog.setLocation(600, 300);
         dialog.setVisible(true);
     }
 
-    public void showInternalError() {
-        showError("Hi ha hagut un error intern al sistema. Si no és el primer cop que succeeix, si us plau contacta amb l'administrador.");
+    public void showInternalError(Point location) {
+        showError(location, "Hi ha hagut un error intern al sistema. Si no és el primer cop que succeeix, si us plau contacta amb l'administrador.");
+    }
+
+    public boolean askConfirmation(Point location, String message) {
+        ConfirmDialog confirmDialogd = new ConfirmDialog();
+        return confirmDialogd.initialize(location, message);
     }
 
 
