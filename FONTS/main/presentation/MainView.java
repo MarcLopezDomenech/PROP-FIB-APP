@@ -46,7 +46,7 @@ public class MainView {
         frame = new JFrame("Gestió de documents");
         selectedIndex = -1;
 
-        UIManager.put("FileChooser.cancelButtonText", "Cancel·lar");
+        UIManager.put("FileChooser.cancelButtonText", "Cancel.lar");
         UIManager.put("FileChooser.lookInLabelText", "Buscar en");
         UIManager.put("FileChooser.directoryOpenButtonText", "Obrir");
         UIManager.put("FileChooser.fileNameLabelText", "Nom del document:");
@@ -82,21 +82,21 @@ public class MainView {
         $$$setupUI$$$();
         menubar = new JMenuBar();
 
-        menuOptions = new JMenu("Opcions");
+        menuOptions = new JMenu("Menu");
         load = new JMenuItem("Carregar document");
         menuOptions.add(load);
         create = new JMenuItem("Nou document");
         menuOptions.add(create);
-        expressions = new JMenuItem("Gestió expressions");
+        expressions = new JMenuItem("Gestio expressions");
         menuOptions.add(expressions);
         menubar.add(menuOptions);
 
         menuList = new JMenu("Llistar per");
         listByQuery = new JMenuItem("Query");
         menuList.add(listByQuery);
-        listByExpression = new JMenuItem("Expressió");
+        listByExpression = new JMenuItem("Expressio");
         menuList.add(listByExpression);
-        listByTitleAuthor = new JMenuItem("Autor i títol");
+        listByTitleAuthor = new JMenuItem("Autor i titol");
         menuList.add(listByTitleAuthor);
         menubar.add(menuList);
 
@@ -231,7 +231,7 @@ public class MainView {
 
     private void createUIComponents() {
         Object[][] data = cp.getDocumentsData();
-        String[] headers = new String[]{"favs", "Títol", "Autor"};
+        String[] headers = new String[]{"favs", "Titol", "Autor"};
         documentsModel = new DefaultTableModel(data, headers);
         documents = new JTable(documentsModel);
 

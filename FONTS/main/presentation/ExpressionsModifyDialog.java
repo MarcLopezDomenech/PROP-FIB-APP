@@ -9,9 +9,9 @@ import java.awt.*;
 import java.awt.event.*;
 
 /**
+ * @author pau.duran.manzano
  * @class ExpressionsModifyDialog
  * @brief Dialog per modificar expressions
- * @author pau.duran.manzano
  */
 public class ExpressionsModifyDialog extends JDialog {
     private JPanel contentPane;
@@ -100,7 +100,7 @@ public class ExpressionsModifyDialog extends JDialog {
         buttonSave.setText("Guardar");
         panel2.add(buttonSave, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         buttonCancel = new JButton();
-        buttonCancel.setText("Cancel·lar");
+        buttonCancel.setText("Cancel.lar");
         panel2.add(buttonCancel, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new GridLayoutManager(4, 3, new Insets(0, 0, 0, 0), -1, -1));
