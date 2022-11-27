@@ -38,17 +38,17 @@ public class ExpressionsView {
 
     public ExpressionsView() {
         cp = CtrlPresentation.getInstance();
-        frame = new JFrame("Gestió de les expressions");
+        frame = new JFrame("Gestio de les expressions");
         selected = null;
 
         menuBar = new JMenuBar();
 
-        menuOptions = new JMenu("Opcions");
+        menuOptions = new JMenu("Menu");
         loadOption = new JMenuItem("Carregar document");
         menuOptions.add(loadOption);
         createOption = new JMenuItem("Nou document");
         menuOptions.add(createOption);
-        listOption = new JMenuItem("Gestió de documents");
+        listOption = new JMenuItem("Gestio de documents");
         menuOptions.add(listOption);
         menuBar.add(menuOptions);
         frame.setJMenuBar(menuBar);
