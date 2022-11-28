@@ -48,6 +48,12 @@ public class CtrlPresentation {
 
     // Gestió de l'aplicació i back-ups
 
+    /**
+     * @brief Funció que inicialitza l'aplicatiu amb la còpia de seguretat
+     * @details Amb aquest mètode es permet inicialitzar l'aplicatiu a partir de l'última còpia de seguretat de què es disposi
+     * @pre Si existeix una còpia de seguretat, aquestà és vàlida
+     * @post El sistema queda inicialitzat amb la darrera còpia de seguretat del sistema
+     */
     public void initiateApp() {
         // Restaurar sistema
         try {
@@ -58,6 +64,11 @@ public class CtrlPresentation {
         }
     }
 
+    /**
+     * @brief Funció que deixa l'estat del sistema en una còpia de seguretat
+     * @details Aquest mètode s'ha de cridar abans de tancar l'aplicatiu per tal de salvar-ne el sistema localment i poder-lo restablir en la següent posada en marxa
+     * @post El sistema no queda alterat, però es genera una còpia de seguretat a partir de l'estat actual, que queda emmagatzemada
+     */
     public void closeApp() {
         try {
             cd.saveSystem();
@@ -67,7 +78,12 @@ public class CtrlPresentation {
         }
     }
 
-    public void restoreSystem() throws FileNotFoundException, ExceptionDocumentExists {
+    /**
+     * @brief Mètode per restaurar el sistema a partir d'una còpia de seguretat
+     * @details Aquesta funció permet restaurar l'estat del sistema a partir d'un back up prèviament realitzat del sistema
+     * @post El sistema es restaura a partir de la còpia de seguretat que es disposa, sempre que sigui vàlida
+     */
+    public void restoreSystem() {
         try {
             cd.restoreSystem();
         } catch(FileNotFoundException | ExceptionDocumentExists |ExceptionInvalidExpression | ExceptionExpressionExists e) {
@@ -216,12 +232,32 @@ public class CtrlPresentation {
         cd.updateLanguageDocument(title, author, newLanguage);
     }
 
+    /**
+     * @brief Operació per saber si un document és favorit o no
+     * @details Retorna si el document identificat pels paràmetres està marcat com a preferit o no
+     * @pre El document identificat per (title, author) existeix
+     * @param title títol del document del que volem saber si és favorit
+     * @param author autor del document del que volem saber si és favorit
+     * @return Cert o fals en funció de si el document és o no és, respectivament, favorit
+     * @post L'estat del sistema no queda alterat
+     * @throws ExceptionNoDocument en el cas que no existeix un document identificat pels paràmetres donats
+     */
     public boolean isFavouriteDocument(String title, String author) throws ExceptionNoDocument {
         return cd.isFavouriteDocument(title, author);
     }
 
+    /**
+     * @brief Operació per actualitzar la propietat de favorit
+     * @details El document identificat pels paràmetres serà o no favorit en funció del paràmetre rebut
+     * @pre El document identificat per (title, author) existeix
+     * @param title títol del document a modificar
+     * @param author autor del document a modificar
+     * @param favourite si es vol el document com a favorit o no
+     * @post El document (title, author) és o no favorit en funció del paràmetre (favourite)
+     * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
+     */
     public void updateFavouriteDocument(String title, String author, boolean favourite) throws ExceptionNoDocument {
-        cd.setFavouriteDocument(title, author, favourite);
+        cd.updateFavouriteDocument(title, author, favourite);
     }
 
     /**
@@ -288,7 +324,6 @@ public class CtrlPresentation {
         return result.toArray(new Object[0][]);
     }
 
-
     /**
      * @brief Funció per aconseguir els identificadors dels documents que compleixen una expressió booleana
      * @details Donada una expressió booleana, aquesta funció permet obtenir els identificadors dels documents que contenen alguna frase que la compleixen
@@ -340,14 +375,46 @@ public class CtrlPresentation {
         cd.modifyExpression(oldExpression, newExpression);
     }
 
+    /**
+     * @brief Funció per aconseguir totes les expressions del sistema
+     * @details Amb aquesta funció es permet obtenir tots els identificadors de les expressions que hi ha donades d'alta al sistema
+     * @return Conjunt de tots els identificadors d'expressions
+     * @post L'estat del sistema no queda alterat
+     */
     public Set<String> getAllExpressions() {
         return cd.getAllExpressions();
     }
 
+    /**
+     * @brief Mètode per importar documents al sistema
+     * @details A partir d'un path absolut, es carrega el document al sistema, assignant-li l'idioma donat
+     * @pre El path donat té extensió .txt, .xml o .fp
+     * @pre En el text pla, com a mínim la primera línia contindrà el autor, la segona el títol i a partir de la tercera hi serà el contingut. En xml, hi haurà com a mínim etiquetes títol, autor i contingut.
+     * @pre L'idioma del paràmetre és "ca", "en" o "es"
+     * @pre No existeix un document amb el títol i autor que identifiquen el document que es vol importar
+     * @param path Ruta al document que es vol donar afegir al sistema
+     * @param language Idioma que se li vol assignar al document a importar
+     * @post El sistema té un nou document donat d'alta, que és el que hi havia en el path donat i té com a idioma el donat
+     * @throws ExceptionInvalidFormat en cas que el path no tingui extensió .txt, .xml o .fp
+     * @throws FileNotFoundException si no es pot accedir a la path donada, per permisos o perquè no existeix
+     * @throws ExceptionDocumentExists quan el sistema ja té donat d'alta un document amb els títol i autor del document que es vol importar
+     * @throws ExceptionInvalidLanguage en cas que l'idioma del paràmetre no sigui ni "ca" ni "en" ni "es"
+     */
     public void importDocument(String path, String language) throws ExceptionInvalidFormat, FileNotFoundException, ExceptionDocumentExists, ExceptionInvalidLanguage {
         cd.importDocument(path, language);
     }
 
+    /**
+     * @brief S'exporta un document a una path
+     * @details Funció que permet exportar un document del sistema al disc local de l'usuari
+     * @param title Títol del document que es vol exportar
+     * @param author Autor del document que es vol exportar
+     * @param path Direcció absoluta on es vol exportar el document prèviament identificat
+     * @post El sistema no queda alterat, però en el path donat es troba el document del sistema identificat pels paràmetres donats
+     * @throws ExceptionNoDocument Quan no existeix al sistema un document identificat per (títol, autor)
+     * @throws ExceptionInvalidFormat En cas que el path donat no tingui extensió .txt, .xml o .fp
+     * @throws IOException Si no s'ha pogut escriure en el path donat
+     */
     public void exportDocument(String title, String author, String path) throws ExceptionNoDocument, ExceptionInvalidFormat, IOException {
         cd.exportDocument(title, author, path);
     }

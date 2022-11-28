@@ -181,8 +181,8 @@ public class CtrlDomain {
      * @post El document (title, author) és o no favorit en funció del paràmetre (favourite)
      * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
      */
-    public void setFavouriteDocument(String title, String author, boolean favourite) throws ExceptionNoDocument {
-        ds.setFavouriteDocument(title, author, favourite);
+    public void updateFavouriteDocument(String title, String author, boolean favourite) throws ExceptionNoDocument {
+        ds.updateFavouriteDocument(title, author, favourite);
     }
 
     /**
@@ -307,37 +307,63 @@ public class CtrlDomain {
         return es.getAllExpressions();
     }
 
-
-    // ToDo
     /**
      * @brief Mètode per importar documents al sistema
      * @details A partir d'un path absolut, es carrega el document al sistema, assignant-li l'idioma donat
      * @pre El path donat té extensió .txt, .xml o .fp
-     * @pre
+     * @pre En el text pla, com a mínim la primera línia contindrà el autor, la segona el títol i a partir de la tercera hi serà el contingut. En xml, hi haurà com a mínim etiquetes títol, autor i contingut.
+     * @pre L'idioma del paràmetre és "ca", "en" o "es"
+     * @pre No existeix un document amb el títol i autor que identifiquen el document que es vol importar
      * @param path Ruta al document que es vol donar afegir al sistema
      * @param language Idioma que se li vol assignar al document a importar
      * @post El sistema té un nou document donat d'alta, que és el que hi havia en el path donat i té com a idioma el donat
-     * @throws ExceptionInvalidFormat
-     * @throws FileNotFoundException
-     * @throws ExceptionDocumentExists
-     * @throws ExceptionInvalidLanguage
+     * @throws ExceptionInvalidFormat en cas que el path no tingui extensió .txt, .xml o .fp
+     * @throws FileNotFoundException si no es pot accedir a la path donada, per permisos o perquè no existeix
+     * @throws ExceptionDocumentExists quan el sistema ja té donat d'alta un document amb els títol i autor del document que es vol importar
+     * @throws ExceptionInvalidLanguage en cas que l'idioma del paràmetre no sigui ni "ca" ni "en" ni "es"
      */
     public void importDocument(String path, String language) throws ExceptionInvalidFormat, FileNotFoundException, ExceptionDocumentExists, ExceptionInvalidLanguage {
         String newDoc = cp.importDocument(path, language);
         ds.importDocument(newDoc);
     }
 
+    /**
+     * @brief S'exporta un document a una path
+     * @details Funció que permet exportar un document del sistema al disc local de l'usuari
+     * @param title Títol del document que es vol exportar
+     * @param author Autor del document que es vol exportar
+     * @param path Direcció absoluta on es vol exportar el document prèviament identificat
+     * @post El sistema no queda alterat, però en el path donat es troba el document del sistema identificat pels paràmetres donats
+     * @throws ExceptionNoDocument Quan no existeix al sistema un document identificat per (títol, autor)
+     * @throws ExceptionInvalidFormat En cas que el path donat no tingui extensió .txt, .xml o .fp
+     * @throws IOException Si no s'ha pogut escriure en el path donat
+     */
     public void exportDocument(String title, String author, String path) throws ExceptionNoDocument, ExceptionInvalidFormat, IOException {
         String docRepresentation = ds.getDocumentRepresentation(title, author);
         cp.exportDocument(docRepresentation, path);
     }
 
+    /**
+     * @brief Operació per salvar l'estat del sistema
+     * @details Aquesta funció dona la possibilitat de guardar tots els documents i expressions donats d'alta al sistema, per poder ser recuperats posteriorment
+     * @post El sistema no queda alterat, però tota la informació del sistema queda recollida en un fitxer .fp en el sistema local de l'usuari
+     * @throws IOException Si no s'ha pogut escriure en el sistema local la còpia de seguretat creada
+     */
     public void saveSystem() throws IOException {
         Set<String> documents = ds.getAllDocumentRepresentations();
         Set<String> expressions = es.getAllExpressions();
         cp.saveSystem(documents, expressions);
     }
 
+    /**
+     * @brief Mètode per restaurar el sistema a partir d'una còpia de seguretat
+     * @details Aquesta funció permet restaurar l'estat del sistema a partir d'un back up prèviament realitzat del sistema
+     * @post El sistema es restaura a partir de la còpia de seguretat que es disposa
+     * @throws FileNotFoundException En cas que no es pugui trobar la còpia de seguretat del sistema
+     * @throws ExceptionDocumentExists Si algun dels documents de la còpia de seguretat és repetit
+     * @throws ExceptionInvalidExpression Si alguna de les expressions de la còpia de seguretat no és correcta
+     * @throws ExceptionExpressionExists Si alguna de les expressions de la còpia de seguretat és repetida
+     */
     public void restoreSystem() throws FileNotFoundException, ExceptionDocumentExists, ExceptionInvalidExpression, ExceptionExpressionExists {
         Pair<Set<String>,Set<String>> system = cp.restoreSystem();
         Set<String> documents = system.getFirst();
@@ -347,6 +373,11 @@ public class CtrlDomain {
         for (String expr : expressions) es.createExpression(expr);
     }
 
+    /**
+     * @brief Operació per tal de resetejar el sistema
+     * @details Amb aquest mètode podem esborrar tota la informació del sistema, deixant-lo buit
+     * @post El sistema queda buit, és a dir, deixa de tenir documents i expressions donades d'alta
+     */
     public void resetSystem() {
         ds.reset();
         es.reset();

@@ -234,7 +234,7 @@ public class DocumentsSet {
         return document.isFavourite();
     }
 
-    public void setFavouriteDocument(String title, String author, boolean favourite) throws ExceptionNoDocument {
+    public void updateFavouriteDocument(String title, String author, boolean favourite) throws ExceptionNoDocument {
         Document document = getDocument(title, author);
         document.setFavourite(favourite);
     }
