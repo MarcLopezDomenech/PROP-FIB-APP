@@ -215,8 +215,8 @@ public class CtrlPresentation {
         return cd.isFavouriteDocument(title, author);
     }
 
-    public void setFavouriteDocument(String title, String author) throws ExceptionNoDocument {
-        cd.setFavouriteDocument(title, author);
+    public void updateFavouriteDocument(String title, String author, boolean favourite) throws ExceptionNoDocument {
+        cd.setFavouriteDocument(title, author, favourite);
     }
 
     /**

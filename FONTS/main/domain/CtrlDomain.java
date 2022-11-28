@@ -132,9 +132,10 @@ public class CtrlDomain {
      * @brief Operació per conseguir l'idioma d'un document
      * @details Retorna l'idioma del document identificat pels paràmetres
      * @pre El document identificat per (title, author) existeix
-     * @param title títol del document del que volem el contingut
-     * @param author autor del document del que volem el contingut
-     * @post Es retorna l'idioma del document amb title i author
+     * @param title títol del document del que volem l'idioma
+     * @param author autor del document del que volem l'idioma
+     * @return Es retorna l'idioma del document amb title i author
+     * @post L'estat del sistema no queda alterat
      * @throws ExceptionNoDocument en el cas que no existeix un document identificat pels paràmetres donats
      */
     public String getLanguageDocument(String title, String author) throws ExceptionNoDocument {
@@ -156,18 +157,38 @@ public class CtrlDomain {
         ds.updateLanguageDocument(title, author, newLanguage);
     }
 
+    /**
+     * @brief Operació per saber si un document és favorit o no
+     * @details Retorna si el document identificat pels paràmetres està marcat com a preferit o no
+     * @pre El document identificat per (title, author) existeix
+     * @param title títol del document del que volem saber si és favorit
+     * @param author autor del document del que volem saber si és favorit
+     * @return Cert o fals en funció de si el document és o no és, respectivament, favorit
+     * @post L'estat del sistema no queda alterat
+     * @throws ExceptionNoDocument en el cas que no existeix un document identificat pels paràmetres donats
+     */
     public boolean isFavouriteDocument(String title, String author) throws ExceptionNoDocument {
         return ds.isFavouriteDocument(title, author);
     }
 
-    public void setFavouriteDocument(String title, String author) throws ExceptionNoDocument {
-        ds.setFavouriteDocument(title, author);
+    /**
+     * @brief Operació per actualitzar la propietat de favorit
+     * @details El document identificat pels paràmetres serà o no favorit en funció del paràmetre rebut
+     * @pre El document identificat per (title, author) existeix
+     * @param title títol del document a modificar
+     * @param author autor del document a modificar
+     * @param favourite si es vol el document com a favorit o no
+     * @post El document (title, author) és o no favorit en funció del paràmetre (favourite)
+     * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
+     */
+    public void setFavouriteDocument(String title, String author, boolean favourite) throws ExceptionNoDocument {
+        ds.setFavouriteDocument(title, author, favourite);
     }
 
     /**
      * @brief Funció per obtenir tots els identificadors dels documents del sistema
      * @details Aquesta funció permet consultar tots els documents que hi ha guardats en el sistema
-     * @return Llistat de parells de tots els identificadors de documents de l'aplicatiu
+     * @return Llistat de (favorit, títol, autor) de tots els documents de l'aplicatiu
      * @post L'estat del sistema no queda alterat
      */
     public List<Object[]> listAllDocuments() {
@@ -176,12 +197,12 @@ public class CtrlDomain {
 
     /**
      * @brief Funció per obtenir els identificadors dels k documents més similars a un document
-     * @details Amb aquesta operació es poden consultar els documents més similars a un document. En concret, a partir de l'identificador (títol i autor) d'un document, s'obtenen els identificadors dels k documents que són més similars a aquest.
+     * @details Amb aquesta operació es poden consultar els documents més similars a un document. En concret, a partir de l'identificador (títol i autor) d'un document, s'obtenen els identificadors i si són favorits dels k documents que són més similars a aquest.
      * @pre El document identificat pels paràmetres donats està donat d'alta a l'aplicatiu
      * @param title Títol del document a què se li vol buscar els similars
      * @param author Autor del document a què se li vol buscar els similars
      * @param k Nombre d'identificadors de documents similars que es vol obtenir
-     * @return Llista amb parells dels identificadors (títol, autor) dels com a molt k documents més similars al document donat
+     * @return Llista de (favorit, títol, autor) dels com a molt k documents més similars al document donat
      * @post L'estat del sistema no queda alterat
      * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
      */
@@ -191,9 +212,9 @@ public class CtrlDomain {
 
     /**
      * @brief Funció per aconseguir els títols d'un autor
-     * @details La funció obté els identificadors (títol i autor) dels documents que tenen com a autor el que es dona com a paràmetre
+     * @details La funció obté els identificadors (títol i autor) i si és fsvorit dels documents que tenen com a autor el que es dona com a paràmetre
      * @param author Autor a qui se li volen obtenir els títols
-     * @return Llista amb els identificadors (títol, autor) dels documents que tenen com a autor l'autor donat
+     * @return Llista de (favorit, títol, autor) dels documents que tenen com a autor l'autor donat
      * @post L'estat del sistema no queda alterat
      */
     public List<Object[]> listTitlesOfAuthor(String author) {
@@ -213,10 +234,10 @@ public class CtrlDomain {
 
     /**
      * @brief Operació per obtenir identificadors dels documents rellevants a partir d'una query
-     * @details Es permet aconseguir els identificadors dels k documents més rellevants en quant a contingut d'una certa query
+     * @details Es permet aconseguir els identificadors i la propietat de favorit dels k documents més rellevants en quant a contingut d'una certa query
      * @param query Seguit de paraules a partir de les quals es volen obtenir els documents rellevants
      * @param k Nombre de documents màxims que es vol obtenir
-     * @return Llista amb els identificadors (títol, autor) dels k documents més rellevants, pel que fa a contingut, de la query
+     * @return Llista de (favorit, títol, autor) dels k documents més rellevants, pel que fa a contingut, de la query
      * @post L'estat del sistema no queda alterat
      */
     public List<Object[]> listByQuery(String query, int  k) throws ExceptionInvalidK {
@@ -226,10 +247,10 @@ public class CtrlDomain {
 
     /**
      * @brief Funció per aconseguir els identificadors dels documents que compleixen una expressió booleana
-     * @details Donada una expressió booleana, aquesta funció permet obtenir els identificadors dels documents que contenen alguna frase que la compleixen
+     * @details Donada una expressió booleana, aquesta funció permet obtenir els identificadors i la propietat de favorit dels documents que contenen alguna frase que la compleixen
      * @pre La cadena de caràcters donada com a paràmetre identifica una expressió vàlida i ja registrada en el sistema
      * @param expression Expressió booleana a partir de la qual es vol realitzar la consulta
-     * @return Llista dels identificadors (títol, autor) dels documents que tenen alguna frase que compleix l'expressió donada
+     * @return Llista de (favorit, títol, autor) dels documents que tenen alguna frase que compleix l'expressió donada
      * @post L'estat del sistema no queda alterat
      * @throws ExceptionNoExpression en cas que l'expressió identificada per (expression) no estigui donada d'alta a l'aplicatiu
      */
@@ -276,10 +297,31 @@ public class CtrlDomain {
         createExpression(newExpression);
     }
 
+    /**
+     * @brief Funció per aconseguir totes les expressions del sistema
+     * @details Amb aquesta funció es permet obtenir tots els identificadors de les expressions que hi ha donades d'alta al sistema
+     * @return Conjunt de tots els identificadors d'expressions
+     * @post L'estat del sistema no queda alterat
+     */
     public Set<String> getAllExpressions() {
         return es.getAllExpressions();
     }
 
+
+    // ToDo
+    /**
+     * @brief Mètode per importar documents al sistema
+     * @details A partir d'un path absolut, es carrega el document al sistema, assignant-li l'idioma donat
+     * @pre El path donat té extensió .txt, .xml o .fp
+     * @pre
+     * @param path Ruta al document que es vol donar afegir al sistema
+     * @param language Idioma que se li vol assignar al document a importar
+     * @post El sistema té un nou document donat d'alta, que és el que hi havia en el path donat i té com a idioma el donat
+     * @throws ExceptionInvalidFormat
+     * @throws FileNotFoundException
+     * @throws ExceptionDocumentExists
+     * @throws ExceptionInvalidLanguage
+     */
     public void importDocument(String path, String language) throws ExceptionInvalidFormat, FileNotFoundException, ExceptionDocumentExists, ExceptionInvalidLanguage {
         String newDoc = cp.importDocument(path, language);
         ds.importDocument(newDoc);
