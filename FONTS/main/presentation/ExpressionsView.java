@@ -86,7 +86,7 @@ public class ExpressionsView {
         help.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cp.showHelp(frame.getLocation(), "HELP!");
+                cp.showHelp(frame.getLocation(), "Per fer funcionar aquesta pantalla, has de ...");
             }
         });
 

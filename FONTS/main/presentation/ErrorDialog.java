@@ -14,13 +14,7 @@ public class ErrorDialog extends JDialog {
     private JButton buttonOK;
     private JLabel message;
 
-    public ErrorDialog(String error) {
-        setTitle("Error");
-        message.setText(error);
-        setContentPane(contentPane);
-        setModal(true);
-        getRootPane().setDefaultButton(buttonOK);
-
+    public ErrorDialog() {
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onOK();
@@ -28,8 +22,18 @@ public class ErrorDialog extends JDialog {
         });
     }
 
+    public void initialize(Point location, String error) {
+        message.setText(error);
+        setContentPane(contentPane);
+        setModal(true);
+        setTitle("Error");
+        setLocation(location);
+        pack();
+        getRootPane().setDefaultButton(buttonOK);
+        setVisible(true);
+    }
+
     private void onOK() {
-        // add your code here
         dispose();
     }
 

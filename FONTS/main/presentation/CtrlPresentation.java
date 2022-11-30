@@ -96,10 +96,8 @@ public class CtrlPresentation {
     // Dialogs d'error, confirmació i ajuda
 
     public void showError(Point location, String message) {
-        ErrorDialog dialog = new ErrorDialog(message);
-        dialog.pack();
-        dialog.setLocation(600, 300);
-        dialog.setVisible(true);
+        ErrorDialog errorDialog = new ErrorDialog();
+        errorDialog.initialize(location, message);
     }
 
     public void showInternalError(Point location) {
@@ -107,12 +105,13 @@ public class CtrlPresentation {
     }
 
     public boolean askConfirmation(Point location, String message) {
-        ConfirmDialog confirmDialogd = new ConfirmDialog();
-        return confirmDialogd.initialize(location, message);
+        ConfirmDialog confirmDialog = new ConfirmDialog();
+        return confirmDialog.initialize(location, message);
     }
 
     public void showHelp(Point location, String message) {
-
+        HelpDialog helpDialog = new HelpDialog();
+        helpDialog.initialize(location, message);
     }
 
 

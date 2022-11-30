@@ -14,13 +14,7 @@ public class HelpDialog extends JDialog {
     private JButton buttonOK;
     private JLabel message;
 
-    public HelpDialog(String help) {
-        setTitle("Ajuda");
-        message.setText(help);
-        setContentPane(contentPane);
-        setModal(true);
-        getRootPane().setDefaultButton(buttonOK);
-
+    public HelpDialog() {
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onOK();
@@ -28,8 +22,18 @@ public class HelpDialog extends JDialog {
         });
     }
 
+    public void initialize(Point location, String help) {
+        message.setText(help);
+        setContentPane(contentPane);
+        setModal(true);
+        setTitle("Ajuda");
+        setLocation(location);
+        pack();
+        getRootPane().setDefaultButton(buttonOK);
+        setVisible(true);
+    }
+
     private void onOK() {
-        // add your code here
         dispose();
     }
 
