@@ -16,9 +16,9 @@ import java.io.FileNotFoundException;
 import java.util.Set;
 
 /**
- * @author pau.duran.manzano
  * @class ExpressionsView
  * @brief Vista per gestionar les expressions del sistema
+ * @author pau.duran.manzano
  */
 public class ExpressionsView {
     private CtrlPresentation cp;

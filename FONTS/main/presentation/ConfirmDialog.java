@@ -8,6 +8,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * @class ConfirmDialog
+ * @brief Diàleg per confirmar canvis destructius abans de realitzar les accions associades
+ * @author pau.duran.manzano
+ */
 public class ConfirmDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonSi;

@@ -9,6 +9,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * @class ErrorDialog
+ * @brief Diàleg per mostrar errors
+ * @author pau.duran.manzano
+ */
 public class ErrorDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;

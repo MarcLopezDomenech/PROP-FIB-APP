@@ -9,9 +9,9 @@ import java.awt.*;
 import java.awt.event.*;
 
 /**
- * @author pau.duran.manzano
  * @class ExpressionsModifyDialog
- * @brief Dialog per modificar expressions
+ * @brief Diàleg que permet editar expressions i confirmar-ne els canvis o no guardar-los
+ * @author pau.duran.manzano
  */
 public class ExpressionsModifyDialog extends JDialog {
     private JPanel contentPane;

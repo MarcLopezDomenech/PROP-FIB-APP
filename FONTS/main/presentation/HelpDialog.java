@@ -9,6 +9,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * @class HelpDialog
+ * @brief Diàleg per mostrar ajudes a l'usuari sobre com usar l'aplicatiu
+ * @author pau.duran.manzano
+ */
 public class HelpDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;

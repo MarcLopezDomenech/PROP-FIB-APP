@@ -17,6 +17,11 @@ import java.io.File;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.table.TableColumn;
 
+/**
+ * @class MainView
+ * @brief Vista principal de l'aplicatiu, que serveix per gestionar els documents
+ * @author marc.valls.camps i pau.duran.manzano
+ */
 public class MainView {
     private CtrlPresentation cp;
     private JFrame frame;
