@@ -36,6 +36,7 @@ public class ExpressionsView {
     private JMenuItem loadOption;
     private JMenuItem createOption;
     private JMenuItem listOption;
+    private JMenuItem help;
     private String selected;
 
     public ExpressionsView() {
@@ -53,6 +54,8 @@ public class ExpressionsView {
         listOption = new JMenuItem("Gestio de documents");
         menuOptions.add(listOption);
         menuBar.add(menuOptions);
+        help = new JMenuItem("?");
+        menuBar.add(help);
         frame.setJMenuBar(menuBar);
 
         loadOption.addActionListener(new ActionListener() {
@@ -77,6 +80,13 @@ public class ExpressionsView {
             public void actionPerformed(ActionEvent e) {
                 cp.showDocuments(frame.getLocation(), frame.getSize());
                 frame.dispose();
+            }
+        });
+
+        help.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cp.showHelp(frame.getLocation(), "HELP!");
             }
         });
 
