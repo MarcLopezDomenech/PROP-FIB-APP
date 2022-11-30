@@ -110,14 +110,19 @@ public class MainView {
         delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    String title = (String) documentsModel.getValueAt(selectedIndex, 1);
-                    String author = (String) documentsModel.getValueAt(selectedIndex, 2);
-                    cp.deleteDocument(title, author);
-                } catch (ExceptionNoDocument ex) {
-                    // No és possible
+                String title = (String) documentsModel.getValueAt(selectedIndex, 1);
+                String author = (String) documentsModel.getValueAt(selectedIndex, 2);
+                boolean confirm = cp.askConfirmation(frame.getLocation(), "Segur/a que vols esborrar el " +
+                            "document amb títol '" + title + "' i autor '" + author + "'?");
+                if (confirm) {
+                    try {
+                        cp.deleteDocument(title, author);
+                        documentsModel.removeRow(selectedIndex);
+                    } catch (ExceptionNoDocument ex) {
+                        // No és possible
+                        cp.showInternalError(frame.getLocation());
+                    }
                 }
-                documentsModel.removeRow(selectedIndex);
             }
         });
 
