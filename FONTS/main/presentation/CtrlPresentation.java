@@ -428,7 +428,12 @@ public class CtrlPresentation {
     public static void main(String[] args) {
         CtrlPresentation cp = CtrlPresentation.getInstance();
         cp.initiateApp();
-        cp.showDocuments(new Point(600, 300), new Dimension(450, 500));
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                cp.showDocuments(new Point(600, 300), new Dimension(450, 500));
+            }
+        });
         cp.closeApp();
     }
 

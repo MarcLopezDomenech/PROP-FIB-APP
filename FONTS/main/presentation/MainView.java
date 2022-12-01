@@ -174,7 +174,14 @@ public class MainView {
         frame.setVisible(true);
         frame.setSize(size);
         frame.setLocation(location);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                cp.closeApp();
+                System.exit(0);
+            }
+        });
     }
 
     /**
