@@ -16,9 +16,9 @@ import java.io.FileNotFoundException;
 import java.util.Set;
 
 /**
- * @author pau.duran.manzano
  * @class ExpressionsView
  * @brief Vista per gestionar les expressions del sistema
+ * @author pau.duran.manzano
  */
 public class ExpressionsView {
     private CtrlPresentation cp;
@@ -36,6 +36,7 @@ public class ExpressionsView {
     private JMenuItem loadOption;
     private JMenuItem createOption;
     private JMenuItem listOption;
+    private JMenuItem help;
     private String selected;
 
     public ExpressionsView() {
@@ -53,6 +54,8 @@ public class ExpressionsView {
         listOption = new JMenuItem("Gestio de documents");
         menuOptions.add(listOption);
         menuBar.add(menuOptions);
+        help = new JMenuItem("?");
+        menuBar.add(help);
         frame.setJMenuBar(menuBar);
 
         loadOption.addActionListener(new ActionListener() {
@@ -77,6 +80,13 @@ public class ExpressionsView {
             public void actionPerformed(ActionEvent e) {
                 cp.showDocuments(frame.getLocation(), frame.getSize());
                 frame.dispose();
+            }
+        });
+
+        help.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cp.showHelp(frame.getLocation(), "Per fer funcionar aquesta pantalla, has de ...");
             }
         });
 

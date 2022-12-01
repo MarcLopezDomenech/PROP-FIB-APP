@@ -9,18 +9,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * @class ErrorDialog
+ * @brief Diàleg per mostrar errors
+ * @author pau.duran.manzano
+ */
 public class ErrorDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
-    private JLabel missatge;
+    private JLabel message;
 
-    public ErrorDialog(String error) {
-        setTitle("Error");
-        missatge.setText(error);
-        setContentPane(contentPane);
-        setModal(true);
-        getRootPane().setDefaultButton(buttonOK);
-
+    public ErrorDialog() {
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onOK();
@@ -28,8 +27,18 @@ public class ErrorDialog extends JDialog {
         });
     }
 
+    public void initialize(Point location, String error) {
+        message.setText(error);
+        setContentPane(contentPane);
+        setModal(true);
+        setTitle("Error");
+        setLocation(location);
+        pack();
+        getRootPane().setDefaultButton(buttonOK);
+        setVisible(true);
+    }
+
     private void onOK() {
-        // add your code here
         dispose();
     }
 
@@ -64,9 +73,9 @@ public class ErrorDialog extends JDialog {
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
         contentPane.add(panel3, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        missatge = new JLabel();
-        missatge.setText("Label");
-        panel3.add(missatge, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        message = new JLabel();
+        message.setText("Label");
+        panel3.add(message, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer2 = new Spacer();
         panel3.add(spacer2, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final Spacer spacer3 = new Spacer();
