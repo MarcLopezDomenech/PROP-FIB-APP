@@ -71,6 +71,7 @@ public class MainView {
 
 
         $$$setupUI$$$();
+        //Image bobby = new ImageIcon()
         menubar = new JMenuBar();
 
         menuOptions = new JMenu("Menu");
