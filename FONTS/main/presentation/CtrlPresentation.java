@@ -101,6 +101,7 @@ public class CtrlPresentation {
     }
 
     public void showInternalError(Point location) {
+        //Suggerencia: "No hem detectat cap copia de seguretat del sistema, prem OK per iniciar l'aplicació"
         showError(location, "Hi ha hagut un error intern al sistema. Si no és el primer cop que succeeix, si us plau contacta amb l'administrador.");
     }
 
