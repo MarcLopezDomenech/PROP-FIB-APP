@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 public class LoaderDialog extends JDialog {
+    private JFrame reference;
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
@@ -130,9 +131,10 @@ public class LoaderDialog extends JDialog {
         });
     }
 
-    public void initialize(Point location) {
+    public void initialize(JFrame reference) {
         pack();
-        setLocation(location);
+        this.reference = reference;
+        setLocationRelativeTo(reference);
         setVisible(true);
     }
 
@@ -150,9 +152,9 @@ public class LoaderDialog extends JDialog {
             try {
                 CtrlPresentation.getInstance().importDocument(p, lang);
             } catch (ExceptionInvalidFormat | ExceptionDocumentExists |  ExceptionInvalidLanguage e) {
-                CtrlPresentation.getInstance().showError(getLocation(), e.getMessage());
+                CtrlPresentation.getInstance().showError(reference, e.getMessage());
             } catch (FileNotFoundException e) {
-                CtrlPresentation.getInstance().showError(getLocation(), "La ruta no és correcta!");
+                CtrlPresentation.getInstance().showError(reference, "La ruta no és correcta!");
             }
         }
 

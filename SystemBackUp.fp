@@ -2,3 +2,4 @@ tres tristes tigres@title@ari@author@comen trigo@content@es@language@no@internal
 abc@title@mar@author@abc abc abc@content@ca@language@no@internal@abc[3]3<doc>
 !tuiafhbvuz<expr>
 hola & adeuuu<expr>
+pep | hola<expr>

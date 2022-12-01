@@ -61,14 +61,14 @@ public class ExpressionsView {
         loadOption.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cp.showLoader(frame.getLocation());
+                cp.showLoader(frame);
             }
         });
 
         createOption.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cp.showNewDocument(frame.getLocation());
+                cp.showNewDocument(frame);
             }
         });
 
@@ -83,7 +83,7 @@ public class ExpressionsView {
         help.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cp.showHelp(frame.getLocation(), "Per fer funcionar aquesta pantalla, has de ...");
+                cp.showHelp(frame, "Per fer funcionar aquesta pantalla, has de ...");
             }
         });
 
@@ -136,10 +136,10 @@ public class ExpressionsView {
                     text.setText("");
                     add.setEnabled(false);
                 } catch (ExceptionExpressionExists e) {
-                    cp.showError(frame.getLocation(), e.getMessage());
+                    cp.showError(frame, e.getMessage());
                     list.setSelectedIndex(listModel.indexOf(newExpression));
                 } catch (ExceptionInvalidExpression e) {
-                    cp.showError(frame.getLocation(), e.getMessage());
+                    cp.showError(frame, e.getMessage());
                 }
             }
         });
@@ -147,9 +147,8 @@ public class ExpressionsView {
             @Override
             public void actionPerformed(ActionEvent event) {
                 ExpressionsModifyDialog modifyExpression = new ExpressionsModifyDialog();
-                Point point = new Point((int) (frame.getLocation().getX() + 100), (int) (frame.getLocation().getY() + 100));
 
-                String newValue = modifyExpression.initialize(point, selected);
+                String newValue = modifyExpression.initialize(frame, selected);
                 if (newValue != null && !"".equals(newValue)) {
                     try {
                         cp.modifyExpression(selected, newValue);
@@ -160,10 +159,10 @@ public class ExpressionsView {
                         list.grabFocus();
                         list.setSelectedIndex(listModel.indexOf(newValue));
                     } catch (ExceptionInvalidExpression | ExceptionExpressionExists e) {
-                        cp.showError(frame.getLocation(), e.getMessage());
+                        cp.showError(frame, e.getMessage());
                     } catch (ExceptionNoExpression e) {
                         // No es pot donar el cas, ho garantim per presentació
-                        cp.showInternalError(frame.getLocation());
+                        cp.showInternalError(frame);
                     }
                 }
             }
@@ -171,13 +170,13 @@ public class ExpressionsView {
         delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean confirm = cp.askConfirmation(frame.getLocation(), "Segur/a que vols esborrar l'expressio " + selected + "?");
+                boolean confirm = cp.askConfirmation(frame, "Segur/a que vols esborrar l'expressio " + selected + "?");
                 if (confirm) {
                     try {
                         cp.deleteExpression(selected);
                     } catch (ExceptionNoExpression ex) {
                         // No es pot donar, garantit per presentació
-                        cp.showInternalError(frame.getLocation());
+                        cp.showInternalError(frame);
                     }
                     listModel.removeElement(selected);
                     text.grabFocus();
@@ -205,7 +204,7 @@ public class ExpressionsView {
             @Override
             public void windowClosing(WindowEvent e) {
                 super.windowClosing(e);
-                cp.closeApp();
+                cp.closeApp(frame);
                 System.exit(0);
             }
         });

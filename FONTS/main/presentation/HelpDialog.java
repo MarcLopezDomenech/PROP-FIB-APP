@@ -27,14 +27,14 @@ public class HelpDialog extends JDialog {
         });
     }
 
-    public void initialize(Point location, String help) {
+    public void initialize(JFrame reference, String help) {
         message.setText(help);
         setContentPane(contentPane);
         setModal(true);
         setTitle("Ajuda");
-        setLocation(location);
         pack();
         getRootPane().setDefaultButton(buttonOK);
+        setLocationRelativeTo(reference);
         setVisible(true);
     }
 

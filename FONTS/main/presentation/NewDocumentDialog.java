@@ -15,6 +15,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class NewDocumentDialog extends JDialog {
+    private JFrame reference;
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
@@ -94,9 +95,10 @@ public class NewDocumentDialog extends JDialog {
         });
     }
 
-    public void initialize(Point p) {
+    public void initialize(JFrame reference) {
         pack();
-        setLocation(new Point((int) p.getX() + 100, (int) p.getY() + 100));
+        this.reference = reference;
+        setLocationRelativeTo(reference);
         setVisible(true);
     }
 
@@ -113,10 +115,10 @@ public class NewDocumentDialog extends JDialog {
         try {
             CtrlPresentation.getInstance().createEmptyDocument(titleDoc.getText(), authorDoc.getText(), lang);
         } catch (ExceptionDocumentExists e) {
-            CtrlPresentation.getInstance().showError(getLocation(), e.getMessage());
+            CtrlPresentation.getInstance().showError(reference, e.getMessage());
         } catch (ExceptionInvalidLanguage e) {
             // NO hauria de passar
-            CtrlPresentation.getInstance().showInternalError(getLocation());
+            CtrlPresentation.getInstance().showInternalError(reference);
         }
         // reenviar a la vista de modificar
         dispose();
