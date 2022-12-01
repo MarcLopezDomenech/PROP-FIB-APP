@@ -49,14 +49,14 @@ public class ExpressionsModifyDialog extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    public String initialize(Point position, String expression) {
+    public String initialize(JFrame reference, String expression) {
         text.setText(expression);
         setContentPane(contentPane);
         setModal(true);
         setTitle("Modificar expressió");
-        setLocation(position);
         pack();
         getRootPane().setDefaultButton(buttonSave);
+        setLocationRelativeTo(reference);
         setVisible(true);
         return text.getText();
     }

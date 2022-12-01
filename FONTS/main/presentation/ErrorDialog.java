@@ -27,14 +27,14 @@ public class ErrorDialog extends JDialog {
         });
     }
 
-    public void initialize(Point location, String error) {
+    public void initialize(JFrame reference, String error) {
         message.setText(error);
         setContentPane(contentPane);
         setModal(true);
         setTitle("Error");
-        setLocation(location);
         pack();
         getRootPane().setDefaultButton(buttonOK);
+        setLocationRelativeTo(reference);
         setVisible(true);
     }
 

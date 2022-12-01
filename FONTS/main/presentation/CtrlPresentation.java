@@ -3,6 +3,7 @@ package main.presentation;
 import main.domain.CtrlDomain;
 import main.excepcions.*;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -60,7 +61,9 @@ public class CtrlPresentation {
             cd.restoreSystem();
         } catch (FileNotFoundException | ExceptionDocumentExists | ExceptionInvalidExpression | ExceptionExpressionExists e) {
             // No hauría de passar mai
-            showInternalError(new Point(600, 300));
+            JFrame reference = new JFrame();
+            reference.setLocation(new Point(600, 300));
+            showInternalError(reference);
         }
     }
 
@@ -69,12 +72,12 @@ public class CtrlPresentation {
      * @details Aquest mètode s'ha de cridar abans de tancar l'aplicatiu per tal de salvar-ne el sistema localment i poder-lo restablir en la següent posada en marxa
      * @post El sistema no queda alterat, però es genera una còpia de seguretat a partir de l'estat actual, que queda emmagatzemada
      */
-    public void closeApp() {
+    public void closeApp(JFrame reference) {
         try {
             cd.saveSystem();
         } catch (IOException e) {
             // Tenim un problema greu
-            showInternalError(new Point(600, 300));
+            showInternalError(reference);
         }
     }
 
@@ -83,50 +86,50 @@ public class CtrlPresentation {
      * @details Aquesta funció permet restaurar l'estat del sistema a partir d'un back up prèviament realitzat del sistema
      * @post El sistema es restaura a partir de la còpia de seguretat que es disposa, sempre que sigui vàlida
      */
-    public void restoreSystem() {
+    public void restoreSystem(JFrame reference) {
         try {
             cd.restoreSystem();
         } catch(FileNotFoundException | ExceptionDocumentExists |ExceptionInvalidExpression | ExceptionExpressionExists e) {
             // No podem restaurar el sistema
-            showError(new Point(600, 300), "Aquesta còpia de seguretat no és vàlida.");
+            showError(reference, "Aquesta còpia de seguretat no és vàlida.");
         }
     }
 
 
     // Dialogs d'error, confirmació i ajuda
 
-    public void showError(Point location, String message) {
+    public void showError(JFrame reference, String message) {
         ErrorDialog errorDialog = new ErrorDialog();
-        errorDialog.initialize(location, message);
+        errorDialog.initialize(reference, message);
     }
 
-    public void showInternalError(Point location) {
+    public void showInternalError(JFrame reference) {
         //Suggerencia: "No hem detectat cap copia de seguretat del sistema, prem OK per iniciar l'aplicació"
-        showError(location, "Hi ha hagut un error intern al sistema. Si no és el primer cop que succeeix, si us plau contacta amb l'administrador.");
+        showError(reference, "Hi ha hagut un error intern al sistema. Si no és el primer cop que succeeix, si us plau contacta amb l'administrador.");
     }
 
-    public boolean askConfirmation(Point location, String message) {
+    public boolean askConfirmation(JFrame ref, String message) {
         ConfirmDialog confirmDialog = new ConfirmDialog();
-        return confirmDialog.initialize(location, message);
+        return confirmDialog.initialize(ref, message);
     }
 
-    public void showHelp(Point location, String message) {
+    public void showHelp(JFrame reference, String message) {
         HelpDialog helpDialog = new HelpDialog();
-        helpDialog.initialize(location, message);
+        helpDialog.initialize(reference, message);
     }
 
 
 
     // Opcions del menú
 
-    public void showLoader(Point location) {
+    public void showLoader(JFrame reference) {
         LoaderDialog dialog = new LoaderDialog();
-        dialog.initialize(location);
+        dialog.initialize(reference);
     }
 
-    public void showNewDocument(Point location) {
+    public void showNewDocument(JFrame reference) {
         NewDocumentDialog dialog = new NewDocumentDialog();
-        dialog.initialize(location);
+        dialog.initialize(reference);
     }
 
     public void showDocuments(Point location, Dimension size) {
@@ -430,7 +433,6 @@ public class CtrlPresentation {
         CtrlPresentation cp = CtrlPresentation.getInstance();
         cp.initiateApp();
         cp.showDocuments(new Point(600, 300), new Dimension(450, 500));
-        cp.closeApp();
     }
 
 }

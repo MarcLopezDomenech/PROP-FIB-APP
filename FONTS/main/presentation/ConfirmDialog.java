@@ -52,14 +52,14 @@ public class ConfirmDialog extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    public boolean initialize(Point location, String confirm) {
+    public boolean initialize(JFrame ref, String confirm) {
         text.setText(confirm);
         setContentPane(contentPane);
         setModal(true);
         setTitle("Confirmar");
-        setLocation(location);
         pack();
         getRootPane().setDefaultButton(buttonSi);
+        setLocationRelativeTo(ref);
         setVisible(true);
         return confirmation;
     }

@@ -118,7 +118,7 @@ public class MainView {
             public void actionPerformed(ActionEvent e) {
                 String title = (String) documentsModel.getValueAt(selectedIndex, 1);
                 String author = (String) documentsModel.getValueAt(selectedIndex, 2);
-                boolean confirm = cp.askConfirmation(frame.getLocation(), "Segur/a que vols esborrar el " +
+                boolean confirm = cp.askConfirmation(frame, "Segur/a que vols esborrar el " +
                             "document amb títol '" + title + "' i autor '" + author + "'?");
                 if (confirm) {
                     try {
@@ -126,7 +126,7 @@ public class MainView {
                         documentsModel.removeRow(selectedIndex);
                     } catch (ExceptionNoDocument ex) {
                         // No és possible
-                        cp.showInternalError(frame.getLocation());
+                        cp.showInternalError(frame);
                     }
                 }
             }
@@ -135,7 +135,7 @@ public class MainView {
         load.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cp.showLoader(frame.getLocation());
+                cp.showLoader(frame);
             }
         });
 
@@ -165,7 +165,7 @@ public class MainView {
         create.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cp.showNewDocument(frame.getLocation());
+                cp.showNewDocument(frame);
             }
         });
     }
@@ -175,7 +175,14 @@ public class MainView {
         frame.setVisible(true);
         frame.setSize(size);
         frame.setLocation(location);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                cp.closeApp(frame);
+                System.exit(0);
+            }
+        });
     }
 
     /**
