@@ -42,33 +42,11 @@ public class MainView {
     private JMenuItem listByExpression;
     private JMenuItem listByTitleAuthor;
     private int selectedIndex;
-    private JFileChooser exporter;
 
     public MainView() {
         cp = CtrlPresentation.getInstance();
         frame = new JFrame("Gestió de documents");
         selectedIndex = -1;
-
-        UIManager.put("FileChooser.cancelButtonText", "Cancel.lar");
-        UIManager.put("FileChooser.lookInLabelText", "Buscar en");
-        UIManager.put("FileChooser.directoryOpenButtonText", "Obrir");
-        UIManager.put("FileChooser.fileNameLabelText", "Nom del document:");
-        UIManager.put("FileChooser.filesOfTypeLabelText", "Tipus");
-        UIManager.put("FileChooser.directoryOpenButtonText", "Seleccionar");
-        exporter = new JFileChooser(".");
-        exporter.setApproveButtonText("Descarregar");
-        exporter.setDialogTitle("Descarregar document");
-        exporter.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        exporter.setDialogType(JFileChooser.SAVE_DIALOG);
-        exporter.setAcceptAllFileFilterUsed(false);
-        FileFilter xml = new FileNameExtensionFilter("XML", "xml");
-        FileFilter txt = new FileNameExtensionFilter("Text pla", "txt");
-        FileFilter fp = new FileNameExtensionFilter("Format propietari", "fp");
-        exporter.setFileFilter(txt);
-        exporter.addChoosableFileFilter(xml);
-        exporter.addChoosableFileFilter(fp);
-        exporter.setMultiSelectionEnabled(true);
-
 
         $$$setupUI$$$();
         //Image bobby = new ImageIcon()
@@ -151,14 +129,9 @@ public class MainView {
         export.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int returnVal = exporter.showOpenDialog(MainView.this.$$$getRootComponent$$$());
-
-                if (returnVal == JFileChooser.APPROVE_OPTION) {
-                    File[] files = exporter.getSelectedFiles();
-                    for (File f : files) {
-                        System.out.println(f.getAbsolutePath());
-                    }
-                }
+                String title = (String) documents.getValueAt(selectedIndex, 1);
+                String author = (String) documents.getValueAt(selectedIndex, 2);
+                cp.showDownloader(frame, title, author);
             }
         });
 

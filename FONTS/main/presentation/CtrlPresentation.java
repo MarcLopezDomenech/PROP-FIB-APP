@@ -149,6 +149,10 @@ public class CtrlPresentation {
         dialog.initialize(reference, title, author);
     }
 
+    public void showDownloader(JFrame reference, String title, String author){
+        DownloaderDialog dialog = new DownloaderDialog();
+        dialog.initialize(reference, title, author);
+    }
     // Crides al domini
 
     /**
