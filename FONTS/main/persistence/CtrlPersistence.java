@@ -77,7 +77,8 @@ public class CtrlPersistence {
      * @brief Funció per obrir un document guardat en local de l'usuari
      * @param p el path a obrir
      * @return Un string en format JSON del que cada document n'extreurà les dades que necessiti
-     * @throws ExceptionInvalidLanguage
+     * @throws ExceptionInvalidLanguage L'idioma del document importat no es correcte
+     * @throws FileNotFoundException El fitxer buscat no existeix al sistema
      */
     
     public String importDocument(String path, String language) throws ExceptionInvalidFormat, FileNotFoundException, ExceptionInvalidLanguage {
@@ -100,6 +101,8 @@ public class CtrlPersistence {
      * @param doc informacio del document a guardar (en format json)
      * @param path path on guardar el document (relatiu? Absolut?)
      * @return returna true si l'escritura s'ha efectuat correctament, fals si hi ha hagut algun error
+     * @throws ExceptionInvalidFormat El format del document a exportar no es correcte
+     * @throws IOException Error del SO en escriure al fitxer demanat
      */
     public void exportDocument(String doc, String path) throws ExceptionInvalidFormat, IOException{
         if (path.endsWith(".txt")) {
@@ -118,6 +121,7 @@ public class CtrlPersistence {
      * @brief Funció per guardar l'estat del sistema
      * @param docs llista de string on cadascun conte l'informacio necesaria a guardar d'un document
      * @param exprs llista de string on cadascun conte l'informacio necesaria a guardar d'una expressio
+     * @throws IOException Error del SO en escriure al fitxer demanat
      */
     public void saveSystem(Set<String> docs, Set<String> exprs) throws IOException{
         FpParser par = new FpParser();
@@ -129,6 +133,7 @@ public class CtrlPersistence {
      * @details abdos parametres seran inicialment nuls (son el retorn)
      * @param docs llista de string on cadascun conte l'informacio necesaria per restaurar un document
      * @param exprs llista de string on cadascun conte l'informacio necesaria per restaurar una expressio
+     * @throws FileNotFoundException El fitxer buscat no existeix al sistema
      */
     public Pair<Set<String>,Set<String>> restoreSystem() throws FileNotFoundException {
         Set<String> docs = new HashSet<>();
