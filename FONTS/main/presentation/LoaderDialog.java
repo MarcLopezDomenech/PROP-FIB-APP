@@ -19,6 +19,11 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+/**
+ * @author marc.valls.camps
+ * @class LoaderDialog
+ * @brief Diàleg per a carregar un document extern al sistema
+ */
 public class LoaderDialog extends JDialog {
     private JFrame reference;
     private JPanel contentPane;

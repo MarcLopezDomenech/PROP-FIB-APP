@@ -10,6 +10,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 
+/**
+ * @author marc.valls.camps
+ * @class ListKSimilarsDialog
+ * @brief Diàleg per a llistar els k documents més semblants a un de seleccionat a la vista principal
+ */
 public class ListKSimilarsDialog extends JDialog {
 
     private JButton buttonCancel;

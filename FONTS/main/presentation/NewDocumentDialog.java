@@ -14,6 +14,11 @@ import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+/**
+ * @author marc.valls.camps
+ * @class NewDocumentDialog
+ * @brief Diàleg per a crear un nou document al sistema, en blanc
+ */
 public class NewDocumentDialog extends JDialog {
     private JFrame reference;
     private JPanel contentPane;
