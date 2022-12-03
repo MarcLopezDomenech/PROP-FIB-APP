@@ -116,8 +116,8 @@ public class MainView {
         delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String title = (String) documentsModel.getValueAt(selectedIndex, 1);
-                String author = (String) documentsModel.getValueAt(selectedIndex, 2);
+                String title = (String) documents.getValueAt(selectedIndex, 1);
+                String author = (String) documents.getValueAt(selectedIndex, 2);
                 boolean confirm = cp.askConfirmation(frame, "Segur/a que vols esborrar el " +
                         "document amb títol '" + title + "' i autor '" + author + "'?");
                 if (confirm) {
@@ -172,8 +172,8 @@ public class MainView {
         similars.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String title = (String) documentsModel.getValueAt(selectedIndex, 1);
-                String author = (String) documentsModel.getValueAt(selectedIndex, 2);
+                String title = (String) documents.getValueAt(selectedIndex, 1);
+                String author = (String) documents.getValueAt(selectedIndex, 2);
                 cp.showListKSimilars(frame, title, author);
             }
         });
