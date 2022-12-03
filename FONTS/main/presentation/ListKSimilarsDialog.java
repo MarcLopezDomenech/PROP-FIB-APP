@@ -20,7 +20,7 @@ public class ListKSimilarsDialog extends JDialog {
     private JPanel contentPane;
 
     ListKSimilarsDialog() {
-        setTitle("Llistar k més semblants");
+        setTitle("Llistar similars");
         setResizable(false);
         setContentPane(contentPane);
         setModal(true);

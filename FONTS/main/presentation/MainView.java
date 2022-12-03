@@ -248,7 +248,7 @@ public class MainView {
 
     private void createUIComponents() {
         Object[][] data = cp.listAllDocuments();
-        String[] headers = new String[]{"favs", "Titol", "Autor"};
+        String[] headers = new String[]{"", "Titol", "Autor"};
         documentsModel = new DefaultTableModel(data, headers) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -260,6 +260,9 @@ public class MainView {
         TableColumn tc = documents.getColumnModel().getColumn(0);
         tc.setCellEditor(documents.getDefaultEditor(Boolean.class));
         tc.setCellRenderer(documents.getDefaultRenderer(Boolean.class));
+        tc.setMinWidth(40);
+        tc.setPreferredWidth(40);
+        tc.setWidth(40);
 
         JTableHeader header = documents.getTableHeader();
         Font font = new Font("Arial", Font.BOLD, 14);
