@@ -22,7 +22,7 @@
             </constraints>
             <properties>
               <enabled value="false"/>
-              <text value="List similars"/>
+              <text value="Llistar similars"/>
             </properties>
           </component>
           <component id="58fb3" class="javax.swing.JButton" binding="export">
@@ -54,7 +54,7 @@
             </constraints>
             <properties>
               <enabled value="false"/>
-              <text value="Modify"/>
+              <text value="Modificar"/>
             </properties>
           </component>
           <hspacer id="57bd0">

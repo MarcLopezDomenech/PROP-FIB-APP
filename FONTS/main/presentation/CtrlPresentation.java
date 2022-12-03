@@ -142,7 +142,12 @@ public class CtrlPresentation {
         ew.initialize(location, size);
     }
 
+    // Opcions amb doc seleccionat
 
+    public void showListKSimilars(JFrame reference, String title, String author){
+        ListKSimilarsDialog dialog = new ListKSimilarsDialog();
+        dialog.initialize(reference, title, author);
+    }
 
     // Crides al domini
 
@@ -432,7 +437,7 @@ public class CtrlPresentation {
     public static void main(String[] args) {
         CtrlPresentation cp = CtrlPresentation.getInstance();
         cp.initiateApp();
-        cp.showDocuments(new Point(600, 300), new Dimension(450, 500));
+        cp.showDocuments(new Point(600, 300), new Dimension(500, 500));
     }
 
 }
