@@ -81,8 +81,8 @@ public class MainView {
         load.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Object[][] result = cp.showLoader(frame);
-                if (result != null) for (Object[] r : result) documentsModel.addRow(r);
+                Object[][] new_data = cp.showLoader(frame);
+                if (new_data != null) for (Object[] r : new_data) documentsModel.addRow(r);
             }
         });
 
