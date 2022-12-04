@@ -29,7 +29,6 @@ import java.util.ArrayList;
  * @brief Diàleg per a carregar un document extern al sistema
  */
 public class LoaderDialog extends JDialog {
-    private JFrame reference;
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
@@ -153,7 +152,6 @@ public class LoaderDialog extends JDialog {
 
     public Pair<String, Object[]> initialize(JFrame reference) {
         pack();
-        this.reference = reference;
         setLocationRelativeTo(reference);
         setVisible(true);
 

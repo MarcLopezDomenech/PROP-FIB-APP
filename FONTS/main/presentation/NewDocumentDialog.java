@@ -3,6 +3,7 @@ package main.presentation;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import main.domain.util.Pair;
 import main.excepcions.ExceptionDocumentExists;
 import main.excepcions.ExceptionInvalidLanguage;
 
@@ -22,7 +23,6 @@ import java.beans.PropertyChangeListener;
  * @brief Diàleg per a crear un nou document al sistema, en blanc
  */
 public class NewDocumentDialog extends JDialog {
-    private JFrame reference;
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
@@ -31,7 +31,7 @@ public class NewDocumentDialog extends JDialog {
     private JRadioButton cat;
     private JRadioButton esp;
     private JRadioButton eng;
-
+    private boolean okPressed = false;
     public NewDocumentDialog() {
         setContentPane(contentPane);
         setModal(true);
@@ -108,44 +108,34 @@ public class NewDocumentDialog extends JDialog {
         });
     }
 
-    public void initialize(JFrame reference) {
+    public Pair<Pair<String, String>, String> initialize(JFrame reference) {
         pack();
-        this.reference = reference;
         setLocationRelativeTo(reference);
         setVisible(true);
+
+        if (!okPressed) return null;
+
+        Pair<Pair<String, String>, String> res = new Pair<>();
+        if (cat.isSelected()) res.setSecond("ca");
+        else if (esp.isSelected()) res.setSecond("es");
+        else res.setSecond("en");
+
+        res.setFirst(new Pair<>(titleDoc.getText(), authorDoc.getText()));
+
+        return res;
     }
 
     private void enableButtonIfCorrect() {
-        buttonOK.setEnabled(!titleDoc.getText().equals("") && !authorDoc.getText().equals("") && (cat.isSelected() || esp.isSelected() || eng.isSelected()));
+        buttonOK.setEnabled(!titleDoc.getText().isEmpty() && !authorDoc.getText().isEmpty() && (cat.isSelected() || esp.isSelected() || eng.isSelected()));
     }
 
     private void onOK() {
-        String lang;
-        if (cat.isSelected()) lang = "ca";
-        else if (esp.isSelected()) lang = "es";
-        else lang = "en";
-
-        try {
-            CtrlPresentation.getInstance().createEmptyDocument(titleDoc.getText(), authorDoc.getText(), lang);
-        } catch (ExceptionDocumentExists e) {
-            CtrlPresentation.getInstance().showError(reference, e.getMessage());
-        } catch (ExceptionInvalidLanguage e) {
-            // NO hauria de passar
-            CtrlPresentation.getInstance().showInternalError(reference);
-        }
-        // reenviar a la vista de modificar
+        okPressed = true;
         dispose();
     }
 
     private void onCancel() {
         dispose();
-    }
-
-    public static void main(String[] args) {
-        NewDocumentDialog dialog = new NewDocumentDialog();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
     }
 
     {

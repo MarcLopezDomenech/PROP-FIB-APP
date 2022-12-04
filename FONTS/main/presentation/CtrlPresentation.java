@@ -131,20 +131,37 @@ public class CtrlPresentation {
 
         for (Object p : res.getSecond()) {
             try {
-                new_data.add(CtrlPresentation.getInstance().importDocument((String) p, res.getFirst()));
-            } catch (ExceptionInvalidFormat | ExceptionDocumentExists | ExceptionInvalidLanguage e) {
-                CtrlPresentation.getInstance().showError(reference, e.getMessage());
+                new_data.add(importDocument((String) p, res.getFirst()));
+            } catch (ExceptionInvalidFormat | ExceptionDocumentExists e) {
+                showError(reference, e.getMessage());
             } catch (FileNotFoundException e) {
-                CtrlPresentation.getInstance().showError(reference, "La ruta no és correcta!");
+                showError(reference, "La ruta no és correcta!");
+            } catch (ExceptionInvalidLanguage e) {
+                showInternalError(reference);
             }
         }
 
         return new_data.toArray(new Object[0][]);
     }
 
-    public void showNewDocument(JFrame reference) {
+    public Object[] showNewDocument(JFrame reference) {
         NewDocumentDialog dialog = new NewDocumentDialog();
-        dialog.initialize(reference);
+        Pair<Pair<String, String>, String> res = dialog.initialize(reference);
+
+        if (res == null) return null;
+
+        try {
+            createEmptyDocument(res.getFirst().getFirst(), res.getFirst().getSecond(), res.getSecond());
+            Object[] new_doc = {false, res.getFirst().getFirst(), res.getFirst().getSecond()};
+            return new_doc;
+        } catch (ExceptionDocumentExists e) {
+            showError(reference, e.getMessage());
+        } catch (ExceptionInvalidLanguage e) {
+            // NO hauria de passar
+            showInternalError(reference);
+        }
+
+        return null;
     }
 
     public void showDocuments(Point location, Dimension size) {

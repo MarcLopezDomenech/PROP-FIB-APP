@@ -89,7 +89,8 @@ public class MainView {
         create.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cp.showNewDocument(frame);
+                Object[] new_data = cp.showNewDocument(frame);
+                if (new_data != null) documentsModel.addRow(new_data);
             }
         });
 
