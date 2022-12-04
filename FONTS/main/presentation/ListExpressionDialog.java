@@ -94,7 +94,7 @@ public class ListExpressionDialog extends JDialog {
         listModel1 = new DefaultListModel();
         list1.setModel(listModel1);
         Set<String> expressions = cp.getAllExpressions();
-        for (String ex : expressions) listModel1.addElement(exp);
+        for (String ex : expressions) listModel1.addElement(ex);
 
         pack();
         this.exp = reference;
