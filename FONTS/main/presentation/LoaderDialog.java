@@ -157,7 +157,7 @@ public class LoaderDialog extends JDialog {
         setLocationRelativeTo(reference);
         setVisible(true);
 
-        if (!okPressed) return null;
+        if (!okPressed) return new Pair<>(null, new Object[0]);
 
         Pair<String, Object[]> res = new Pair<>();
 
