@@ -6,7 +6,7 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.event.*;
 import java.util.List;
 
-public class AuthorDialog extends JDialog {
+public class ListAuthorDialog extends JDialog {
     private CtrlPresentation cp;
     private JFrame autandtit;
     private JPanel contentPane;
@@ -18,7 +18,7 @@ public class AuthorDialog extends JDialog {
 
     private String result;
 
-    public AuthorDialog() {
+    public ListAuthorDialog() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
