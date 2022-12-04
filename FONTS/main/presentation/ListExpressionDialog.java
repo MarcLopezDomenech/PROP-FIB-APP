@@ -13,7 +13,7 @@ import java.util.Set;
 
 import main.domain.util.Pair;
 
-public class ListExpression extends JDialog {
+public class ListExpressionDialog extends JDialog {
 
     private CtrlPresentation cp;
 
@@ -27,7 +27,7 @@ public class ListExpression extends JDialog {
 
     private Pair<String, Boolean> result;
 
-    public ListExpression() {
+    public ListExpressionDialog() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);

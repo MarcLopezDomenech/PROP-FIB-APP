@@ -161,7 +161,7 @@ public class CtrlPresentation {
 
     public Object[][] showListByExpression(JFrame reference) {
         Object[][] docs = null;
-        /*ListExpressionDialog dialog = new ListExpressionDialog();
+        ListExpressionDialog dialog = new ListExpressionDialog();
         Pair<String, Boolean> exprAndSensitive = dialog.initialize(reference);
         String expression = exprAndSensitive.getFirst();
         Boolean caseSensitive = exprAndSensitive.getSecond();
@@ -169,7 +169,7 @@ public class CtrlPresentation {
             if (expression != null) docs = listByExpression(expression, caseSensitive);
         } catch (ExceptionNoExpression e) {
             showError(reference, e.getMessage());
-        }*/
+        }
         return docs;
     }
 
