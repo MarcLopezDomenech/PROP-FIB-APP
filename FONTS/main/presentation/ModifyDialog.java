@@ -3,15 +3,26 @@ package main.presentation;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import main.excepcions.ExceptionNoDocument;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 public class ModifyDialog extends JDialog {
+    private CtrlPresentation cp;
+
+    private JFrame modify;
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
+    private JLabel tit_doc;
+    private JLabel aut_doc;
+    private JTextField textcontent;
+
+    private String tit;
+    private String auth;
+    private String cont;
 
     public ModifyDialog() {
         setContentPane(contentPane);
@@ -47,8 +58,12 @@ public class ModifyDialog extends JDialog {
     }
 
     private void onOK() {
-        // add your code here
-        dispose();
+        String content_fin = textcontent.getText();
+        try {
+            cp.updateContentDocument(tit, auth, content_fin);
+        } catch (ExceptionNoDocument e) {
+            cp.getInstance().showError(modify, "No existeix el document");
+        }
     }
 
     private void onCancel() {
@@ -56,11 +71,26 @@ public class ModifyDialog extends JDialog {
         dispose();
     }
 
-    public static void main(String[] args) {
-        ModifyDialog dialog = new ModifyDialog();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
+    public void initialize(JFrame reference, String title, String author) {
+        cp = CtrlPresentation.getInstance();
+        buttonOK.setEnabled(false);
+
+        tit = title;
+        auth = author;
+
+        try {
+            cont = cp.getContentDocument(tit, auth);
+        } catch (ExceptionNoDocument e) {
+            cp.getInstance().showError(modify, "No existeix el document");
+        }
+        tit_doc.setText(tit);
+        aut_doc.setText(auth);
+        textcontent.setText(cont);
+
+        pack();
+        this.modify = reference;
+        setLocationRelativeTo(reference);
+        setVisible(true);
     }
 
     {
@@ -86,17 +116,32 @@ public class ModifyDialog extends JDialog {
         final Spacer spacer1 = new Spacer();
         panel1.add(spacer1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final JPanel panel2 = new JPanel();
-        panel2.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1, true, false));
+        panel2.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         panel1.add(panel2, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         buttonOK = new JButton();
         buttonOK.setText("Guardar");
         panel2.add(buttonOK, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         buttonCancel = new JButton();
-        buttonCancel.setText("Cancel");
+        buttonCancel.setText("Tornar");
         panel1.add(buttonCancel, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel3 = new JPanel();
-        panel3.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel3.setLayout(new GridLayoutManager(3, 2, new Insets(0, 0, 0, 0), -1, -1));
         contentPane.add(panel3, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        final JLabel label1 = new JLabel();
+        label1.setText("Titol:");
+        panel3.add(label1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        tit_doc = new JLabel();
+        tit_doc.setText("tit_doc_ini");
+        panel3.add(tit_doc, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label2 = new JLabel();
+        label2.setText("Autor:");
+        panel3.add(label2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        aut_doc = new JLabel();
+        aut_doc.setText("aut_doc_ini");
+        panel3.add(aut_doc, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        textcontent = new JTextField();
+        textcontent.setText("ini_content");
+        panel3.add(textcontent, new GridConstraints(2, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
     }
 
     /**
@@ -105,4 +150,5 @@ public class ModifyDialog extends JDialog {
     public JComponent $$$getRootComponent$$$() {
         return contentPane;
     }
+
 }

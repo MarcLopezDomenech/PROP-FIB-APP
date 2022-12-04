@@ -178,11 +178,12 @@ public class CtrlPresentation {
         return docs;
     }
 
+
     // Opcions amb document seleccionat
 
     public void showModify(JFrame reference, String title, String author) {
-        // ModifyDialog md = new ModifyDialog();
-        // md.initialize(reference, title, author);
+        ModifyDialog md = new ModifyDialog();
+        md.initialize(reference, title, author);
     }
 
     public Object[][] showListKSimilars(JFrame reference, String title, String author){

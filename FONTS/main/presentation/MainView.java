@@ -148,6 +148,7 @@ public class MainView {
             }
         });
 
+
         // Opcions quan tenim un document seleccionat
         modify.addActionListener(new ActionListener() {
             @Override
