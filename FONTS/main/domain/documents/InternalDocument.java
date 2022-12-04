@@ -40,7 +40,10 @@ public class InternalDocument {
         relevantWords = new HashMap<>();
         for (String pair : pairs) {
             String[] key_value = pair.split("\\[");
-            if (key_value.length == 1) totalWords = Integer.valueOf( key_value[0]);
+            if (key_value.length == 1) {
+                String[] aux = key_value[0].split("\\n+");
+                totalWords = Integer.parseInt( aux[0]);
+            }
             else relevantWords.put(key_value[0], Integer.parseInt(key_value[1]));
         }
     }
