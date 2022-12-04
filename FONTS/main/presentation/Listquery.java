@@ -21,7 +21,7 @@ public class Listquery extends JDialog {
 
     private String query;
     private int k;
-    private Pair<String,Integer> result;
+    private Pair<String, Integer> result;
 
     public Listquery() {
         cp = CtrlPresentation.getInstance();
@@ -84,11 +84,10 @@ public class Listquery extends JDialog {
             err = false;
         }
         if (err) {
-            if(k<0){
+            if (k < 0) {
                 cp.showError(quer, "Número de resultados invàlido");
-            }
-            else {
-                result=new Pair<String,Integer>(query,k);
+            } else {
+                result = new Pair<String, Integer>(query, k);
                 dispose();
             }
         }
@@ -96,7 +95,7 @@ public class Listquery extends JDialog {
 
     private void onCancel() {
         // add your code here if necessary
-        result=new Pair<String,Integer>(null,null);
+        result = new Pair<String, Integer>(null, null);
         dispose();
     }
 
@@ -104,8 +103,8 @@ public class Listquery extends JDialog {
         buttonOK.setEnabled(!query_text.getText().equals("") && !number_text.getText().equals(""));
     }
 
-    public Pair<String,Integer> initialize(JFrame reference) {
-        result=new Pair<String,Integer>(null,null);
+    public Pair<String, Integer> initialize(JFrame reference) {
+        result = new Pair<String, Integer>(null, null);
         buttonOK.setEnabled(false);
         pack();
         this.quer = reference;

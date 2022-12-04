@@ -40,7 +40,8 @@ public class MainView {
     private JMenu menuList;
     private JMenuItem listByQuery;
     private JMenuItem listByExpression;
-    private JMenuItem listByTitleAuthor;
+    private JMenuItem listByAuthor;
+    private JMenuItem listByNothing;
     private int selectedIndex;
 
     public MainView() {
@@ -49,7 +50,8 @@ public class MainView {
         selectedIndex = -1;
 
         $$$setupUI$$$();
-        //Image bobby = new ImageIcon()
+
+        // Inicialització dels menús
         menubar = new JMenuBar();
 
         menuOptions = new JMenu("Menu");
@@ -66,12 +68,74 @@ public class MainView {
         menuList.add(listByQuery);
         listByExpression = new JMenuItem("Expressio");
         menuList.add(listByExpression);
-        listByTitleAuthor = new JMenuItem("Autor i titol");
-        menuList.add(listByTitleAuthor);
+        listByAuthor = new JMenuItem("Autor");
+        menuList.add(listByAuthor);
+        listByNothing = new JMenuItem("Esborrar filtres");
+        menuList.add(listByNothing);
         menubar.add(menuList);
 
         frame.setJMenuBar(menubar);
 
+        // Opcions del menú general
+        load.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cp.showLoader(frame);
+            }
+        });
+
+        create.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cp.showNewDocument(frame);
+            }
+        });
+
+        expressions.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cp.showExpressions(frame.getLocation(), frame.getSize());
+                frame.dispose();
+
+            }
+        });
+
+
+        // Opcions del menú de llistar
+        listByQuery.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Object[][] newData = cp.showListByQuery(frame);
+                if (newData != null) updateData(newData);
+            }
+        });
+
+        listByExpression.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Object[][] newData = cp.showListByExpression(frame);
+                if (newData != null) updateData(newData);
+            }
+        });
+
+        listByAuthor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Object[][] newData = cp.showListByAuthor(frame);
+                if (newData != null) updateData(newData);
+            }
+        });
+
+        listByNothing.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Object[][] newData = cp.listAllDocuments();
+                updateData(newData);
+            }
+        });
+
+
+        // Gestió de la selecció d'un document
         ListSelectionModel selection = documents.getSelectionModel();
         selection.addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -84,6 +148,7 @@ public class MainView {
             }
         });
 
+        // Opcions quan tenim un document seleccionat
         modify.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -91,6 +156,16 @@ public class MainView {
                 String title = (String) documents.getValueAt(selectedIndex, 1);
                 String author = (String) documents.getValueAt(selectedIndex, 2);
                 cp.showModify(frame, title, author);
+            }
+        });
+
+        similars.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String title = (String) documents.getValueAt(selectedIndex, 1);
+                String author = (String) documents.getValueAt(selectedIndex, 2);
+                Object[][] result = cp.showListKSimilars(frame, title, author);
+                updateData(result);
             }
         });
 
@@ -113,22 +188,6 @@ public class MainView {
             }
         });
 
-        load.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cp.showLoader(frame);
-            }
-        });
-
-        expressions.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cp.showExpressions(frame.getLocation(), frame.getSize());
-                frame.dispose();
-
-            }
-        });
-
         export.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -138,22 +197,6 @@ public class MainView {
             }
         });
 
-        create.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cp.showNewDocument(frame);
-            }
-        });
-
-        similars.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String title = (String) documents.getValueAt(selectedIndex, 1);
-                String author = (String) documents.getValueAt(selectedIndex, 2);
-                Object[][] res = cp.showListKSimilars(frame, title, author);
-                updateData(res);
-            }
-        });
     }
 
     public void initialize(Point location, Dimension size) {

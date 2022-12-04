@@ -148,14 +148,14 @@ public class CtrlPresentation {
     public Object[][] showListByQuery(JFrame reference) {
         Object[][] docs = null;
         Listquery dialog = new Listquery();
-        /*Pair<String, Integer> queryAndK = dialog.initialize(reference);
+        Pair<String, Integer> queryAndK = dialog.initialize(reference);
         String query = queryAndK.getFirst();
         Integer k = queryAndK.getSecond();
         try {
             if (query != null && k != null) docs = listByQuery(query, k);
         } catch (ExceptionInvalidK e) {
             showError(reference, e.getMessage());
-        }*/
+        }
         return docs;
     }
 
@@ -173,7 +173,7 @@ public class CtrlPresentation {
         return docs;
     }
 
-    public Object[][] showListByAuthorTitle(JFrame reference) {
+    public Object[][] showListByAuthor(JFrame reference) {
         Object[][] docs = null;
         return docs;
     }
