@@ -129,6 +129,8 @@ public class CtrlPresentation {
         Pair<String, Object[]> res = dialog.initialize(reference);
         ArrayList<Object[]> new_data = new ArrayList<>();
 
+        if (res == null) return null;
+
         for (Object p : res.getSecond()) {
             try {
                 new_data.add(importDocument((String) p, res.getFirst()));
