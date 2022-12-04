@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -123,9 +124,22 @@ public class CtrlPresentation {
 
     // Opcions del menú
 
-    public void showLoader(JFrame reference) {
+    public Object[][] showLoader(JFrame reference) {
         LoaderDialog dialog = new LoaderDialog();
-        dialog.initialize(reference);
+        Pair<String, Object[]> res = dialog.initialize(reference);
+        ArrayList<Object[]> new_data = new ArrayList<>();
+
+        for (Object p : res.getSecond()) {
+            try {
+                new_data.add(CtrlPresentation.getInstance().importDocument((String) p, res.getFirst()));
+            } catch (ExceptionInvalidFormat | ExceptionDocumentExists | ExceptionInvalidLanguage e) {
+                CtrlPresentation.getInstance().showError(reference, e.getMessage());
+            } catch (FileNotFoundException e) {
+                CtrlPresentation.getInstance().showError(reference, "La ruta no és correcta!");
+            }
+        }
+
+        return new_data.toArray(new Object[0][]);
     }
 
     public void showNewDocument(JFrame reference) {
