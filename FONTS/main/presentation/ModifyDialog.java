@@ -1,5 +1,8 @@
 package main.presentation;
 
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.intellij.uiDesigner.core.Spacer;
 import main.excepcions.ExceptionNoDocument;
 
 import javax.swing.*;
@@ -15,8 +18,7 @@ public class ModifyDialog extends JDialog {
     private JButton buttonCancel;
     private JLabel tit_doc;
     private JLabel aut_doc;
-    private JTextArea textcont;
-    private JButton exportarButton;
+    private JTextField textcontent;
 
     private String tit;
     private String auth;
@@ -53,13 +55,7 @@ public class ModifyDialog extends JDialog {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-        exportarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                onExport();
-            }
-        });
-        textcont.addKeyListener(new KeyAdapter() {
+        textcontent.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
@@ -69,7 +65,7 @@ public class ModifyDialog extends JDialog {
     }
 
     private void onOK() {
-        String content_fin = textcont.getText();
+        String content_fin = textcontent.getText();
         boolean err = true;
         try {
             cp.updateContentDocument(tit, auth, content_fin);
@@ -87,11 +83,6 @@ public class ModifyDialog extends JDialog {
         dispose();
     }
 
-    private void onExport() {
-        onOK();
-        cp.showDownloader(modify,tit,auth);
-    }
-
     public void initialize(JFrame reference, String title, String author) {
         cp = CtrlPresentation.getInstance();
 
@@ -105,7 +96,7 @@ public class ModifyDialog extends JDialog {
         }
         tit_doc.setText(tit);
         aut_doc.setText(auth);
-        textcont.setText(cont);
+        textcontent.setText(cont);
 
         pack();
         this.modify = reference;
@@ -159,7 +150,9 @@ public class ModifyDialog extends JDialog {
         aut_doc = new JLabel();
         aut_doc.setText("aut_doc_ini");
         panel3.add(aut_doc, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-
+        textcontent = new JTextField();
+        textcontent.setText("ini_content");
+        panel3.add(textcontent, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
     }
 
     /**
