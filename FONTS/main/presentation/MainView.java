@@ -42,8 +42,6 @@ public class MainView {
     private JMenuItem listByExpression;
     private JMenuItem listByTitleAuthor;
     private int selectedIndex;
-    private Object[][] data;
-    private String[] headers;
 
     public MainView() {
         cp = CtrlPresentation.getInstance();
@@ -153,7 +151,7 @@ public class MainView {
                 String title = (String) documents.getValueAt(selectedIndex, 1);
                 String author = (String) documents.getValueAt(selectedIndex, 2);
                 Object[][] res = cp.showListKSimilars(frame, title, author);
-                documentsModel.setDataVector(res, headers);
+                updateData(res);
             }
         });
     }
@@ -171,6 +169,34 @@ public class MainView {
                 System.exit(0);
             }
         });
+    }
+
+    private void updateData(Object[][] data) {
+        String[] headers = new String[]{"", "Titol", "Autor"};
+
+        documentsModel.setDataVector(data, headers);
+
+        TableColumn tc = documents.getColumnModel().getColumn(0);
+        tc.setCellEditor(documents.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer(documents.getDefaultRenderer(Boolean.class));
+
+        tc.setMinWidth(30);
+        tc.setMaxWidth(30);
+    }
+
+    private void createUIComponents() {
+        documentsModel = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return column == 0;
+            }
+        };
+        documents = new JTable(documentsModel);
+        updateData(cp.listAllDocuments());
+
+        JTableHeader header = documents.getTableHeader();
+        Font font = new Font("Arial", Font.BOLD, 14);
+        header.setFont(font);
     }
 
     /**
@@ -225,26 +251,4 @@ public class MainView {
         return panel;
     }
 
-    private void createUIComponents() {
-        data = cp.listAllDocuments();
-        headers = new String[]{"", "Titol", "Autor"};
-        documentsModel = new DefaultTableModel(data, headers) {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return column == 0;
-            }
-        };
-        documents = new JTable(documentsModel);
-
-        TableColumn tc = documents.getColumnModel().getColumn(0);
-        tc.setCellEditor(documents.getDefaultEditor(Boolean.class));
-        tc.setCellRenderer(documents.getDefaultRenderer(Boolean.class));
-
-        JTableHeader header = documents.getTableHeader();
-        Font font = new Font("Arial", Font.BOLD, 14);
-        header.setFont(font);
-
-        tc.setMinWidth(30);
-        tc.setMaxWidth(30);
-    }
 }

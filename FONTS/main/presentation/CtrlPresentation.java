@@ -143,14 +143,55 @@ public class CtrlPresentation {
         ew.initialize(location, size);
     }
 
-    // Opcions amb doc seleccionat
+    // Opcions de llistar de documents
+
+    public Object[][] showListByQuery(JFrame reference) {
+        Object[][] docs = null;
+        Listquery dialog = new Listquery();
+        /*Pair<String, Integer> queryAndK = dialog.initialize(reference);
+        String query = queryAndK.getFirst();
+        Integer k = queryAndK.getSecond();
+        try {
+            if (query != null && k != null) docs = listByQuery(query, k);
+        } catch (ExceptionInvalidK e) {
+            showError(reference, e.getMessage());
+        }*/
+        return docs;
+    }
+
+    public Object[][] showListByExpression(JFrame reference) {
+        Object[][] docs = null;
+        /*ListExpressionDialog dialog = new ListExpressionDialog();
+        Pair<String, Boolean> exprAndSensitive = dialog.initialize(reference);
+        String expression = exprAndSensitive.getFirst();
+        Boolean caseSensitive = exprAndSensitive.getSecond();
+        try {
+            if (expression != null) docs = listByExpression(expression, caseSensitive);
+        } catch (ExceptionNoExpression e) {
+            showError(reference, e.getMessage());
+        }*/
+        return docs;
+    }
+
+    public Object[][] showListByAuthorTitle(JFrame reference) {
+        Object[][] docs = null;
+        return docs;
+    }
+
+    // Opcions amb document seleccionat
+
+    public void showModify(JFrame reference, String title, String author) {
+        // ModifyDialog md = new ModifyDialog();
+        // md.initialize(reference, title, author);
+    }
 
     public Object[][] showListKSimilars(JFrame reference, String title, String author){
         ListKSimilarsDialog dialog = new ListKSimilarsDialog();
         Pair<Integer, String> result = dialog.initialize(reference, title, author);
         Object[][] docs = null;
         try {
-            docs = listSimilars(title, author, result.getFirst(), result.getSecond());
+            if (result.getFirst() != null && result.getSecond() != null)
+                docs = listSimilars(title, author, result.getFirst(), result.getSecond());
         } catch (ExceptionInvalidK |ExceptionNoDocument | ExceptionInvalidStrategy e) {
             showInternalError(reference);
         }
@@ -160,11 +201,6 @@ public class CtrlPresentation {
     public void showDownloader(JFrame reference, String title, String author){
         DownloaderDialog dialog = new DownloaderDialog();
         dialog.initialize(reference, title, author);
-    }
-
-    public void showModify(JFrame reference, String title, String author) {
-        // ModifyDialog md = new ModifyDialog();
-        // md.initialize(reference, title, author);
     }
 
     // Crides al domini
