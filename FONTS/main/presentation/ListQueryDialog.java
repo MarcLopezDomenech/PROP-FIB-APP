@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Listquery extends JDialog {
+public class ListQueryDialog extends JDialog {
     private CtrlPresentation cp;
 
     private JFrame quer;
@@ -23,7 +23,7 @@ public class Listquery extends JDialog {
     private int k;
     private Pair<String, Integer> result;
 
-    public Listquery() {
+    public ListQueryDialog() {
         cp = CtrlPresentation.getInstance();
         setContentPane(contentPane);
         setModal(true);
@@ -114,7 +114,7 @@ public class Listquery extends JDialog {
     }
 
     public static void main(String[] args) {
-        Listquery dialog = new Listquery();
+        ListQueryDialog dialog = new ListQueryDialog();
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);

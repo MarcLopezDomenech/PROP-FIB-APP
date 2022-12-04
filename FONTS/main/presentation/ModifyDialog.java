@@ -55,14 +55,26 @@ public class ModifyDialog extends JDialog {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        textcontent.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+                buttonOK.setEnabled(true);
+            }
+        });
     }
 
     private void onOK() {
         String content_fin = textcontent.getText();
+        boolean err = true;
         try {
             cp.updateContentDocument(tit, auth, content_fin);
         } catch (ExceptionNoDocument e) {
             cp.getInstance().showError(modify, "No existeix el document");
+            err = false;
+        }
+        if (err) {
+            buttonOK.setEnabled(false);
         }
     }
 
@@ -73,7 +85,6 @@ public class ModifyDialog extends JDialog {
 
     public void initialize(JFrame reference, String title, String author) {
         cp = CtrlPresentation.getInstance();
-        buttonOK.setEnabled(false);
 
         tit = title;
         auth = author;

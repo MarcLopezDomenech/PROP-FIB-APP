@@ -147,7 +147,7 @@ public class CtrlPresentation {
 
     public Object[][] showListByQuery(JFrame reference) {
         Object[][] docs = null;
-        Listquery dialog = new Listquery();
+        ListQueryDialog dialog = new ListQueryDialog();
         Pair<String, Integer> queryAndK = dialog.initialize(reference);
         String query = queryAndK.getFirst();
         Integer k = queryAndK.getSecond();
@@ -175,6 +175,9 @@ public class CtrlPresentation {
 
     public Object[][] showListByAuthor(JFrame reference) {
         Object[][] docs = null;
+        ListAuthorDialog dialog = new ListAuthorDialog();
+        String author = dialog.initialize(reference);
+        if (author != null) docs = listTitlesOfAuthor(author);
         return docs;
     }
 

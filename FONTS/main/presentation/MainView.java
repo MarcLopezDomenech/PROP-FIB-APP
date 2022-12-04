@@ -71,6 +71,7 @@ public class MainView {
         listByAuthor = new JMenuItem("Autor");
         menuList.add(listByAuthor);
         listByNothing = new JMenuItem("Esborrar filtres");
+        listByNothing.setVisible(false);        // Al principi no hi ha cap filtre aplicat
         menuList.add(listByNothing);
         menubar.add(menuList);
 
@@ -106,7 +107,10 @@ public class MainView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Object[][] newData = cp.showListByQuery(frame);
-                if (newData != null) updateData(newData);
+                if (newData != null) {
+                    updateData(newData);
+
+                }
             }
         });
 
@@ -114,7 +118,10 @@ public class MainView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Object[][] newData = cp.showListByExpression(frame);
-                if (newData != null) updateData(newData);
+                if (newData != null) {
+                    updateData(newData);
+                    listByNothing.setVisible(true);
+                }
             }
         });
 
@@ -122,7 +129,10 @@ public class MainView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Object[][] newData = cp.showListByAuthor(frame);
-                if (newData != null) updateData(newData);
+                if (newData != null) {
+                    updateData(newData);
+                    listByNothing.setVisible(true);
+                }
             }
         });
 
@@ -131,6 +141,7 @@ public class MainView {
             public void actionPerformed(ActionEvent e) {
                 Object[][] newData = cp.listAllDocuments();
                 updateData(newData);
+                listByNothing.setVisible(false);
             }
         });
 
@@ -195,6 +206,16 @@ public class MainView {
                 String title = (String) documents.getValueAt(selectedIndex, 1);
                 String author = (String) documents.getValueAt(selectedIndex, 2);
                 cp.showDownloader(frame, title, author);
+            }
+        });
+
+
+        // Doble click per modificar un document
+        documents.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent event) {
+                super.mouseClicked(event);
+                if (event.getClickCount() == 2) modify.doClick();
             }
         });
 
