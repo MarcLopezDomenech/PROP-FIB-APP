@@ -66,14 +66,14 @@ public class ModifyDialog extends JDialog {
 
     private void onOK() {
         String content_fin = textcontent.getText();
-        boolean err=true;
+        boolean err = true;
         try {
             cp.updateContentDocument(tit, auth, content_fin);
         } catch (ExceptionNoDocument e) {
             cp.getInstance().showError(modify, "No existeix el document");
-            err=false;
+            err = false;
         }
-        if(err){
+        if (err) {
             buttonOK.setEnabled(false);
         }
     }

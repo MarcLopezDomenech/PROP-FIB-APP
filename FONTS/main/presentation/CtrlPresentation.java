@@ -175,6 +175,9 @@ public class CtrlPresentation {
 
     public Object[][] showListByAuthor(JFrame reference) {
         Object[][] docs = null;
+        ListAuthorDialog dialog = new ListAuthorDialog();
+        String author = dialog.initialize(reference);
+        if (author != null) docs = listTitlesOfAuthor(author);
         return docs;
     }
 
