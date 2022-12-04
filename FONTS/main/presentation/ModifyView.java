@@ -22,6 +22,7 @@ public class ModifyView {
     private String content_ini;
 
     public ModifyView() {
+        cp = CtrlPresentation.getInstance();
         guardarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

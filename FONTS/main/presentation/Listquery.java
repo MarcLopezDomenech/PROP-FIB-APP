@@ -18,6 +18,7 @@ public class Listquery extends JDialog {
     private int k;
 
     public Listquery() {
+        cp = CtrlPresentation.getInstance();
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -68,13 +69,17 @@ public class Listquery extends JDialog {
         // add your code here
         query = query_text.getText();
         String str = number_text.getText();
+        boolean err=true;
         try {
             k = Integer.parseInt(str);
         } catch (NumberFormatException ex) {
             //LLAMAR DIALOG ERROR
             cp.getInstance().showError(quer, "Número de resultados invàlido");
+            err=false;
         }
-        dispose();
+        if(err) {
+            dispose();
+        }
     }
 
     private void onCancel() {
@@ -87,11 +92,13 @@ public class Listquery extends JDialog {
     }
 
     public String initialize(JFrame reference) {
+        buttonOK.setEnabled(false);
         pack();
         this.quer = reference;
         setLocationRelativeTo(reference);
         setVisible(true);
         //return pair (query,k);
+        //return cp.listByQuery(query,k);
         return query;
     }
 
