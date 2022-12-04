@@ -9,6 +9,8 @@ import main.excepcions.ExceptionInvalidLanguage;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
@@ -67,19 +69,25 @@ public class NewDocumentDialog extends JDialog {
         bgroup.add(esp);
         bgroup.add(eng);
 
-        titleDoc.addPropertyChangeListener(new PropertyChangeListener() {
+        DocumentListener dl = new DocumentListener() {
             @Override
-            public void propertyChange(PropertyChangeEvent evt) {
+            public void insertUpdate(DocumentEvent e) {
                 enableButtonIfCorrect();
             }
-        });
 
-        authorDoc.addPropertyChangeListener(new PropertyChangeListener() {
             @Override
-            public void propertyChange(PropertyChangeEvent evt) {
+            public void removeUpdate(DocumentEvent e) {
                 enableButtonIfCorrect();
             }
-        });
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                enableButtonIfCorrect();
+            }
+        };
+
+        titleDoc.getDocument().addDocumentListener(dl);
+        authorDoc.getDocument().addDocumentListener(dl);
         cat.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
