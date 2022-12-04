@@ -147,7 +147,7 @@ public class CtrlPresentation {
 
     public Object[][] showListByQuery(JFrame reference) {
         Object[][] docs = null;
-        ListqueryDialog dialog = new ListqueryDialog();
+        ListQueryDialog dialog = new ListQueryDialog();
         Pair<String, Integer> queryAndK = dialog.initialize(reference);
         String query = queryAndK.getFirst();
         Integer k = queryAndK.getSecond();
