@@ -64,6 +64,7 @@ public class ModifyDialog extends JDialog {
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
                 buttonOK.setEnabled(true);
+                pack();
             }
         });
     }
