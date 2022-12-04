@@ -1,6 +1,7 @@
 package main.presentation;
 
 import main.domain.CtrlDomain;
+import main.domain.util.Pair;
 import main.excepcions.*;
 
 import javax.swing.*;
@@ -144,15 +145,28 @@ public class CtrlPresentation {
 
     // Opcions amb doc seleccionat
 
-    public void showListKSimilars(JFrame reference, String title, String author){
+    public Object[][] showListKSimilars(JFrame reference, String title, String author){
         ListKSimilarsDialog dialog = new ListKSimilarsDialog();
-        dialog.initialize(reference, title, author);
+        Pair<Integer, String> result = dialog.initialize(reference, title, author);
+        Object[][] docs = null;
+        try {
+            docs = listSimilars(title, author, result.getFirst(), result.getSecond());
+        } catch (ExceptionInvalidK |ExceptionNoDocument | ExceptionInvalidStrategy e) {
+            showInternalError(reference);
+        }
+        return docs;
     }
 
     public void showDownloader(JFrame reference, String title, String author){
         DownloaderDialog dialog = new DownloaderDialog();
         dialog.initialize(reference, title, author);
     }
+
+    public void showModify(JFrame reference, String title, String author) {
+        // ModifyDialog md = new ModifyDialog();
+        // md.initialize(reference, title, author);
+    }
+
     // Crides al domini
 
     /**
@@ -287,6 +301,7 @@ public class CtrlPresentation {
         return result.toArray(new Object[0][]);
     }
 
+    // ToDo
     /**
      * @brief Funció per obtenir els identificadors dels k documents més similars a un document
      * @details Amb aquesta operació es poden consultar els documents més similars a un document. En concret, a partir de l'identificador (títol i autor) d'un document, s'obtenen els identificadors dels k documents que són més similars a aquest.
@@ -300,8 +315,9 @@ public class CtrlPresentation {
      */
     public Object[][] listSimilars(String title, String author, int k, String strategy) throws ExceptionNoDocument, ExceptionInvalidStrategy, ExceptionInvalidK {
         // ToDo
-        return new Object[][] {{true, "que", "pataaaaata"}, {false, "pep", "pepa"}};
-        //return cd.listSimilars(title, author, k, strategy);
+        //return new Object[][] {{true, "que", "pataaaaata"}, {false, "pep", "pepa"}};
+        List<Object[]> result = cd.listSimilars(title, author, k, strategy);
+        return result.toArray(new Object[0][]);
     }
 
     /**
@@ -442,6 +458,8 @@ public class CtrlPresentation {
         CtrlPresentation cp = CtrlPresentation.getInstance();
         cp.initiateApp();
         cp.showDocuments(new Point(600, 300), new Dimension(500, 500));
+        //ModifyView mw = new ModifyView();
+        //mw.initialize("abc", "mar", "hola");
     }
 
 }

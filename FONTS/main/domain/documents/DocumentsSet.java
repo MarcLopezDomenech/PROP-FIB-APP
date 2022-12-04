@@ -260,6 +260,7 @@ public class DocumentsSet {
         return all;
     }
 
+    //ToDo
     /**
      * @brief Funció per obtenir els identificadors dels k documents més similars a un document
      * @details Amb aquesta operació es poden consultar els documents més similars a un document. En concret, a partir de l'identificador (títol i autor) d'un document, s'obtenen els identificadors dels k documents que són més similars a aquest.
