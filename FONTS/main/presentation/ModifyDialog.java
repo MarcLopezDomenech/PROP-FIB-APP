@@ -73,7 +73,6 @@ public class ModifyDialog extends JDialog {
 
     public void initialize(JFrame reference, String title, String author) {
         cp = CtrlPresentation.getInstance();
-        buttonOK.setEnabled(false);
 
         tit = title;
         auth = author;
