@@ -323,9 +323,9 @@ public class CtrlDomain {
      * @throws ExceptionDocumentExists quan el sistema ja té donat d'alta un document amb els títol i autor del document que es vol importar
      * @throws ExceptionInvalidLanguage en cas que l'idioma del paràmetre no sigui ni "ca" ni "en" ni "es"
      */
-    public void importDocument(String path, String language) throws ExceptionInvalidFormat, FileNotFoundException, ExceptionDocumentExists, ExceptionInvalidLanguage {
+    public Object[] importDocument(String path, String language) throws ExceptionInvalidFormat, FileNotFoundException, ExceptionDocumentExists, ExceptionInvalidLanguage {
         String newDoc = cp.importDocument(path, language);
-        ds.importDocument(newDoc);
+        return ds.importDocument(newDoc);
     }
 
     /**

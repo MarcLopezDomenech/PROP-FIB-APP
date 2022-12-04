@@ -9,22 +9,25 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.List;
+import java.util.Set;
 
-public class ListAuthorDialog extends JDialog {
+import main.domain.util.Pair;
+
+public class ListExpressionDialog extends JDialog {
+
     private CtrlPresentation cp;
-    private JFrame autandtit;
+
+    private JFrame exp;
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JTextField text_aut;
     private JList list1;
+    private JRadioButton caseSensitiveRadioButton;
     private DefaultListModel listModel1;
 
-    private String result;
-    private boolean mod;
+    private Pair<String, Boolean> result;
 
-    public ListAuthorDialog() {
+    public ListExpressionDialog() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -55,46 +58,12 @@ public class ListAuthorDialog extends JDialog {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-
-        text_aut.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyReleased(KeyEvent e) {
-                super.keyReleased(e);
-                onText1();
-            }
-        });
         list1.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 onList1();
             }
         });
-        text_aut.addKeyListener(new KeyAdapter() {
-        });
-        text_aut.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                super.keyPressed(e);
-                mod = true;
-                list1.clearSelection();
-            }
-        });
-    }
-
-    private void onText1() {
-        buttonOK.setEnabled(false);
-        String prefix = text_aut.getText();
-        listModel1.clear();
-        List<String> authors = cp.listAuthorsByPrefix(prefix);
-        for (String aut : authors) listModel1.addElement(aut);
-        mod = false;
-    }
-
-    private void onList1() {
-        if (!mod) {
-            enableButtonIfCorrect();
-            result = list1.getSelectedValue().toString();
-        }
     }
 
     private void onOK() {
@@ -102,9 +71,15 @@ public class ListAuthorDialog extends JDialog {
         dispose();
     }
 
+    private void onList1() {
+        enableButtonIfCorrect();
+        result = new Pair<String, Boolean>(list1.getSelectedValue().toString(), caseSensitiveRadioButton.isSelected());
+    }
+
     private void onCancel() {
         // add your code here if necessary
-        result = null;
+
+        result = new Pair<String, Boolean>(null, null);
         dispose();
     }
 
@@ -112,18 +87,17 @@ public class ListAuthorDialog extends JDialog {
         buttonOK.setEnabled(!list1.isSelectionEmpty());
     }
 
-    public String initialize(JFrame reference) {
-        mod = false;
-        result = null;
+    public Pair<String, Boolean> initialize(JFrame reference) {
+        new Pair<String, Boolean>(null, null);
         cp = CtrlPresentation.getInstance();
         enableButtonIfCorrect();
         listModel1 = new DefaultListModel();
         list1.setModel(listModel1);
-        List<String> authors = cp.listAuthorsByPrefix("");
-        for (String aut : authors) listModel1.addElement(aut);
+        Set<String> expressions = cp.getAllExpressions();
+        for (String ex : expressions) listModel1.addElement(exp);
 
         pack();
-        this.autandtit = reference;
+        this.exp = reference;
         setLocationRelativeTo(reference);
         setVisible(true);
         return result;
@@ -145,10 +119,10 @@ public class ListAuthorDialog extends JDialog {
      */
     private void $$$setupUI$$$() {
         contentPane = new JPanel();
-        contentPane.setLayout(new GridLayoutManager(2, 1, new Insets(10, 10, 10, 10), -1, -1));
+        contentPane.setLayout(new GridLayoutManager(3, 1, new Insets(10, 10, 10, 10), -1, -1));
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
-        contentPane.add(panel1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, null, null, null, 0, false));
+        contentPane.add(panel1, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
         panel1.add(spacer1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final JPanel panel2 = new JPanel();
@@ -164,17 +138,15 @@ public class ListAuthorDialog extends JDialog {
         panel3.setLayout(new GridLayoutManager(2, 2, new Insets(0, 0, 0, 0), -1, -1));
         contentPane.add(panel3, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label1 = new JLabel();
-        label1.setText("Autor:");
+        label1.setText("Expressions:");
         panel3.add(label1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        text_aut = new JTextField();
-        text_aut.setText("");
-        panel3.add(text_aut, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
-        final JScrollPane scrollPane1 = new JScrollPane();
-        panel3.add(scrollPane1, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        final Spacer spacer2 = new Spacer();
+        panel3.add(spacer2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         list1 = new JList();
-        final DefaultListModel defaultListModel1 = new DefaultListModel();
-        list1.setModel(defaultListModel1);
-        scrollPane1.setViewportView(list1);
+        panel3.add(list1, new GridConstraints(0, 1, 2, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
+        caseSensitiveRadioButton = new JRadioButton();
+        caseSensitiveRadioButton.setText("Case Sensitive");
+        contentPane.add(caseSensitiveRadioButton, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

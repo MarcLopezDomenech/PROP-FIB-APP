@@ -410,9 +410,13 @@ public class DocumentsSet {
         return expr_list;
     }
 
-    public void importDocument(String document) throws ExceptionDocumentExists {
+    public Object[] importDocument(String document) throws ExceptionDocumentExists {
         Document newDoc = new Document(document);
+        boolean favorite = newDoc.isFavourite();
+        String title = newDoc.getTitle();
+        String author = newDoc.getAuthor();
         registerDocument(newDoc);
+        return new Object[]{favorite, title, author};
     }
 
     public String getDocumentRepresentation(String title, String author) throws ExceptionNoDocument {
