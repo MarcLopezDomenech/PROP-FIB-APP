@@ -188,10 +188,6 @@ public class DownloaderDialog extends JDialog {
 
         try {
             CtrlPresentation.getInstance().exportDocument(titleDoc.getText(), authorDoc.getText(), path.getText().strip() + nom.getText().strip() + extension);
-            System.out.println("S'ha cridat a exportDocument() amb els següents paràmetres:");
-            System.out.println("title: " + titleDoc.getText());
-            System.out.println("author: " + authorDoc.getText());
-            System.out.println("path: " + path.getText().strip() + nom.getText().strip() + extension);
         } catch (ExceptionInvalidFormat | ExceptionNoDocument | IOException e) {
             CtrlPresentation.getInstance().showInternalError(reference);
         }
