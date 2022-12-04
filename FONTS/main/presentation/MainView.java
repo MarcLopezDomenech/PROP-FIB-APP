@@ -198,6 +198,16 @@ public class MainView {
             }
         });
 
+
+        // Doble click per modificar un document
+        documents.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent event) {
+                super.mouseClicked(event);
+                if (event.getClickCount() == 2) modify.doClick();
+            }
+        });
+
     }
 
     public void initialize(Point location, Dimension size) {
