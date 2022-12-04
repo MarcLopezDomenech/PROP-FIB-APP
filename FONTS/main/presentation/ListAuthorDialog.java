@@ -22,6 +22,7 @@ public class ListAuthorDialog extends JDialog {
     private DefaultListModel listModel1;
 
     private String result;
+    private boolean mod;
 
     public ListAuthorDialog() {
         setContentPane(contentPane);
@@ -68,19 +69,32 @@ public class ListAuthorDialog extends JDialog {
                 onList1();
             }
         });
+        text_aut.addKeyListener(new KeyAdapter() {
+        });
+        text_aut.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                mod=true;
+                list1.clearSelection();
+            }
+        });
     }
 
     private void onText1() {
-        enableButtonIfCorrect();
-        String prefix = text_aut.getText();
-        List<String> authors = cp.listAuthorsByPrefix(prefix);
-        listModel1.clear();
-        for (String aut : authors) listModel1.addElement(aut);
+            buttonOK.setEnabled(false);
+            String prefix = text_aut.getText();
+            listModel1.clear();
+            List<String> authors = cp.listAuthorsByPrefix(prefix);
+            for (String aut : authors) listModel1.addElement(aut);
+            mod=false;
     }
 
     private void onList1() {
-        enableButtonIfCorrect();
-        result = list1.getSelectedValue().toString();
+        if(!mod) {
+            enableButtonIfCorrect();
+            result = list1.getSelectedValue().toString();
+        }
     }
 
     private void onOK() {
@@ -99,6 +113,7 @@ public class ListAuthorDialog extends JDialog {
     }
 
     public String initialize(JFrame reference) {
+        mod=false;
         result = null;
         cp = CtrlPresentation.getInstance();
         enableButtonIfCorrect();
