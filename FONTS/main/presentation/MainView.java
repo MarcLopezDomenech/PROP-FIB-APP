@@ -82,7 +82,7 @@ public class MainView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Object[][] result = cp.showLoader(frame);
-                for (Object[] r : result) documentsModel.addRow(r);
+                if (result != null) for (Object[] r : result) documentsModel.addRow(r);
             }
         });
 
