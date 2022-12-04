@@ -3,6 +3,7 @@ package main.presentation;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import main.domain.util.Pair;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +21,7 @@ public class Listquery extends JDialog {
 
     private String query;
     private int k;
+    private Pair<String,Integer> result;
 
     public Listquery() {
         cp = CtrlPresentation.getInstance();
@@ -78,16 +80,23 @@ public class Listquery extends JDialog {
             k = Integer.parseInt(str);
         } catch (NumberFormatException ex) {
             //LLAMAR DIALOG ERROR
-            cp.getInstance().showError(quer, "Número de resultados invàlido");
+            cp.showError(quer, "Número de resultados invàlido");
             err = false;
         }
         if (err) {
-            dispose();
+            if(k<0){
+                cp.showError(quer, "Número de resultados invàlido");
+            }
+            else {
+                result=new Pair<String,Integer>(query,k);
+                dispose();
+            }
         }
     }
 
     private void onCancel() {
         // add your code here if necessary
+        result=new Pair<String,Integer>(null,null);
         dispose();
     }
 
@@ -95,15 +104,14 @@ public class Listquery extends JDialog {
         buttonOK.setEnabled(!query_text.getText().equals("") && !number_text.getText().equals(""));
     }
 
-    public String initialize(JFrame reference) {
+    public Pair<String,Integer> initialize(JFrame reference) {
+        result=new Pair<String,Integer>(null,null);
         buttonOK.setEnabled(false);
         pack();
         this.quer = reference;
         setLocationRelativeTo(reference);
         setVisible(true);
-        //return pair (query,k);
-        //return cp.listByQuery(query,k);
-        return query;
+        return result;
     }
 
     public static void main(String[] args) {
