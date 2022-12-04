@@ -191,7 +191,7 @@ public class MainView {
                 if (confirm) {
                     try {
                         cp.deleteDocument(title, author);
-                        documentsModel.removeRow(selectedIndex);
+                        documentsModel.removeRow(documents.convertRowIndexToModel(selectedIndex));
                     } catch (ExceptionNoDocument ex) {
                         // No és possible
                         cp.showInternalError(frame);
