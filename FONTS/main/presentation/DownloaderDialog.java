@@ -3,14 +3,14 @@ package main.presentation;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
-import main.excepcions.ExceptionDocumentExists;
 import main.excepcions.ExceptionInvalidFormat;
-import main.excepcions.ExceptionInvalidLanguage;
 import main.excepcions.ExceptionNoDocument;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -18,7 +18,6 @@ import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -38,6 +37,7 @@ public class DownloaderDialog extends JDialog {
     private JRadioButton ftxt;
     private JRadioButton fxml;
     private JRadioButton ffp;
+    private JTextField nom;
     private JFileChooser fc;
 
     public DownloaderDialog() {
@@ -50,7 +50,7 @@ public class DownloaderDialog extends JDialog {
         UIManager.put("FileChooser.cancelButtonText", "Cancel.lar");
         UIManager.put("FileChooser.openButtonText", "Seleccionar");
         UIManager.put("FileChooser.lookInLabelText", "Buscar en");
-        UIManager.put("FileChooser.fileNameLabelText", "Nom del document:");
+        UIManager.put("FileChooser.folderNameLabelText", "Nom de la carpeta");
         UIManager.put("FileChooser.filesOfTypeLabelText", "Tipus");
         fc = new JFileChooser(".");
         fc.setApproveButtonText("Descarregar");
@@ -105,15 +105,45 @@ public class DownloaderDialog extends JDialog {
 
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     File f = fc.getSelectedFile();
-                    path.setText(path.getText() + f.getAbsolutePath());
+                    path.setText(f.getAbsolutePath() + "/");
+
+                    if (fc.getFileFilter().equals(txt)) ftxt.setSelected(true);
+                    else if (fc.getFileFilter().equals(xml)) fxml.setSelected(true);
+                    else ffp.setSelected(true);
                 }
 
                 enableButtonIfCorrect();
             }
         });
-        path.addPropertyChangeListener(new PropertyChangeListener() {
+        path.getDocument().addDocumentListener(new DocumentListener() {
             @Override
-            public void propertyChange(PropertyChangeEvent evt) {
+            public void insertUpdate(DocumentEvent e) {
+                enableButtonIfCorrect();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                enableButtonIfCorrect();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                enableButtonIfCorrect();
+            }
+        });
+        nom.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                enableButtonIfCorrect();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                enableButtonIfCorrect();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
                 enableButtonIfCorrect();
             }
         });
@@ -147,15 +177,18 @@ public class DownloaderDialog extends JDialog {
     }
 
     private void enableButtonIfCorrect() {
-        buttonOK.setEnabled(!path.getText().equals("") && (ftxt.isSelected() || fxml.isSelected() || ffp.isSelected()));
+        buttonOK.setEnabled(!path.getText().isEmpty() && (ftxt.isSelected() || fxml.isSelected() || ffp.isSelected()) && !nom.getText().isEmpty());
     }
 
     private void onOK() {
+        String extension;
+        if (ftxt.isSelected()) extension = ".txt";
+        else if (fxml.isSelected()) extension = ".xml";
+        else extension = ".fp";
+
         try {
-            CtrlPresentation.getInstance().exportDocument(titleDoc.getText(), authorDoc.getText(), path.getText());
-        } catch (ExceptionInvalidFormat | ExceptionNoDocument e) {
-            CtrlPresentation.getInstance().showError(reference, e.getMessage());
-        } catch (IOException e) {
+            CtrlPresentation.getInstance().exportDocument(titleDoc.getText(), authorDoc.getText(), path.getText().strip() + nom.getText().strip() + extension);
+        } catch (ExceptionInvalidFormat | ExceptionNoDocument | IOException e) {
             CtrlPresentation.getInstance().showInternalError(reference);
         }
 
@@ -183,8 +216,8 @@ public class DownloaderDialog extends JDialog {
     private void $$$setupUI$$$() {
         contentPane = new JPanel();
         contentPane.setLayout(new GridLayoutManager(3, 1, new Insets(10, 10, 10, 10), -1, -1));
-        contentPane.setMinimumSize(new Dimension(450, 220));
-        contentPane.setPreferredSize(new Dimension(450, 220));
+        contentPane.setMinimumSize(new Dimension(450, 230));
+        contentPane.setPreferredSize(new Dimension(450, 230));
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         contentPane.add(panel1, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, null, null, null, 0, false));
@@ -207,13 +240,13 @@ public class DownloaderDialog extends JDialog {
         panel3.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         contentPane.add(panel3, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JPanel panel4 = new JPanel();
-        panel4.setLayout(new GridLayoutManager(4, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel4.setLayout(new GridLayoutManager(5, 1, new Insets(0, 0, 0, 0), -1, -1));
         panel3.add(panel4, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label1 = new JLabel();
         label1.setText("Format:");
-        panel4.add(label1, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel4.add(label1, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
-        label2.setText("Ruta:");
+        label2.setText("Carpeta:");
         panel4.add(label2, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label3 = new JLabel();
         label3.setText("Autor:");
@@ -221,8 +254,11 @@ public class DownloaderDialog extends JDialog {
         final JLabel label4 = new JLabel();
         label4.setText("Titol:");
         panel4.add(label4, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label5 = new JLabel();
+        label5.setText("Nom de l'arxiu:");
+        panel4.add(label5, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel5 = new JPanel();
-        panel5.setLayout(new GridLayoutManager(4, 4, new Insets(0, 0, 0, 0), -1, -1, false, true));
+        panel5.setLayout(new GridLayoutManager(5, 4, new Insets(0, 0, 0, 0), -1, -1, false, true));
         panel3.add(panel5, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         path = new JTextField();
         panel5.add(path, new GridConstraints(2, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
@@ -237,13 +273,15 @@ public class DownloaderDialog extends JDialog {
         panel5.add(browse, new GridConstraints(2, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         ftxt = new JRadioButton();
         ftxt.setText("Text pla");
-        panel5.add(ftxt, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(71, 22), null, 0, false));
+        panel5.add(ftxt, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(71, 22), null, 0, false));
         fxml = new JRadioButton();
         fxml.setText("XML");
-        panel5.add(fxml, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(44, 22), null, 0, false));
+        panel5.add(fxml, new GridConstraints(4, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(44, 22), null, 0, false));
         ffp = new JRadioButton();
         ffp.setText("Propietari");
-        panel5.add(ffp, new GridConstraints(3, 2, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel5.add(ffp, new GridConstraints(4, 2, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        nom = new JTextField();
+        panel5.add(nom, new GridConstraints(3, 0, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
     }
 
     /**

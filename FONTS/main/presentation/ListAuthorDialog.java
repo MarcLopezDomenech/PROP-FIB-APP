@@ -22,6 +22,7 @@ public class ListAuthorDialog extends JDialog {
     private DefaultListModel listModel1;
 
     private String result;
+    private boolean mod;
 
     public ListAuthorDialog() {
         setContentPane(contentPane);
@@ -68,19 +69,32 @@ public class ListAuthorDialog extends JDialog {
                 onList1();
             }
         });
+        text_aut.addKeyListener(new KeyAdapter() {
+        });
+        text_aut.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                mod = true;
+                list1.clearSelection();
+            }
+        });
     }
 
     private void onText1() {
-        enableButtonIfCorrect();
+        buttonOK.setEnabled(false);
         String prefix = text_aut.getText();
-        List<String> authors = cp.listAuthorsByPrefix(prefix);
         listModel1.clear();
+        List<String> authors = cp.listAuthorsByPrefix(prefix);
         for (String aut : authors) listModel1.addElement(aut);
+        mod = false;
     }
 
     private void onList1() {
-        enableButtonIfCorrect();
-        result = list1.getSelectedValue().toString();
+        if (!mod) {
+            enableButtonIfCorrect();
+            result = list1.getSelectedValue().toString();
+        }
     }
 
     private void onOK() {
@@ -99,6 +113,7 @@ public class ListAuthorDialog extends JDialog {
     }
 
     public String initialize(JFrame reference) {
+        mod = false;
         result = null;
         cp = CtrlPresentation.getInstance();
         enableButtonIfCorrect();
@@ -152,7 +167,7 @@ public class ListAuthorDialog extends JDialog {
         label1.setText("Autor:");
         panel3.add(label1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         text_aut = new JTextField();
-        text_aut.setText("aut_ini");
+        text_aut.setText("");
         panel3.add(text_aut, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JScrollPane scrollPane1 = new JScrollPane();
         panel3.add(scrollPane1, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
@@ -168,4 +183,5 @@ public class ListAuthorDialog extends JDialog {
     public JComponent $$$getRootComponent$$$() {
         return contentPane;
     }
+
 }

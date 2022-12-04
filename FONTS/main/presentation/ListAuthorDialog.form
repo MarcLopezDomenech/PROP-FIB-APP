@@ -72,7 +72,7 @@
               </grid>
             </constraints>
             <properties>
-              <text value="aut_ini"/>
+              <text value=""/>
             </properties>
           </component>
           <scrollpane id="9c8a2">

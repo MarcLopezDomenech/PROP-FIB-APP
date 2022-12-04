@@ -11,6 +11,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Set;
 
+import main.domain.util.Pair;
+
 public class ListExpression extends JDialog {
 
     private CtrlPresentation cp;
@@ -20,9 +22,10 @@ public class ListExpression extends JDialog {
     private JButton buttonOK;
     private JButton buttonCancel;
     private JList list1;
+    private JRadioButton caseSensitiveRadioButton;
     private DefaultListModel listModel1;
 
-    private String result;
+    private Pair<String, Boolean> result;
 
     public ListExpression() {
         setContentPane(contentPane);
@@ -70,12 +73,13 @@ public class ListExpression extends JDialog {
 
     private void onList1() {
         enableButtonIfCorrect();
-        result = list1.getSelectedValue().toString();
+        result = new Pair<String, Boolean>(list1.getSelectedValue().toString(), caseSensitiveRadioButton.isSelected());
     }
 
     private void onCancel() {
         // add your code here if necessary
-        result = null;
+
+        result = new Pair<String, Boolean>(null, null);
         dispose();
     }
 
@@ -83,8 +87,8 @@ public class ListExpression extends JDialog {
         buttonOK.setEnabled(!list1.isSelectionEmpty());
     }
 
-    public String initialize(JFrame reference) {
-        result = null;
+    public Pair<String, Boolean> initialize(JFrame reference) {
+        new Pair<String, Boolean>(null, null);
         cp = CtrlPresentation.getInstance();
         enableButtonIfCorrect();
         listModel1 = new DefaultListModel();
@@ -115,10 +119,10 @@ public class ListExpression extends JDialog {
      */
     private void $$$setupUI$$$() {
         contentPane = new JPanel();
-        contentPane.setLayout(new GridLayoutManager(2, 1, new Insets(10, 10, 10, 10), -1, -1));
+        contentPane.setLayout(new GridLayoutManager(3, 1, new Insets(10, 10, 10, 10), -1, -1));
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
-        contentPane.add(panel1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, null, null, null, 0, false));
+        contentPane.add(panel1, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
         panel1.add(spacer1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final JPanel panel2 = new JPanel();
@@ -140,6 +144,9 @@ public class ListExpression extends JDialog {
         panel3.add(spacer2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         list1 = new JList();
         panel3.add(list1, new GridConstraints(0, 1, 2, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
+        caseSensitiveRadioButton = new JRadioButton();
+        caseSensitiveRadioButton.setText("Case Sensitive");
+        contentPane.add(caseSensitiveRadioButton, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**
@@ -148,4 +155,5 @@ public class ListExpression extends JDialog {
     public JComponent $$$getRootComponent$$$() {
         return contentPane;
     }
+
 }
