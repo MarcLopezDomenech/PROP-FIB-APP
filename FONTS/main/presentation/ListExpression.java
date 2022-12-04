@@ -6,6 +6,8 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.event.*;
 import java.util.Set;
 
+import main.domain.util.Pair;
+
 public class ListExpression extends JDialog {
 
     private CtrlPresentation cp;
@@ -15,9 +17,10 @@ public class ListExpression extends JDialog {
     private JButton buttonOK;
     private JButton buttonCancel;
     private JList list1;
+    private JRadioButton caseSensitiveRadioButton;
     private DefaultListModel listModel1;
 
-    private String result;
+    private Pair<String,Boolean> result;
 
     public ListExpression() {
         setContentPane(contentPane);
@@ -64,18 +67,18 @@ public class ListExpression extends JDialog {
     }
     private void onList1() {
         enableButtonIfCorrect();
-        result=list1.getSelectedValue().toString();
+        result= new Pair<String,Boolean>(list1.getSelectedValue().toString(),caseSensitiveRadioButton.isSelected());
     }
     private void onCancel() {
         // add your code here if necessary
-        result=null;
+        result=new Pair<String,Boolean>(null,null);
         dispose();
     }
     private void enableButtonIfCorrect() {
         buttonOK.setEnabled(!list1.isSelectionEmpty());
     }
-    public String initialize(JFrame reference) {
-        result=null;
+    public Pair<String,Boolean> initialize(JFrame reference) {
+        new Pair<String,Boolean>(null,null);
         cp=CtrlPresentation.getInstance();
         enableButtonIfCorrect();
         listModel1 = new DefaultListModel();
