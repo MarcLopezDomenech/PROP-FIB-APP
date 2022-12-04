@@ -109,7 +109,7 @@ public class MainView {
                 Object[][] newData = cp.showListByQuery(frame);
                 if (newData != null) {
                     updateData(newData);
-
+                    listByNothing.setVisible(true);
                 }
             }
         });
@@ -178,6 +178,7 @@ public class MainView {
                 String author = (String) documents.getValueAt(selectedIndex, 2);
                 Object[][] result = cp.showListKSimilars(frame, title, author);
                 updateData(result);
+                listByNothing.setVisible(true);
             }
         });
 
