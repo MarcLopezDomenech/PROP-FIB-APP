@@ -150,17 +150,17 @@ public class CtrlPresentation {
         NewDocumentDialog dialog = new NewDocumentDialog();
         Pair<Pair<String, String>, String> res = dialog.initialize(reference);
 
-        if (res == null) return null;
-
-        try {
-            createEmptyDocument(res.getFirst().getFirst(), res.getFirst().getSecond(), res.getSecond());
-            Object[] new_doc = {false, res.getFirst().getFirst(), res.getFirst().getSecond()};
-            return new_doc;
-        } catch (ExceptionDocumentExists e) {
-            showError(reference, e.getMessage());
-        } catch (ExceptionInvalidLanguage e) {
-            // NO hauria de passar
-            showInternalError(reference);
+        if (res != null) {
+            try {
+                createEmptyDocument(res.getFirst().getFirst(), res.getFirst().getSecond(), res.getSecond());
+                Object[] new_doc = {false, res.getFirst().getFirst(), res.getFirst().getSecond()};
+                return new_doc;
+            } catch (ExceptionDocumentExists e) {
+                showError(reference, e.getMessage());
+            } catch (ExceptionInvalidLanguage e) {
+                // NO hauria de passar
+                showInternalError(reference);
+            }
         }
 
         return null;
@@ -237,7 +237,16 @@ public class CtrlPresentation {
 
     public void showDownloader(JFrame reference, String title, String author){
         DownloaderDialog dialog = new DownloaderDialog();
-        dialog.initialize(reference, title, author);
+        String path = dialog.initialize(reference, title, author);
+
+        if (path != null){
+            try {
+                exportDocument(title, author, path);
+            } catch (ExceptionInvalidFormat | ExceptionNoDocument | IOException e) {
+                // no hauria de passar
+                showInternalError(reference);
+            }
+        }
     }
 
     // Crides al domini

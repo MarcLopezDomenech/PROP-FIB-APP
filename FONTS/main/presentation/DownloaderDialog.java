@@ -15,8 +15,6 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.*;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -39,6 +37,7 @@ public class DownloaderDialog extends JDialog {
     private JRadioButton ffp;
     private JTextField nom;
     private JFileChooser fc;
+    private boolean okPressed = false;
 
     public DownloaderDialog() {
         setTitle("Descarregar un document");
@@ -167,13 +166,22 @@ public class DownloaderDialog extends JDialog {
         });
     }
 
-    public void initialize(JFrame reference, String title, String author) {
+    public String initialize(JFrame reference, String title, String author) {
         pack();
         this.reference = reference;
         setLocationRelativeTo(reference);
         titleDoc.setText(title);
         authorDoc.setText(author);
         setVisible(true);
+
+        if (!okPressed) return null;
+
+        String extension;
+        if (ftxt.isSelected()) extension = ".txt";
+        else if (fxml.isSelected()) extension = ".xml";
+        else extension = ".fp";
+
+        return path.getText().strip() + nom.getText().strip() + extension;
     }
 
     private void enableButtonIfCorrect() {
@@ -181,17 +189,7 @@ public class DownloaderDialog extends JDialog {
     }
 
     private void onOK() {
-        String extension;
-        if (ftxt.isSelected()) extension = ".txt";
-        else if (fxml.isSelected()) extension = ".xml";
-        else extension = ".fp";
-
-        try {
-            CtrlPresentation.getInstance().exportDocument(titleDoc.getText(), authorDoc.getText(), path.getText().strip() + nom.getText().strip() + extension);
-        } catch (ExceptionInvalidFormat | ExceptionNoDocument | IOException e) {
-            CtrlPresentation.getInstance().showInternalError(reference);
-        }
-
+        okPressed = true;
         dispose();
     }
 
