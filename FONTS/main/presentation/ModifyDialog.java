@@ -1,12 +1,25 @@
 package main.presentation;
 
+import main.domain.util.Pair;
+import main.excepcions.ExceptionNoDocument;
+
 import javax.swing.*;
 import java.awt.event.*;
 
 public class ModifyDialog extends JDialog {
+    private CtrlPresentation cp;
+
+    private JFrame modify;
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
+    private JLabel tit_doc;
+    private JLabel aut_doc;
+    private JTextField textcontent;
+
+    private String tit;
+    private String auth;
+    private String cont;
 
     public ModifyDialog() {
         setContentPane(contentPane);
@@ -42,19 +55,37 @@ public class ModifyDialog extends JDialog {
     }
 
     private void onOK() {
-        // add your code here
-        dispose();
+        String content_fin = textcontent.getText();
+        try {
+            cp.updateContentDocument(tit, auth, content_fin);
+        } catch (ExceptionNoDocument e) {
+            cp.getInstance().showError(modify, "No existeix el document");
+        }
     }
 
     private void onCancel() {
         // add your code here if necessary
         dispose();
     }
+    public void initialize(JFrame reference,String title, String author) {
+        cp = CtrlPresentation.getInstance();
+        buttonOK.setEnabled(false);
 
-    public static void main(String[] args) {
-        ModifyDialog dialog = new ModifyDialog();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
+        tit=title;
+        auth=author;
+
+        try {
+            cont=cp.getContentDocument(tit,auth);
+        } catch (ExceptionNoDocument e) {
+            cp.getInstance().showError(modify, "No existeix el document");
+        }
+        tit_doc.setText(tit);
+        aut_doc.setText(auth);
+        textcontent.setText(cont);
+
+        pack();
+        this.modify = reference;
+        setLocationRelativeTo(reference);
+        setVisible(true);
     }
 }
