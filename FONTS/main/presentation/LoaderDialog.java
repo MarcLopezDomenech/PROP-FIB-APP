@@ -11,6 +11,8 @@ import main.excepcions.ExceptionInvalidLanguage;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -113,9 +115,19 @@ public class LoaderDialog extends JDialog {
                 enableButtonIfCorrect();
             }
         });
-        path.addPropertyChangeListener(new PropertyChangeListener() {
+        path.getDocument().addDocumentListener(new DocumentListener() {
             @Override
-            public void propertyChange(PropertyChangeEvent evt) {
+            public void insertUpdate(DocumentEvent e) {
+                enableButtonIfCorrect();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                enableButtonIfCorrect();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
                 enableButtonIfCorrect();
             }
         });
