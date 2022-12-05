@@ -255,6 +255,7 @@ public class CtrlDomain {
      * @details Donada una expressió booleana, aquesta funció permet obtenir els identificadors i la propietat de favorit dels documents que contenen alguna frase que la compleixen
      * @pre La cadena de caràcters donada com a paràmetre identifica una expressió vàlida i ja registrada en el sistema
      * @param expression Expressió booleana a partir de la qual es vol realitzar la consulta
+     * @param caseSensitive Boole+a que identifica com s'evalua el contigut en l'expressió
      * @return Llista de (favorit, títol, autor) dels documents que tenen alguna frase que compleix l'expressió donada
      * @post L'estat del sistema no queda alterat
      * @throws ExceptionNoExpression en cas que l'expressió identificada per (expression) no estigui donada d'alta a l'aplicatiu

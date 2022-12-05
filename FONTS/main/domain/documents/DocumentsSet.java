@@ -1,5 +1,6 @@
 package main.domain.documents;
 
+import java.io.FileNotFoundException;
 import java.util.*;
 
 import main.domain.expressions.Expression;      // Canviar per test.domain.expressions.Expression per fer tests
@@ -107,8 +108,10 @@ public class DocumentsSet {
      * @param title títol que es vol pel nou document
      * @param author autor associat al nou document
      * @param content contingut del nou document
+     * @param language idioma del nou document
      * @post Es crea el document, es guarda i s'actualizen els atributs interns de la classe
      * @throws ExceptionDocumentExists en cas que ja existeixi un document identificat per (title, author) a l'aplicatiu
+     * @throws ExceptionInvalidLanguage si l'idioma donat no és "ca", "en" ni "es".
      */
     public void createDocument(String title, String author, String content, String language) throws ExceptionDocumentExists, ExceptionInvalidLanguage {
         Document newDoc = new Document(title, author, content, language);
@@ -229,11 +232,31 @@ public class DocumentsSet {
         doc.setLanguage(newLanguage);
     }
 
+    /**
+     * @brief Operació per saber si un document és favorit o no
+     * @details Retorna si el document identificat pels paràmetres està marcat com a preferit o no
+     * @pre El document identificat per (title, author) existeix
+     * @param title títol del document del que volem saber si és favorit
+     * @param author autor del document del que volem saber si és favorit
+     * @return Cert o fals en funció de si el document és o no és, respectivament, favorit
+     * @post L'estat del sistema no queda alterat
+     * @throws ExceptionNoDocument en el cas que no existeix un document identificat pels paràmetres donats
+     */
     public boolean isFavouriteDocument(String title, String author) throws ExceptionNoDocument {
         Document document = getDocument(title, author);
         return document.isFavourite();
     }
 
+    /**
+     * @brief Operació per actualitzar la propietat de favorit
+     * @details El document identificat pels paràmetres serà o no favorit en funció del paràmetre rebut
+     * @pre El document identificat per (title, author) existeix
+     * @param title títol del document a modificar
+     * @param author autor del document a modificar
+     * @param favourite si es vol el document com a favorit o no
+     * @post El document (title, author) és o no favorit en funció del paràmetre (favourite)
+     * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
+     */
     public void updateFavouriteDocument(String title, String author, boolean favourite) throws ExceptionNoDocument {
         Document document = getDocument(title, author);
         document.setFavourite(favourite);
@@ -242,7 +265,7 @@ public class DocumentsSet {
     /**
      * @brief Funció per obtenir tots els identificadors dels documents del sistema
      * @details Aquesta funció permet consultar tots els documents que hi ha guardats en el sistema
-     * @return Llistat de parells de tots els identificadors de documents de l'aplicatiu
+     * @return Llistat de (favorit, títol, autor) de tots els documents de l'aplicatiu
      * @post L'estat del sistema no queda alterat
      */
     public List<Object[]> listAll() {
@@ -260,17 +283,19 @@ public class DocumentsSet {
         return all;
     }
 
-    //ToDo
     /**
      * @brief Funció per obtenir els identificadors dels k documents més similars a un document
-     * @details Amb aquesta operació es poden consultar els documents més similars a un document. En concret, a partir de l'identificador (títol i autor) d'un document, s'obtenen els identificadors dels k documents que són més similars a aquest.
+     * @details Amb aquesta operació es poden consultar els documents més similars a un document. En concret, a partir de l'identificador (títol i autor) d'un document, s'obtenen els identificadors i si són favorits dels k documents que són més similars a aquest.
      * @pre El document identificat pels paràmetres donats està donat d'alta a l'aplicatiu
      * @param title Títol del document a què se li vol buscar els similars
      * @param author Autor del document a què se li vol buscar els similars
      * @param k Nombre d'identificadors de documents similars que es vol obtenir
-     * @return Llista amb parells dels identificadors (títol, autor) dels com a molt k documents més similars al document donat
+     * @param strategy Estratègia que es vol emprar per buscar similars
+     * @return Llista de (favorit, títol, autor) dels com a molt k documents més similars al document donat
      * @post L'estat del sistema no queda alterat
      * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
+     * @throws ExceptionInvalidK quan la k donada no és major o igual a 0
+     * @throws ExceptionInvalidStrategy en cas que l'estratègia no sigui una de les opcions (tf-idf o tf-boolean)
      */
     public List<Object[]> listSimilars(String title, String author, int k, String strategy) throws ExceptionNoDocument, ExceptionInvalidStrategy, ExceptionInvalidK {
         // Comprovem que l'estratègia és vàlida
@@ -315,6 +340,7 @@ public class DocumentsSet {
      * @brief Operació per conseguir els títols dels documents d'un autor
      * @details Retorna una llista dels documents identificats per títul i autor que ha escrit l'autor
      * @param author autor dels documents que busquem
+     * @return Llista de (favorit, títol, autor) dels documents que tenen com a autor l'autor donat
      * @post Tots els docuemnts de la llista son del autor author
      */
     public List<Object[]> listTitlesOfAuthor(String author) {
@@ -335,6 +361,7 @@ public class DocumentsSet {
      * @brief Operació per aconseguir els autors que el seu nom comença per un prefix donat
      * @details Retorna una llista dels autors que el seu nom comença pel prefix que rep la funció
      * @param prefix prefix del author
+     * @return Llista amb els autors (string) que comencen pel prefix donat
      * @post Tots els autors que comencen pel prefix author
      */
     public List<String> listAuthorsByPrefix(String prefix) {
@@ -354,7 +381,9 @@ public class DocumentsSet {
      * @details Retorna una llista de de titles i authors que identifiquen a documents que compleixen la query
      * @param query que volem aplicar als documents
      * @param k nombre de documents que volem retornar
-     * @post Llista de authors i títols que identifiquen a un document cada pair que compleix la query
+     * @return Llista de (favorit, títol, autor) dels k documents més rellevants, pel que fa a contingut, de la query
+     * @post L'estat del sistema no queda alterat
+     * @throws ExceptionInvalidK Si la k no és major o igual a 0
      */
     public List<Object[]> listByQuery(String query, int k) throws ExceptionInvalidK {
         if (k < 0) throw new ExceptionInvalidK(k);
@@ -389,8 +418,10 @@ public class DocumentsSet {
      * @details Retorna una llista dels documents identificats per títol i autor que compleixen l'expressió booleana
      * @pre L'expressió expression existeix
      * @param expression Expression en la que volem evaluar els documents
-     * @param caseSensitive Boolea que identifica com s'evalua el contigut en l'expressió
-     * @post Tots els docuemnts de la llista existeixen i compleixen l'expressió booleana en el cas de caseSensitive
+     * @param caseSensitive Booleà que identifica com s'evalua el contigut en l'expressió
+     * @return Llista de (favorit, títol, autor) dels documents que tenen alguna frase que compleix l'expressió donada
+     * @post L'estat del sistema no queda alterat
+     * @throws ExceptionNoExpression en cas que l'expressió identificada per (expression) no estigui donada d'alta a l'aplicatiu
      */
     public List<Object[]> listByExpression(Expression expression, Boolean caseSensitive) {
         List<Object[]> expr_list= new ArrayList<Object[]>();
@@ -410,20 +441,48 @@ public class DocumentsSet {
         return expr_list;
     }
 
+    /**
+     * @brief Funció per importar un document al conjunt
+     * @details A partir del format propietari d'un document, s'importa al sistema
+     * @pre L'string donat compleix el format propietari definit al sistema
+     * @param document Document en format propietari a crear
+     * @return Informació bàsica del document importat (favorit, títol, autor)
+     * @post Es dona d'alta al sistema el document importat
+     * @throws ExceptionDocumentExists En cas que ja existeixi un document identificat per títol i autor del document importat
+     */
     public Object[] importDocument(String document) throws ExceptionDocumentExists {
+        // Creem el document i aconseguim la informació bàsica
         Document newDoc = new Document(document);
         boolean favorite = newDoc.isFavourite();
         String title = newDoc.getTitle();
         String author = newDoc.getAuthor();
+        // Registrem el document al conjunt
         registerDocument(newDoc);
+        // Retornem la informació bàsica
         return new Object[]{favorite, title, author};
     }
 
+    /**
+     * @brief Funció per aconseguir la representació en format propietari d'un document
+     * @details A partir d'aquesta funció podem obtenir el document en format propietari
+     * @pre Existeix un document a l'aplicatiu identificat pels paràmetres donats
+     * @param title Títol del document de què volem aconseguir la seva representació
+     * @param author Autor del document de què volem aconseguir la seva representació
+     * @return Representació en format propietari del document identificat
+     * @post L'estat del sistema no queda alterat
+     * @throws ExceptionNoDocument Si no existeix a l'aplicatiu un document identificat pels paràmetres donats
+     */
     public String getDocumentRepresentation(String title, String author) throws ExceptionNoDocument {
         Document document = getDocument(title, author);
         return document.getRepresentation();
     }
 
+    /**
+     * @brief Funció per aconseguir totes les representacions dels documents
+     * @details Amb aquesta funció podem obtenir totes les representacions en format propietari dels documents que tenim al conjunt
+     * @return Conjunt de representacions de tots els documents del conjunt
+     * @post L'estat del sistema no queda alterat
+     */
     public Set<String> getAllDocumentRepresentations() {
         Set<String> representations = new HashSet<String>();
         for (Map.Entry<String, Map<String, Document>> d : documents.entrySet()) {
@@ -438,6 +497,11 @@ public class DocumentsSet {
         return representations;
     }
 
+    /**
+     * @brief Mètode per resetejar el conjunt
+     * @details En cas de voler esborrar tots els documents emmagatzemats, es pot emprar aquesta funció
+     * @post El conjunt queda com si s'hagués encés l'aplicatiu per primera vegada
+     */
     public void reset() {
         singletonObject = new DocumentsSet();
     }
@@ -457,6 +521,13 @@ public class DocumentsSet {
         return resdoc;
     }
 
+    /**
+     * @brief Mètode per registrar un nou document
+     * @details Es permet afegir un document al conjunt adequadament
+     * @param newDoc Document a afegir al conjunt
+     * @post El document donat queda registrat al sistema
+     * @throws ExceptionDocumentExists En cas que el document donat ja existeixi al conjunt
+     */
     private void registerDocument(Document newDoc) throws ExceptionDocumentExists {
         String title = newDoc.getTitle();
         String author = newDoc.getAuthor();
@@ -501,7 +572,6 @@ public class DocumentsSet {
      * @pre Tots els values de l'atribut presence són com a mínim 1
      * @param oldPresence Conjunt de paraules rellevants a decrementar
      * @post L'atribut presence queda acorrectament actualitzat amb el decrement de la presència de les paraules donades
-     * @note This is a stupid note
      */
     private void removePresence(Set<String> oldPresence) {
         for (String oldp : oldPresence) {
