@@ -375,8 +375,10 @@ public class CtrlPresentation {
      * @details L'operació rep el nom i el títol del nou document a donar d'alta a l'aplicatiu, i sempre que no n'existeixi un amb els mateixos identificadors, així ho fa amb contingut buit.
      * @param title Títol del nou document
      * @param author Autor del nou document
+     * @param language Idioma del nou document
      * @post Existeix a l'aplicatiu un document identificat per (title, author). Si no existia prèviament, el contingut serà buit.
      * @throws ExceptionDocumentExists en cas que ja existeixi un document identificat per (title, author) a l'aplicatiu
+     * @throws ExceptionInvalidLanguage en cas que l'idioma introduït no sigui "ca", "en" ni "es"
      */
     public void createEmptyDocument(String title, String author, String language) throws ExceptionDocumentExists, ExceptionInvalidLanguage {
         cd.createEmptyDocument(title, author, language);
@@ -494,7 +496,7 @@ public class CtrlPresentation {
     /**
      * @brief Funció per obtenir tots els identificadors dels documents del sistema
      * @details Aquesta funció permet consultar tots els documents que hi ha guardats en el sistema
-     * @return Llistat de parells de tots els identificadors de documents de l'aplicatiu
+     * @return Llistat de (favorit, títol, autor) de tots els documents de l'aplicatiu
      * @post L'estat del sistema no queda alterat
      */
     public Object[][] listAllDocuments() {
@@ -502,7 +504,6 @@ public class CtrlPresentation {
         return result.toArray(new Object[0][]);
     }
 
-    // ToDo
     /**
      * @brief Funció per obtenir els identificadors dels k documents més similars a un document
      * @details Amb aquesta operació es poden consultar els documents més similars a un document. En concret, a partir de l'identificador (títol i autor) d'un document, s'obtenen els identificadors dels k documents que són més similars a aquest.
@@ -510,13 +511,14 @@ public class CtrlPresentation {
      * @param title Títol del document a què se li vol buscar els similars
      * @param author Autor del document a què se li vol buscar els similars
      * @param k Nombre d'identificadors de documents similars que es vol obtenir
-     * @return Llista amb parells dels identificadors (títol, autor) dels com a molt k documents més similars al document donat
+     * @param strategy Estratègia que es vol emprar per buscar similars
+     * @return Llista de (favorit, títol, autor) dels com a molt k documents més similars al document donat amb l'estratègia triada
      * @post L'estat del sistema no queda alterat
      * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
+     * @throws ExceptionInvalidK quan la k donada no és major o igual a 0
+     * @throws ExceptionInvalidStrategy en cas que l'estratègia no sigui una de les opcions (tf-idf o tf-boolean)
      */
-    public Object[][] listSimilars(String title, String author, int k, String strategy) throws ExceptionNoDocument, ExceptionInvalidStrategy, ExceptionInvalidK {
-        // ToDo
-        //return new Object[][] {{true, "que", "pataaaaata"}, {false, "pep", "pepa"}};
+    public Object[][] listSimilars(String title, String author, int k, String strategy) throws ExceptionNoDocument, ExceptionInvalidK, ExceptionInvalidStrategy {
         List<Object[]> result = cd.listSimilars(title, author, k, strategy);
         return result.toArray(new Object[0][]);
     }
@@ -525,7 +527,7 @@ public class CtrlPresentation {
      * @brief Funció per aconseguir els títols d'un autor
      * @details La funció obté els identificadors (títol i autor) dels documents que tenen com a autor el que es dona com a paràmetre
      * @param author Autor a qui se li volen obtenir els títols
-     * @return Llista amb els identificadors (títol, autor) dels documents que tenen com a autor l'autor donat
+     * @return Llista de (favorit, títol, autor) dels documents que tenen com a autor l'autor donat
      * @post L'estat del sistema no queda alterat
      */
     public Object[][] listTitlesOfAuthor(String author) {
@@ -549,8 +551,9 @@ public class CtrlPresentation {
      * @details Es permet aconseguir els identificadors dels k documents més rellevants en quant a contingut d'una certa query
      * @param query Seguit de paraules a partir de les quals es volen obtenir els documents rellevants
      * @param k Nombre de documents màxims que es vol obtenir
-     * @return Llista amb els identificadors (títol, autor) dels k documents més rellevants, pel que fa a contingut, de la query
+     * @return Llista amb (favorit, títol, autor) dels k documents més rellevants, pel que fa a contingut, de la query
      * @post L'estat del sistema no queda alterat
+     * @throws ExceptionInvalidK Si la k no és major o igual a 0
      */
     public Object[][] listByQuery(String query, int  k) throws ExceptionInvalidK {
         List<Object[]> result = cd.listByQuery(query, k);
@@ -562,7 +565,8 @@ public class CtrlPresentation {
      * @details Donada una expressió booleana, aquesta funció permet obtenir els identificadors dels documents que contenen alguna frase que la compleixen
      * @pre La cadena de caràcters donada com a paràmetre identifica una expressió vàlida i ja registrada en el sistema
      * @param expression Expressió booleana a partir de la qual es vol realitzar la consulta
-     * @return Llista dels identificadors (títol, autor) dels documents que tenen alguna frase que compleix l'expressió donada
+     * @param caseSensitive Per indicar si volem o no una consulta case sensitive
+     * @return Llista de (favorit, títol, autor) dels documents que tenen alguna frase que compleix l'expressió donada
      * @post L'estat del sistema no queda alterat
      * @throws ExceptionNoExpression en cas que l'expressió identificada per (expression) no estigui donada d'alta a l'aplicatiu
      */
@@ -576,7 +580,8 @@ public class CtrlPresentation {
      * @details La funció permet donar d'alta una expressió booleana que s'identificarà amb la cadena de caràcters donada
      * @param expression Cadena de caràcters que identificarà la nova expressió booleana
      * @post En cas que la cadena de caràcters donada pugui ser una expressió vàlida i no existeixi prèviament, es dona d'alta una expressió booleana identificada amb aquesta cadena
-     * @throws ExceptionExpressionExists si l'string donnat ja identifica una expressió donada d'alta al sistema
+     * @throws ExceptionExpressionExists si l'string donat ja identifica una expressió donada d'alta al sistema
+     * @throws ExceptionInvalidExpression en cas que l'string donat no sigui apte per constituir una expressió
      */
     public void createExpression(String expression) throws ExceptionExpressionExists, ExceptionInvalidExpression {
         cd.createExpression(expression);
@@ -603,6 +608,7 @@ public class CtrlPresentation {
      * @post En cas que no existeixi cap expressió booleana identificada per newExpression, es modifica l'identificador de l'expressió identificada per oldExpression pel nou
      * @throws ExceptionNoExpression si no existeix cap expressió identificada per (oldExpression)
      * @throws ExceptionExpressionExists en cas que el nou identificador que es vol donar ja és d'una altra expressió
+     * @throws ExceptionInvalidExpression si la nova expressió no té un format vàlid
      */
     public void modifyExpression(String oldExpression, String newExpression) throws ExceptionNoExpression, ExceptionExpressionExists, ExceptionInvalidExpression {
         cd.modifyExpression(oldExpression, newExpression);
@@ -627,6 +633,7 @@ public class CtrlPresentation {
      * @pre No existeix un document amb el títol i autor que identifiquen el document que es vol importar
      * @param path Ruta al document que es vol donar afegir al sistema
      * @param language Idioma que se li vol assignar al document a importar
+     * @return Objecte amb (favorit, títol, autor) del documet importat
      * @post El sistema té un nou document donat d'alta, que és el que hi havia en el path donat i té com a idioma el donat
      * @throws ExceptionInvalidFormat en cas que el path no tingui extensió .txt, .xml o .fp
      * @throws FileNotFoundException si no es pot accedir a la path donada, per permisos o perquè no existeix
