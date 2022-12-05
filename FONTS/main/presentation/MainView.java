@@ -46,7 +46,7 @@ public class MainView {
 
     public MainView() {
         cp = CtrlPresentation.getInstance();
-        frame = new JFrame("Gestió de documents");
+        frame = new JFrame("Gestio de documents");
         selectedIndex = -1;
 
         $$$setupUI$$$();
