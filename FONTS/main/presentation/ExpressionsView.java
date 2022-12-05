@@ -2,7 +2,6 @@ package main.presentation;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
-import main.excepcions.ExceptionDocumentExists;
 import main.excepcions.ExceptionExpressionExists;
 import main.excepcions.ExceptionInvalidExpression;
 import main.excepcions.ExceptionNoExpression;
@@ -12,7 +11,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.FileNotFoundException;
 import java.util.Set;
 
 /**
@@ -21,29 +19,106 @@ import java.util.Set;
  * @brief Vista per gestionar les expressions del sistema
  */
 public class ExpressionsView {
+    /**
+     * \brief Instància del controlador de presentació
+     */
     private CtrlPresentation cp;
+
+    /**
+     * \brief Marc de la vista
+     */
     private JFrame frame;
+
+    /**
+     * \brief Panell principal de la vista
+     */
     private JPanel panel;
+
+    /**
+     * \brief Llista on es mostraran totes les expressions del sistema
+     */
     private JList list;
+
+    /**
+     * \brief Model que seguirà la llista on es mostraran totes les expressions
+     */
     private DefaultListModel listModel;
-    private JButton add;
-    private JButton delete;
-    private JButton modify;
+
+    /**
+     * \brief Espai de text per introduir noves expressions
+     */
     private JTextField text;
+
+    /**
+     * \brief Panell on se situen els botons per gestionar expressions
+     */
     private JPanel buttons;
+
+    /**
+     * \brief Botó per afegir una nova expressió
+     * \invariant Només estarà actiu si el text no és buit
+     */
+    private JButton add;
+
+    /**
+     * \brief Botó per esborrar una expressió seleccionada
+     * \invariant Només estarà actiu si hi ha una expressió seleccionada
+     */
+    private JButton delete;
+
+    /**
+     * \brief Botó per modificar una expressió seleccionada
+     * \invariant Només estarà actiu si hi ha una expressió seleccionada
+     */
+    private JButton modify;
+
+    /**
+     * \brief Espai de menú de la vista
+     */
     private JMenuBar menuBar;
+
+    /**
+     * \brief Etiqueta del menú principal
+     */
     private JMenu menuOptions;
+
+    /**
+     * \brief Opció del menú principal per carregar un nou document
+     */
     private JMenuItem loadOption;
+
+    /**
+     * \brief Opció del menú principal per crear un nou document
+     */
     private JMenuItem createOption;
+
+    /**
+     * \brief Opció del menú principal per anar a la vista de gestió de documents
+     */
     private JMenuItem listOption;
+
+    /**
+     * \brief Opció del menú per mostrar l'ajuda a l'usuari
+     */
     private JMenuItem help;
+
+    /**
+     * \brief Identificador de l'expressió seleccionada, null si no hi ha cap expressió seleccionada
+     */
     private String selected;
 
+    /**
+     * @brief Creadora per defecte de la vista
+     * @details S'inicialitza el menú i s'enllacen tots els listeners de botons, events de mouse i altres a les funcionalitats corresponents
+     * @return ExpressionsView
+     */
     public ExpressionsView() {
+        // Aconseguim la instància del controlador de presentació i inicialitzem el frame
         cp = CtrlPresentation.getInstance();
         frame = new JFrame("Gestio de les expressions");
         selected = null;
 
+        // Definició del menú
         menuBar = new JMenuBar();
 
         menuOptions = new JMenu("Menu");
@@ -57,6 +132,9 @@ public class ExpressionsView {
         help = new JMenuItem("?");
         menuBar.add(help);
         frame.setJMenuBar(menuBar);
+
+
+        // Listeners pel menú
 
         loadOption.addActionListener(new ActionListener() {
             @Override
@@ -87,6 +165,9 @@ public class ExpressionsView {
             }
         });
 
+
+        // Listeners de la llista d'expressions
+
         list.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent event) {
@@ -101,6 +182,7 @@ public class ExpressionsView {
                 }
             }
         });
+
         list.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent event) {
@@ -108,6 +190,10 @@ public class ExpressionsView {
                 if (event.getClickCount() == 2) modify.doClick();
             }
         });
+
+
+        // Listeners de l'espai de text i el botó per afegir noves expressions
+
         text.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -116,6 +202,7 @@ public class ExpressionsView {
 
             }
         });
+
         text.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -123,6 +210,7 @@ public class ExpressionsView {
                 add.setEnabled(!"".equals(text.getText()));
             }
         });
+
         add.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
@@ -143,6 +231,10 @@ public class ExpressionsView {
                 }
             }
         });
+
+
+        // Listeners dels botons quan tenim una expressió seleccionada
+
         modify.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
@@ -167,6 +259,7 @@ public class ExpressionsView {
                 }
             }
         });
+
         delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -183,6 +276,10 @@ public class ExpressionsView {
                 }
             }
         });
+
+
+        // Permetem modificar si fem doble click en una expressió
+
         panel.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (text.hasFocus() && !"".equals(text.getText())) add.doClick();
@@ -190,6 +287,13 @@ public class ExpressionsView {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
+    /**
+     * @brief Mètode per inicialitzar la vista
+     * @details Amb aquesta funció es mostra la vista de gestió de les expressions
+     * @param location Posició de la pantalla on volem situar la vista
+     * @param size Tamany de la vista
+     * @post Es mostra la vista de gestió d'expressions per pantalla
+     */
     public void initialize(Point location, Dimension size) {
         listModel = new DefaultListModel();
         list.setModel(listModel);
