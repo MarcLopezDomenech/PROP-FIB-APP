@@ -78,6 +78,12 @@ public class ExpressionsSet {
         return expression;
     }
 
+    /**
+     * @brief Funció per aconseguir totes les expressions del sistema
+     * @details Amb aquesta funció es permet obtenir tots els identificadors de les expressions que hi ha donades d'alta al sistema
+     * @return Conjunt de tots els identificadors d'expressions
+     * @post L'estat del sistema no queda alterat
+     */
     public Set<String> getAllExpressions() {
         return expressions.keySet();
     }
@@ -88,6 +94,7 @@ public class ExpressionsSet {
      * @param id_expression Identificador que es vol assignar a la nova expressió
      * @post Si no exisitia cap expressió identificada amb l'identificador donat, es dona d'alta una expressió que s'identificarà amb ell.
      * @throws ExceptionExpressionExists si l'string donnat ja identifica una expressió donada d'alta al sistema
+     * @throws ExceptionInvalidExpression en cas que l'string donat no sigui apte per constituir una expressió
      */
     public void createExpression(String id_expression) throws ExceptionExpressionExists, ExceptionInvalidExpression {
         Expression newExpression = Expression.create(id_expression);
@@ -116,6 +123,11 @@ public class ExpressionsSet {
         if (oldExpression == null) throw new ExceptionNoExpression(id_expression);
     }
 
+    /**
+     * @brief Mètode per resetejar el conjunt
+     * @details En cas de voler esborrar totes les expressions emmagatzemades, es pot emprar aquesta funció
+     * @post El conjunt queda com si s'hagués encés l'aplicatiu per primera vegada
+     */
     public void reset() {
         singletonObject = new ExpressionsSet();
     }
