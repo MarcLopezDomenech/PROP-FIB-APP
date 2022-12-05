@@ -163,13 +163,13 @@ public class CtrlPresentation {
      */
     public Object[][] showLoader(JFrame reference) {
         LoaderDialog dialog = new LoaderDialog();
-        Pair<String, Object[]> languageAndPaths = dialog.initialize(reference);
+        Pair<String, String[]> languageAndPaths = dialog.initialize(reference);
         List<Object[]> newData = new ArrayList<>();
 
         if (languageAndPaths == null) return null;      // No s'ha introduït cap path
 
         String language = languageAndPaths.getFirst();
-        String[] paths = (String[]) languageAndPaths.getSecond();
+        String[] paths = languageAndPaths.getSecond();
         for (String path : paths) {
             try {
                 // Importem el document i aconseguim les dades (fav, títol, autor)
