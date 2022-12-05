@@ -179,7 +179,7 @@ public class MainView {
                 String title = (String) documents.getValueAt(selectedIndex, 1);
                 String author = (String) documents.getValueAt(selectedIndex, 2);
                 Object[][] result = cp.showListKSimilars(frame, title, author);
-                updateData(result);
+                if (result != null) updateData(result);
                 listByNothing.setVisible(true);
             }
         });
