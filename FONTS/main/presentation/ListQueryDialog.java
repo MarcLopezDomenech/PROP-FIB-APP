@@ -80,12 +80,12 @@ public class ListQueryDialog extends JDialog {
             k = Integer.parseInt(str);
         } catch (NumberFormatException ex) {
             //LLAMAR DIALOG ERROR
-            cp.showError(quer, "Número de resultados invàlido");
+            cp.showError(quer, "Nombre de resultats invalid");
             err = false;
         }
         if (err) {
             if (k < 0) {
-                cp.showError(quer, "Número de resultados invàlido");
+                cp.showError(quer, "Nombre de resultats invalid");
             } else {
                 result = new Pair<String, Integer>(query, k);
                 dispose();

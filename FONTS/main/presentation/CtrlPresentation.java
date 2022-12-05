@@ -93,7 +93,7 @@ public class CtrlPresentation {
             cd.restoreSystem();
         } catch(FileNotFoundException | ExceptionDocumentExists |ExceptionInvalidExpression | ExceptionExpressionExists e) {
             // No podem restaurar el sistema
-            showError(reference, "Aquesta còpia de seguretat no és vàlida.");
+            showError(reference, "Aquesta copia de seguretat no es valida.");
         }
     }
 
@@ -107,7 +107,7 @@ public class CtrlPresentation {
 
     public void showInternalError(JFrame reference) {
         //Suggerencia: "No hem detectat cap copia de seguretat del sistema, prem OK per iniciar l'aplicació"
-        showError(reference, "Hi ha hagut un error intern al sistema. Si no és el primer cop que succeeix, si us plau contacta amb l'administrador.");
+        showError(reference, "Hi ha hagut un error intern al sistema. Si no es el primer cop que succeeix, si us plau contacta amb l'administrador.");
     }
 
     public boolean askConfirmation(JFrame ref, String message) {
@@ -137,7 +137,7 @@ public class CtrlPresentation {
             } catch (ExceptionInvalidFormat | ExceptionDocumentExists e) {
                 showError(reference, e.getMessage());
             } catch (FileNotFoundException e) {
-                showError(reference, "La ruta no és correcta!");
+                showError(reference, "La ruta no es correcta!");
             } catch (ExceptionInvalidLanguage e) {
                 showInternalError(reference);
             }
