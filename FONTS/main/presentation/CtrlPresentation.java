@@ -8,13 +8,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 /**
  * @class CtrlPresentation
  * @brief Controlador de la capa de presentació de l'aplicatiu. S'encarrega de la part gràfica de l'aplicatiu, és a dir, de la gestió de les vistes. Alhora, però, requereix de la comunicació amb el controlador de domini per resoldre peticions i mostrar informació.
- * @author pau.duran.manzano
+ * @author pau.duran.manzano, marc.valls.camps
  */
 public class CtrlPresentation {
     /**
@@ -123,14 +124,46 @@ public class CtrlPresentation {
 
     // Opcions del menú
 
-    public void showLoader(JFrame reference) {
+    public Object[][] showLoader(JFrame reference) {
         LoaderDialog dialog = new LoaderDialog();
-        dialog.initialize(reference);
+        Pair<String, Object[]> res = dialog.initialize(reference);
+        ArrayList<Object[]> new_data = new ArrayList<>();
+
+        if (res == null) return null;
+
+        for (Object p : res.getSecond()) {
+            try {
+                new_data.add(importDocument((String) p, res.getFirst()));
+            } catch (ExceptionInvalidFormat | ExceptionDocumentExists e) {
+                showError(reference, e.getMessage());
+            } catch (FileNotFoundException e) {
+                showError(reference, "La ruta no és correcta!");
+            } catch (ExceptionInvalidLanguage e) {
+                showInternalError(reference);
+            }
+        }
+
+        return new_data.toArray(new Object[0][]);
     }
 
-    public void showNewDocument(JFrame reference) {
+    public Object[] showNewDocument(JFrame reference) {
         NewDocumentDialog dialog = new NewDocumentDialog();
-        dialog.initialize(reference);
+        Pair<Pair<String, String>, String> res = dialog.initialize(reference);
+
+        if (res != null) {
+            try {
+                createEmptyDocument(res.getFirst().getFirst(), res.getFirst().getSecond(), res.getSecond());
+                Object[] new_doc = {false, res.getFirst().getFirst(), res.getFirst().getSecond()};
+                return new_doc;
+            } catch (ExceptionDocumentExists e) {
+                showError(reference, e.getMessage());
+            } catch (ExceptionInvalidLanguage e) {
+                // NO hauria de passar
+                showInternalError(reference);
+            }
+        }
+
+        return null;
     }
 
     public void showDocuments(Point location, Dimension size) {
@@ -194,7 +227,7 @@ public class CtrlPresentation {
         Pair<Integer, String> result = dialog.initialize(reference, title, author);
         Object[][] docs = null;
         try {
-            if (result.getFirst() != null && result.getSecond() != null)
+            if (result != null)
                 docs = listSimilars(title, author, result.getFirst(), result.getSecond());
         } catch (ExceptionInvalidK |ExceptionNoDocument | ExceptionInvalidStrategy e) {
             showInternalError(reference);
@@ -204,7 +237,16 @@ public class CtrlPresentation {
 
     public void showDownloader(JFrame reference, String title, String author){
         DownloaderDialog dialog = new DownloaderDialog();
-        dialog.initialize(reference, title, author);
+        String path = dialog.initialize(reference, title, author);
+
+        if (path != null){
+            try {
+                exportDocument(title, author, path);
+            } catch (ExceptionInvalidFormat | ExceptionNoDocument | IOException e) {
+                // no hauria de passar
+                showInternalError(reference);
+            }
+        }
     }
 
     // Crides al domini
