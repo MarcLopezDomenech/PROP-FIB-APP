@@ -28,7 +28,7 @@ public class ListKSimilarsDialog extends JDialog {
     private JPanel contentPane;
     private JRadioButton tfIdfRadioButton;
     private JRadioButton tfBooleanRadioButton;
-    private JFrame reference;
+    private boolean okPressed = false;
 
     ListKSimilarsDialog() {
         setTitle("Llistar similars");
@@ -37,8 +37,8 @@ public class ListKSimilarsDialog extends JDialog {
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
 
-        SpinnerModel spmd = new SpinnerNumberModel(1, 1, 1000, 1);
-        k.setModel(spmd);
+        SpinnerModel sm = new SpinnerNumberModel(1, 1, 1000, 1);
+        k.setModel(sm);
 
         ButtonGroup btg = new ButtonGroup();
         btg.add(tfIdfRadioButton);
@@ -88,11 +88,13 @@ public class ListKSimilarsDialog extends JDialog {
 
     public Pair<Integer, String> initialize(JFrame reference, String title, String author) {
         pack();
-        this.reference = reference;
         setLocationRelativeTo(reference);
         titleDoc.setText(title);
         authorDoc.setText(author);
         setVisible(true);
+
+        if (!okPressed) return null;
+
         String strategy = tfIdfRadioButton.isSelected() ? "tf-idf" : "tf-boolean";
         return new Pair<Integer, String>(Integer.parseInt(k.getValue().toString()), strategy);
     }
@@ -102,16 +104,7 @@ public class ListKSimilarsDialog extends JDialog {
     }
 
     private void onOK() {
-        String strat;
-        if (tfBooleanRadioButton.isSelected()) strat = "tf-boolean";
-        else strat = "tf-idf";
-
-        try {
-            CtrlPresentation.getInstance().listSimilars(titleDoc.getText(), authorDoc.getText(), (Integer) k.getValue(), strat);
-        } catch (ExceptionNoDocument | ExceptionInvalidStrategy | ExceptionInvalidK e) {
-            CtrlPresentation.getInstance().showInternalError(reference);
-        }
-
+        okPressed = true;
         dispose();
     }
 

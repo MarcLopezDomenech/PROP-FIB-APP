@@ -15,7 +15,7 @@ import java.util.Set;
 /**
  * @class CtrlPresentation
  * @brief Controlador de la capa de presentació de l'aplicatiu. S'encarrega de la part gràfica de l'aplicatiu, és a dir, de la gestió de les vistes. Alhora, però, requereix de la comunicació amb el controlador de domini per resoldre peticions i mostrar informació.
- * @author pau.duran.manzano
+ * @author pau.duran.manzano, marc.valls.camps
  */
 public class CtrlPresentation {
     /**
@@ -227,7 +227,7 @@ public class CtrlPresentation {
         Pair<Integer, String> result = dialog.initialize(reference, title, author);
         Object[][] docs = null;
         try {
-            if (result.getFirst() != null && result.getSecond() != null)
+            if (result != null)
                 docs = listSimilars(title, author, result.getFirst(), result.getSecond());
         } catch (ExceptionInvalidK |ExceptionNoDocument | ExceptionInvalidStrategy e) {
             showInternalError(reference);

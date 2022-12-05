@@ -24,7 +24,6 @@ import java.io.IOException;
  * @brief Diàleg per a exportar un document del sistema
  */
 public class DownloaderDialog extends JDialog {
-    private JFrame reference;
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
@@ -168,7 +167,6 @@ public class DownloaderDialog extends JDialog {
 
     public String initialize(JFrame reference, String title, String author) {
         pack();
-        this.reference = reference;
         setLocationRelativeTo(reference);
         titleDoc.setText(title);
         authorDoc.setText(author);
