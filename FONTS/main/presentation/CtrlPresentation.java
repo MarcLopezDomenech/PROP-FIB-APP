@@ -186,6 +186,13 @@ public class CtrlPresentation {
         return new_data.toArray(new Object[0][]);
     }
 
+    /**
+     * @brief Funció per crear nous documents a l'aplicatiu
+     * @details Es permet mostrar el diàleg per crear un document nou, retornant informació del document creat
+     * @param reference Frame de referència per saber on posicionar el diàleg
+     * @return Informació (favorit, títol, autor) del document creat o null si s'ha cancel·lat la creació
+     * @post Es mostra per pantalla el diàleg de creació i es retorna, si és el cas, informació del document creat
+     */
     public Object[] showNewDocument(JFrame reference) {
         NewDocumentDialog dialog = new NewDocumentDialog();
         Pair<Pair<String, String>, String> res = dialog.initialize(reference);
@@ -206,11 +213,25 @@ public class CtrlPresentation {
         return null;
     }
 
+    /**
+     * @brief Mètode per mostrar la vista de la gestió de documents
+     * @details Es dimensiona i situa la vista de gestió de documents (vista principal) i es mostra
+     * @param location Posició de la pantalla on es vol situar la vista
+     * @param size Tamany de la vista
+     * @post Es mostra per pantalla la vista de gestió de documents
+     */
     public void showDocuments(Point location, Dimension size) {
         MainView mw = new MainView();
         mw.initialize(location, size);
     }
 
+    /**
+     * @brief Mètode per mostrar la vista de la gestió d'expressions
+     * @details Es dimensiona i situa la vista de gestió d'expressions i es mostra
+     * @param location Posició de la pantalla on es vol situar la vista
+     * @param size Tamany de la vista
+     * @post Es mostra per pantalla la vista de gestió d'expressions
+     */
     public void showExpressions(Point location, Dimension size) {
         ExpressionsView ew = new ExpressionsView();
         ew.initialize(location, size);
@@ -218,6 +239,13 @@ public class CtrlPresentation {
 
     // Opcions de llistar de documents
 
+    /**
+     * @brief Funció per filtrar documents per query
+     * @details Es mostra el diàleg de llistar per query i es retorna el resultat de la cerca
+     * @param reference Frame de referència per saber on posicionar el diàleg
+     * @return Llista de (favorit, títol, autor) dels k documents més rellevants, pel que fa a contingut, de la query introduïda al diàleg
+     * @post Es mostra el diàleg i, quan s'acaba el cas d'ús, es torna a la vista on estava
+     */
     public Object[][] showListByQuery(JFrame reference) {
         Object[][] docs = null;
         ListQueryDialog dialog = new ListQueryDialog();
@@ -225,13 +253,22 @@ public class CtrlPresentation {
         String query = queryAndK.getFirst();
         Integer k = queryAndK.getSecond();
         try {
+            // En cas que s'hagin introduït la query i la k
             if (query != null && k != null) docs = listByQuery(query, k);
         } catch (ExceptionInvalidK e) {
+            // Pot passar que la k no sigui vàlida, mostrem error
             showError(reference, e.getMessage());
         }
         return docs;
     }
 
+    /**
+     * @brief Funció per filtrar documents per expressió
+     * @details Es mostra el diàleg de llistar per expressió i es retorna el resultat de la cerca
+     * @param reference Frame de referència per saber on posicionar el diàleg
+     * @return Llista de (favorit, títol, autor) dels documents que compleixen l'expressió introduïda al dàleg
+     * @post Es mostra el diàleg i, quan s'acaba el cas d'ús, es torna a la vista on estava
+     */
     public Object[][] showListByExpression(JFrame reference) {
         Object[][] docs = null;
         ListExpressionDialog dialog = new ListExpressionDialog();
@@ -239,17 +276,27 @@ public class CtrlPresentation {
         String expression = exprAndSensitive.getFirst();
         Boolean caseSensitive = exprAndSensitive.getSecond();
         try {
+            // En cas que s'hagi introduït una expressió
             if (expression != null) docs = listByExpression(expression, caseSensitive);
         } catch (ExceptionNoExpression e) {
+            // En cas d'introduir una expressió que no tenim donada d'alta
             showError(reference, e.getMessage());
         }
         return docs;
     }
 
+    /**
+     * @brief Funció per filtrar documents per autor
+     * @details Es mostra el diàleg de llistar per autor i es retorna el resultat de la cerca
+     * @param reference Frame de referència per saber on posicionar el diàleg
+     * @return Llista de (favorit, títol, autor) dels documents de l'autor introduït al diàleg
+     * @post Es mostra el diàleg i, quan s'acaba el cas d'ús, es torna a la vista on estava
+     */
     public Object[][] showListByAuthor(JFrame reference) {
         Object[][] docs = null;
         ListAuthorDialog dialog = new ListAuthorDialog();
         String author = dialog.initialize(reference);
+        // En cas que s'hagi introduït un autor
         if (author != null) docs = listTitlesOfAuthor(author);
         return docs;
     }
@@ -257,24 +304,56 @@ public class CtrlPresentation {
 
     // Opcions amb document seleccionat
 
+    /**
+     * @brief Mètode per mostrar el diàleg de modificar un document
+     * @pre Existeix a l'aplicatiu un document identificat pel títol i autor donats.
+     * @param reference Frame de referència per saber on posicionar el diàleg
+     * @param title Títol del document a modificar
+     * @param author Autor del document a modificar
+     * @post Es mostra el diàleg per modificar el document i quan s'acaba el cas d'ús es retorna a la vista on estava
+     */
     public void showModify(JFrame reference, String title, String author) {
         ModifyDialog md = new ModifyDialog();
         md.initialize(reference, title, author);
     }
 
+    /**
+     * @brief Mètode per mostrar el diàleg de llistar similars
+     * @pre Existeix a l'aplicatiu un document identificat pel títol i autor donats.
+     * @param reference Frame de referència per saber on posicionar el diàleg
+     * @param title Títol del document a modificar
+     * @param author Autor del document a modificar
+     * @return Llista de (favorit, títol, autor) dels k documents similars al seleccionat
+     * @post Es mostra el diàleg per introduir els valors necessaris i quan s'acaba el cas d'ús es retorna a la vista on estava
+     */
     public Object[][] showListKSimilars(JFrame reference, String title, String author){
         ListKSimilarsDialog dialog = new ListKSimilarsDialog();
-        Pair<Integer, String> result = dialog.initialize(reference, title, author);
+        Pair<Integer, String> kAndStrategy = dialog.initialize(reference, title, author);
         Object[][] docs = null;
         try {
-            if (result != null)
-                docs = listSimilars(title, author, result.getFirst(), result.getSecond());
-        } catch (ExceptionInvalidK |ExceptionNoDocument | ExceptionInvalidStrategy e) {
+            if (kAndStrategy != null) {
+                Integer k = kAndStrategy.getFirst();
+                String strategy = kAndStrategy.getSecond();
+                docs = listSimilars(title, author, k, strategy);
+            }
+        } catch (ExceptionInvalidK e) {
+            // Pot passar que la k sigui invàlida --> mostrem error
+            showError(reference, e.getMessage());
+        } catch (ExceptionNoDocument | ExceptionInvalidStrategy e) {
+            // Per presentació garantim que el document existeix i l'estratègia és vàlida --> si no, tenim error intern
             showInternalError(reference);
         }
         return docs;
     }
 
+    /**
+     * @brief Mètode per mostrar el diàleg d'exportar un document
+     * @pre Existeix a l'aplicatiu un document identificat pel títol i autor donats.
+     * @param reference Frame de referència per saber on posicionar el diàleg
+     * @param title Títol del document a modificar
+     * @param author Autor del document a modificar
+     * @post Es mostra el diàleg per exportar el document i quan s'acaba el cas d'ús es retorna a la vista on estava
+     */
     public void showDownloader(JFrame reference, String title, String author){
         DownloaderDialog dialog = new DownloaderDialog();
         String path = dialog.initialize(reference, title, author);
@@ -283,7 +362,7 @@ public class CtrlPresentation {
             try {
                 exportDocument(title, author, path);
             } catch (ExceptionInvalidFormat | ExceptionNoDocument | IOException e) {
-                // no hauria de passar
+                // No hauria de passar
                 showInternalError(reference);
             }
         }
