@@ -540,8 +540,6 @@ public class CtrlPresentation {
         CtrlPresentation cp = CtrlPresentation.getInstance();
         cp.initiateApp();
         cp.showDocuments(new Point(600, 300), new Dimension(500, 500));
-        //ModifyView mw = new ModifyView();
-        //mw.initialize("abc", "mar", "hola");
     }
 
 }
