@@ -15,10 +15,26 @@ import java.awt.event.ActionListener;
  * @brief Diàleg per mostrar ajudes a l'usuari sobre com usar l'aplicatiu
  */
 public class HelpDialog extends JDialog {
+    /**
+     * \brief Panell principal del diàleg
+     */
     private JPanel contentPane;
-    private JButton buttonOK;
+
+    /**
+     * \brief Missatge d'error que es vol mostrar en el diàleg
+     */
     private JLabel message;
 
+    /**
+     * \brief Botó d'ok per tancar el diàleg
+     */
+    private JButton buttonOK;
+
+    /**
+     * @brief Constructora per defecte
+     * @details Es defineix el listener del botó i es construeix el diàleg
+     * @return Es retorna un HelpDialog
+     */
     public HelpDialog() {
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -27,6 +43,13 @@ public class HelpDialog extends JDialog {
         });
     }
 
+    /**
+     * @brief Mètode per inicialitzar el diàleg
+     * @details Amb aquest mètode es permet mostrar el diàleg d'ajuda de l'aplicatiu
+     * @param reference Frame de referència per saber on situar el diàleg
+     * @param help Missatge d'ajuda que es vol mostrar a l'usuari
+     * @post Es mostra per pantalla el missatge d'ajuda en format de diàleg
+     */
     public void initialize(JFrame reference, String help) {
         message.setText(help);
         setContentPane(contentPane);
@@ -38,6 +61,11 @@ public class HelpDialog extends JDialog {
         setVisible(true);
     }
 
+    /**
+     * @brief Definició de què succeeix quan premem ok
+     * @details Quan cliquem ok, es retorna el control a initialize
+     * @post Es deixa de mostrar el diàleg per pantalla
+     */
     private void onOK() {
         dispose();
     }

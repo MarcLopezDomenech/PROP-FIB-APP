@@ -14,15 +14,41 @@ import java.awt.event.*;
  * @brief Diàleg per confirmar canvis destructius abans de realitzar les accions associades
  */
 public class ConfirmDialog extends JDialog {
+    /**
+     * \brief Panell principal del diàleg
+     */
     private JPanel contentPane;
-    private JButton buttonSi;
-    private JButton buttonNo;
+
+    /**
+     * \brief Text que es vol que l'usuari confirmi
+     */
     private JLabel text;
+
+    /**
+     * \brief Botó de confirmació
+     */
+    private JButton buttonSi;
+
+    /**
+     * \brief Botó de cancel·lació
+     */
+    private JButton buttonNo;
+
+    /**
+     * \brief Booleà que registra si s'ha confirmat o no per part de l'usuari
+     */
     private boolean confirmation;
 
+    /**
+     * @brief Constructora per defecte
+     * @details Es construeix el diàleg, assignant valors a atributs i listeners
+     * @return ConfirmDialog
+     */
     public ConfirmDialog() {
         setContentPane(contentPane);
         confirmation = false;
+
+        // Listeners dels dos botons
 
         buttonSi.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -36,7 +62,7 @@ public class ConfirmDialog extends JDialog {
             }
         });
 
-        // call onCancel() when cross is clicked
+        // Si tanquem el dialog s'entén com cancel
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -44,7 +70,7 @@ public class ConfirmDialog extends JDialog {
             }
         });
 
-        // call onCancel() on ESCAPE
+        // Si apretem ESC s'entén com cancel
         contentPane.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onCancel();
@@ -52,23 +78,41 @@ public class ConfirmDialog extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    public boolean initialize(JFrame ref, String confirm) {
+    /**
+     * @brief Mètode per inicialitzar el diàleg
+     * @details Amb aquest mètode es permet mostrar el diàleg de confirmació de l'aplicatiu
+     * @param reference Frame de referència per saber on situar el diàleg
+     * @param confirm Missatge de què es vol la confirmació per part de l'usuari
+     * @return Si l'usuari ha confirmat o no el missatge que se li mostrava
+     * @post Es mostra per pantalla el missatge de confirmació en format de diàleg
+     */
+    public boolean initialize(JFrame reference, String confirm) {
         text.setText(confirm);
         setContentPane(contentPane);
         setModal(true);
         setTitle("Confirmar");
         pack();
         getRootPane().setDefaultButton(buttonSi);
-        setLocationRelativeTo(ref);
+        setLocationRelativeTo(reference);
         setVisible(true);
         return confirmation;
     }
 
+    /**
+     * @brief Definició de què succeeix quan premem confirmar
+     * @details Quan cliquem confirmar, es registra la confirmació i es retorna el control a initialize
+     * @post Es deixa de mostrar el diàleg per pantalla
+     */
     private void onOK() {
         confirmation = true;
         dispose();
     }
 
+    /**
+     * @brief Definició de què succeeix quan no confirmem
+     * @details Es registra que la confirmació és negativa i es retorna el control a initialize
+     * @post Es deixa de mostrar el diàleg per pantalla
+     */
     private void onCancel() {
         confirmation = false;
         dispose();

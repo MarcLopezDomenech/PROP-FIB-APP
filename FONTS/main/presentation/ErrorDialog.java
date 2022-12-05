@@ -15,11 +15,28 @@ import java.awt.event.ActionListener;
  * @brief Diàleg per mostrar errors
  */
 public class ErrorDialog extends JDialog {
+    /**
+     * \brief Panell principal del diàleg
+     */
     private JPanel contentPane;
-    private JButton buttonOK;
+
+    /**
+     * \brief Missatge d'error que es vol mostrar en el diàleg
+     */
     private JLabel message;
 
+    /**
+     * \brief Botó d'ok per tancar el diàleg
+     */
+    private JButton buttonOK;
+
+    /**
+     * @brief Constructora per defecte
+     * @details Es defineix el listener del botó i es construeix el diàleg
+     * @return Es retorna un ErrorDialog
+     */
     public ErrorDialog() {
+        // Definim listener del botó
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onOK();
@@ -27,6 +44,13 @@ public class ErrorDialog extends JDialog {
         });
     }
 
+    /**
+     * @brief Mètode per inicialitzar el diàleg
+     * @details Amb aquest mètode es permet mostrar el diàleg d'error de l'aplicatiu
+     * @param reference Frame de referència per saber on situar el diàleg
+     * @param error Missatge d'error que es vol mostrar a l'usuari
+     * @post Es mostra per pantalla el missatge d'error en format de diàleg
+     */
     public void initialize(JFrame reference, String error) {
         message.setText(error);
         setContentPane(contentPane);
@@ -38,6 +62,11 @@ public class ErrorDialog extends JDialog {
         setVisible(true);
     }
 
+    /**
+     * @brief Definició de què succeeix quan premem ok
+     * @details Quan cliquem ok, es retorna el control a initialize
+     * @post Es deixa de mostrar el diàleg per pantalla
+     */
     private void onOK() {
         dispose();
     }
