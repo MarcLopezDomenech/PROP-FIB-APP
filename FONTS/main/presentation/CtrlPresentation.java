@@ -72,6 +72,7 @@ public class CtrlPresentation {
     /**
      * @brief Funció que deixa l'estat del sistema en una còpia de seguretat
      * @details Aquest mètode s'ha de cridar abans de tancar l'aplicatiu per tal de salvar-ne el sistema localment i poder-lo restablir en la següent posada en marxa
+     * @param reference Frame de referència per saber on posicionar el dialog en cas d'error
      * @post El sistema no queda alterat, però es genera una còpia de seguretat a partir de l'estat actual, que queda emmagatzemada
      */
     public void closeApp(JFrame reference) {
@@ -86,6 +87,7 @@ public class CtrlPresentation {
     /**
      * @brief Mètode per restaurar el sistema a partir d'una còpia de seguretat
      * @details Aquesta funció permet restaurar l'estat del sistema a partir d'un back up prèviament realitzat del sistema
+     * @param reference Frame de referència per saber on posicionar el diàleg en cas d'error
      * @post El sistema es restaura a partir de la còpia de seguretat que es disposa, sempre que sigui vàlida
      */
     public void restoreSystem(JFrame reference) {
@@ -100,21 +102,49 @@ public class CtrlPresentation {
 
     // Dialogs d'error, confirmació i ajuda
 
+    /**
+     * @brief Mètode que mostra un missatge d'error
+     * @details A partir d'un missatge d'error donat, amb aquest mètode mostrem un diàleg d'error per pantalla
+     * @param reference Frame de referència per saber on posicionar el diàleg d'error
+     * @param message Missatge d'error que es vol mostrar per pantalla
+     * @post Es mostra per pantalla un diàleg d'error
+     */
     public void showError(JFrame reference, String message) {
         ErrorDialog errorDialog = new ErrorDialog();
         errorDialog.initialize(reference, message);
     }
 
+    /**
+     * @brief Mètode per mostrar el missatge d'error intern
+     * @details En cas que es produeixi un error intern a l'aplicatiu, aquest mètode permet mostrar l'avís a l'usuari
+     * @param reference Frame de referència per saber on posicionar el diàleg d'error
+     * @post Es mostra per pantalla el diàleg d'error intern
+     */
     public void showInternalError(JFrame reference) {
         //Suggerencia: "No hem detectat cap copia de seguretat del sistema, prem OK per iniciar l'aplicació"
         showError(reference, "Hi ha hagut un error intern al sistema. Si no es el primer cop que succeeix, si us plau contacta amb l'administrador.");
     }
 
-    public boolean askConfirmation(JFrame ref, String message) {
+    /**
+     * @brief Funció per demanar confirmació
+     * @details En cas de voler realitzar una acció destructiva, aquest mètode permet demanar-ne confirmació a l'usuari
+     * @param reference Frame de referència per saber on posicionar el diàleg
+     * @param message Missatge de confirmació que es vol verificar per part de l'usuari
+     * @return Es retorna si l'usuari ha confirmat (true) o no (false)
+     * @post Es mostra per pantalla el diàleg de confirmació amb el missatge donat
+     */
+    public boolean askConfirmation(JFrame reference, String message) {
         ConfirmDialog confirmDialog = new ConfirmDialog();
-        return confirmDialog.initialize(ref, message);
+        return confirmDialog.initialize(reference, message);
     }
 
+    /**
+     * @brief Mètode per mostrar el diàleg d'ajuda
+     * @details Per les vistes que ho necessiten, amb aquest mètode es permet mostrar una ajuda a l'usuari
+     * @param reference Frame de referència per saber on posicionar el diàleg
+     * @param message Missatge d'ajuda que es vol mostrar
+     * @post Es mostra per pantalla el diàleg d'ajuda amb el missatge donat
+     */
     public void showHelp(JFrame reference, String message) {
         HelpDialog helpDialog = new HelpDialog();
         helpDialog.initialize(reference, message);
@@ -124,6 +154,13 @@ public class CtrlPresentation {
 
     // Opcions del menú
 
+    /**
+     * @brief Funció per carregar documents a l'aplicatiu
+     * @details Es permet mostrar el diàleg per carregar documents locals, retornant informació dels documents carregats
+     * @param reference Frame de referència per saber on posicionar el diàleg
+     * @return Array d'informació dels documents carregats (si és preferit, títol i autor) o null si no es puja cap
+     * @post Es mostra per pantalla el diàleg per carregar documents i s'actualizen els actuals si és el cas
+     */
     public Object[][] showLoader(JFrame reference) {
         LoaderDialog dialog = new LoaderDialog();
         Pair<String, Object[]> res = dialog.initialize(reference);
@@ -135,10 +172,13 @@ public class CtrlPresentation {
             try {
                 new_data.add(importDocument((String) p, res.getFirst()));
             } catch (ExceptionInvalidFormat | ExceptionDocumentExists e) {
+                // Excepcions nostres que indiquen errors que es poden donar
                 showError(reference, e.getMessage());
             } catch (FileNotFoundException e) {
+                // Excepció de Java produïda quan la ruta no és correcta
                 showError(reference, "La ruta no es correcta!");
             } catch (ExceptionInvalidLanguage e) {
+                // Per presentació garantim que això no pot passar. Si es dona, tenim error intern
                 showInternalError(reference);
             }
         }
@@ -146,6 +186,13 @@ public class CtrlPresentation {
         return new_data.toArray(new Object[0][]);
     }
 
+    /**
+     * @brief Funció per crear nous documents a l'aplicatiu
+     * @details Es permet mostrar el diàleg per crear un document nou, retornant informació del document creat
+     * @param reference Frame de referència per saber on posicionar el diàleg
+     * @return Informació (favorit, títol, autor) del document creat o null si s'ha cancel·lat la creació
+     * @post Es mostra per pantalla el diàleg de creació i es retorna, si és el cas, informació del document creat
+     */
     public Object[] showNewDocument(JFrame reference) {
         NewDocumentDialog dialog = new NewDocumentDialog();
         Pair<Pair<String, String>, String> res = dialog.initialize(reference);
@@ -166,11 +213,25 @@ public class CtrlPresentation {
         return null;
     }
 
+    /**
+     * @brief Mètode per mostrar la vista de la gestió de documents
+     * @details Es dimensiona i situa la vista de gestió de documents (vista principal) i es mostra
+     * @param location Posició de la pantalla on es vol situar la vista
+     * @param size Tamany de la vista
+     * @post Es mostra per pantalla la vista de gestió de documents
+     */
     public void showDocuments(Point location, Dimension size) {
         MainView mw = new MainView();
         mw.initialize(location, size);
     }
 
+    /**
+     * @brief Mètode per mostrar la vista de la gestió d'expressions
+     * @details Es dimensiona i situa la vista de gestió d'expressions i es mostra
+     * @param location Posició de la pantalla on es vol situar la vista
+     * @param size Tamany de la vista
+     * @post Es mostra per pantalla la vista de gestió d'expressions
+     */
     public void showExpressions(Point location, Dimension size) {
         ExpressionsView ew = new ExpressionsView();
         ew.initialize(location, size);
@@ -178,6 +239,13 @@ public class CtrlPresentation {
 
     // Opcions de llistar de documents
 
+    /**
+     * @brief Funció per filtrar documents per query
+     * @details Es mostra el diàleg de llistar per query i es retorna el resultat de la cerca
+     * @param reference Frame de referència per saber on posicionar el diàleg
+     * @return Llista de (favorit, títol, autor) dels k documents més rellevants, pel que fa a contingut, de la query introduïda al diàleg
+     * @post Es mostra el diàleg i, quan s'acaba el cas d'ús, es torna a la vista on estava
+     */
     public Object[][] showListByQuery(JFrame reference) {
         Object[][] docs = null;
         ListQueryDialog dialog = new ListQueryDialog();
@@ -185,13 +253,22 @@ public class CtrlPresentation {
         String query = queryAndK.getFirst();
         Integer k = queryAndK.getSecond();
         try {
+            // En cas que s'hagin introduït la query i la k
             if (query != null && k != null) docs = listByQuery(query, k);
         } catch (ExceptionInvalidK e) {
+            // Pot passar que la k no sigui vàlida, mostrem error
             showError(reference, e.getMessage());
         }
         return docs;
     }
 
+    /**
+     * @brief Funció per filtrar documents per expressió
+     * @details Es mostra el diàleg de llistar per expressió i es retorna el resultat de la cerca
+     * @param reference Frame de referència per saber on posicionar el diàleg
+     * @return Llista de (favorit, títol, autor) dels documents que compleixen l'expressió introduïda al dàleg
+     * @post Es mostra el diàleg i, quan s'acaba el cas d'ús, es torna a la vista on estava
+     */
     public Object[][] showListByExpression(JFrame reference) {
         Object[][] docs = null;
         ListExpressionDialog dialog = new ListExpressionDialog();
@@ -199,17 +276,27 @@ public class CtrlPresentation {
         String expression = exprAndSensitive.getFirst();
         Boolean caseSensitive = exprAndSensitive.getSecond();
         try {
+            // En cas que s'hagi introduït una expressió
             if (expression != null) docs = listByExpression(expression, caseSensitive);
         } catch (ExceptionNoExpression e) {
+            // En cas d'introduir una expressió que no tenim donada d'alta
             showError(reference, e.getMessage());
         }
         return docs;
     }
 
+    /**
+     * @brief Funció per filtrar documents per autor
+     * @details Es mostra el diàleg de llistar per autor i es retorna el resultat de la cerca
+     * @param reference Frame de referència per saber on posicionar el diàleg
+     * @return Llista de (favorit, títol, autor) dels documents de l'autor introduït al diàleg
+     * @post Es mostra el diàleg i, quan s'acaba el cas d'ús, es torna a la vista on estava
+     */
     public Object[][] showListByAuthor(JFrame reference) {
         Object[][] docs = null;
         ListAuthorDialog dialog = new ListAuthorDialog();
         String author = dialog.initialize(reference);
+        // En cas que s'hagi introduït un autor
         if (author != null) docs = listTitlesOfAuthor(author);
         return docs;
     }
@@ -217,24 +304,56 @@ public class CtrlPresentation {
 
     // Opcions amb document seleccionat
 
+    /**
+     * @brief Mètode per mostrar el diàleg de modificar un document
+     * @pre Existeix a l'aplicatiu un document identificat pel títol i autor donats.
+     * @param reference Frame de referència per saber on posicionar el diàleg
+     * @param title Títol del document a modificar
+     * @param author Autor del document a modificar
+     * @post Es mostra el diàleg per modificar el document i quan s'acaba el cas d'ús es retorna a la vista on estava
+     */
     public void showModify(JFrame reference, String title, String author) {
         ModifyDialog md = new ModifyDialog();
         md.initialize(reference, title, author);
     }
 
+    /**
+     * @brief Mètode per mostrar el diàleg de llistar similars
+     * @pre Existeix a l'aplicatiu un document identificat pel títol i autor donats.
+     * @param reference Frame de referència per saber on posicionar el diàleg
+     * @param title Títol del document a modificar
+     * @param author Autor del document a modificar
+     * @return Llista de (favorit, títol, autor) dels k documents similars al seleccionat
+     * @post Es mostra el diàleg per introduir els valors necessaris i quan s'acaba el cas d'ús es retorna a la vista on estava
+     */
     public Object[][] showListKSimilars(JFrame reference, String title, String author){
         ListKSimilarsDialog dialog = new ListKSimilarsDialog();
-        Pair<Integer, String> result = dialog.initialize(reference, title, author);
+        Pair<Integer, String> kAndStrategy = dialog.initialize(reference, title, author);
         Object[][] docs = null;
         try {
-            if (result != null)
-                docs = listSimilars(title, author, result.getFirst(), result.getSecond());
-        } catch (ExceptionInvalidK |ExceptionNoDocument | ExceptionInvalidStrategy e) {
+            if (kAndStrategy != null) {
+                Integer k = kAndStrategy.getFirst();
+                String strategy = kAndStrategy.getSecond();
+                docs = listSimilars(title, author, k, strategy);
+            }
+        } catch (ExceptionInvalidK e) {
+            // Pot passar que la k sigui invàlida --> mostrem error
+            showError(reference, e.getMessage());
+        } catch (ExceptionNoDocument | ExceptionInvalidStrategy e) {
+            // Per presentació garantim que el document existeix i l'estratègia és vàlida --> si no, tenim error intern
             showInternalError(reference);
         }
         return docs;
     }
 
+    /**
+     * @brief Mètode per mostrar el diàleg d'exportar un document
+     * @pre Existeix a l'aplicatiu un document identificat pel títol i autor donats.
+     * @param reference Frame de referència per saber on posicionar el diàleg
+     * @param title Títol del document a modificar
+     * @param author Autor del document a modificar
+     * @post Es mostra el diàleg per exportar el document i quan s'acaba el cas d'ús es retorna a la vista on estava
+     */
     public void showDownloader(JFrame reference, String title, String author){
         DownloaderDialog dialog = new DownloaderDialog();
         String path = dialog.initialize(reference, title, author);
@@ -243,7 +362,7 @@ public class CtrlPresentation {
             try {
                 exportDocument(title, author, path);
             } catch (ExceptionInvalidFormat | ExceptionNoDocument | IOException e) {
-                // no hauria de passar
+                // No hauria de passar
                 showInternalError(reference);
             }
         }
