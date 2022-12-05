@@ -15,7 +15,7 @@ import java.util.Set;
 /**
  * @class CtrlPresentation
  * @brief Controlador de la capa de presentació de l'aplicatiu. S'encarrega de la part gràfica de l'aplicatiu, és a dir, de la gestió de les vistes. Alhora, però, requereix de la comunicació amb el controlador de domini per resoldre peticions i mostrar informació.
- * @author pau.duran.manzano, marc.valls.camps
+ * @author pau.duran.manzano
  */
 public class CtrlPresentation {
     /**
@@ -163,27 +163,31 @@ public class CtrlPresentation {
      */
     public Object[][] showLoader(JFrame reference) {
         LoaderDialog dialog = new LoaderDialog();
-        Pair<String, Object[]> res = dialog.initialize(reference);
-        ArrayList<Object[]> new_data = new ArrayList<>();
+        Pair<String, Object[]> languageAndPaths = dialog.initialize(reference);
+        List<Object[]> newData = new ArrayList<>();
 
-        if (res == null) return null;
+        if (languageAndPaths == null) return null;      // No s'ha introduït cap path
 
-        for (Object p : res.getSecond()) {
+        String language = languageAndPaths.getFirst();
+        String[] paths = (String[]) languageAndPaths.getSecond();
+        for (String path : paths) {
             try {
-                new_data.add(importDocument((String) p, res.getFirst()));
+                // Importem el document i aconseguim les dades (fav, títol, autor)
+                Object[] document = importDocument(path, language);
+                newData.add(document);
             } catch (ExceptionInvalidFormat | ExceptionDocumentExists e) {
                 // Excepcions nostres que indiquen errors que es poden donar
                 showError(reference, e.getMessage());
             } catch (FileNotFoundException e) {
                 // Excepció de Java produïda quan la ruta no és correcta
-                showError(reference, "La ruta no es correcta!");
+                showError(reference, "La ruta que has especificat no es correcta");
             } catch (ExceptionInvalidLanguage e) {
                 // Per presentació garantim que això no pot passar. Si es dona, tenim error intern
                 showInternalError(reference);
             }
         }
 
-        return new_data.toArray(new Object[0][]);
+        return newData.toArray(new Object[0][]);
     }
 
     /**
@@ -195,13 +199,16 @@ public class CtrlPresentation {
      */
     public Object[] showNewDocument(JFrame reference) {
         NewDocumentDialog dialog = new NewDocumentDialog();
-        Pair<Pair<String, String>, String> res = dialog.initialize(reference);
+        Pair<Pair<String, String>, String> titleAuthorLang = dialog.initialize(reference);
 
-        if (res != null) {
+        Object[] newDoc = null;
+        if (titleAuthorLang != null) {
             try {
-                createEmptyDocument(res.getFirst().getFirst(), res.getFirst().getSecond(), res.getSecond());
-                Object[] new_doc = {false, res.getFirst().getFirst(), res.getFirst().getSecond()};
-                return new_doc;
+                String title = titleAuthorLang.getFirst().getFirst();
+                String author = titleAuthorLang.getFirst().getSecond();
+                String language = titleAuthorLang.getSecond();
+                createEmptyDocument(title, author, language);
+                newDoc = new Object[]{false, title, author};      // Per defecte, no és favorit
             } catch (ExceptionDocumentExists e) {
                 showError(reference, e.getMessage());
             } catch (ExceptionInvalidLanguage e) {
@@ -210,7 +217,7 @@ public class CtrlPresentation {
             }
         }
 
-        return null;
+        return newDoc;      // Serà null si no s'ha donat d'alta cap document al final
     }
 
     /**
@@ -362,7 +369,7 @@ public class CtrlPresentation {
             try {
                 exportDocument(title, author, path);
             } catch (ExceptionInvalidFormat | ExceptionNoDocument | IOException e) {
-                // No hauria de passar
+                // No hauria de passar, ho garantim per presentació
                 showInternalError(reference);
             }
         }
