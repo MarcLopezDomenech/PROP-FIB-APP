@@ -3,7 +3,6 @@ package main.domain;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import main.domain.documents.Document;
@@ -68,8 +67,10 @@ public class CtrlDomain {
      * @details L'operació rep el nom i el títol del nou document a donar d'alta a l'aplicatiu, i sempre que no n'existeixi un amb els mateixos identificadors, així ho fa amb contingut buit.
      * @param title Títol del nou document
      * @param author Autor del nou document
+     * @param language Idioma del nou document
      * @post Existeix a l'aplicatiu un document identificat per (title, author). Si no existia prèviament, el contingut serà buit.
      * @throws ExceptionDocumentExists en cas que ja existeixi un document identificat per (title, author) a l'aplicatiu
+     * @throws ExceptionInvalidLanguage si l'idioma donat no és "ca", "en" ni "es".
      */
     public void createEmptyDocument(String title, String author, String language) throws ExceptionDocumentExists, ExceptionInvalidLanguage {
         ds.createDocument(title, author, "", language);
@@ -151,7 +152,7 @@ public class CtrlDomain {
      * @param newLanguage nou idioma del document
      * @post El document (title, author) té com a idioma newLanguage
      * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
-     * @throws ExceptionInvalidLanguage quan l'idioma donat no és vàlid (ca, en o es)
+     * @throws ExceptionInvalidLanguage quan l'idioma donat no és vàlid ("ca", "en" o "es")
      */
     public void updateLanguageDocument(String title, String author, String newLanguage) throws ExceptionNoDocument, ExceptionInvalidLanguage {
         ds.updateLanguageDocument(title, author, newLanguage);
@@ -195,7 +196,6 @@ public class CtrlDomain {
         return ds.listAll();
     }
 
-    //ToDo
     /**
      * @brief Funció per obtenir els identificadors dels k documents més similars a un document
      * @details Amb aquesta operació es poden consultar els documents més similars a un document. En concret, a partir de l'identificador (títol i autor) d'un document, s'obtenen els identificadors i si són favorits dels k documents que són més similars a aquest.
@@ -203,11 +203,14 @@ public class CtrlDomain {
      * @param title Títol del document a què se li vol buscar els similars
      * @param author Autor del document a què se li vol buscar els similars
      * @param k Nombre d'identificadors de documents similars que es vol obtenir
+     * @param strategy Estratègia que es vol emprar per buscar similars
      * @return Llista de (favorit, títol, autor) dels com a molt k documents més similars al document donat
      * @post L'estat del sistema no queda alterat
      * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
+     * @throws ExceptionInvalidK quan la k donada no és major o igual a 0
+     * @throws ExceptionInvalidStrategy en cas que l'estratègia no sigui una de les opcions (tf-idf o tf-boolean)
      */
-    public List<Object[]> listSimilars(String title, String author, int k, String strategy) throws ExceptionNoDocument, ExceptionInvalidStrategy, ExceptionInvalidK {
+    public List<Object[]> listSimilars(String title, String author, int k, String strategy) throws ExceptionNoDocument, ExceptionInvalidK, ExceptionInvalidStrategy {
         return ds.listSimilars(title, author, k, strategy);
     }
 
@@ -240,6 +243,7 @@ public class CtrlDomain {
      * @param k Nombre de documents màxims que es vol obtenir
      * @return Llista de (favorit, títol, autor) dels k documents més rellevants, pel que fa a contingut, de la query
      * @post L'estat del sistema no queda alterat
+     * @throws ExceptionInvalidK Si la k no és major o igual a 0
      */
     public List<Object[]> listByQuery(String query, int  k) throws ExceptionInvalidK {
         return ds.listByQuery(query, k);
@@ -266,6 +270,7 @@ public class CtrlDomain {
      * @param expression Cadena de caràcters que identificarà la nova expressió booleana
      * @post En cas que la cadena de caràcters donada pugui ser una expressió vàlida i no existeixi prèviament, es dona d'alta una expressió booleana identificada amb aquesta cadena
      * @throws ExceptionExpressionExists si l'string donnat ja identifica una expressió donada d'alta al sistema
+     * @throws ExceptionInvalidExpression en cas que l'string donat no sigui apte per constituir una expressió
      */
     public void createExpression(String expression) throws ExceptionExpressionExists, ExceptionInvalidExpression {
         es.createExpression(expression);
@@ -292,6 +297,7 @@ public class CtrlDomain {
      * @post En cas que no existeixi cap expressió booleana identificada per newExpression, es modifica l'identificador de l'expressió identificada per oldExpression pel nou
      * @throws ExceptionNoExpression si no existeix cap expressió identificada per (oldExpression)
      * @throws ExceptionExpressionExists en cas que el nou identificador que es vol donar ja és d'una altra expressió
+     * @throws ExceptionInvalidExpression si la nova expressió no té un format vàlid
      */
     public void modifyExpression(String oldExpression, String newExpression) throws ExceptionNoExpression, ExceptionExpressionExists, ExceptionInvalidExpression {
         deleteExpression(oldExpression);
