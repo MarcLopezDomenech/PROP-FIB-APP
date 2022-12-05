@@ -88,7 +88,14 @@ public class ModifyDialog extends JDialog {
 
     private void onCancel() {
         // add your code here if necessary
-        dispose();
+        if(buttonOK.isEnabled()){
+            if(cp.askConfirmation(modify,"Segur que vols sortir sense guardar")){
+                dispose();
+            }
+        }
+        else {
+            dispose();
+        }
     }
 
     private void onExport() {
@@ -97,6 +104,7 @@ public class ModifyDialog extends JDialog {
     }
 
     public void initialize(JFrame reference, String title, String author) {
+        buttonOK.setEnabled(false);
         cp = CtrlPresentation.getInstance();
 
         tit = title;
@@ -112,6 +120,7 @@ public class ModifyDialog extends JDialog {
         textcont.setText(cont);
 
         pack();
+       //setSize( getMaximumSize());
         this.modify = reference;
         setLocationRelativeTo(reference);
         setVisible(true);
