@@ -14,13 +14,36 @@ import java.awt.event.*;
  * @brief Diàleg que permet editar expressions i confirmar-ne els canvis o no guardar-los
  */
 public class ExpressionsModifyDialog extends JDialog {
+    /**
+     * \brief Panell principal del diàleg
+     */
     private JPanel contentPane;
-    private JButton buttonSave;
-    private JButton buttonCancel;
+
+    /**
+     * \brief Etiqueta d'informació a l'usuari
+     */
     private JLabel label;
+
+    /**
+     * \brief Espai de text per modificar l'expressió
+     */
     private JTextField text;
 
+    /**
+     * \brief Botó per confirmar els canvis a l'expressió
+     * \invariant Només estarà actiu si hi ha algun valor en l'espai de text
+     */
+    private JButton buttonSave;
+
+    /**
+     * \brief Botó per cancel·lar els canvis a l'expressió
+     */
+    private JButton buttonCancel;
+
     public ExpressionsModifyDialog() {
+
+        // Listeners dels botons
+
         buttonSave.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onOK();
@@ -33,7 +56,8 @@ public class ExpressionsModifyDialog extends JDialog {
             }
         });
 
-        // call onCancel() when cross is clicked
+
+        // Si tanquem el dialog s'entén com cancel
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -41,14 +65,32 @@ public class ExpressionsModifyDialog extends JDialog {
             }
         });
 
-        // call onCancel() on ESCAPE
+        // Si apretem ESC s'entén com cancel
         contentPane.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+
+
+        // Botó de guardar actiu només si hi ha alguna cosa en el text field
+        text.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+                buttonSave.setEnabled(!"".equals(text.getText()));
+            }
+        });
     }
 
+    /**
+     * @brief Funció per inicialitzar el diàleg
+     * @details Cridant aquesta funció es mostra per pantalla el diàleg de modificar expressions
+     * @param reference Frame de referència per saber on situar el diàleg
+     * @param expression Expressió que es vol modificar
+     * @return Es retorna l'expressió modificada
+     * @post Es mostra per pantalla el diàleg i es retorna l'expressió modificada
+     */
     public String initialize(JFrame reference, String expression) {
         text.setText(expression);
         setContentPane(contentPane);
@@ -61,13 +103,21 @@ public class ExpressionsModifyDialog extends JDialog {
         return text.getText();
     }
 
+    /**
+     * @brief Definició de què succeeix quan premem guardar
+     * @details Quan cliquem guardar, es retorna el control a initialize
+     * @post Es deixa de mostrar el diàleg per pantalla
+     */
     private void onOK() {
-        // add your code here
         dispose();
     }
 
+    /**
+     * @brief Definició de què succeeix quan cancel·lem la modificació
+     * @details Es posa el camp de text a null en cas que cancel·lem la modificació
+     * @post Es deixa de mostrar el diàleg per pantalla
+     */
     private void onCancel() {
-        // add your code here if necessary
         text.setText(null);
         dispose();
     }
