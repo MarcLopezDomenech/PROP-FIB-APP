@@ -102,6 +102,23 @@ public class CtrlDomain {
     }
 
     /**
+     * @brief Mètode per actualitzar el títol i l'autor d'un document
+     * @details Aquesta funció ens permet modificar l'identificador d'un document, és a dir, el seu títol i el seu autor
+     * @pre El títol o l'autor nous són diferents als que actualment identifiquen el document
+     * @pre Existeix un document identificat per (oldTitle, oldAuthor)
+     * @param oldTitle Títol del document que volem modificar
+     * @param oldAuthor Autor del document que volem modificar
+     * @param newTitle Nou títol que li volem donar al document
+     * @param newAuthor Nou autor que li volem donar al document
+     * @post En cas que no hi hagués cap altre document identificat per (newTitle, newAuthor), es modifica l'identificador del document (oldTitle, oldAuthor) per aquesta nova parella d'identificadors. Altrament, es llença una excepció
+     * @throws ExceptionNoDocument En cas que no existeixi al sistema un document identificat per (oldTitle, oldAuthor)
+     * @throws ExceptionDocumentExists En cas que ja existeixi al sistema un document identificat per (newTitle, newAuthor)
+     */
+    public void updateTitleAndAuthorDocument(String oldTitle, String oldAuthor, String newTitle, String newAuthor) throws ExceptionNoDocument, ExceptionDocumentExists {
+        ds.updateTitleAndAuthorDocument(oldTitle, oldAuthor, newTitle, newAuthor);
+    }
+
+    /**
      * @brief Funció per obtenir el contingut d'un document
      * @details Amb aquesta operació es pot aconseguir el contingut d'un document, els paràmetres del qual s'han de donar com a paràmetres
      * @pre El document identificat pels paràmetres existeix

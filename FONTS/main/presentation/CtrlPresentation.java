@@ -417,6 +417,25 @@ public class CtrlPresentation {
     }
 
     /**
+     * @brief Mètode per actualitzar el títol i l'autor d'un document
+     * @details Aquesta funció ens permet modificar l'identificador d'un document, és a dir, el seu títol i el seu autor
+     * @pre Existeix un document identificat pels paràmetres (oldTitle, oldAuthor)
+     * @param oldTitle Títol del document que volem modificar
+     * @param oldAuthor Autor del document que volem modificar
+     * @param newTitle Nou títol que li volem donar al document
+     * @param newAuthor Nou autor que li volem donar al document
+     * @post En cas que s'hagi modificat l'identificador del document donat i no hi hagués cap altre document identificat per (newTitle, newAuthor), es modifica l'identificador del document (oldTitle, oldAuthor) per aquesta nova parella d'identificadors. Altrament, es llença una excepció
+     * @throws ExceptionNoDocument En cas que no existeixi al sistema un document identificat per (oldTitle, oldAuthor)
+     * @throws ExceptionDocumentExists En cas que ja existeixi al sistema un document identificat per (newTitle, newAuthor)
+     */
+    public void updateTitleAndAuthorDocument(String oldTitle, String oldAuthor, String newTitle, String newAuthor) throws ExceptionNoDocument, ExceptionDocumentExists {
+        if (oldTitle != newTitle || oldAuthor != newAuthor) {
+            cd.updateTitleAndAuthorDocument(oldTitle, oldAuthor, newTitle, newAuthor);
+        }
+        // Si no hi ha hagut canvis, no cal actualitzar res
+    }
+
+    /**
      * @brief Funció per obtenir el contingut d'un document
      * @details Amb aquesta operació es pot aconseguir el contingut d'un document, els paràmetres del qual s'han de donar com a paràmetres
      * @pre El document identificat pels paràmetres existeix

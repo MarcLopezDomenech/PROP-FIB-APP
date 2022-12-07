@@ -164,6 +164,31 @@ public class DocumentsSet {
     }
 
     /**
+     * @brief Mètode per actualitzar el títol i l'autor d'un document
+     * @details Aquesta funció ens permet modificar l'identificador d'un document, és a dir, el seu títol i el seu autor
+     * @pre El títol o l'autor nous són diferents als que actualment identifiquen el document
+     * @pre Existeix un document identificat per (oldTitle, oldAuthor)
+     * @param oldTitle Títol del document que volem modificar
+     * @param oldAuthor Autor del document que volem modificar
+     * @param newTitle Nou títol que li volem donar al document
+     * @param newAuthor Nou autor que li volem donar al document
+     * @post En cas que no hi hagués cap altre document identificat per (newTitle, newAuthor), es modifica l'identificador del document (oldTitle, oldAuthor) per aquesta nova parella d'identificadors. Altrament, es llença una excepció
+     * @throws ExceptionNoDocument En cas que no existeixi al sistema un document identificat per (oldTitle, oldAuthor)
+     * @throws ExceptionDocumentExists En cas que ja existeixi al sistema un document identificat per (newTitle, newAuthor)
+     */
+    public void updateTitleAndAuthorDocument(String oldTitle, String oldAuthor, String newTitle, String newAuthor) throws ExceptionNoDocument, ExceptionDocumentExists {
+        Document oldDocument = getDocument(oldTitle, oldAuthor);
+        Document newDocument = null;
+        try {
+            newDocument = new Document(newTitle, newAuthor, oldDocument.getContent(), oldDocument.getLanguage(), oldDocument.getOriginalFormat());
+        } catch (ExceptionInvalidLanguage | ExceptionInvalidFormat e) {
+            // És impossible que es donin aquestes excepcions
+        }
+        deleteDocument(oldTitle, oldAuthor);
+        registerDocument(newDocument);
+    }
+
+    /**
      * @brief Operació per conseguir el contingut d'un document
      * @details Retorna el contingut del document identificat pels paràmetres
      * @pre El document identificat per (title, author) existeix
