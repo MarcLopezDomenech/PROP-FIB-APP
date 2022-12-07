@@ -10,13 +10,10 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import javax.swing.filechooser.FileFilter;
 import javax.swing.table.TableColumn;
 
 /**
@@ -181,8 +178,10 @@ public class MainView {
                 String title = (String) documents.getValueAt(selectedIndex, 1);
                 String author = (String) documents.getValueAt(selectedIndex, 2);
                 Object[][] result = cp.showListKSimilars(frame, title, author);
-                if (result != null) updateData(result);
-                listByNothing.setVisible(true);
+                if (result != null) {
+                    updateData(result);
+                    listByNothing.setVisible(true);
+                }
             }
         });
 
@@ -261,13 +260,15 @@ public class MainView {
     }
 
     private void updateData(Object[][] data) {
-        String[] headers = new String[]{"", "Titol", "Autor"};
+        String[] headers = new String[]{"<3", "Titol", "Autor"};
 
         documentsModel.setDataVector(data, headers);
 
         TableColumn tc = documents.getColumnModel().getColumn(0);
         tc.setCellEditor(documents.getDefaultEditor(Boolean.class));
         tc.setCellRenderer(documents.getDefaultRenderer(Boolean.class));
+
+        documents.getTableHeader().setReorderingAllowed(false);
 
         tc.setMinWidth(30);
         tc.setMaxWidth(30);
