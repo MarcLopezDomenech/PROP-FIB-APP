@@ -8,6 +8,8 @@ import main.excepcions.ExceptionNoDocument;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -209,6 +211,25 @@ public class MainView {
                 String title = (String) documents.getValueAt(selectedIndex, 1);
                 String author = (String) documents.getValueAt(selectedIndex, 2);
                 cp.showDownloader(frame, title, author);
+            }
+        });
+
+        documentsModel.addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                int row = e.getFirstRow();
+                int col = e.getColumn();
+                if (col == 0) {
+                    boolean newFav = (boolean) documents.getValueAt(row, 0);
+                    String title = (String) documents.getValueAt(row, 1);
+                    String author = (String) documents.getValueAt(row, 2).toString();
+                    try {
+                        cp.updateFavouriteDocument(title, author, newFav);
+                    } catch (ExceptionNoDocument ex) {
+                        // No pot ser que no trobem el document
+                        cp.showInternalError(frame);
+                    }
+                }
             }
         });
 
