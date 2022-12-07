@@ -1,13 +1,14 @@
 package main.presentation;
 
-import com.intellij.uiDesigner.core.GridConstraints;
-import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.Spacer;
+import main.excepcions.ExceptionInvalidLanguage;
 import main.excepcions.ExceptionNoDocument;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Objects;
 
 public class ModifyDialog extends JDialog {
     private CtrlPresentation cp;
@@ -20,15 +21,25 @@ public class ModifyDialog extends JDialog {
     private JLabel aut_doc;
     private JTextArea textcont;
     private JButton exportarButton;
+    private JRadioButton cat;
+    private JRadioButton es;
+    private JRadioButton an;
 
     private String tit;
     private String auth;
     private String cont;
 
+    private String lang;
+
     public ModifyDialog() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
+
+        ButtonGroup bgroup = new ButtonGroup();
+        bgroup.add(cat);
+        bgroup.add(es);
+        bgroup.add(an);
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -70,6 +81,28 @@ public class ModifyDialog extends JDialog {
                 pack();
             }
         });
+
+        an.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lang="en";
+                buttonOK.setEnabled(true);
+            }
+        });
+        es.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lang="es";
+                buttonOK.setEnabled(true);
+            }
+        });
+        cat.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lang="ca";
+                buttonOK.setEnabled(true);
+            }
+        });
     }
 
     private void onOK() {
@@ -77,8 +110,13 @@ public class ModifyDialog extends JDialog {
         boolean err = true;
         try {
             cp.updateContentDocument(tit, auth, content_fin);
+            cp.updateLanguageDocument(tit, auth, lang);
         } catch (ExceptionNoDocument e) {
             cp.getInstance().showError(modify, "No existeix el document");
+            err = false;
+        }
+        catch (ExceptionInvalidLanguage e) {
+            cp.getInstance().showError(modify, "No existeix la llengua");
             err = false;
         }
         if (err) {
@@ -117,7 +155,32 @@ public class ModifyDialog extends JDialog {
         tit_doc.setText(tit);
         aut_doc.setText(auth);
         textcont.setText(cont);
+        lang="";
+        String lan="";
+        try {
+            lan=cp.getLanguageDocument(title, author);
+        } catch (ExceptionNoDocument e) {
+            cp.getInstance().showError(modify, "No existeix el document");
+        }
+        if(lan.equals("ca")){
+            cat.setSelected(true);
+            lang="ca";
 
+        } else if (Objects.equals(lan, "es")) {
+            es.setSelected(true);
+            lang="es";
+        }
+        else if (Objects.equals(lan, "en")) {
+            an.setSelected(true);
+            lang="en";
+        }
+        else{
+            cp.getInstance().showError(modify, "Document sense llengua");
+        }
+        if (!(cat.isSelected() || es.isSelected() || an.isSelected())){
+            exportarButton.setEnabled(false);
+            buttonOK.setEnabled(false);
+        }
         pack();
         //setSize( getMaximumSize());
         this.modify = reference;
@@ -190,4 +253,7 @@ public class ModifyDialog extends JDialog {
         return contentPane;
     }
 
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+    }
 }
