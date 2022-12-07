@@ -88,12 +88,11 @@ public class ModifyDialog extends JDialog {
 
     private void onCancel() {
         // add your code here if necessary
-        if(buttonOK.isEnabled()){
-            if(cp.askConfirmation(modify,"Segur que vols sortir sense guardar")){
+        if (buttonOK.isEnabled()) {
+            if (cp.askConfirmation(modify, "Segur que vols sortir sense guardar")) {
                 dispose();
             }
-        }
-        else {
+        } else {
             dispose();
         }
     }
@@ -120,7 +119,7 @@ public class ModifyDialog extends JDialog {
         textcont.setText(cont);
 
         pack();
-       //setSize( getMaximumSize());
+        //setSize( getMaximumSize());
         this.modify = reference;
         setLocationRelativeTo(reference);
         setVisible(true);
@@ -142,7 +141,8 @@ public class ModifyDialog extends JDialog {
      */
     private void $$$setupUI$$$() {
         contentPane = new JPanel();
-        contentPane.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(3, 1, new Insets(10, 10, 10, 10), -1, -1));
+        contentPane.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(3, 1, new Insets(10, 10, 10, 10), -1, -1, true, false));
+        contentPane.setPreferredSize(new Dimension(500, 500));
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
         contentPane.add(panel1, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, 1, null, null, null, 0, false));
