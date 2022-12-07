@@ -177,15 +177,17 @@ public class DocumentsSet {
      * @throws ExceptionDocumentExists En cas que ja existeixi al sistema un document identificat per (newTitle, newAuthor)
      */
     public void updateTitleAndAuthorDocument(String oldTitle, String oldAuthor, String newTitle, String newAuthor) throws ExceptionNoDocument, ExceptionDocumentExists {
-        Document oldDocument = getDocument(oldTitle, oldAuthor);
-        Document newDocument = null;
-        try {
-            newDocument = new Document(newTitle, newAuthor, oldDocument.getContent(), oldDocument.getLanguage(), oldDocument.getOriginalFormat());
-        } catch (ExceptionInvalidLanguage | ExceptionInvalidFormat e) {
-            // És impossible que es donin aquestes excepcions
+        if (oldTitle != newTitle || oldAuthor != newAuthor) {       // Si no ha canviat ni el títol ni l'autor, no cal fer res
+            Document oldDocument = getDocument(oldTitle, oldAuthor);
+            Document newDocument = null;
+            try {
+                newDocument = new Document(newTitle, newAuthor, oldDocument.getContent(), oldDocument.getLanguage(), oldDocument.getOriginalFormat());
+            } catch (ExceptionInvalidLanguage | ExceptionInvalidFormat e) {
+                // És impossible que es donin aquestes excepcions
+            }
+            deleteDocument(oldTitle, oldAuthor);
+            registerDocument(newDocument);
         }
-        deleteDocument(oldTitle, oldAuthor);
-        registerDocument(newDocument);
     }
 
     /**

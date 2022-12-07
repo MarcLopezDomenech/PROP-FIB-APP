@@ -429,10 +429,7 @@ public class CtrlPresentation {
      * @throws ExceptionDocumentExists En cas que ja existeixi al sistema un document identificat per (newTitle, newAuthor)
      */
     public void updateTitleAndAuthorDocument(String oldTitle, String oldAuthor, String newTitle, String newAuthor) throws ExceptionNoDocument, ExceptionDocumentExists {
-        if (oldTitle != newTitle || oldAuthor != newAuthor) {
-            cd.updateTitleAndAuthorDocument(oldTitle, oldAuthor, newTitle, newAuthor);
-        }
-        // Si no hi ha hagut canvis, no cal actualitzar res
+        cd.updateTitleAndAuthorDocument(oldTitle, oldAuthor, newTitle, newAuthor);
     }
 
     /**
