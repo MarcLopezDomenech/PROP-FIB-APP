@@ -175,6 +175,24 @@ public class Document {
     }
 
     /**
+     * @brief Actualitza el títol del document
+     * @details S'assignara un nou títol al document
+     * @param newTitle El nou títol a ser assignat al document
+     */
+    public void setTitle(String newTitle) {
+        title = newTitle;
+    }
+
+    /**
+     * @brief Actualitza l'autor del document
+     * @details S'assignara un nou autor al document
+     * @param newAuthor El nou autor a ser assignat al document
+     */
+    public void setAuthor(String newAuthor) {
+        author = newAuthor;
+    }
+
+    /**
      * @brief Actualitza el contingut del document
      * @details S'assignara un nou contingut al document, que s'analitzara i modificara les dades del document en conseqüencia
      * @param newContent El nou contingut a ser assignat al document

@@ -178,15 +178,11 @@ public class DocumentsSet {
      */
     public void updateTitleAndAuthorDocument(String oldTitle, String oldAuthor, String newTitle, String newAuthor) throws ExceptionNoDocument, ExceptionDocumentExists {
         if (oldTitle != newTitle || oldAuthor != newAuthor) {       // Si no ha canviat ni el títol ni l'autor, no cal fer res
-            Document oldDocument = getDocument(oldTitle, oldAuthor);
-            Document newDocument = null;
-            try {
-                newDocument = new Document(newTitle, newAuthor, oldDocument.getContent(), oldDocument.getLanguage(), oldDocument.getOriginalFormat());
-            } catch (ExceptionInvalidLanguage | ExceptionInvalidFormat e) {
-                // És impossible que es donin aquestes excepcions
-            }
-            deleteDocument(oldTitle, oldAuthor);
-            registerDocument(newDocument);
+            Document document = getDocument(oldTitle, oldAuthor);
+            document.setTitle(newTitle);
+            document.setAuthor(newAuthor);
+            deleteDocument(oldTitle, oldAuthor);        // Esborrem el document del conjunt
+            registerDocument(document);                 // El tornem a afegir amb els nous títol i autor
         }
     }
 
