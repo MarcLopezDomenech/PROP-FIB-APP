@@ -192,6 +192,7 @@ public class ModifyDialog extends JDialog {
         result = new Pair<String, String>(null, null);
         buttonOK.setEnabled(false);
         cp = CtrlPresentation.getInstance();
+        err=false;
 
         tit = title;
         auth = author;
@@ -235,7 +236,7 @@ public class ModifyDialog extends JDialog {
         this.modify = reference;
         setLocationRelativeTo(reference);
         setVisible(true);
-        if (title == tit && auth == author) {
+        if ((title == tit && auth == author) || err) {
             return null;
         } else {
             result = new Pair<String, String>(tit, auth);
