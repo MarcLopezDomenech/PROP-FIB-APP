@@ -179,9 +179,9 @@ public class DocumentsSet {
     public void updateTitleAndAuthorDocument(String oldTitle, String oldAuthor, String newTitle, String newAuthor) throws ExceptionNoDocument, ExceptionDocumentExists {
         if (oldTitle != newTitle || oldAuthor != newAuthor) {       // Si no ha canviat ni el títol ni l'autor, no cal fer res
             Document document = getDocument(oldTitle, oldAuthor);
+            deleteDocument(oldTitle, oldAuthor);        // Esborrem el document del conjunt
             document.setTitle(newTitle);
             document.setAuthor(newAuthor);
-            deleteDocument(oldTitle, oldAuthor);        // Esborrem el document del conjunt
             registerDocument(document);                 // El tornem a afegir amb els nous títol i autor
         }
     }
