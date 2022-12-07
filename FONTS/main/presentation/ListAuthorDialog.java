@@ -11,6 +11,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.List;
 
+/**
+ * @author marc.lopez.domenech
+ * @class ListAuthorDialog
+ * @brief Diàleg per mostrar els documents d'un autor, mitjançant seleccionar l'autor pel seu prefix
+ */
 public class ListAuthorDialog extends JDialog {
     private CtrlPresentation cp;
     private JFrame autandtit;

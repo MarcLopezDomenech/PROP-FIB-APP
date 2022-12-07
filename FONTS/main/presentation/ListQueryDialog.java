@@ -9,6 +9,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * @author marc.lopez.domenech
+ * @class ListQueryDialog
+ * @brief Diàleg per mostrar els k documents segons la query inserida
+ */
+
 public class ListQueryDialog extends JDialog {
     private CtrlPresentation cp;
 

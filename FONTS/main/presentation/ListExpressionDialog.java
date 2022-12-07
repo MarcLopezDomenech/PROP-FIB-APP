@@ -27,6 +27,12 @@ public class ListExpressionDialog extends JDialog {
 
     private Pair<String, Boolean> result;
 
+    /**
+     * @author marc.lopez.domenech
+     * @class ListExpressionDialog
+     * @brief Diàleg per mostrar els documents que compleixen una expressió seleccionada al diàleg
+     */
+
     public ListExpressionDialog() {
         setContentPane(contentPane);
         setModal(true);
