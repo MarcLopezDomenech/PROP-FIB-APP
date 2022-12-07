@@ -69,20 +69,6 @@ public class DocumentsSet {
     public Map<String, Map<String, Document>> getDocuments() {return documents;}
 
     /**
-     * @brief Funció per obtenir el número de documents de la classe
-     * @details Aquesta funció és necessària per poder fer tests, tot i que no s'emprarà fora de les proves
-     * @return int amb el nombre de documents guardats a la classe
-     */
-    public int getnumDocuments() {return numDocuments;}
-
-    /**
-     * @brief Funció per obtenir el mapa de presència de la classe
-     * @details Aquesta funció és necessària per poder fer tests, tot i que no s'emprarà fora de les proves
-     * @return Map de (paraula,vegades que apareix) amb les paraules que apareixen als documents de la classe
-     */
-    public Map<String, Integer> getpresence() {return presence;}
-
-    /**
      * @brief Funció per assignar el conjunt de documents de la classe
      * @details Aquesta funció és necessària per poder fer tests, tot i que no s'emprarà fora de les proves
      * @param documents map de (autor, (títol, Document)) que es vol assignar a la classe
@@ -100,6 +86,20 @@ public class DocumentsSet {
             }
         }
     }
+
+    /**
+     * @brief Funció per obtenir el número de documents de la classe
+     * @details Aquesta funció és necessària per poder fer tests, tot i que no s'emprarà fora de les proves
+     * @return int amb el nombre de documents guardats a la classe
+     */
+    public int getnumDocuments() {return numDocuments;}
+
+    /**
+     * @brief Funció per obtenir el mapa de presència de la classe
+     * @details Aquesta funció és necessària per poder fer tests, tot i que no s'emprarà fora de les proves
+     * @return Map de (paraula,vegades que apareix) amb les paraules que apareixen als documents de la classe
+     */
+    public Map<String, Integer> getpresence() {return presence;}
 
     /**
      * @brief Operació per crear i registrar un nou document
@@ -486,7 +486,6 @@ public class DocumentsSet {
     public Set<String> getAllDocumentRepresentations() {
         Set<String> representations = new HashSet<String>();
         for (Map.Entry<String, Map<String, Document>> d : documents.entrySet()) {
-            String author = d.getKey();
             Map<String, Document> titlesDoc = d.getValue();
             for (Map.Entry<String, Document> d2 : titlesDoc.entrySet()) {
                 Document document = d2.getValue();
