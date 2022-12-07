@@ -36,6 +36,7 @@ public class MainView {
     private JMenuItem load;
     private JMenuItem create;
     private JMenuItem expressions;
+    private JMenuItem help;
     private JMenu menuList;
     private JMenuItem listByQuery;
     private JMenuItem listByExpression;
@@ -73,6 +74,9 @@ public class MainView {
         listByNothing.setVisible(false);        // Al principi no hi ha cap filtre aplicat
         menuList.add(listByNothing);
         menubar.add(menuList);
+
+        help = new JMenuItem("?");
+        menubar.add(help);
 
         frame.setJMenuBar(menubar);
 
@@ -143,6 +147,15 @@ public class MainView {
                 Object[][] newData = cp.listAllDocuments();
                 updateData(newData);
                 listByNothing.setVisible(false);
+            }
+        });
+
+
+        // Help
+        help.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cp.showHelp(frame, "Per fer funcionar aquesta pantalla, has de ...");
             }
         });
 
