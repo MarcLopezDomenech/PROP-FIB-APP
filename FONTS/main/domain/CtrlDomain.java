@@ -403,8 +403,8 @@ public class CtrlDomain {
      * @post El sistema queda buit, és a dir, deixa de tenir documents i expressions donades d'alta
      */
     public void resetSystem() {
-        ds.reset();
-        es.reset();
+        ds = ds.reset();
+        es = es.reset();
     }
 
 }

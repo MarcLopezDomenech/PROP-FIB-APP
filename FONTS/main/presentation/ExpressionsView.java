@@ -103,6 +103,11 @@ public class ExpressionsView {
     private JMenuItem help;
 
     /**
+     * \brief Opció del menú per fer reset del sistema
+     */
+    private JMenuItem reset;
+
+    /**
      * \brief Identificador de l'expressió seleccionada, null si no hi ha cap expressió seleccionada
      */
     private String selected;
@@ -131,6 +136,8 @@ public class ExpressionsView {
         menuBar.add(menuOptions);
         help = new JMenuItem("?");
         menuBar.add(help);
+        reset = new JMenuItem("Reset");
+        menuBar.add(reset);
         frame.setJMenuBar(menuBar);
 
 
@@ -162,6 +169,17 @@ public class ExpressionsView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cp.showHelp(frame, "Per fer funcionar aquesta pantalla, has de ...");
+            }
+        });
+
+        reset.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boolean confirm = cp.askConfirmation(frame, "ATENCIO! Estas a punt de esborrar tot el contingut del sistema. Aquesta accio es irreversible. Estas segur que vols fer reset?");
+                if (confirm) {
+                    cp.reset();
+                    listModel.clear();
+                }
             }
         });
 

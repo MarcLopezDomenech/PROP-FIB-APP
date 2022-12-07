@@ -99,6 +99,15 @@ public class CtrlPresentation {
         }
     }
 
+    /**
+     * @brief Operació per tal de resetejar el sistema
+     * @details Amb aquest mètode podem esborrar tota la informació del sistema, deixant-lo buit
+     * @post El sistema queda buit, és a dir, deixa de tenir documents i expressions donades d'alta
+     */
+    public void reset() {
+        cd.resetSystem();
+    }
+
 
     // Dialogs d'error, confirmació i ajuda
 

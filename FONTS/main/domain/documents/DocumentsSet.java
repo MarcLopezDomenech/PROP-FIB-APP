@@ -522,17 +522,19 @@ public class DocumentsSet {
     /**
      * @brief Mètode per resetejar el conjunt
      * @details En cas de voler esborrar tots els documents emmagatzemats, es pot emprar aquesta funció
+     * @return Es retorna el nou conjunt de documents, que ara és buit
      * @post El conjunt queda com si s'hagués encés l'aplicatiu per primera vegada
      */
-    public void reset() {
+    public DocumentsSet reset() {
         singletonObject = new DocumentsSet();
+        return singletonObject;
     }
 
     /**
      * @brief Operació per conseguir el document que te un títol i autor deteminat
      * @details Retorna un document identificat per l'author igual a uthor i títol igual a title
      * @param author author del document
-     * * @param title title del document
+     * @param title title del document
      * @post El document identificat per aquell títol i aquell author
      */
     private Document getDocument(String title, String author) throws ExceptionNoDocument {

@@ -37,6 +37,7 @@ public class MainView {
     private JMenuItem create;
     private JMenuItem expressions;
     private JMenuItem help;
+    private JMenuItem reset;
     private JMenu menuList;
     private JMenuItem listByQuery;
     private JMenuItem listByExpression;
@@ -77,6 +78,9 @@ public class MainView {
 
         help = new JMenuItem("?");
         menubar.add(help);
+
+        reset = new JMenuItem("Reset");
+        menubar.add(reset);
 
         frame.setJMenuBar(menubar);
 
@@ -156,6 +160,19 @@ public class MainView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cp.showHelp(frame, "Per fer funcionar aquesta pantalla, has de ...");
+            }
+        });
+
+
+        // Reset
+        reset.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boolean confirm = cp.askConfirmation(frame, "ATENCIO! Estas a punt de esborrar tot el contingut del sistema. Aquesta accio es irreversible. Estas segur que vols fer reset?");
+                if (confirm) {
+                    cp.reset();
+                    documentsModel.setRowCount(0);
+                }
             }
         });
 

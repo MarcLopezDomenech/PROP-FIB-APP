@@ -126,9 +126,11 @@ public class ExpressionsSet {
     /**
      * @brief Mètode per resetejar el conjunt
      * @details En cas de voler esborrar totes les expressions emmagatzemades, es pot emprar aquesta funció
+     * @return Es retorna el nou conjunt d'expressions, que ara és buit
      * @post El conjunt queda com si s'hagués encés l'aplicatiu per primera vegada
      */
-    public void reset() {
+    public ExpressionsSet reset() {
         singletonObject = new ExpressionsSet();
+        return singletonObject;
     }
 }
