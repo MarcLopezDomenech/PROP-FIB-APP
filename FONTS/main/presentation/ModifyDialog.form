@@ -103,28 +103,12 @@
                   <text value="Titol:"/>
                 </properties>
               </component>
-              <component id="49e5a" class="javax.swing.JLabel" binding="tit_doc">
-                <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="tit_doc_ini"/>
-                </properties>
-              </component>
               <component id="ba3c9" class="javax.swing.JLabel">
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="Autor:"/>
-                </properties>
-              </component>
-              <component id="fad22" class="javax.swing.JLabel" binding="aut_doc">
-                <constraints>
-                  <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="aut_doc_ini"/>
                 </properties>
               </component>
               <component id="78aa1" class="javax.swing.JRadioButton" binding="cat">
@@ -158,6 +142,22 @@
                 <properties>
                   <text value="Llengua:"/>
                 </properties>
+              </component>
+              <component id="53017" class="javax.swing.JTextField" binding="tit_field">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="b7536" class="javax.swing.JTextField" binding="aut_field">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
               </component>
             </children>
           </grid>
