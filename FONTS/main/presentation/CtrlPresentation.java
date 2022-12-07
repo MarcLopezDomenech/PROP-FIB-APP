@@ -326,11 +326,12 @@ public class CtrlPresentation {
      * @param reference Frame de referència per saber on posicionar el diàleg
      * @param title Títol del document a modificar
      * @param author Autor del document a modificar
+     * @return Un parell amb títol i autor en cas que s'hagi modificat algun d'aquests valors, null altrament
      * @post Es mostra el diàleg per modificar el document i quan s'acaba el cas d'ús es retorna a la vista on estava
      */
-    public void showModify(JFrame reference, String title, String author) {
+    public Pair<String, String> showModify(JFrame reference, String title, String author) {
         ModifyDialog md = new ModifyDialog();
-        md.initialize(reference, title, author);
+        return md.initialize(reference, title, author);
     }
 
     /**

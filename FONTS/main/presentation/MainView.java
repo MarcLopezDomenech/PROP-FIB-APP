@@ -3,6 +3,7 @@ package main.presentation;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import main.domain.util.Pair;
 import main.excepcions.ExceptionNoDocument;
 
 import javax.swing.*;
@@ -196,9 +197,16 @@ public class MainView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 modify.grabFocus();
-                String title = (String) documents.getValueAt(selectedIndex, 1);
-                String author = (String) documents.getValueAt(selectedIndex, 2);
-                cp.showModify(frame, title, author);
+                int indexModel = documents.convertRowIndexToModel(selectedIndex);
+                String title = (String) documentsModel.getValueAt(indexModel, 1);
+                String author = (String) documentsModel.getValueAt(indexModel, 2);
+                Pair<String, String> newIdentifier = cp.showModify(frame, title, author);
+                if (newIdentifier != null) {            // Vol dir que s'ha modificat títol i/o autor
+                    String newTitle = newIdentifier.getFirst();
+                    String newAuthor = newIdentifier.getSecond();
+                    documentsModel.setValueAt(newTitle, indexModel, 1);
+                    documentsModel.setValueAt(newAuthor, indexModel, 2);
+                }
             }
         });
 
@@ -299,6 +307,7 @@ public class MainView {
         tc.setCellRenderer(documents.getDefaultRenderer(Boolean.class));
 
         documents.getTableHeader().setReorderingAllowed(false);
+        documents.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         tc.setMinWidth(30);
         tc.setMaxWidth(30);
