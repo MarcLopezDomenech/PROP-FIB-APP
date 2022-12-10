@@ -20,8 +20,16 @@ public class Or extends Expression {
      * @return Una instància de Or que representa la disjunció lògica de les expressions left i right
      */
     public Or(Expression left, Expression right){
-        this.left = left;
-        this.right = right;
+        if (left.height <= right.height) {
+            this.left = left;
+            this.right = right;
+            this.height = right.height + 1;
+        }
+        else {
+            this.left = right;
+            this.right = left;
+            this.height = left.height + 1;
+        }
     }
 
     /**

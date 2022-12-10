@@ -18,6 +18,7 @@ public class Not extends Expression {
      */
     public Not(Expression inner) {
         this.inner = inner;
+        this.height = inner.height + 1;
     }
 
     /**
