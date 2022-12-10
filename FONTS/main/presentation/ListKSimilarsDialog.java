@@ -32,10 +32,6 @@ public class ListKSimilarsDialog extends JDialog {
      */
     private JButton buttonCancel;
     /**
-     * \brief Camp que indica el nombre de resultats que cal mostrar
-     */
-    private JSpinner k;
-    /**
      * \brief Etiqueta que mostra el títol del document del qual en volem llistar semblants
      */
     private JLabel titleDoc;
@@ -43,6 +39,10 @@ public class ListKSimilarsDialog extends JDialog {
      * \brief Etiqueta que mostra l'autor del document del qual en volem llistar semblants
      */
     private JLabel authorDoc;
+    /**
+     * \brief Camp que indica el nombre de resultats que cal mostrar
+     */
+    private JSpinner k;
     /**
      * \brief Botó que cal seleccionar quan es desitja fer servir l'estratègia tf-idf
      */
