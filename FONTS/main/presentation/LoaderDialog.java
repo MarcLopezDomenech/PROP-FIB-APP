@@ -75,7 +75,7 @@ public class LoaderDialog extends JDialog {
      * @return LoaderDialog
      * @brief Creadora per defecte del diàleg de càrrega de documents
      * @details S'inicialitza el diàleg i s'enllacen tots els listeners dels botons, així com dels camps a omplir
-     * de manera que només es desbloqueja el botó "Crear" quan estan totes les dades.
+     * de manera que només es desbloqueja el botó "Carregar" quan estan totes les dades.
      * Addicionalment, es prepara un JFileChooser amb la configuració adequada per a navegar per si es desitja així
      */
     public LoaderDialog() {

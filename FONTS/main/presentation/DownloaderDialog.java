@@ -24,20 +24,63 @@ import java.io.IOException;
  * @brief Diàleg per a exportar un document del sistema
  */
 public class DownloaderDialog extends JDialog {
+    /**
+     * \brief Panell amb el contingut, inicialitzat amb la GUI d'Intellij
+     */
     private JPanel contentPane;
+    /**
+     * \brief Botó "Descarregar"
+     */
     private JButton buttonOK;
+    /**
+     * \brief Botó "Tornar"
+     */
     private JButton buttonCancel;
+    /**
+     * \brief Camp on s'ha d'introduir la ruta del directori a on cal exportar el document
+     */
     private JTextField path;
+    /**
+     * \brief Botó que ensenya un altre diàleg que permet navegar per indicar el directori a on es vol descarregar el document
+     */
     private JButton browse;
+    /**
+     * \brief Etiqueta que mostra el títol del document que s'ha seleccionat per exportar
+     */
     private JLabel titleDoc;
+    /**
+     * \brief Etiqueta que mostra l'autor del document que s'ha seleccionat per exportar
+     */
     private JLabel authorDoc;
+    /**
+     * \brief Botó a seleccionar quan es vol exportar el document en format de text pla
+     */
     private JRadioButton ftxt;
+    /**
+     * \brief Botó a seleccionar quan es vol exportar el document en format XML
+     */
     private JRadioButton fxml;
+    /**
+     * \brief Botó a seleccionar quan es vol exportar el document en format propietari
+     */
     private JRadioButton ffp;
+    /**
+     * \brief Camp que cal omplir amb el nom que es desitja donar al fitxer que es crearà en la descàrrega
+     */
     private JTextField nom;
-    private JFileChooser fc;
+    /**
+     * \brief Booleà usat quan cal retornar resultats
+     * \invariant True si i només si s'ha premut el botó "Descarregar"
+     */
     private boolean okPressed = false;
 
+    /**
+     * @return DownloaderDialog
+     * @brief Creadora per defecte del diàleg de descàrrega de documents
+     * @details S'inicialitza el diàleg i s'enllacen tots els listeners dels botons, així com dels camps a omplir
+     * de manera que només es desbloqueja el botó "Descarregar" quan estan totes les dades.
+     * Addicionalment, es prepara un JFileChooser amb la configuració adequada per a navegar per si es desitja així
+     */
     public DownloaderDialog() {
         setTitle("Descarregar un document");
         setResizable(false);
@@ -50,7 +93,7 @@ public class DownloaderDialog extends JDialog {
         UIManager.put("FileChooser.lookInLabelText", "Buscar en");
         UIManager.put("FileChooser.folderNameLabelText", "Nom de la carpeta");
         UIManager.put("FileChooser.filesOfTypeLabelText", "Tipus");
-        fc = new JFileChooser(".");
+        JFileChooser fc = new JFileChooser(".");
         fc.setApproveButtonText("Descarregar");
         fc.setDialogTitle("Descarregar document");
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -65,30 +108,16 @@ public class DownloaderDialog extends JDialog {
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onOK();
+                okPressed = true;
+                dispose();
             }
         });
 
         buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onCancel();
+                dispose();
             }
         });
-
-        // call onCancel() when cross is clicked
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                onCancel();
-            }
-        });
-
-        // call onCancel() on ESCAPE
-        contentPane.registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
         ButtonGroup format = new ButtonGroup();
         format.add(this.ftxt);
@@ -109,11 +138,9 @@ public class DownloaderDialog extends JDialog {
                     else if (fc.getFileFilter().equals(xml)) fxml.setSelected(true);
                     else ffp.setSelected(true);
                 }
-
-                enableButtonIfCorrect();
             }
         });
-        path.getDocument().addDocumentListener(new DocumentListener() {
+        DocumentListener dl = new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 enableButtonIfCorrect();
@@ -128,43 +155,31 @@ public class DownloaderDialog extends JDialog {
             public void changedUpdate(DocumentEvent e) {
                 enableButtonIfCorrect();
             }
-        });
-        nom.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                enableButtonIfCorrect();
-            }
+        };
 
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                enableButtonIfCorrect();
-            }
+        path.getDocument().addDocumentListener(dl);
+        nom.getDocument().addDocumentListener(dl);
 
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                enableButtonIfCorrect();
-            }
-        });
-        this.ftxt.addChangeListener(new ChangeListener() {
+        ChangeListener cl = new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
                 enableButtonIfCorrect();
             }
-        });
-        this.fxml.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                enableButtonIfCorrect();
-            }
-        });
-        this.ffp.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                enableButtonIfCorrect();
-            }
-        });
+        };
+
+        this.ftxt.addChangeListener(cl);
+        this.fxml.addChangeListener(cl);
+        this.ffp.addChangeListener(cl);
     }
 
+    /**
+     * @param reference Frame sobre el que es col·locarà i centrarà el diàleg
+     * @param title Títol del document que es vol exportar
+     * @param author Autor del document que es vol exportar
+     * @return Una String que conté la ruta de l'arxiu a crear al descarregar el document seleccionat
+     * @brief Mètode per a mostrar el diàleg inicialitzat amb el títol i l'autor donats, i que retorna la ruta a on cal
+     * descarregar el document
+     */
     public String initialize(JFrame reference, String title, String author) {
         pack();
         setLocationRelativeTo(reference);
@@ -182,17 +197,12 @@ public class DownloaderDialog extends JDialog {
         return path.getText().strip() + nom.getText().strip() + extension;
     }
 
+    /**
+     * @brief Mètode que bloqueja o desbloqueja el botó "Descarregar" en funció de si s'han introduït totes les dades necessàries
+     * @post Si falten camps per omplir es bloqueja el botó "Descarregar", i si no, es desbloqueja
+     */
     private void enableButtonIfCorrect() {
         buttonOK.setEnabled(!path.getText().isEmpty() && (ftxt.isSelected() || fxml.isSelected() || ffp.isSelected()) && !nom.getText().isEmpty());
-    }
-
-    private void onOK() {
-        okPressed = true;
-        dispose();
-    }
-
-    private void onCancel() {
-        dispose();
     }
 
     {
