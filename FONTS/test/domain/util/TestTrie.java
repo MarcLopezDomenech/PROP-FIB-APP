@@ -17,13 +17,14 @@ public class TestTrie {
     @Test
     public void testInsertRemoveBoolean() {
         Trie t = new Trie();
-        assertTrue(t.insert("marc"));
-        assertFalse(t.insert("marc"));
+        t.insertOnce("marc");
+        t.insertOnce("marc");
 
         assertTrue(t.contains("marc"));
 
-        assertTrue(t.remove("marc"));
-        assertFalse(t.remove("marc"));
+        assertTrue(t.removeOnce("marc"));
+        assertTrue(t.removeOnce("marc"));
+        assertFalse(t.removeOnce("marc"));
 
         assertFalse(t.contains("marc"));
     }
@@ -31,9 +32,9 @@ public class TestTrie {
     @Test
     public void testPrefixes() {
         Trie t = new Trie();
-        assertTrue(t.insert("marc"));
-        assertTrue(t.insert("marta"));
-        assertTrue(t.insert("marcel"));
+        t.insertOnce("marc");
+        t.insertOnce("marta");
+        t.insertOnce("marcel");
 
         assertTrue(t.contains("marc"));
         assertTrue(t.contains("marta"));
@@ -47,7 +48,7 @@ public class TestTrie {
         assertEquals(result,t.wordsGivenPrefix(""));
 
         result.remove("marc");
-        assertTrue(t.remove("marc"));
+        assertTrue(t.removeOnce("marc"));
         assertEquals(result,t.wordsGivenPrefix("mar"));
 
         result.remove("marta");

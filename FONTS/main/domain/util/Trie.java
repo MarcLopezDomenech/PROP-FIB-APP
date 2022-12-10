@@ -14,16 +14,16 @@ public class Trie {
      * @brief Nodes de l'arbre, cadascun representa un determinat prefix
      * @author marc.valls.camps
      */
-    private class Node {
+    private static class Node {
         /**
          * \brief Nodes descendents, representant cadascun una lletra extenent el prefix del Node pare
          */
         public HashMap<Character,Node> descendants;
 
         /**
-         * \brief Booleà que guarda si el prefix representat per aquest Node és una paraula
+         * \brief Enter que guarda quantes vegades el prefix representat per aquest Node s'ha afegit a l'estructura
          */
-        public boolean isEndWord;
+        public int timesWord;
 
         /**
          * @brief Constructora per defecte
@@ -31,7 +31,7 @@ public class Trie {
          */
         public Node() {
             descendants = new HashMap<>();
-            isEndWord = false;
+            timesWord = 0;
         }
     }
 
@@ -69,27 +69,24 @@ public class Trie {
 
     /**
      * @brief Inserció d'una paraula a l'arbre
-     * @param word Paraula a inserir
-     * @return Cert ssi no existia la paraula en l'arbre i s'ha pogut inserir correctament
+     * @param word Paraula a incrementar-ne el nombre d'aparicions en l'estructura en una unitat
      */
-    public boolean insert(String word) {
+    public void insertOnce(String word) {
         Node n = traverseToNode(word, true);
-        if (n.isEndWord) return false;
-
-        n.isEndWord = true;
-        return true;
+        ++n.timesWord;
     }
 
     /**
-     * @brief Esborrat d'una paraula a l'arbre
-     * @param word Paraula a esborrar
-     * @return Cert ssi existia la paraula en l'arbre i s'ha pogut esborrar correctament
+     * @brief Esborrat d'una instància d'una paraula a l'arbre
+     * @param word Paraula a decrementar-ne el nombre d'aparicions en l'estructura
+     * @return Cert ssi existia la paraula en l'arbre i s'ha pogut decrementar el nombre de vegades
+     * que és continguda en l'arbre
      */
-    public boolean remove(String word) {
+    public boolean removeOnce(String word) {
         Node n = traverseToNode(word, false);
-        if (!n.isEndWord) return false;
+        if (n == null || n.timesWord == 0) return false;
 
-        n.isEndWord = false;
+        --n.timesWord;
         return true;
     }
 
@@ -100,7 +97,7 @@ public class Trie {
      */
     public boolean contains(String word) {
         Node n = traverseToNode(word, false);
-        return n.isEndWord;
+        return n != null && n.timesWord > 0;
     }
 
     /**
@@ -123,7 +120,7 @@ public class Trie {
         ArrayList<String> result = new ArrayList<>();
         if (n == null) return result;
 
-        if (n.isEndWord) result.add(prefix);
+        if (n.timesWord > 0) result.add(prefix);
         for (java.util.Map.Entry<Character, Node> desc : n.descendants.entrySet()) {
             result.addAll(recursiveCollect(prefix + desc.getKey(), desc.getValue()));
         }

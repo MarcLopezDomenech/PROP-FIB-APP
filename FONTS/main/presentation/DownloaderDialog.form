@@ -6,8 +6,8 @@
       <xy x="48" y="54" width="450" height="340"/>
     </constraints>
     <properties>
-      <minimumSize width="450" height="230"/>
-      <preferredSize width="450" height="230"/>
+      <minimumSize width="400" height="300"/>
+      <preferredSize width="400" height="300"/>
     </properties>
     <border type="none"/>
     <children>
@@ -29,8 +29,8 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <label value="Cancel.lar"/>
-              <text value="Cancel.lar"/>
+              <label value="Tornar"/>
+              <text value="Tornar"/>
             </properties>
           </component>
           <component id="e7465" class="javax.swing.JButton" binding="buttonOK">
