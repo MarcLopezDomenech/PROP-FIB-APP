@@ -179,7 +179,7 @@
                   <text value="Propietari"/>
                 </properties>
               </component>
-              <component id="fdbfe" class="javax.swing.JTextField" binding="nom">
+              <component id="fdbfe" class="javax.swing.JTextField" binding="name">
                 <constraints>
                   <grid row="3" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>

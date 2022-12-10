@@ -37,14 +37,6 @@ public class DownloaderDialog extends JDialog {
      */
     private JButton buttonCancel;
     /**
-     * \brief Camp on s'ha d'introduir la ruta del directori a on cal exportar el document
-     */
-    private JTextField path;
-    /**
-     * \brief Botó que ensenya un altre diàleg que permet navegar per indicar el directori a on es vol descarregar el document
-     */
-    private JButton browse;
-    /**
      * \brief Etiqueta que mostra el títol del document que s'ha seleccionat per exportar
      */
     private JLabel titleDoc;
@@ -52,6 +44,14 @@ public class DownloaderDialog extends JDialog {
      * \brief Etiqueta que mostra l'autor del document que s'ha seleccionat per exportar
      */
     private JLabel authorDoc;
+    /**
+     * \brief Camp on s'ha d'introduir la ruta del directori a on cal exportar el document
+     */
+    private JTextField path;
+    /**
+     * \brief Botó que ensenya un altre diàleg que permet navegar per indicar el directori a on es vol descarregar el document
+     */
+    private JButton browse;
     /**
      * \brief Botó a seleccionar quan es vol exportar el document en format de text pla
      */
@@ -67,7 +67,7 @@ public class DownloaderDialog extends JDialog {
     /**
      * \brief Camp que cal omplir amb el nom que es desitja donar al fitxer que es crearà en la descàrrega
      */
-    private JTextField nom;
+    private JTextField name;
     /**
      * \brief Booleà usat quan cal retornar resultats
      * \invariant True si i només si s'ha premut el botó "Descarregar"
@@ -158,7 +158,7 @@ public class DownloaderDialog extends JDialog {
         };
 
         path.getDocument().addDocumentListener(dl);
-        nom.getDocument().addDocumentListener(dl);
+        name.getDocument().addDocumentListener(dl);
 
         ChangeListener cl = new ChangeListener() {
             @Override
@@ -194,7 +194,7 @@ public class DownloaderDialog extends JDialog {
         else if (fxml.isSelected()) extension = ".xml";
         else extension = ".fp";
 
-        return path.getText().strip() + nom.getText().strip() + extension;
+        return path.getText().strip() + name.getText().strip() + extension;
     }
 
     /**
@@ -202,7 +202,7 @@ public class DownloaderDialog extends JDialog {
      * @post Si falten camps per omplir es bloqueja el botó "Descarregar", i si no, es desbloqueja
      */
     private void enableButtonIfCorrect() {
-        buttonOK.setEnabled(!path.getText().isEmpty() && (ftxt.isSelected() || fxml.isSelected() || ffp.isSelected()) && !nom.getText().isEmpty());
+        buttonOK.setEnabled(!path.getText().isEmpty() && (ftxt.isSelected() || fxml.isSelected() || ffp.isSelected()) && !name.getText().isEmpty());
     }
 
     /**
@@ -286,8 +286,8 @@ public class DownloaderDialog extends JDialog {
         ffp = new JRadioButton();
         ffp.setText("Propietari");
         panel4.add(ffp, new com.intellij.uiDesigner.core.GridConstraints(4, 2, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        nom = new JTextField();
-        panel4.add(nom, new com.intellij.uiDesigner.core.GridConstraints(3, 0, 1, 4, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        name = new JTextField();
+        panel4.add(name, new com.intellij.uiDesigner.core.GridConstraints(3, 0, 1, 4, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
     }
 
     /**
