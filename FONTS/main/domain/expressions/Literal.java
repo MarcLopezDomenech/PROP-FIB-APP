@@ -16,6 +16,7 @@ public class Literal extends Expression {
      */
     public Literal(String value){
         this.value = value;
+        this.height = 0;
     }
 
     /**

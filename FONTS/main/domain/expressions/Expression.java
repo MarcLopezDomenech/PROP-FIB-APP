@@ -9,6 +9,12 @@ import main.excepcions.ExceptionInvalidExpression;
  */
 public abstract class Expression {
     /**
+     * \brief Enter que representa quants nivells de subexpressions conté l'expressió
+     * \details Expressions més complexes tindran un valor més alt
+     */
+    protected int height;
+
+    /**
      * @brief Comprova si tanquen les cometes ""
      * @details Donat que el caràcter d'obrir i tancar cometes és el mateix, evidentment les cometes no són multinivell
      * @param expression String a analitzar
