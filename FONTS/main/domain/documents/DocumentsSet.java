@@ -29,7 +29,7 @@ public class DocumentsSet {
     /**
      * \brief Arbre trie dels autors donats d'alta al sistema
      */
-    //private Trie arb_aut;
+    private Trie arb_aut;
     /**
      * \brief Nombre de documents que estan donats d'alta al sistema
      * \invariant un document es única i està identificar per un títul i un autor
@@ -52,7 +52,7 @@ public class DocumentsSet {
         numDocuments = 0;
         documents = new HashMap<>();
         presence = new HashMap<>();
-        //arb_aut= new Trie();
+        arb_aut= new Trie();
     }
 
     /**
@@ -92,11 +92,9 @@ public class DocumentsSet {
                 ++numDocuments;
             }
         }
-        /*
         for (Map.Entry<String, Map<String, Document>> d : documents.entrySet()) {
-            arb_aut.insert(d.getKey());
+            arb_aut.insertOnce(d.getKey());
         }
-         */
     }
 
     /**
@@ -156,6 +154,10 @@ public class DocumentsSet {
 
         // Hem eliminat un document del sistema
         --numDocuments;
+
+        //Eliminem un dels doc del autor
+        arb_aut.removeOnce(author);
+
         // Només queda actualitzar el vector de presència
         Set<String> oldWords = doc.getRelevantWords();
         removePresence(oldWords);
@@ -412,6 +414,7 @@ public class DocumentsSet {
      */
     public List<String> listAuthorsByPrefix(String prefix) {
         ArrayList<String> result = new ArrayList<String>();
+        /*
         int len = prefix.length();
         for (Map.Entry<String, Map<String,Document>> entry : documents.entrySet()) {
             String nom = entry.getKey();
@@ -419,6 +422,8 @@ public class DocumentsSet {
             // i a més si es compleix que realment el nom començar pel prefix donat
             if (nom.length() >= len && prefix.equals(nom.substring(0, len))) result.add(nom);
         }
+        */
+        result = arb_aut.wordsGivenPrefix(prefix);
         return result;
     }
 
@@ -606,7 +611,7 @@ public class DocumentsSet {
         ++numDocuments;
 
         //Afegim l'autor
-        //arb_aut.insert(author);
+        arb_aut.insertOnce(author);
 
         // Només queda actualitzar el vector de presència
         Set<String> newWords = newDoc.getRelevantWords();
