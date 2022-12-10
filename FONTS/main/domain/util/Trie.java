@@ -14,7 +14,7 @@ public class Trie {
      * @brief Nodes de l'arbre, cadascun representa un determinat prefix
      * @author marc.valls.camps
      */
-    private class Node {
+    private static class Node {
         /**
          * \brief Nodes descendents, representant cadascun una lletra extenent el prefix del Node pare
          */
