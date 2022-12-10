@@ -19,17 +19,50 @@ import java.awt.event.*;
  * @brief Diàleg per a llistar els k documents més semblants a un de seleccionat a la vista principal
  */
 public class ListKSimilarsDialog extends JDialog {
-
-    private JButton buttonCancel;
-    private JButton buttonOK;
-    private JSpinner k;
-    private JLabel titleDoc;
-    private JLabel authorDoc;
+    /**
+     * \brief Panell amb el contingut, inicialitzat amb la GUI d'Intellij
+     */
     private JPanel contentPane;
+    /**
+     * \brief Botó "Llistar"
+     */
+    private JButton buttonOK;
+    /**
+     * \brief Botó "Tornar"
+     */
+    private JButton buttonCancel;
+    /**
+     * \brief Camp que indica el nombre de resultats que cal mostrar
+     */
+    private JSpinner k;
+    /**
+     * \brief Etiqueta que mostra el títol del document del qual en volem llistar semblants
+     */
+    private JLabel titleDoc;
+    /**
+     * \brief Etiqueta que mostra l'autor del document del qual en volem llistar semblants
+     */
+    private JLabel authorDoc;
+    /**
+     * \brief Botó que cal seleccionar quan es desitja fer servir l'estratègia tf-idf
+     */
     private JRadioButton tfIdfRadioButton;
+    /**
+     * \brief Botó que cal seleccionar quan es desitja fer servir l'estratègia tf-boolean
+     */
     private JRadioButton tfBooleanRadioButton;
+    /**
+     * \brief Booleà usat quan cal retornar resultats
+     * \invariant True si i només si s'ha premut el botó "Llistar"
+     */
     private boolean okPressed = false;
 
+    /**
+     * @return ListKSimilarsDialog
+     * @brief Creadora per defecte del diàleg de llistar k semblants
+     * @details S'inicialitza el diàleg i s'enllacen tots els listeners dels botons, així com dels camps a omplir
+     * de manera que només es desbloqueja el botó "Llistar" quan estan totes les dades
+     */
     ListKSimilarsDialog() {
         setTitle("Llistar similars");
         setResizable(false);
@@ -37,7 +70,7 @@ public class ListKSimilarsDialog extends JDialog {
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
 
-        SpinnerModel sm = new SpinnerNumberModel(1, 1, 1000, 1);
+        SpinnerModel sm = new SpinnerNumberModel(1, 1, 1000000, 1);
         k.setModel(sm);
 
         ButtonGroup btg = new ButtonGroup();
@@ -46,46 +79,37 @@ public class ListKSimilarsDialog extends JDialog {
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onOK();
+                okPressed = true;
+                dispose();
             }
         });
 
         buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onCancel();
+                dispose();
             }
         });
 
-        // call onCancel() when cross is clicked
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                onCancel();
-            }
-        });
-
-        // call onCancel() on ESCAPE
-        contentPane.registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-
-        tfIdfRadioButton.addActionListener(new ActionListener() {
+        ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 enableButtonIfCorrect();
             }
-        });
+        };
 
-        tfBooleanRadioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                enableButtonIfCorrect();
-            }
-        });
+        tfIdfRadioButton.addActionListener(al);
+        tfBooleanRadioButton.addActionListener(al);
     }
 
+    /**
+     * @param reference Frame sobre el que es col·locarà i centrarà el diàleg
+     * @param title Títol del document del qual se'n vol llistar semblants
+     * @param author Autor del document del qual se'n vol llistar semblants
+     * @return Un parell on la primera component és el nombre de resultats que ha de tenir la consulta k,
+     * i la segona component consisteix en una String que indica l'estratègia desitjada
+     * @brief Mètode per a mostrar el diàleg inicialitzat amb el títol i l'autor donats, i que retorna les
+     * dades necessàries per fer la consulta i actualitzar la vista principal
+     */
     public Pair<Integer, String> initialize(JFrame reference, String title, String author) {
         pack();
         setLocationRelativeTo(reference);
@@ -99,20 +123,14 @@ public class ListKSimilarsDialog extends JDialog {
         return new Pair<Integer, String>(Integer.parseInt(k.getValue().toString()), strategy);
     }
 
+    /**
+     * @brief Mètode que bloqueja o desbloqueja el botó "Llistar" en funció de si s'han introduït totes les dades necessàries
+     * @post Si falten camps per omplir es bloqueja el botó "Llistar", i si no, es desbloqueja
+     */
     private void enableButtonIfCorrect() {
         buttonOK.setEnabled(tfBooleanRadioButton.isSelected() || tfIdfRadioButton.isSelected());
     }
 
-    private void onOK() {
-        okPressed = true;
-        dispose();
-    }
-
-    private void onCancel() {
-        dispose();
-    }
-
-    {
 // GUI initializer generated by IntelliJ IDEA GUI Designer
 // >>> IMPORTANT!! <<<
 // DO NOT EDIT OR ADD ANY CODE HERE!
