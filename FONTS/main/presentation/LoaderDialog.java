@@ -24,6 +24,7 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
 
 /**
@@ -32,17 +33,51 @@ import java.util.Locale;
  * @brief Diàleg per a carregar un document extern al sistema
  */
 public class LoaderDialog extends JDialog {
+    /**
+     * \brief Panell amb el contingut, inicialitzat amb la GUI d'Intellij
+     */
     private JPanel contentPane;
+    /**
+     * \brief Botó "Carregar"
+     */
     private JButton buttonOK;
+    /**
+     * \brief Botó "Tornar"
+     */
     private JButton buttonCancel;
+    /**
+     * \brief Camp on s'han d'introduir separades per punt i coma les rutes als fitxers a carregar
+     */
     private JTextField path;
+    /**
+     * \brief Botó que ensenya un altre diàleg que permet navegar per trobar els fitxers a carregar
+     */
     private JButton browse;
+    /**
+     * \brief Botó a seleccionar quan el contingut dels documents a carregar seran tots en català
+     */
     private JRadioButton cat;
+    /**
+     * \brief Botó a seleccionar quan el contingut dels documents a carregar seran tots en espanyol
+     */
     private JRadioButton esp;
+    /**
+     * \brief Botó a seleccionar quan el contingut dels documents a carregar seran tots en anglès
+     */
     private JRadioButton eng;
-    private JFileChooser fc;
+    /**
+     * \brief Booleà usat quan cal retornar resultats
+     * \invariant True si i només si s'ha premut el botó "Carregar"
+     */
     private boolean okPressed = false;
 
+    /**
+     * @return LoaderDialog
+     * @brief Creadora per defecte del diàleg de càrrega de documents
+     * @details S'inicialitza el diàleg i s'enllacen tots els listeners dels botons, així com dels camps a omplir
+     * de manera que només es desbloqueja el botó "Crear" quan estan totes les dades.
+     * Addicionalment, es prepara un JFileChooser amb la configuració adequada per a navegar per si es desitja així
+     */
     public LoaderDialog() {
         setTitle("Carregar documents");
         setResizable(false);
@@ -55,9 +90,8 @@ public class LoaderDialog extends JDialog {
         UIManager.put("FileChooser.directoryOpenButtonText", "Obrir");
         UIManager.put("FileChooser.fileNameLabelText", "Nom del document:");
         UIManager.put("FileChooser.filesOfTypeLabelText", "Tipus");
-        // TODO: traduir tots els tooltips, es poden customitzar icones!
 
-        fc = new JFileChooser(".");
+        JFileChooser fc = new JFileChooser(".");
         fc.setApproveButtonText("Seleccionar");
         fc.setDialogTitle("Seleccionar documents");
         fc.setDialogType(JFileChooser.OPEN_DIALOG);
@@ -72,30 +106,16 @@ public class LoaderDialog extends JDialog {
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onOK();
+                okPressed = true;
+                dispose();
             }
         });
 
         buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onCancel();
+                dispose();
             }
         });
-
-        // call onCancel() when cross is clicked
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                onCancel();
-            }
-        });
-
-        // call onCancel() on ESCAPE
-        contentPane.registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
         ButtonGroup languages = new ButtonGroup();
         languages.add(cat);
@@ -110,11 +130,9 @@ public class LoaderDialog extends JDialog {
 
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     File[] files = fc.getSelectedFiles();
-                    for (File f : files) path.setText(path.getText() + f.getAbsolutePath() + "; ");
-                    path.setText(path.getText().substring(0, path.getText().length() - 2));
+                    for (File f : files) path.setText(path.getText() + f.getAbsolutePath() + ";");
+                    path.setText(path.getText().substring(0, path.getText().length() - 1));
                 }
-
-                enableButtonIfCorrect();
             }
         });
         path.getDocument().addDocumentListener(new DocumentListener() {
@@ -133,26 +151,25 @@ public class LoaderDialog extends JDialog {
                 enableButtonIfCorrect();
             }
         });
-        cat.addChangeListener(new ChangeListener() {
+
+        ChangeListener cl = new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
                 enableButtonIfCorrect();
             }
-        });
-        esp.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                enableButtonIfCorrect();
-            }
-        });
-        eng.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                enableButtonIfCorrect();
-            }
-        });
+        };
+
+        cat.addChangeListener(cl);
+        esp.addChangeListener(cl);
+        eng.addChangeListener(cl);
     }
 
+    /**
+     * @param reference Frame sobre el que es col·locarà i centrarà el diàleg
+     * @return Un parell on la primera component és la llengua en la qual estan els documents a carregar,
+     * i la segona component consisteix en l'array de les rutes als fitxers a carregar
+     * @brief Mètode per a mostrar el diàleg que retorna les dades dels fitxers a carregar al sistema
+     */
     public Pair<String, String[]> initialize(JFrame reference) {
         pack();
         setLocationRelativeTo(reference);
@@ -166,24 +183,17 @@ public class LoaderDialog extends JDialog {
         else if (esp.isSelected()) res.setFirst("es");
         else res.setFirst("en");
 
-        ArrayList<String> paths = new ArrayList<>();
-        for (String p : path.getText().split(";[ ]*")) paths.add(p);
-        res.setSecond(paths.toArray(new String[0]));
+        res.setSecond(path.getText().split(";[ ]*"));
 
         return res;
     }
 
+    /**
+     * @brief Mètode que bloqueja o desbloqueja el botó "Carregar" en funció de si s'han introduït totes les dades necessàries
+     * @post Si falten camps per omplir es bloqueja el botó "Carregar", i si no, es desbloqueja
+     */
     private void enableButtonIfCorrect() {
-        buttonOK.setEnabled(!path.getText().equals("") && (cat.isSelected() || esp.isSelected() || eng.isSelected()));
-    }
-
-    private void onOK() {
-        okPressed = true;
-        dispose();
-    }
-
-    private void onCancel() {
-        dispose();
+        buttonOK.setEnabled(!path.getText().isEmpty() && (cat.isSelected() || esp.isSelected() || eng.isSelected()));
     }
 
     {
