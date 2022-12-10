@@ -4,8 +4,6 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import main.domain.util.Pair;
-import main.excepcions.ExceptionDocumentExists;
-import main.excepcions.ExceptionInvalidLanguage;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -14,8 +12,6 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.*;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 /**
  * @author marc.valls.camps
@@ -23,16 +19,50 @@ import java.beans.PropertyChangeListener;
  * @brief Diàleg per a crear un nou document al sistema, en blanc
  */
 public class NewDocumentDialog extends JDialog {
+    /**
+     * \brief Panell amb el contingut, inicialitzat amb la GUI d'Intellij
+     */
     private JPanel contentPane;
+    /**
+     * \brief Botó "Crear"
+     */
     private JButton buttonOK;
+    /**
+     * \brief Botó "Tornar"
+     */
     private JButton buttonCancel;
+    /**
+     * \brief Camp per al títol del nou document
+     */
     private JTextField titleDoc;
+    /**
+     * \brief Camp per a l'autor del nou document
+     */
     private JTextField authorDoc;
+    /**
+     * \brief Botó a seleccionar quan el contingut del nou document serà en català
+     */
     private JRadioButton cat;
+    /**
+     * \brief Botó a seleccionar quan el contingut del nou document serà en espanyol
+     */
     private JRadioButton esp;
+    /**
+     * \brief Botó a seleccionar quan el contingut del nou document serà en anglès
+     */
     private JRadioButton eng;
+    /**
+     * \brief Booleà usat quan cal retornar resultats
+     * \invariant True si i només si s'ha premut el botó "Crear"
+     */
     private boolean okPressed = false;
 
+    /**
+     * @return NewDocumentDialog
+     * @brief Creadora per defecte del diàleg de creació de nous documents
+     * @details S'inicialitza el diàleg i s'enllacen tots els listeners dels botons, així com dels camps a omplir
+     * de manera que només es desbloqueja el botó "Crear" quan estan totes les dades
+     */
     public NewDocumentDialog() {
         setContentPane(contentPane);
         setTitle("Nou document");
@@ -41,35 +71,16 @@ public class NewDocumentDialog extends JDialog {
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onOK();
+                okPressed = true;
+                dispose();
             }
         });
 
         buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onCancel();
+                dispose();
             }
         });
-
-        // call onCancel() when cross is clicked
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                onCancel();
-            }
-        });
-
-        // call onCancel() on ESCAPE
-        contentPane.registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-
-        ButtonGroup bgroup = new ButtonGroup();
-        bgroup.add(cat);
-        bgroup.add(esp);
-        bgroup.add(eng);
 
         DocumentListener dl = new DocumentListener() {
             @Override
@@ -90,26 +101,30 @@ public class NewDocumentDialog extends JDialog {
 
         titleDoc.getDocument().addDocumentListener(dl);
         authorDoc.getDocument().addDocumentListener(dl);
-        cat.addChangeListener(new ChangeListener() {
+
+        ButtonGroup bgroup = new ButtonGroup();
+        bgroup.add(cat);
+        bgroup.add(esp);
+        bgroup.add(eng);
+
+        ChangeListener cl = new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
                 enableButtonIfCorrect();
             }
-        });
-        esp.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                enableButtonIfCorrect();
-            }
-        });
-        eng.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                enableButtonIfCorrect();
-            }
-        });
+        };
+
+        cat.addChangeListener(cl);
+        esp.addChangeListener(cl);
+        eng.addChangeListener(cl);
     }
 
+    /**
+     * @param reference Frame sobre el que es col·locarà i centrarà el diàleg
+     * @brief Mètode per a mostrar el diàleg que retorna les dades del nou document a crear
+     * @return Un parell on la primera component és un altre parell amb el títol i l'autor del nou document, i
+     * la segona component consisteix en l'idioma en que serà el contingut
+     */
     public Pair<Pair<String, String>, String> initialize(JFrame reference) {
         pack();
         setLocationRelativeTo(reference);
@@ -127,17 +142,12 @@ public class NewDocumentDialog extends JDialog {
         return res;
     }
 
+    /**
+     * @brief Mètode que bloqueja o desbloqueja el botó "Crear" en funció de si s'han introduït totes les dades necessàries
+     * @post Si falten camps per omplir es bloqueja el botó "Crear", i si no, es desbloqueja
+     */
     private void enableButtonIfCorrect() {
         buttonOK.setEnabled(!titleDoc.getText().isEmpty() && !authorDoc.getText().isEmpty() && (cat.isSelected() || esp.isSelected() || eng.isSelected()));
-    }
-
-    private void onOK() {
-        okPressed = true;
-        dispose();
-    }
-
-    private void onCancel() {
-        dispose();
     }
 
     {
