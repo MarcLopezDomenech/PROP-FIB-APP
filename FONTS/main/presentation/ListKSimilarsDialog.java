@@ -46,11 +46,11 @@ public class ListKSimilarsDialog extends JDialog {
     /**
      * \brief Botó que cal seleccionar quan es desitja fer servir l'estratègia tf-idf
      */
-    private JRadioButton tfIdfRadioButton;
+    private JRadioButton tfIdf;
     /**
      * \brief Botó que cal seleccionar quan es desitja fer servir l'estratègia tf-boolean
      */
-    private JRadioButton tfBooleanRadioButton;
+    private JRadioButton tfBoolean;
     /**
      * \brief Booleà usat quan cal retornar resultats
      * \invariant True si i només si s'ha premut el botó "Llistar"
@@ -74,8 +74,8 @@ public class ListKSimilarsDialog extends JDialog {
         k.setModel(sm);
 
         ButtonGroup btg = new ButtonGroup();
-        btg.add(tfIdfRadioButton);
-        btg.add(tfBooleanRadioButton);
+        btg.add(tfIdf);
+        btg.add(tfBoolean);
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -97,8 +97,8 @@ public class ListKSimilarsDialog extends JDialog {
             }
         };
 
-        tfIdfRadioButton.addActionListener(al);
-        tfBooleanRadioButton.addActionListener(al);
+        tfIdf.addActionListener(al);
+        tfBoolean.addActionListener(al);
     }
 
     /**
@@ -119,7 +119,7 @@ public class ListKSimilarsDialog extends JDialog {
 
         if (!okPressed) return null;
 
-        String strategy = tfIdfRadioButton.isSelected() ? "tf-idf" : "tf-boolean";
+        String strategy = tfIdf.isSelected() ? "tf-idf" : "tf-boolean";
         return new Pair<Integer, String>(Integer.parseInt(k.getValue().toString()), strategy);
     }
 
@@ -128,7 +128,7 @@ public class ListKSimilarsDialog extends JDialog {
      * @post Si falten camps per omplir es bloqueja el botó "Llistar", i si no, es desbloqueja
      */
     private void enableButtonIfCorrect() {
-        buttonOK.setEnabled(tfBooleanRadioButton.isSelected() || tfIdfRadioButton.isSelected());
+        buttonOK.setEnabled(tfBoolean.isSelected() || tfIdf.isSelected());
     }
 
     /**
@@ -188,12 +188,12 @@ public class ListKSimilarsDialog extends JDialog {
         panel3.add(authorDoc, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         k = new JSpinner();
         panel3.add(k, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        tfIdfRadioButton = new JRadioButton();
-        tfIdfRadioButton.setText("tf-idf");
-        panel3.add(tfIdfRadioButton, new com.intellij.uiDesigner.core.GridConstraints(3, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        tfBooleanRadioButton = new JRadioButton();
-        tfBooleanRadioButton.setText("tf-boolean");
-        panel3.add(tfBooleanRadioButton, new com.intellij.uiDesigner.core.GridConstraints(3, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        tfIdf = new JRadioButton();
+        tfIdf.setText("tf-idf");
+        panel3.add(tfIdf, new com.intellij.uiDesigner.core.GridConstraints(3, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        tfBoolean = new JRadioButton();
+        tfBoolean.setText("tf-boolean");
+        panel3.add(tfBoolean, new com.intellij.uiDesigner.core.GridConstraints(3, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel4 = new JPanel();
         panel4.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(4, 1, new Insets(0, 0, 0, 0), -1, -1));
         gbc = new GridBagConstraints();
