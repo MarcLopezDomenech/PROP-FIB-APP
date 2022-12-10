@@ -38,14 +38,14 @@ public class Trie {
     /**
      * \brief El Node arrel de l'estructura
      */
-    private Node t;
+    private final Node root;
 
     /**
      * @brief Constructora per defecte
      * @return Una instància de Trie amb només el Node arrel, representant el prefix buit
      */
     public Trie(){
-        t = new Node();
+        root = new Node();
     }
 
     /**
@@ -55,8 +55,8 @@ public class Trie {
      * @return El Node a buscar si existia. Si no existia i el paràmetre create és cert aleshores s'ha creat i es retorna el nou Node,
      * si era fals aleshores es retorna null.
      */
-    private Node traverseToNode(String word, Boolean create) {
-        Node n = t;
+    private Node traverseToNode(String word, boolean create) {
+        Node n = root;
         for (int i = 0; i < word.length(); ++i) {
             if (!n.descendants.containsKey(word.charAt(i))) {
                 if (create) n.descendants.put(word.charAt(i), new Node());
