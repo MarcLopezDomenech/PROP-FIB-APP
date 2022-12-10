@@ -3,6 +3,7 @@ package main.domain.documents;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+import main.domain.util.Trie;
 import main.domain.expressions.Expression;      // Canviar per test.domain.expressions.Expression per fer tests
 import main.domain.documents.Document;          // Canviar per test.domain.documents.Document per fer tests
 import main.domain.util.Pair;
@@ -26,6 +27,10 @@ public class DocumentsSet {
     private int numDocuments;
 
     /**
+     * \brief Arbre trie dels autors donats d'alta al sistema
+     */
+    //private Trie arb_aut;
+    /**
      * \brief Nombre de documents que estan donats d'alta al sistema
      * \invariant un document es única i està identificar per un títul i un autor
     */
@@ -47,6 +52,7 @@ public class DocumentsSet {
         numDocuments = 0;
         documents = new HashMap<>();
         presence = new HashMap<>();
+        //arb_aut= new Trie();
     }
 
     /**
@@ -79,12 +85,18 @@ public class DocumentsSet {
         // A més, hem de contar el nombre de documents i posar les relevant words de cada documents a presence
         numDocuments = 0;
         presence = new HashMap<>();
+
         for (Map<String, Document> titlesAuthor : documents.values()) {
             for (Document d : titlesAuthor.values()) {
                 addPresence(d.getRelevantWords());
                 ++numDocuments;
             }
         }
+        /*
+        for (Map.Entry<String, Map<String, Document>> d : documents.entrySet()) {
+            arb_aut.insert(d.getKey());
+        }
+         */
     }
 
     /**
@@ -144,7 +156,6 @@ public class DocumentsSet {
 
         // Hem eliminat un document del sistema
         --numDocuments;
-
         // Només queda actualitzar el vector de presència
         Set<String> oldWords = doc.getRelevantWords();
         removePresence(oldWords);
@@ -342,10 +353,20 @@ public class DocumentsSet {
                     Double value;
                     if ("tf-idf".equals(strategy)) value = original.compare_tf_idf(doc, numDocuments, presence);
                     else value = original.compare_tf_boolean(doc);
-                    ordre.add(new Pair<>(new Object[]{favourite, tit, aut}, value));
+                    
+                    ordre=adding(ordre,new Object[]{favourite, tit, aut},value,k);
+                    //ordre.add(new Pair<>(new Object[]{favourite, tit, aut}, value));
                 }
             }
         }
+        List<Object[]> result = new ArrayList<Object[]>();
+        Iterator<Pair<Object[], Double>> iterator = ordre.listIterator();
+        while(iterator.hasNext()){
+            result.add(0,iterator.next().getFirst());
+        }
+        return result;
+
+         /*
         // Ordenem la llista en funció dels valors
         Collections.sort(ordre, new ValueComparator());
         List<Object[]> result = new ArrayList<Object[]>();
@@ -357,6 +378,8 @@ public class DocumentsSet {
             ++i;
         }
         return result;
+        */
+
     }
 
     /**
@@ -420,11 +443,23 @@ public class DocumentsSet {
                 boolean favourite = doc.isFavourite();
                 // Obtenim el valor i l'afegim a la llista
                 Double value = doc.queryRelevance(query, numDocuments, presence);
-                ordre.add(new Pair<>(new Object[]{favourite, title, author}, value));
+
+
+                ordre=adding(ordre,new Object[]{favourite, title, author},value,k);
+
+                //ordre.add(new Pair<>(new Object[]{favourite, title, author}, value));
             }
         }
+        List<Object[]> result = new ArrayList<Object[]>();
+        Iterator<Pair<Object[], Double>> iterator = ordre.listIterator();
+        while(iterator.hasNext()){
+            result.add(0,iterator.next().getFirst());
+        }
+        return result;
+        /*
         // Ordenem la llista en funció dels valors
-        Collections.sort(ordre, new ValueComparator());
+        //Collections.sort(ordre, new ValueComparator());
+
         List<Object[]> result = new ArrayList<Object[]>();
         Iterator<Pair<Object[], Double>> iterator = ordre.listIterator();
         int i = 0;
@@ -434,6 +469,7 @@ public class DocumentsSet {
             ++i;
         }
         return result;
+         */
     }
 
     /**
@@ -569,6 +605,9 @@ public class DocumentsSet {
         // Ara tenim un document més
         ++numDocuments;
 
+        //Afegim l'autor
+        //arb_aut.insert(author);
+
         // Només queda actualitzar el vector de presència
         Set<String> newWords = newDoc.getRelevantWords();
         addPresence(newWords);
@@ -611,6 +650,60 @@ public class DocumentsSet {
      * @brief Classe que permet comparar Pair<Pair<String, String>, Double>
      * @author pau.duran.manzano
      */
+    private List<Pair<Object[], Double>> adding(List<Pair<Object[], Double>> ordre, Object[] ext,Double value,int k){
+        int tam=ordre.size();
+        if(tam==0){
+            //System.out.println("Zero");
+            ordre.add(0,new Pair<>(ext, value));
+            /*
+            System.out.println(0);
+            System.out.println(ext[1]);
+            System.out.println(value);
+             */
+
+            return ordre;
+        }
+        int ini=0;
+        int fin=tam-1;
+        boolean added=true;
+        while(added){
+            //System.out.println("orden");
+            if(ini>fin){
+                ordre.add(ini,new Pair<>(ext, value));
+                added=false;
+                /*
+                System.out.println(ini);
+                System.out.println(ext[1]);
+                System.out.println(value);
+                 */
+            }
+            else {
+                int med = (ini + fin) / 2;
+                if (ordre.get(med).getSecond() == value) {
+                    ordre.add(med, new Pair<>(ext, value));
+                    added=false;
+                    /*
+                    System.out.println(med);
+                    System.out.println(ext[1]);
+                    System.out.println(value);
+                     */
+                } else if (ordre.get(med).getSecond() > value) {
+                    fin = med - 1;
+                } else {
+                    ini = med + 1;
+                }
+            }
+        }
+        if(tam>=k){
+            /*
+            System.out.println("Sublist");
+            System.out.println(ext[1]);
+            System.out.println(value);
+             */
+            ordre=ordre.subList(1,k+1);
+        }
+        return ordre;
+    }
     private class ValueComparator implements Comparator<Pair<Object[], Double>> {
         /**
          * @brief Operació per comparar en funció del segon valor (el second) d'un pair
