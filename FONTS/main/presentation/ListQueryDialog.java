@@ -75,8 +75,7 @@ public class ListQueryDialog extends JDialog {
     private void onOK() {
         // add your code here
         query = query_text.getText();
-        /*
-            String str = number_text.getText();
+        /* String str = number_text.getText();
             boolean err = true;
             try {
                 k = Integer.parseInt(str);
