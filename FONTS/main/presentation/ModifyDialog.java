@@ -171,7 +171,9 @@ public class ModifyDialog extends JDialog {
     }
 
     private void onExport() {
-        onOK();
+        if(!buttonOK.isEnabled()||cp.askConfirmation(modify,"Vols guardar i exportar?")){
+            onOK();
+        }
         if (!err) {
             cp.showDownloader(modify, tit, auth);
         }
