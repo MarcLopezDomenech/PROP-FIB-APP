@@ -43,6 +43,20 @@ public class Document {
      */
     public Document(){}
 
+     /**
+     * @brief Constructora per copia
+     */
+    public Document(Document other){
+        title = other.getTitle();
+        author = other.getAuthor();
+        fav = other.isFavourite();
+        originalFormat = other.getOriginalFormat();
+        language = other.getLanguage();
+        content = other.getContent();
+        internalDoc = new InternalDocument(other.getInteralDocRepresentation());
+    }
+
+
     /**
      * @brief Constructora de document
      * @param author Autor del document creat
@@ -173,6 +187,10 @@ public class Document {
      */
     public Set<String> getRelevantWords() {
         return internalDoc.getRelevantKeyWords();
+    }
+
+    public String getInteralDocRepresentation() {
+        return internalDoc.writeBackUp();
     }
 
     /**

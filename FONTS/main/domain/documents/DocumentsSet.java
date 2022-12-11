@@ -160,6 +160,7 @@ public class DocumentsSet {
 
         // Només queda actualitzar el vector de presència
         Set<String> oldWords = doc.getRelevantWords();
+        //System.out.println("oldWords:" + oldWords);
         removePresence(oldWords);
     }
 
@@ -190,15 +191,17 @@ public class DocumentsSet {
      * @throws ExceptionDocumentExists En cas que ja existeixi al sistema un document identificat per (newTitle, newAuthor)
      */
     public void updateTitleAndAuthorDocument(String oldTitle, String oldAuthor, String newTitle, String newAuthor) throws ExceptionNoDocument, ExceptionDocumentExists {
-        if (oldTitle != newTitle || oldAuthor != newAuthor) {       // Si no ha canviat ni el títol ni l'autor, no cal fer res
+        //System.out.println("Update title and author");
+        if (!(oldTitle.equals(newTitle)) || !(oldAuthor.equals(newAuthor))) {       // Si no ha canviat ni el títol ni l'autor, no cal fer res
             // Si no podrem afegir el document perquè ja existeix
             if (existsDocument(newTitle, newAuthor)) throw new ExceptionDocumentExists(newTitle, newAuthor);
             // Si podem, realitzem el canvi
-            Document document = getDocument(oldTitle, oldAuthor);
-            document.setTitle(newTitle);
-            document.setAuthor(newAuthor);
-            registerDocument(document);                 // El tornem a afegir amb els nous títol i autor
+            Document newDocument = new Document(getDocument(oldTitle, oldAuthor));
+            newDocument.setTitle(newTitle);
+            newDocument.setAuthor(newAuthor);
+            registerDocument(newDocument);                 // El tornem a afegir amb els nous títol i autor
             deleteDocument(oldTitle, oldAuthor);        // Esborrem el document del conjunt
+            //PotencialProblema
         }
     }
 
@@ -227,10 +230,12 @@ public class DocumentsSet {
      * @throws ExceptionNoDocument quan no existeix un document identificat per (title, author)
      */
     public void updateContentDocument(String title, String author, String newContent) throws ExceptionNoDocument {
+        //System.out.println("Update content");
         Document doc = getDocument(title, author);
 
         // Esborrem les relevants words de l'antic contingut de presence
         Set<String> oldWords = doc.getRelevantWords();
+        //System.out.println("oldWords:" + oldWords);
         removePresence(oldWords);
 
         // Modifiquem el contingut del document
@@ -238,6 +243,7 @@ public class DocumentsSet {
 
         // Posem les relevants words del nou contingut a presence
         Set<String> newWords = doc.getRelevantWords();
+        //System.out.println("newWords:" + newWords);
         addPresence(newWords);
     }
 
@@ -618,6 +624,7 @@ public class DocumentsSet {
 
         // Només queda actualitzar el vector de presència
         Set<String> newWords = newDoc.getRelevantWords();
+        //System.out.println("newWords:" + newWords);
         addPresence(newWords);
     }
 
@@ -629,6 +636,7 @@ public class DocumentsSet {
      * @post L'atribut presence queda correctament actualitzat amb la nova presència de paraules
      */
     private void addPresence(Set<String> newPresence) {
+        //System.out.println("Procedim a add:" + newPresence);
         for (String newp : newPresence) {
             Integer num = presence.get(newp);
             if (num == null) presence.put(newp, 1);
@@ -645,6 +653,8 @@ public class DocumentsSet {
      * @post L'atribut presence queda acorrectament actualitzat amb el decrement de la presència de les paraules donades
      */
     private void removePresence(Set<String> oldPresence) {
+        //System.out.println("procedim a remove:" + oldPresence);
+
         for (String oldp : oldPresence) {
             Integer num = presence.get(oldp);
             if (num == 1) presence.remove(oldp);
