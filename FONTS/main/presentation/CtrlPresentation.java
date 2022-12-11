@@ -85,21 +85,6 @@ public class CtrlPresentation {
     }
 
     /**
-     * @brief Mètode per restaurar el sistema a partir d'una còpia de seguretat
-     * @details Aquesta funció permet restaurar l'estat del sistema a partir d'un back up prèviament realitzat del sistema
-     * @param reference Frame de referència per saber on posicionar el diàleg en cas d'error
-     * @post El sistema es restaura a partir de la còpia de seguretat que es disposa, sempre que sigui vàlida
-     */
-    public void restoreSystem(JFrame reference) {
-        try {
-            cd.restoreSystem();
-        } catch(FileNotFoundException | ExceptionDocumentExists |ExceptionInvalidExpression | ExceptionExpressionExists e) {
-            // No podem restaurar el sistema
-            showError(reference, "Aquesta copia de seguretat no es valida.");
-        }
-    }
-
-    /**
      * @brief Operació per tal de resetejar el sistema
      * @details Amb aquest mètode podem esborrar tota la informació del sistema, deixant-lo buit
      * @post El sistema queda buit, és a dir, deixa de tenir documents i expressions donades d'alta
