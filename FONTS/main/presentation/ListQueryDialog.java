@@ -16,7 +16,7 @@ import java.awt.event.*;
  */
 
 public class ListQueryDialog extends JDialog {
-    private static CtrlPresentation cp;
+    private CtrlPresentation cp;
 
     private JFrame quer;
     private JPanel contentPane;
