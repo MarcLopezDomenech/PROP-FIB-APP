@@ -100,7 +100,7 @@ public class Document {
         author = data[0];
         representation = data[1];
 
-        //Obtenir el contingut i el llenguatge
+        //Obtenir el contingut
         data = representation.split("@content@");
         content = data[0];
         representation = data[1];
@@ -108,20 +108,13 @@ public class Document {
         //Obtenir el contingut i el llenguatge
         data = representation.split("@language@");
         language = data[0];
+        representation = data[1];
 
-        if (data[1].equals("yes")) {
-            fav = true;
-            internalDoc = new InternalDocument(content, language);
-        } if (data[1].equals("no")) {
-            fav = false;
-            internalDoc = new InternalDocument(content, language);
-        } else {
-            //Aqui recuperem de forma eficient docuemnts guardats en format propietari
-            data = representation.split("@internal@");
-            fav = data[0].equals("yes");
+        //Aqui recuperem de forma eficient docuemnts guardats en format propietari
+        data = representation.split("@internal@");
+        fav = data[0].equals("yes");
 
-            internalDoc = new InternalDocument(data[1]);
-        }
+        internalDoc = new InternalDocument(data[1]);
     }
 
     /**
@@ -206,9 +199,7 @@ public class Document {
      * @brief Actualitza valor de favorit del document
      * @param favourite El nou valor a ser assignat a la variable que ens diu si el document esta a preferits o no
      */
-    public void setFavourite(boolean favourite) {
-        fav = favourite;
-    }
+    public void setFavourite(boolean favourite) {fav = favourite; }
 
     /**
      * @brief Actualitza l'idioma del document
