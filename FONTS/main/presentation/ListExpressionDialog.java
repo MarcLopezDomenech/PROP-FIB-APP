@@ -104,7 +104,10 @@ public class ListExpressionDialog extends JDialog {
         list1.setModel(listModel1);
         Set<String> expressions = cp.getAllExpressions();
         if(expressions.isEmpty()){
-            cp.showError(exp,"No has donat d'alta cap expressió. \n Per fer-ho, dirigeix-te a Menú --> Gestió expressions");
+            cp.showError(exp,"<html>" +
+                "No has donat d'alta cap expressió.<br><br>" +
+                "Per fer-ho, dirigeix-te a Menú --> Gestió expressions<br>" +
+                "</html>" );
             return result;
         }
         for (String ex : expressions) listModel1.addElement(ex);
