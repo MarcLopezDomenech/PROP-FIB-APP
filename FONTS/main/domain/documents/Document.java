@@ -61,7 +61,7 @@ public class Document {
         this.language = language;
         if (!format.equals("txt") && !format.equals("xml")) throw new ExceptionInvalidFormat(format);
         this.originalFormat = format;
-        this.internalDoc = new InternalDocument(content, language);
+        this.internalDoc = new InternalDocument(content + title, language);
     }
 
     /**
@@ -79,13 +79,13 @@ public class Document {
         this.content = content;
         this.language = language;
         this.originalFormat = null;
-        this.internalDoc = new InternalDocument(content, language);
+        this.internalDoc = new InternalDocument(content + title, language);
     }
 
     /**
-     * @brief Constructora del document utilitzada al fer un back-up de l'aplicació
+     * @brief Constructora del document utilitzada al fer un back-up de l'aplicació i al carregar documents nous
      * @details String backUpInformation conte les etiquetes author, title, format i content,
-     * que identifiquen cada un dels atributs del document. 
+     * que identifiquen cada un dels atributs del document. A més també pot tenir language i internalDocument
      * @pre El format de representation es correcte
      * @param representation String que serà interpretat com les dades a recuperar del document 
      */
@@ -110,11 +110,19 @@ public class Document {
         language = data[0];
         representation = data[1];
 
-        //Aqui recuperem de forma eficient docuemnts guardats en format propietari
-        data = representation.split("@internal@");
-        fav = data[0].equals("yes");
+        if (data[1].equals("yes")) {
+            fav = true;
+            internalDoc = new InternalDocument(content + title, language);
+        } if (data[1].equals("no")) {
+            fav = false;
+            internalDoc = new InternalDocument(content + title, language);
+        } else {
+            //Aqui recuperem de forma eficient docuemnts guardats en format propietari
+            data = representation.split("@internal@");
+            fav = data[0].equals("yes");
 
-        internalDoc = new InternalDocument(data[1]);
+            internalDoc = new InternalDocument(data[1]);
+        }
     }
 
     /**
@@ -174,6 +182,7 @@ public class Document {
      */
     public void setTitle(String newTitle) {
         title = newTitle;
+        internalDoc.newContent(content + newTitle, language);
     }
 
     /**
@@ -192,7 +201,7 @@ public class Document {
      */
     public void setContent(String newContent) {
         content = newContent;
-        internalDoc.newContent(newContent, language);
+        internalDoc.newContent(newContent + title, language);
     }
 
     /**
