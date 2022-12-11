@@ -36,10 +36,10 @@ public class InternalDocument {
      * @brief Constructora per recuperar informacio en format propietari de InternalDocument
      */
     public InternalDocument(String representation){
-        String[] pairs = representation.split("]");
+        String[] pairs = representation.split("~]");
         relevantWords = new HashMap<>();
         for (String pair : pairs) {
-            String[] key_value = pair.split("\\[");
+            String[] key_value = pair.split("\\[~");
             if (key_value.length == 1) {
                 String[] aux = key_value[0].split("\\n+");
                 totalWords = Integer.parseInt( aux[0]);
@@ -144,7 +144,7 @@ public class InternalDocument {
     public String writeBackUp () {
         String representation = "";
         for(String key : relevantWords.keySet()) {
-            representation += key + "[" + relevantWords.get(key).toString() + "]";
+            representation += key + "[~" + relevantWords.get(key).toString() + "~]";
         }
         representation += totalWords.toString();
         return representation;
