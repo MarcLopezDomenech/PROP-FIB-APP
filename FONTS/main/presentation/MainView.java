@@ -348,7 +348,8 @@ public class MainView {
 
         TableColumn tc = documents.getColumnModel().getColumn(0);
         tc.setCellEditor(documents.getDefaultEditor(Boolean.class));
-        tc.setCellRenderer(new FavBooleanCellRenderer());
+        //tc.setCellRenderer(new FavBooleanCellRenderer());
+        tc.setCellRenderer(documents.getDefaultRenderer(Boolean.class));
 
         documents.getTableHeader().setReorderingAllowed(false);
         documents.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
