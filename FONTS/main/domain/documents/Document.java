@@ -61,7 +61,7 @@ public class Document {
         this.language = language;
         if (!format.equals("txt") && !format.equals("xml")) throw new ExceptionInvalidFormat(format);
         this.originalFormat = format;
-        this.internalDoc = new InternalDocument(content + title, language);
+        this.internalDoc = new InternalDocument(content +" "+ title, language);
     }
 
     /**
@@ -79,7 +79,7 @@ public class Document {
         this.content = content;
         this.language = language;
         this.originalFormat = null;
-        this.internalDoc = new InternalDocument(content + title, language);
+        this.internalDoc = new InternalDocument(content +" "+ title, language);
     }
 
     /**
@@ -182,7 +182,7 @@ public class Document {
      */
     public void setTitle(String newTitle) {
         title = newTitle;
-        internalDoc.newContent(content + newTitle, language);
+        internalDoc.newContent(content + " "+ newTitle, language);
     }
 
     /**
@@ -201,7 +201,7 @@ public class Document {
      */
     public void setContent(String newContent) {
         content = newContent;
-        internalDoc.newContent(newContent + title, language);
+        internalDoc.newContent(newContent + " "+ title, language);
     }
 
     /**
@@ -218,7 +218,7 @@ public class Document {
     public void setLanguage(String newLanguage) throws ExceptionInvalidLanguage {
         if (!"ca".equals(newLanguage) && !"en".equals(newLanguage) && !"es".equals(newLanguage)) throw new ExceptionInvalidLanguage(newLanguage);
         language = newLanguage;
-        internalDoc.newContent(content, newLanguage);
+        internalDoc.newContent(content + " "+ title, newLanguage);
     }
 
     /**
