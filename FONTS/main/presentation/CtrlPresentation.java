@@ -678,14 +678,4 @@ public class CtrlPresentation {
     public void exportDocument(String title, String author, String path) throws ExceptionNoDocument, ExceptionInvalidFormat, IOException {
         cd.exportDocument(title, author, path);
     }
-
-
-
-    // ToDo: Treure això d'aquí
-    public static void main(String[] args) {
-        CtrlPresentation cp = CtrlPresentation.getInstance();
-        cp.initiateApp();
-        cp.showDocuments(new Point(600, 300), new Dimension(500, 500));
-    }
-
 }
