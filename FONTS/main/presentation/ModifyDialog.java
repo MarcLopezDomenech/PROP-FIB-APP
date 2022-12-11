@@ -235,11 +235,11 @@ public class ModifyDialog extends JDialog {
         setLocationRelativeTo(reference);
         setVisible(true);
         if ((Objects.equals(title, tit) && Objects.equals(auth, author)) || err) {
-            return null;
+            result = new Pair<String, String>(null, null);
         } else {
             result = new Pair<String, String>(tit, auth);
-            return result;
         }
+        return result;
     }
 
     {
