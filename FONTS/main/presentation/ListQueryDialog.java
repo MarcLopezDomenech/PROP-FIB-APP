@@ -123,6 +123,8 @@ public class ListQueryDialog extends JDialog {
     }
 
     public Pair<String, Integer> initialize(JFrame reference) {
+        setTitle("Llistar per query");
+
         SpinnerModel sm = new SpinnerNumberModel(1, 1, 1000, 1);
         spinner1.setModel(sm);
 

@@ -183,6 +183,7 @@ public class ModifyDialog extends JDialog {
     }
 
     public Pair<String, String> initialize(JFrame reference, String title, String author) {
+        setTitle("Modificar document");
         result = new Pair<String, String>(null, null);
         buttonOK.setEnabled(false);
         cp = CtrlPresentation.getInstance();
@@ -226,7 +227,6 @@ public class ModifyDialog extends JDialog {
             buttonOK.setEnabled(false);
         }
         pack();
-        //setSize( getMaximumSize());
         this.modify = reference;
         setLocationRelativeTo(reference);
         setVisible(true);

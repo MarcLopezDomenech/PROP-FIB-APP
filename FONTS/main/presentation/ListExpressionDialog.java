@@ -94,6 +94,8 @@ public class ListExpressionDialog extends JDialog {
     }
 
     public Pair<String, Boolean> initialize(JFrame reference) {
+        setTitle("Llistar per expressio");
+
         new Pair<String, Boolean>(null, null);
         cp = CtrlPresentation.getInstance();
         enableButtonIfCorrect();

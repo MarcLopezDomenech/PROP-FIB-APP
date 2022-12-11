@@ -117,6 +117,8 @@ public class ListAuthorDialog extends JDialog {
     }
 
     public String initialize(JFrame reference) {
+        setTitle("Llistar per autor");
+
         mod = false;
         result = null;
         cp = CtrlPresentation.getInstance();
