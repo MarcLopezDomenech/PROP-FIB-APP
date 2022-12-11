@@ -92,7 +92,7 @@ public class ConfirmDialog extends JDialog {
         setModal(true);
         setTitle("Confirmar");
         pack();
-        getRootPane().setDefaultButton(buttonSi);
+        getRootPane().setDefaultButton(buttonNo);
         setLocationRelativeTo(reference);
         setVisible(true);
         return confirmation;
