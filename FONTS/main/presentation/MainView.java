@@ -317,10 +317,10 @@ public class MainView {
         public FavCheckBox() {
             setHorizontalAlignment(CENTER);
             try {
-                fav = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResource("./images/red.png"))));
+                fav = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResource("images/red.png"))));
                 fav = new ImageIcon(fav.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH));
 
-                nofav = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResource("./images/white.png"))));
+                nofav = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResource("images/white.png"))));
                 nofav = new ImageIcon(nofav.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH));
             } catch (IOException e) {
                 cp.showInternalError(frame);
