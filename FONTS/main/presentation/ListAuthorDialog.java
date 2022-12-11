@@ -18,7 +18,6 @@ import java.util.List;
  */
 public class ListAuthorDialog extends JDialog {
     private CtrlPresentation cp;
-    private JFrame autandtit;
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
@@ -27,7 +26,7 @@ public class ListAuthorDialog extends JDialog {
     private DefaultListModel listModel1;
 
     private String result;
-    private boolean mod;
+    private Boolean mod;
 
     public ListAuthorDialog() {
         setContentPane(contentPane);
@@ -128,7 +127,6 @@ public class ListAuthorDialog extends JDialog {
         for (String aut : authors) listModel1.addElement(aut);
 
         pack();
-        this.autandtit = reference;
         setLocationRelativeTo(reference);
         setVisible(true);
         return result;

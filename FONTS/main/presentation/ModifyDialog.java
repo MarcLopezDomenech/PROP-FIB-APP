@@ -25,7 +25,6 @@ public class ModifyDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JLabel aut_doc;
     private JTextArea textcont;
     private JButton exportarButton;
     private JRadioButton cat;
@@ -134,9 +133,14 @@ public class ModifyDialog extends JDialog {
 
     private void onOK() {
         err = false;
-        if (tit != tit_field.getText() || auth != aut_field.getText()) {
             try {
-                cp.updateTitleAndAuthorDocument(tit, auth, tit_field.getText(), aut_field.getText());
+                if (!Objects.equals(tit, tit_field.getText()) || !Objects.equals(auth, aut_field.getText())) {
+                    cp.updateTitleAndAuthorDocument(tit, auth, tit_field.getText(), aut_field.getText());
+                }
+
+                String content_fin = textcont.getText();
+                cp.updateContentDocument(tit_field.getText(), aut_field.getText(), content_fin);
+                cp.updateLanguageDocument(tit_field.getText(), aut_field.getText(), lang);
             } catch (ExceptionNoDocument e) {
                 cp.showError(modify, "No existeix el document");
                 err = true;
@@ -144,16 +148,7 @@ public class ModifyDialog extends JDialog {
                 cp.showError(modify, "Ja existeix un document amb aquest títol i autor");
                 err = true;
             }
-        }
-        if (!err) {
-            try {
-                String content_fin = textcont.getText();
-                cp.updateContentDocument(tit_field.getText(), aut_field.getText(), content_fin);
-                cp.updateLanguageDocument(tit_field.getText(), aut_field.getText(), lang);
-            } catch (ExceptionNoDocument e) {
-                cp.getInstance().showError(modify, "No existeix el document 2");
-                err = true;
-            } catch (ExceptionInvalidLanguage e) {
+            catch (ExceptionInvalidLanguage e) {
                 cp.getInstance().showError(modify, "No existeix la llengua");
                 err = true;
             }
@@ -162,8 +157,6 @@ public class ModifyDialog extends JDialog {
                 tit = tit_field.getText();
                 auth = aut_field.getText();
             }
-        }
-
     }
 
     private void onCancel() {
@@ -200,7 +193,7 @@ public class ModifyDialog extends JDialog {
         try {
             cont = cp.getContentDocument(tit, auth);
         } catch (ExceptionNoDocument e) {
-            cp.getInstance().showError(modify, "No existeix el document");
+            cp.showError(modify, "No existeix el document");
         }
         tit_field.setText(tit);
         aut_field.setText(auth);
@@ -212,7 +205,7 @@ public class ModifyDialog extends JDialog {
         try {
             lan = cp.getLanguageDocument(title, author);
         } catch (ExceptionNoDocument e) {
-            cp.getInstance().showError(modify, "No existeix el document");
+            cp.showError(modify, "No existeix el document");
         }
         if (lan.equals("ca")) {
             cat.setSelected(true);
@@ -225,7 +218,7 @@ public class ModifyDialog extends JDialog {
             an.setSelected(true);
             lang = "en";
         } else {
-            cp.getInstance().showError(modify, "Document sense llengua");
+            cp.showError(modify, "Document sense llengua");
         }
         if (!(cat.isSelected() || es.isSelected() || an.isSelected())) {
             exportarButton.setEnabled(false);
@@ -236,7 +229,7 @@ public class ModifyDialog extends JDialog {
         this.modify = reference;
         setLocationRelativeTo(reference);
         setVisible(true);
-        if ((title == tit && auth == author) || err) {
+        if ((Objects.equals(title, tit) && Objects.equals(auth, author)) || err) {
             return null;
         } else {
             result = new Pair<String, String>(tit, auth);
