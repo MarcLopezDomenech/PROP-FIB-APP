@@ -171,7 +171,9 @@ public class ExpressionsView {
                 cp.showHelp(frame,
                         "<html>" +
                                 "Aquesta és la pantalla de gestió de documents.<br><br>" +
-                                "Un cop seleccionada una expressió disposes de diferents opcions en els botons superiors." +
+                                "Pots crear expressions en l'espai de text superior, i confirmant-ho amb el botó d'Afegir<br><br>" +
+                                "A més, pots consultar les expressions que has donat d'alta en la llista que et presentem<br><br>" +
+                                "Si en selecciones una, disposes de diferents opcions en els botons de la part superior dreta." +
                                 "</html>");
             }
         });
