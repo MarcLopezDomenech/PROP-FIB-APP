@@ -133,30 +133,29 @@ public class ModifyDialog extends JDialog {
 
     private void onOK() {
         err = false;
-            try {
-                if (!Objects.equals(tit, tit_field.getText()) || !Objects.equals(auth, aut_field.getText())) {
-                    cp.updateTitleAndAuthorDocument(tit, auth, tit_field.getText(), aut_field.getText());
-                }
+        try {
+            if (!Objects.equals(tit, tit_field.getText()) || !Objects.equals(auth, aut_field.getText())) {
+                cp.updateTitleAndAuthorDocument(tit, auth, tit_field.getText(), aut_field.getText());
+            }
 
-                String content_fin = textcont.getText();
-                cp.updateContentDocument(tit_field.getText(), aut_field.getText(), content_fin);
-                cp.updateLanguageDocument(tit_field.getText(), aut_field.getText(), lang);
-            } catch (ExceptionNoDocument e) {
-                cp.showError(modify, "No existeix el document");
-                err = true;
-            } catch (ExceptionDocumentExists e) {
-                cp.showError(modify, "Ja existeix un document amb aquest títol i autor");
-                err = true;
-            }
-            catch (ExceptionInvalidLanguage e) {
-                cp.getInstance().showError(modify, "No existeix la llengua");
-                err = true;
-            }
-            if (!err) {
-                buttonOK.setEnabled(false);
-                tit = tit_field.getText();
-                auth = aut_field.getText();
-            }
+            String content_fin = textcont.getText();
+            cp.updateContentDocument(tit_field.getText(), aut_field.getText(), content_fin);
+            cp.updateLanguageDocument(tit_field.getText(), aut_field.getText(), lang);
+        } catch (ExceptionNoDocument e) {
+            cp.showError(modify, "No existeix el document");
+            err = true;
+        } catch (ExceptionDocumentExists e) {
+            cp.showError(modify, "Ja existeix un document amb aquest títol i autor");
+            err = true;
+        } catch (ExceptionInvalidLanguage e) {
+            cp.getInstance().showError(modify, "No existeix la llengua");
+            err = true;
+        }
+        if (!err) {
+            buttonOK.setEnabled(false);
+            tit = tit_field.getText();
+            auth = aut_field.getText();
+        }
     }
 
     private void onCancel() {
@@ -171,7 +170,7 @@ public class ModifyDialog extends JDialog {
     }
 
     private void onExport() {
-        if(!buttonOK.isEnabled()||cp.askConfirmation(modify,"Vols guardar i exportar?")){
+        if (!buttonOK.isEnabled() || cp.askConfirmation(modify, "Vols guardar i exportar?")) {
             onOK();
         }
         if (!err) {
@@ -293,7 +292,7 @@ public class ModifyDialog extends JDialog {
         label2.setText("Autor:");
         panel4.add(label2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         cat = new JRadioButton();
-        cat.setText("Català");
+        cat.setText("Catala");
         panel4.add(cat, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         es = new JRadioButton();
         es.setText("Espanyol");

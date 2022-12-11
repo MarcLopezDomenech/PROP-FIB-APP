@@ -160,7 +160,13 @@ public class MainView {
         help.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cp.showHelp(frame, "Per fer funcionar aquesta pantalla, has de ...");
+                cp.showHelp(frame,
+                        "<html>" +
+                                "Aquesta és la pantalla de gestió de documents<br><br>" +
+                                "Un cop seleccionat un document, disposes de diferents opcions en els botons superiors<br><br>" +
+                                "A més, tens la opció de llistar per diferents criteris usant el menú 'Llistar per'<br><br>" +
+                                "La llista obtinguda la pots ordenar emprant les capceleres de la taula" +
+                                "</html>");
             }
         });
 
