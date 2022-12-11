@@ -78,10 +78,16 @@ public class MainView {
         menuList.add(listByNothing);
         menubar.add(menuList);
 
-        help = new JMenuItem("?");
+        help = new JMenuItem("     ?");
+        help.setMaximumSize(new Dimension(50, 30));
         menubar.add(help);
 
+        JMenuItem spacing = new JMenuItem("");
+        spacing.setFocusable(false);
+        menubar.add(spacing);
+
         reset = new JMenuItem("Reset");
+        reset.setMaximumSize(new Dimension(100, 30));
         menubar.add(reset);
 
         frame.setJMenuBar(menubar);

@@ -134,9 +134,14 @@ public class ExpressionsView {
         listOption = new JMenuItem("Gestio de documents");
         menuOptions.add(listOption);
         menuBar.add(menuOptions);
-        help = new JMenuItem("?");
+        help = new JMenuItem("     ?");
+        help.setMaximumSize(new Dimension(50, 30));
         menuBar.add(help);
+        JMenuItem spacing = new JMenuItem("");
+        spacing.setFocusable(false);
+        menuBar.add(spacing);
         reset = new JMenuItem("Reset");
+        reset.setMaximumSize(new Dimension(100, 30));
         menuBar.add(reset);
         frame.setJMenuBar(menuBar);
 
