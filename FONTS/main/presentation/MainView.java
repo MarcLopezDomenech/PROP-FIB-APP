@@ -17,6 +17,7 @@ import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+import java.util.Objects;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
@@ -313,10 +314,10 @@ public class MainView {
 
         public FavBooleanCellRenderer() {
             try {
-                fav = new ImageIcon(ImageIO.read(getClass().getResource("./images/red.png")));
+                fav = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResource("./images/red.png"))));
                 fav = new ImageIcon(fav.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH));
 
-                nofav = new ImageIcon(ImageIO.read(getClass().getResource("./images/white.png")));
+                nofav = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResource("./images/white.png"))));
                 nofav = new ImageIcon(nofav.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH));
             } catch (IOException e) {
                 cp.showInternalError(frame);
