@@ -85,23 +85,25 @@ public class LoaderDialog extends JDialog {
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
 
-        UIManager.put("FileChooser.cancelButtonText", "Cancel.lar");
-        UIManager.put("FileChooser.lookInLabelText", "Buscar en");
+        UIManager.put("FileChooser.cancelButtonText", "Tornar");
+        UIManager.put("FileChooser.lookInLabelText", "Buscar en:");
         UIManager.put("FileChooser.directoryOpenButtonText", "Obrir");
         UIManager.put("FileChooser.fileNameLabelText", "Nom del document:");
-        UIManager.put("FileChooser.filesOfTypeLabelText", "Tipus");
+        UIManager.put("FileChooser.filesOfTypeLabelText", "Tipus:");
 
         JFileChooser fc = new JFileChooser(".");
         fc.setApproveButtonText("Seleccionar");
-        fc.setDialogTitle("Seleccionar documents");
+        fc.setDialogTitle("Seleccionar document(s) a carregar");
         fc.setDialogType(JFileChooser.OPEN_DIALOG);
         FileFilter xml = new FileNameExtensionFilter("XML", "xml");
         FileFilter txt = new FileNameExtensionFilter("Text pla", "txt");
         FileFilter fp = new FileNameExtensionFilter("Format propietari", "fp");
+        FileFilter tots = new FileNameExtensionFilter("Tots els suportats", "xml", "txt", "fp");
         fc.setAcceptAllFileFilterUsed(false);
-        fc.setFileFilter(txt);
+        fc.addChoosableFileFilter(txt);
         fc.addChoosableFileFilter(xml);
         fc.addChoosableFileFilter(fp);
+        fc.addChoosableFileFilter(tots);
         fc.setMultiSelectionEnabled(true);
 
         buttonOK.addActionListener(new ActionListener() {

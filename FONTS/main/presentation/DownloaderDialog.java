@@ -88,21 +88,20 @@ public class DownloaderDialog extends JDialog {
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
 
-        UIManager.put("FileChooser.cancelButtonText", "Cancel.lar");
+        UIManager.put("FileChooser.cancelButtonText", "Tornar");
         UIManager.put("FileChooser.openButtonText", "Seleccionar");
-        UIManager.put("FileChooser.lookInLabelText", "Buscar en");
-        UIManager.put("FileChooser.folderNameLabelText", "Nom de la carpeta");
-        UIManager.put("FileChooser.filesOfTypeLabelText", "Tipus");
+        UIManager.put("FileChooser.lookInLabelText", "Buscar en:");
+        UIManager.put("FileChooser.folderNameLabelText", "Nom de la carpeta:");
+        UIManager.put("FileChooser.filesOfTypeLabelText", "Tipus:");
         JFileChooser fc = new JFileChooser(".");
-        fc.setApproveButtonText("Descarregar");
-        fc.setDialogTitle("Descarregar document");
+        fc.setDialogTitle("Seleccionar directori on exportar");
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         fc.setDialogType(JFileChooser.SAVE_DIALOG);
         fc.setAcceptAllFileFilterUsed(false);
         FileFilter xml = new FileNameExtensionFilter("XML", "xml");
         FileFilter txt = new FileNameExtensionFilter("Text pla", "txt");
         FileFilter fp = new FileNameExtensionFilter("Format propietari", "fp");
-        fc.setFileFilter(txt);
+        fc.addChoosableFileFilter(txt);
         fc.addChoosableFileFilter(xml);
         fc.addChoosableFileFilter(fp);
 
