@@ -152,17 +152,16 @@ public class CtrlPresentation {
 
     /**
      * @brief Funció per carregar documents a l'aplicatiu
-     * @details Es permet mostrar el diàleg per carregar documents locals, retornant informació dels documents carregats
+     * @details Es permet mostrar el diàleg per carregar documents locals
      * @param reference Frame de referència per saber on posicionar el diàleg
-     * @return Array d'informació dels documents carregats (si és preferit, títol i autor) o null si no es puja cap
+     * @return Booleà que indica si s'ha carregat correctament algun document nou
      * @post Es mostra per pantalla el diàleg per carregar documents i s'actualizen els actuals si és el cas
      */
-    public Object[][] showLoader(JFrame reference) {
+    public boolean showLoader(JFrame reference) {
         LoaderDialog dialog = new LoaderDialog();
         Pair<String, String[]> languageAndPaths = dialog.initialize(reference);
-        List<Object[]> newData = new ArrayList<>();
 
-        if (languageAndPaths == null) return null;      // No s'ha introduït cap path
+        if (languageAndPaths == null) return false;      // No s'ha introduït cap path
 
         String language = languageAndPaths.getFirst();
         String[] paths = languageAndPaths.getSecond();
@@ -170,7 +169,6 @@ public class CtrlPresentation {
             try {
                 // Importem el document i aconseguim les dades (fav, títol, autor)
                 Object[] document = importDocument(path, language);
-                newData.add(document);
             } catch (ExceptionInvalidFormat | ExceptionDocumentExists e) {
                 // Excepcions nostres que indiquen errors que es poden donar
                 showError(reference, e.getMessage());
@@ -183,37 +181,35 @@ public class CtrlPresentation {
             }
         }
 
-        return newData.toArray(new Object[0][]);
+        return true;
     }
 
     /**
      * @brief Funció per crear nous documents a l'aplicatiu
-     * @details Es permet mostrar el diàleg per crear un document nou, retornant informació del document creat
+     * @details Es permet mostrar el diàleg per crear un document nou
      * @param reference Frame de referència per saber on posicionar el diàleg
-     * @return Informació (favorit, títol, autor) del document creat o null si s'ha cancel·lat la creació
-     * @post Es mostra per pantalla el diàleg de creació i es retorna, si és el cas, informació del document creat
+     * @return Booleà que indica si s'ha creat realment un document nou
+     * @post Es mostra per pantalla el diàleg de creació
      */
-    public Object[] showNewDocument(JFrame reference) {
+    public boolean showNewDocument(JFrame reference) {
         NewDocumentDialog dialog = new NewDocumentDialog();
         Pair<Pair<String, String>, String> titleAuthorLang = dialog.initialize(reference);
 
-        Object[] newDoc = null;
-        if (titleAuthorLang != null) {
-            try {
-                String title = titleAuthorLang.getFirst().getFirst();
-                String author = titleAuthorLang.getFirst().getSecond();
-                String language = titleAuthorLang.getSecond();
-                createEmptyDocument(title, author, language);
-                newDoc = new Object[]{false, title, author};      // Per defecte, no és favorit
-            } catch (ExceptionDocumentExists e) {
-                showError(reference, e.getMessage());
-            } catch (ExceptionInvalidLanguage e) {
-                // NO hauria de passar
-                showInternalError(reference);
-            }
+        if (titleAuthorLang == null) return false;
+
+        try {
+            String title = titleAuthorLang.getFirst().getFirst();
+            String author = titleAuthorLang.getFirst().getSecond();
+            String language = titleAuthorLang.getSecond();
+            createEmptyDocument(title, author, language);
+        } catch (ExceptionDocumentExists e) {
+            showError(reference, e.getMessage());
+        } catch (ExceptionInvalidLanguage e) {
+            // NO hauria de passar
+            showInternalError(reference);
         }
 
-        return newDoc;      // Serà null si no s'ha donat d'alta cap document al final
+        return true;
     }
 
     /**
