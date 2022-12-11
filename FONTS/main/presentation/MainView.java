@@ -90,16 +90,22 @@ public class MainView {
         load.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Object[][] new_data = cp.showLoader(frame);
-                if (new_data != null) for (Object[] r : new_data) documentsModel.addRow(r);
+                if (cp.showLoader(frame)) {
+                    Object[][] newData = cp.listAllDocuments();
+                    updateData(newData);
+                    listByNothing.setVisible(false);
+                }
             }
         });
 
         create.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Object[] new_data = cp.showNewDocument(frame);
-                if (new_data != null) documentsModel.addRow(new_data);
+                if (cp.showNewDocument(frame)) {
+                    Object[][] newData = cp.listAllDocuments();
+                    updateData(newData);
+                    listByNothing.setVisible(false);
+                }
             }
         });
 
