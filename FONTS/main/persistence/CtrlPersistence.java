@@ -19,40 +19,6 @@ public class CtrlPersistence {
      * \brief Objecte singleton que guarda la única instància del CtrlPersistence
      */
     private static CtrlPersistence singletonObject;
-    
-    public static void main(String[] args) {
-        CtrlPersistence cp = getInstance();
-        try {
-            Set<String> docs = new HashSet<>();
-            docs.add("abc@title@mar@author@abc abc \n abc@content@ca");
-            docs.add("tres tristes tigres@title@ari@author@comen trigo@content@es");
-            docs.add("abc@title@mar2@author@abc abc abc@content@en");
-            Set<String> exprs = new HashSet<>();
-            exprs.add("hola & adeuuu");
-            exprs.add("!tuiafhbvuz");
-
-            cp.saveSystem(docs, exprs);
-            docs = new HashSet<>();
-            exprs = new HashSet<>();
-            Pair<Set<String>,Set<String>> sets;
-            sets = cp.restoreSystem();
-
-            for(String doc: sets.getFirst()) System.out.print(doc + "\n");
-            for(String expr: sets.getSecond()) System.out.print(expr + "\n");
-
-            cp.exportDocument("tres tristes tigres@title@ari@author@comen \n trigooooo@content@es@language@no", "tigres.xml");
-            String rep = cp.importDocument("tigres.xml", "ca");
-            System.out.println(rep);
-        } catch (ExceptionInvalidFormat e) {
-           System.out.println("Salta la merda de format");
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
-        } catch (IOException e) {
-            System.out.println("IO");
-        } catch (ExceptionInvalidLanguage e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * @brief Constructora per defecte de CtrlPersistence
@@ -131,9 +97,8 @@ public class CtrlPersistence {
     /**
      * @brief Funció per recuperar l'estat del sistema
      * @details abdos parametres seran inicialment nuls (son el retorn)
-     * @param docs llista de string on cadascun conte l'informacio necesaria per restaurar un document
-     * @param exprs llista de string on cadascun conte l'informacio necesaria per restaurar una expressio
-     * @throws FileNotFoundException El fitxer buscat no existeix al sistema
+     * @return Set de documents i set de String del sistema
+     * @throws FileNotFoundException El fitxer buscat no existeix al sistema (no hi ha cap còpia de seguretat)
      */
     public Pair<Set<String>,Set<String>> restoreSystem() throws FileNotFoundException {
         Set<String> docs = new HashSet<>();
