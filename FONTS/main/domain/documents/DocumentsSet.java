@@ -654,47 +654,34 @@ public class DocumentsSet {
     }
 
     /**
-     * @class ValueComparator
-     * @brief Classe que permet comparar Pair<Pair<String, String>, Double>
-     * @author pau.duran.manzano
+     * @brief Operació per ordenar un conjunt de documents segons un pes (value)
+     * @pre El valor del double no és null
+     * @param ordre Llista de documents amb valors ordenats pel double
+     * @param ext Conjunt de paràmetres del document que no sigui el valor associat
+     * @param value Valor associat al pes del document
+     * @param k Nombre de documents que volem a la llista
+     * @return Retorna una llista ordenada ascendentment de pairs on el primer valor és la informació del document i el segon el valor pel que està ordenat
      */
     private List<Pair<Object[], Double>> adding(List<Pair<Object[], Double>> ordre, Object[] ext,Double value,int k){
         int tam=ordre.size();
         if(tam==0){
             //System.out.println("Zero");
             ordre.add(0,new Pair<>(ext, value));
-            /*
-            System.out.println(0);
-            System.out.println(ext[1]);
-            System.out.println(value);
-             */
-
             return ordre;
         }
         int ini=0;
         int fin=tam-1;
         boolean added=true;
         while(added){
-            //System.out.println("orden");
             if(ini>fin){
                 ordre.add(ini,new Pair<>(ext, value));
                 added=false;
-                /*
-                System.out.println(ini);
-                System.out.println(ext[1]);
-                System.out.println(value);
-                 */
             }
             else {
                 int med = (ini + fin) / 2;
                 if (ordre.get(med).getSecond() == value) {
                     ordre.add(med, new Pair<>(ext, value));
                     added=false;
-                    /*
-                    System.out.println(med);
-                    System.out.println(ext[1]);
-                    System.out.println(value);
-                     */
                 } else if (ordre.get(med).getSecond() > value) {
                     fin = med - 1;
                 } else {
@@ -703,15 +690,15 @@ public class DocumentsSet {
             }
         }
         if(tam>=k){
-            /*
-            System.out.println("Sublist");
-            System.out.println(ext[1]);
-            System.out.println(value);
-             */
             ordre=ordre.subList(1,k+1);
         }
         return ordre;
     }
+    /**
+     * @class ValueComparator
+     * @brief Classe que permet comparar Pair<Pair<String, String>, Double>
+     * @author pau.duran.manzano
+     */
     private class ValueComparator implements Comparator<Pair<Object[], Double>> {
         /**
          * @brief Operació per comparar en funció del segon valor (el second) d'un pair

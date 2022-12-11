@@ -90,16 +90,22 @@ public class MainView {
         load.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Object[][] new_data = cp.showLoader(frame);
-                if (new_data != null) for (Object[] r : new_data) documentsModel.addRow(r);
+                if (cp.showLoader(frame)) {
+                    Object[][] newData = cp.listAllDocuments();
+                    updateData(newData);
+                    listByNothing.setVisible(false);
+                }
             }
         });
 
         create.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Object[] new_data = cp.showNewDocument(frame);
-                if (new_data != null) documentsModel.addRow(new_data);
+                if (cp.showNewDocument(frame)) {
+                    Object[][] newData = cp.listAllDocuments();
+                    updateData(newData);
+                    listByNothing.setVisible(false);
+                }
             }
         });
 
@@ -166,7 +172,7 @@ public class MainView {
                                 "Aquesta és la pantalla de gestió de documents.<br><br>" +
                                 "Un cop seleccionat un document, disposes de diferents opcions en els botons superiors.<br><br>" +
                                 "A més, tens la opció de llistar per diferents criteris usant el menú 'Llistar per'.<br><br>" +
-                                "La llista obtinguda la pots ordenar emprant les capceleres de la taula." +
+                                "La llista obtinguda la pots ordenar emprant les capcaleres de la taula." +
                                 "</html>");
             }
         });
