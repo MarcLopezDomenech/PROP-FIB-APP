@@ -195,7 +195,6 @@ public class DocumentsSet {
             if (existsDocument(newTitle, newAuthor)) throw new ExceptionDocumentExists(newTitle, newAuthor);
             // Si podem, realitzem el canvi
             Document document = getDocument(oldTitle, oldAuthor);
-            deleteDocument(oldTitle, oldAuthor);        // Esborrem el document del conjunt
             document.setTitle(newTitle);
             document.setAuthor(newAuthor);
             registerDocument(document);                 // El tornem a afegir amb els nous títol i autor
