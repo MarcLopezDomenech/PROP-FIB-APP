@@ -168,7 +168,13 @@ public class ExpressionsView {
         help.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cp.showHelp(frame, "Per fer funcionar aquesta pantalla, has de ...");
+                cp.showHelp(frame,
+                        "<html>" +
+                                "Aquesta és la pantalla de gestió de documents.<br><br>" +
+                                "Pots crear expressions en l'espai de text superior, i confirmant-ho amb el botó d'Afegir<br><br>" +
+                                "A més, pots consultar les expressions que has donat d'alta en la llista que et presentem<br><br>" +
+                                "Si en selecciones una, disposes de diferents opcions en els botons de la part superior dreta." +
+                                "</html>");
             }
         });
 

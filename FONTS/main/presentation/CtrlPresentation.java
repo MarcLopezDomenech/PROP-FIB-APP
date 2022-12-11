@@ -61,7 +61,9 @@ public class CtrlPresentation {
         // Restaurar sistema
         try {
             cd.restoreSystem();
-        } catch (FileNotFoundException | ExceptionDocumentExists | ExceptionInvalidExpression | ExceptionExpressionExists e) {
+        } catch (FileNotFoundException e) {
+            // Vol dir que és el primer cop que encenem l'aplicatiu, no tenim còpia de seguretat, no passa res.
+        } catch (ExceptionDocumentExists | ExceptionInvalidExpression | ExceptionExpressionExists e) {
             // No hauría de passar mai
             JFrame reference = new JFrame();
             reference.setLocation(new Point(600, 300));
