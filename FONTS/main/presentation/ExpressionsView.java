@@ -168,7 +168,11 @@ public class ExpressionsView {
         help.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cp.showHelp(frame, "Per fer funcionar aquesta pantalla, has de ...");
+                cp.showHelp(frame,
+                        "<html>" +
+                                "Aquesta és la pantalla de gestió de documents.<br><br>" +
+                                "Un cop seleccionada una expressió disposes de diferents opcions en els botons superiors." +
+                                "</html>");
             }
         });
 
