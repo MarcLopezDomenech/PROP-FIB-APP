@@ -133,29 +133,33 @@ public class ModifyDialog extends JDialog {
 
     private void onOK() {
         err = false;
-        try {
-            if (!Objects.equals(tit, tit_field.getText()) || !Objects.equals(auth, aut_field.getText())) {
-                String nout=tit_field.getText();
-                String nouat=aut_field.getText();
-                cp.updateTitleAndAuthorDocument(tit, auth, nout, nouat);
-            }
-        } catch (ExceptionNoDocument e) {
-            cp.showError(modify, "No existeix el document");
-            err = true;
-        } catch (ExceptionDocumentExists e) {
-            cp.showError(modify, "Ja existeix un document amb aquest títol i autor");
-            err = true;
-        }
         try{
             String content_fin = textcont.getText();
-            cp.updateContentDocument(tit_field.getText(), aut_field.getText(), content_fin);
-            cp.updateLanguageDocument(tit_field.getText(), aut_field.getText(), lang);
+            if(!Objects.equals(cont, content_fin)){
+                cp.updateContentDocument(tit, auth, content_fin);
+            }
+            cp.updateLanguageDocument(tit, auth, lang);
         } catch (ExceptionNoDocument e) {
             cp.showError(modify, "No existeix el document 2");
             err = true;
         } catch (ExceptionInvalidLanguage e) {
             cp.showError(modify, "No existeix la llengua");
             err = true;
+        }
+        if(!err) {
+            try {
+                if (!Objects.equals(tit, tit_field.getText()) || !Objects.equals(auth, aut_field.getText())) {
+                    String nout = tit_field.getText();
+                    String nouat = aut_field.getText();
+                    cp.updateTitleAndAuthorDocument(tit, auth, nout, nouat);
+                }
+            } catch (ExceptionNoDocument e) {
+                cp.showError(modify, "No existeix el document");
+                err = true;
+            } catch (ExceptionDocumentExists e) {
+                cp.showError(modify, "Ja existeix un document amb aquest títol i autor");
+                err = true;
+            }
         }
         if (!err) {
             tit = tit_field.getText();
