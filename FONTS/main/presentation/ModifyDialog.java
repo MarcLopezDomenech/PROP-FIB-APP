@@ -39,6 +39,8 @@ public class ModifyDialog extends JDialog {
 
     private String lang;
 
+    private String setlang;
+
     private Boolean err;
 
     private Pair<String, String> result;
@@ -97,21 +99,21 @@ public class ModifyDialog extends JDialog {
         an.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                lang = "en";
+                setlang = "en";
                 enableButtonIfCorrect();
             }
         });
         es.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                lang = "es";
+                setlang = "es";
                 enableButtonIfCorrect();
             }
         });
         cat.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                lang = "ca";
+                setlang = "ca";
                 buttonOK.setEnabled(true);
             }
         });
@@ -138,7 +140,9 @@ public class ModifyDialog extends JDialog {
             if(!Objects.equals(cont, content_fin)){
                 cp.updateContentDocument(tit, auth, content_fin);
             }
-            cp.updateLanguageDocument(tit, auth, lang);
+            if(!Objects.equals(lang, setlang)){
+                cp.updateLanguageDocument(tit, auth, setlang);
+            }
         } catch (ExceptionNoDocument e) {
             cp.showError(modify, "No existeix el document 2");
             err = true;
@@ -162,6 +166,7 @@ public class ModifyDialog extends JDialog {
             }
         }
         if (!err) {
+            lang=setlang;
             tit = tit_field.getText();
             auth = aut_field.getText();
             buttonOK.setEnabled(false);
@@ -230,6 +235,7 @@ public class ModifyDialog extends JDialog {
         } else {
             cp.showError(modify, "Document sense llengua");
         }
+        setlang=lang;
         if (!(cat.isSelected() || es.isSelected() || an.isSelected())) {
             exportarButton.setEnabled(false);
             buttonOK.setEnabled(false);
