@@ -325,7 +325,6 @@ public class MainView {
             } catch (IOException e) {
                 cp.showInternalError(frame);
             }
-            JCheckBox b = new JCheckBox();
         }
 
         @Override
