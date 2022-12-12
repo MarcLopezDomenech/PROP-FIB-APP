@@ -8,4 +8,4 @@ L’entrada comença amb el nombre de files n > 0 i de columnes m > 0 del mapa. 
 
 Sortida
 
-Escriviu “yes” o “no” depenent de si és possible o no arribar a algun dels tresors.
+Escriviu 'yes' o 'no' depenent de si és possible o no arribar a algun dels tresors.
