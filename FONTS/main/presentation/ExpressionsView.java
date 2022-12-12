@@ -120,18 +120,18 @@ public class ExpressionsView {
     public ExpressionsView() {
         // Aconseguim la instància del controlador de presentació i inicialitzem el frame
         cp = CtrlPresentation.getInstance();
-        frame = new JFrame("Gestio de les expressions");
+        frame = new JFrame("Gestió de les expressions");
         selected = null;
 
         // Definició del menú
         menuBar = new JMenuBar();
 
-        menuOptions = new JMenu("Menu");
+        menuOptions = new JMenu("Menú");
         loadOption = new JMenuItem("Carregar document");
         menuOptions.add(loadOption);
         createOption = new JMenuItem("Nou document");
         menuOptions.add(createOption);
-        listOption = new JMenuItem("Gestio de documents");
+        listOption = new JMenuItem("Gestió de documents");
         menuOptions.add(listOption);
         menuBar.add(menuOptions);
         help = new JMenuItem("     ?");
@@ -186,7 +186,7 @@ public class ExpressionsView {
         reset.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean confirm = cp.askConfirmation(frame, "ATENCIO! Estas a punt de esborrar tot el contingut del sistema. Aquesta accio es irreversible. Estas segur que vols fer reset?");
+                boolean confirm = cp.askConfirmation(frame, "ATENCIÓ! Estàs a punt d'esborrar tot el contingut del sistema. Aquesta acció és irreversible. Estàs segur que vols fer reset?");
                 if (confirm) {
                     cp.reset();
                     listModel.clear();
@@ -292,7 +292,7 @@ public class ExpressionsView {
         delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean confirm = cp.askConfirmation(frame, "Segur/a que vols esborrar l'expressio " + selected + "?");
+                boolean confirm = cp.askConfirmation(frame, "Segur/a que vols esborrar l'expressió " + selected + "?");
                 if (confirm) {
                     try {
                         cp.deleteExpression(selected);

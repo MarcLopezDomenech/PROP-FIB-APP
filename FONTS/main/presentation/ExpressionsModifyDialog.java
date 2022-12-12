@@ -95,7 +95,7 @@ public class ExpressionsModifyDialog extends JDialog {
         text.setText(expression);
         setContentPane(contentPane);
         setModal(true);
-        setTitle("Modificar expressio");
+        setTitle("Modificar expressió");
         pack();
         getRootPane().setDefaultButton(buttonSave);
         setLocationRelativeTo(reference);

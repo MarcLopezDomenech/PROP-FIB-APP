@@ -49,7 +49,7 @@ public class MainView {
 
     public MainView() {
         cp = CtrlPresentation.getInstance();
-        frame = new JFrame("Gestio de documents");
+        frame = new JFrame("Gestió de documents");
         selectedIndex = -1;
 
         $$$setupUI$$$();
@@ -57,19 +57,19 @@ public class MainView {
         // Inicialització dels menús
         menubar = new JMenuBar();
 
-        menuOptions = new JMenu("Menu");
+        menuOptions = new JMenu("Menú");
         load = new JMenuItem("Carregar document");
         menuOptions.add(load);
         create = new JMenuItem("Nou document");
         menuOptions.add(create);
-        expressions = new JMenuItem("Gestio expressions");
+        expressions = new JMenuItem("Gestió d'expressions");
         menuOptions.add(expressions);
         menubar.add(menuOptions);
 
         menuList = new JMenu("Llistar per");
         listByQuery = new JMenuItem("Query");
         menuList.add(listByQuery);
-        listByExpression = new JMenuItem("Expressio");
+        listByExpression = new JMenuItem("Expressió");
         menuList.add(listByExpression);
         listByAuthor = new JMenuItem("Autor");
         menuList.add(listByAuthor);
@@ -188,7 +188,7 @@ public class MainView {
         reset.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean confirm = cp.askConfirmation(frame, "ATENCIO! Estas a punt de esborrar tot el contingut del sistema. Aquesta accio es irreversible. Estas segur que vols fer reset?");
+                boolean confirm = cp.askConfirmation(frame, "ATENCIÓ! Estàs a punt d'esborrar tot el contingut del sistema. Aquesta acció és irreversible. Estàs segur que vols fer reset?");
                 if (confirm) {
                     cp.reset();
                     documentsModel.setRowCount(0);
