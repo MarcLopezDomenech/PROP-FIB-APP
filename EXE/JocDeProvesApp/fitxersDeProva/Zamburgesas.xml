@@ -1,18 +1,18 @@
-<title> Las Zamburgesas <title>
-<author> Jorid Petit <author>
+<title> Las Zamburgesas </title>
+<author> Jorid Petit </author>
 <content> La prova de Las Zamburguesas és una de les més mítiques del concurs. Els participants han de creuar un riu saltant de roca en roca, però compte! Algunes roques són falses i s’enfonsen!
 
 Hi ha n roques de debò, circulars, amb centre (xi, yi) i radi ri. La distància màxima que pot fer d’un salt un participant és d (mesurant-ho des de la vora de les roques). La vostra tasca és calcular el nombre mínim de salts que cal fer per anar de la primera roca a l’última sense caure a l’aigua. Si és impossible, cal indicar-ho.
 
 Entrada
 
-L’entrada consisteix en diversos casos. Cada cas comença amb el nombre de roques n ≥ 2 i la distància de salt d > 0. Segueixen n triplets de reals xi, yi i ri descrivint cada roca.
+L’entrada consisteix en diversos casos. Cada cas comença amb el nombre de roques n ≥ 2 i la distància de salt d &gt 0. Segueixen n triplets de reals xi, yi i ri descrivint cada roca.
 
 Sortida
 
-Per a cada cas d’entrada, escriviu en una línia el nombre mínim de salts per anar de la primera de les roques donades fins a l’última, fent salts no més grans que d, o bé "Xof!" si no es pot.
+Per a cada cas d’entrada, escriviu en una línia el nombre mínim de salts per anar de la primera de les roques donades fins a l’última, fent salts no més grans que d, o bé &quotXof!&quot si no es pot.
 
 Observacions
 
 Els casos de prova no contindran mai roques que se solapin, ni cap salt que vagi just, i que per tant es pogués malinterpretar per errors de precisió.
-La figura es correspon a les roques dels exemples d’entrada.<content>
+La figura es correspon a les roques dels exemples d’entrada.</content>

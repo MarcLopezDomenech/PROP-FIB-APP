@@ -16,6 +16,8 @@ import java.util.Set;
  * @author ariadna.cortes.danes
  */
 public class TxtParser extends Parser {
+
+
      /**
      * @brief Constructora de la classe
      */
@@ -26,18 +28,20 @@ public class TxtParser extends Parser {
     /**
      * @brief Llegeix el contingut d'un fitxer en txt i el retorna en format propietari del sistema
      */
-    public String read(String path) throws FileNotFoundException{
+    public String read(String path) throws FileNotFoundException {
         File myObj = new File(path);
        
         Scanner myReader = new Scanner(myObj);
         String title = myReader.nextLine();
+        title = title.strip();
         String author = myReader.nextLine();
+        author = author.strip();
         String content = "";
 
         while (myReader.hasNextLine()) {
             content += myReader.nextLine() + "\n";
         }
-        myReader.close();
+        myReader.close();        
         return title + "@title@" + author + "@author@" + content + "@content@";
     }
 

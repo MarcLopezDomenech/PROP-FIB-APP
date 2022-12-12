@@ -1,6 +1,7 @@
 package main.persistence;
 
-import java.io.File;  
+import main.excepcions.ExceptionInvalidCharacter;
+import java.io.File;
 import java.io.FileNotFoundException;  
 
 import java.nio.file.Path;
@@ -17,7 +18,6 @@ import java.util.Set;
  * @author ariadna.cortes.danes
  */
 public abstract class Parser {
-    
     public Parser() {
 
     }
@@ -25,7 +25,7 @@ public abstract class Parser {
     /**
      * @brief Constructora de la classe
      */
-    public abstract String read(String path) throws FileNotFoundException;
+    public abstract String read(String path) throws FileNotFoundException, ExceptionInvalidCharacter;
 
     /**
      * @brief Constructora de la classe
