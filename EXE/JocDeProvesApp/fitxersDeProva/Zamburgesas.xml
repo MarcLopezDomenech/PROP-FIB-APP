@@ -10,7 +10,7 @@ L’entrada consisteix en diversos casos. Cada cas comença amb el nombre de roq
 
 Sortida
 
-Per a cada cas d’entrada, escriviu en una línia el nombre mínim de salts per anar de la primera de les roques donades fins a l’última, fent salts no més grans que d, o bé “Xof!” si no es pot.
+Per a cada cas d’entrada, escriviu en una línia el nombre mínim de salts per anar de la primera de les roques donades fins a l’última, fent salts no més grans que d, o bé "Xof!" si no es pot.
 
 Observacions
 
