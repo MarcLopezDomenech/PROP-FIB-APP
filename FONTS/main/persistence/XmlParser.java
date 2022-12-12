@@ -55,6 +55,7 @@ public class XmlParser extends Parser {
 
             return title + "@title@" + author + "@author@" + content + "@content@";
         } catch (ExceptionInvalidCharacter e) {
+            //ToDo
             System.out.println(e.getMessage());
             return "Tigres@title@Paula@author@tigres muy tristes@content@";
         }
@@ -127,7 +128,6 @@ public class XmlParser extends Parser {
             else if (str.charAt(i) == '>')  {
                 str = (str.substring(0, i)).concat("&gt" + str.substring(i+1));
             }
-
         }
         return str;
     }
