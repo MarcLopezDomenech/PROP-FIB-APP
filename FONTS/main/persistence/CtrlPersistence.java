@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
+
+import main.excepcions.ExceptionInvalidCharacter;
 import main.excepcions.ExceptionInvalidFormat;
 import main.excepcions.ExceptionInvalidLanguage;
 import main.domain.util.Pair;
@@ -41,7 +43,7 @@ public class CtrlPersistence {
 
     /**
      * @brief Funció per obrir un document guardat en local de l'usuari
-     * @param p el path a obrir
+     * @param path el path a obrir
      * @return Un string en format JSON del que cada document n'extreurà les dades que necessiti
      * @throws ExceptionInvalidLanguage L'idioma del document importat no es correcte
      * @throws FileNotFoundException El fitxer buscat no existeix al sistema

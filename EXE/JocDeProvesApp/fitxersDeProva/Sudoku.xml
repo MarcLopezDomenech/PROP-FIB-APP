@@ -1,5 +1,5 @@
-<title>Sudoku<title>
-<author>Jutge<author>
+<title>Sudoku</title>
+<author>Jutge</author>
 
 <content>Sudoku is a phenomenon all over the world. This addictive logic game, originated in the U.K. and popularized in Japan, has spread across the globe. The puzzles are now syndicated daily in newspapers in Australia, Germany, Scandinavia, …even Mireia is addicted to it!
 
@@ -56,4 +56,4 @@ Input begins with a line with a number n ≥ 1. Follow n Sudokus, each one consi
 
 Output
 
-Print the solutions using the same format as in the input: First, print n on a line. For each puzzle, print nine lines, each with nine digits separated by spaces. Print a blank line before every solution <content>
+Print the solutions using the same format as in the input: First, print n on a line. For each puzzle, print nine lines, each with nine digits separated by spaces. Print a blank line before every solution </content>

@@ -2,7 +2,7 @@
 
 set argC=0
 for %%x in (%*) do Set argC=1
-if %argC% == 0 goto :error
+if %argC% == 0 goto :propy
 
 if /i %1 == TestAnd goto :and
 if /i %1 == Driver goto :driver
@@ -16,25 +16,35 @@ if /i %1 == TestNot goto :nota
 if /i %1 == TestOr goto :or
 if /i %1 == TestPair goto :pair
 
-:error
 echo:
-echo USAGE
-echo compila.bat test-a-executar
+echo: USAGE
+echo: El fitxer run.bat rep 0 o 1 parametres. Cap parametre llencara l'aplicacio sencera. Un parametre especificara un test a executar
+echo: run.bat test-a-executar
 echo:
-echo Opcions per test-a-executar:
-echo Driver
-echo TestDocument
-echo TestDocumentsSet
-echo TestExpression
-echo TestExpressionsSet
-echo TestInternalDocument
-echo TestLiteral
-echo TestAnd
-echo TestNot
-echo TestOr
-echo TestPair
+echo: Opcions per test-a-executar:
+echo: Driver
+echo: TestDocument
+echo: TestDocumentsSet
+echo: TestExpression
+echo: TestExpressionsSet
+echo: TestInternalDocument
+echo: TestLiteral
+echo: TestAnd
+echo: TestNot
+echo: TestOr
+echo: TestPair
 echo: 
-echo Nota: Nomes es recompilara el driver interactiu! 
+echo: Nota: Nomes es recompilara el driver interactiu! 
+goto :EOF
+
+REM === COMANDA DE RECOMPILACIO I EXECUCIO DEL SISTEMA ===
+
+javac -cp ".;../lib/forms_rt.jar" -d ../EXE/App -encoding UTF-8 ./main/presentation/Main.java
+
+:propy
+cd ..
+java -jar EXE/JocDeProvesApp/JocDeProves.jar
+cd FONTS
 goto :EOF
 
 REM === INSTRUCCIONS PER RECOMPILAR EL PROJECTE ===
