@@ -98,7 +98,7 @@ public class LoaderDialog extends JDialog {
         FileFilter xml = new FileNameExtensionFilter("XML", "xml");
         FileFilter txt = new FileNameExtensionFilter("Text pla", "txt");
         FileFilter fp = new FileNameExtensionFilter("Format propietari", "fp");
-        FileFilter tots = new FileNameExtensionFilter("Tots els suportats", "xml", "txt", "fp");
+        FileFilter tots = new FileNameExtensionFilter("Tots els formats", "xml", "txt", "fp");
         fc.setAcceptAllFileFilterUsed(false);
         fc.addChoosableFileFilter(txt);
         fc.addChoosableFileFilter(xml);
