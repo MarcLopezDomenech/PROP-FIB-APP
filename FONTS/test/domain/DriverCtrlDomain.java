@@ -84,7 +84,7 @@ public class DriverCtrlDomain {
                         case 17:
                             break;
                         case 18:
-                            //testImportDocument();
+                            testImportDocument();
                             break;
                         case 19:
                             testExportDocument();
