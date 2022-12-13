@@ -49,7 +49,7 @@ public class CtrlPersistence {
      * @throws FileNotFoundException El fitxer buscat no existeix al sistema
      */
     
-    public String importDocument(String path, String language) throws ExceptionInvalidFormat, FileNotFoundException, ExceptionInvalidLanguage {
+    public String importDocument(String path, String language) throws ExceptionInvalidFormat, FileNotFoundException, ExceptionInvalidLanguage, ExceptionInvalidCharacter {
         if (path.endsWith(".txt")) {
             if (!(language.equals("ca") || language.equals("es") || language.equals("en"))) throw new ExceptionInvalidLanguage(language);
             TxtParser l = new TxtParser();

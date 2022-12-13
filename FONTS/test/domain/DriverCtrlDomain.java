@@ -84,7 +84,7 @@ public class DriverCtrlDomain {
                         case 17:
                             break;
                         case 18:
-                            testImportDocument();
+                            //testImportDocument();
                             break;
                         case 19:
                             testExportDocument();
@@ -339,7 +339,7 @@ public class DriverCtrlDomain {
         System.out.println("Expressio booleana modificada");
     }
 
-    public static void testImportDocument() throws ExceptionInvalidFormat, FileNotFoundException, ExceptionDocumentExists, ExceptionInvalidLanguage {
+    public static void testImportDocument() throws ExceptionInvalidFormat, FileNotFoundException, ExceptionDocumentExists, ExceptionInvalidLanguage, ExceptionInvalidCharacter {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Importar un document");
         System.out.println("Introdueix el path");

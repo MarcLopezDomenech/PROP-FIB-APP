@@ -169,7 +169,7 @@ public class CtrlPresentation {
             try {
                 // Importem el document i aconseguim les dades (fav, títol, autor)
                 Object[] document = importDocument(path, language);
-            } catch (ExceptionInvalidFormat | ExceptionDocumentExists e) {
+            } catch (ExceptionInvalidFormat | ExceptionDocumentExists | ExceptionInvalidCharacter e) {
                 // Excepcions nostres que indiquen errors que es poden donar
                 showError(reference, e.getMessage());
             } catch (FileNotFoundException e) {
@@ -656,7 +656,7 @@ public class CtrlPresentation {
      * @throws ExceptionDocumentExists quan el sistema ja té donat d'alta un document amb els títol i autor del document que es vol importar
      * @throws ExceptionInvalidLanguage en cas que l'idioma del paràmetre no sigui ni "ca" ni "en" ni "es"
      */
-    public Object[] importDocument(String path, String language) throws ExceptionInvalidFormat, FileNotFoundException, ExceptionDocumentExists, ExceptionInvalidLanguage {
+    public Object[] importDocument(String path, String language) throws ExceptionInvalidFormat, FileNotFoundException, ExceptionDocumentExists, ExceptionInvalidLanguage, ExceptionInvalidCharacter {
         return cd.importDocument(path, language);
     }
 

@@ -21,44 +21,38 @@ public class XmlParser extends Parser {
     }
 
 
-    public String read(String path) throws FileNotFoundException {
-        try {
-            String input = readFromFile(path);
-            String[] information = input.split("<title>");
-            if (information.length > 2) throw new ExceptionInvalidCharacter("<title>");
-            information = information[1].split("</title>");
-            if (information.length > 2) throw new ExceptionInvalidCharacter("</title>");
-            String title = information[0];
-            title = title.strip();
-            input = information[1];
+    public String read(String path) throws FileNotFoundException, ExceptionInvalidCharacter {
+        String input = readFromFile(path);
+        String[] information = input.split("<title>");
+        if (information.length > 2) throw new ExceptionInvalidCharacter("<title>");
+        information = information[1].split("</title>");
+        if (information.length > 2) throw new ExceptionInvalidCharacter("</title>");
+        String title = information[0];
+        title = title.strip();
+        input = information[1];
 
-            //obtenir el autor
-            information = input.split("<author>");
-            if (information.length > 2) throw new ExceptionInvalidCharacter("<author>");
-            information = information[1].split("</author>");
-            if (information.length > 2) throw new ExceptionInvalidCharacter("</author>");
-            String author = information[0];
-            author = author.strip();
-            input = information[1];
+        //obtenir el autor
+        information = input.split("<author>");
+        if (information.length > 2) throw new ExceptionInvalidCharacter("<author>");
+        information = information[1].split("</author>");
+        if (information.length > 2) throw new ExceptionInvalidCharacter("</author>");
+        String author = information[0];
+        author = author.strip();
+        input = information[1];
 
-            //Obtenir el contingut
-            information = input.split("<content>");
-            if (information.length > 2) throw new ExceptionInvalidCharacter("<content>");
-            information = information[1].split("</content>");
-            if (information.length > 2) throw new ExceptionInvalidCharacter("</content>");
-            String content = information[0];
-            content = content.strip();
+        //Obtenir el contingut
+        information = input.split("<content>");
+        if (information.length > 2) throw new ExceptionInvalidCharacter("<content>");
+        information = information[1].split("</content>");
+        if (information.length > 2) throw new ExceptionInvalidCharacter("</content>");
+        String content = information[0];
+        content = content.strip();
 
-            //En xml, hi ha certs caràcters especials (scape characters), que no corresponen al seu valor ascii
-            title = removeScapeChars(title);
-            content = removeScapeChars(content);
+        //En xml, hi ha certs caràcters especials (scape characters), que no corresponen al seu valor ascii
+        title = removeScapeChars(title);
+        content = removeScapeChars(content);
 
-            return title + "@title@" + author + "@author@" + content + "@content@";
-        } catch (ExceptionInvalidCharacter e) {
-            //ToDo
-            System.out.println(e.getMessage());
-            return "Tigres@title@Paula@author@tigres muy tristes@content@";
-        }
+        return title + "@title@" + author + "@author@" + content + "@content@";
     }
 
     public void write(String document, String path) throws IOException {
