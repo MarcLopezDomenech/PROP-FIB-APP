@@ -134,9 +134,9 @@ public class ModifyDialog extends JDialog {
     }
 
     private void onOK() {
+        String content_fin = textcont.getText();
         err = false;
         try {
-            String content_fin = textcont.getText();
             if (!Objects.equals(cont, content_fin)) {
                 cp.updateContentDocument(tit, auth, content_fin);
             }
@@ -167,6 +167,7 @@ public class ModifyDialog extends JDialog {
         }
         if (!err) {
             lang = setlang;
+            cont= content_fin;
             tit = tit_field.getText();
             auth = aut_field.getText();
             buttonOK.setEnabled(false);

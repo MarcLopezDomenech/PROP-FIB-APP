@@ -274,7 +274,18 @@ public class DocumentsSet {
      */
     public void updateLanguageDocument(String title, String author, String newLanguage) throws ExceptionNoDocument, ExceptionInvalidLanguage {
         Document doc = getDocument(title, author);
+
+        Set<String> oldWords = doc.getRelevantWords();
+        //System.out.println("oldWords:" + oldWords);
+        removePresence(oldWords);
+
+        // Modifiquem el llenguatge del document
         doc.setLanguage(newLanguage);
+
+        // Posem les relevants words del nou contingut a presence
+        Set<String> newWords = doc.getRelevantWords();
+        //System.out.println("newWords:" + newWords);
+        addPresence(newWords);
     }
 
     /**
