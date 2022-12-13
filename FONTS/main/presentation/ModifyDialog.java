@@ -167,7 +167,7 @@ public class ModifyDialog extends JDialog {
         }
         if (!err) {
             lang = setlang;
-            cont= content_fin;
+            cont = content_fin;
             tit = tit_field.getText();
             auth = aut_field.getText();
             buttonOK.setEnabled(false);
