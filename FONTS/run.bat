@@ -38,11 +38,13 @@ echo: Nota: Nomes es recompilara el driver interactiu!
 goto :EOF
 
 REM === COMANDA DE RECOMPILACIO I EXECUCIO DEL SISTEMA ===
-:propy
+
 javac -cp ".;../lib/forms_rt.jar" -d ../EXE/App -encoding UTF-8 ./main/presentation/Main.java
 
-
-java -cp "../EXE/App;../lib/forms_rt.jar" main.presentation.Main
+:propy
+cd ..
+java -jar EXE/JocDeProvesApp/JocDeProves.jar
+cd FONTS
 goto :EOF
 
 REM === INSTRUCCIONS PER RECOMPILAR EL PROJECTE ===
