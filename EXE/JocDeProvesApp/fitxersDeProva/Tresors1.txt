@@ -1,11 +1,11 @@
 Tresors en un mapa
 Jutge.org
-Feu un programa que, donat un mapa amb tresors i obstacles, digui si Ã©s possible arribar fins a algun dels tresors des dâ€™una posiciÃ³ inicial donada. Els moviments permesos sÃ³n horitzontals o verticals, perÃ² no diagonals.
+Feu un programa que, donat un mapa amb tresors i obstacles, digui si és possible arribar fins a algun dels tresors des d'una posició inicial donada. Els moviments permesos són horitzontals o verticals, però no diagonals.
 
 Entrada
 
-Lâ€™entrada comenÃ§a amb el nombre de files n > 0 i de columnes m > 0 del mapa. Segueixen n files amb m carÃ cters cadascuna. Un punt indica una posiciÃ³ buida, una â€˜Xâ€™ indica un obstacle, i una â€˜tâ€™ indica un tresor. Finalment, un parell de nombres f i c indiquen la fila i columna inicials (ambdues comenÃ§ant en 1) des de les quals cal comenÃ§ar a buscar tresors. Podeu suposar que f estÃ  entre 1 i n, que c estÃ  entre 1 i m, i que la posiciÃ³ inicial sempre estÃ  buida.
+L'entrada comença amb el nombre de files n > 0 i de columnes m > 0 del mapa. Segueixen n files amb m caràcters cadascuna. Un punt indica una posició buida, una 'X' indica un obstacle, i una 't' indica un tresor. Finalment, un parell de nombres f i c indiquen la fila i columna inicials (ambdues començant en 1) des de les quals cal començar a buscar tresors. Podeu suposar que f està  entre 1 i n, que c està entre 1 i m, i que la posició inicial sempre està  buida.
 
 Sortida
 
-Escriviu 'yes' o 'no' depenent de si Ã©s possible o no arribar a algun dels tresors.
+Escriviu 'yes' o 'no' depenent de si és possible o no arribar a algun dels tresors.
