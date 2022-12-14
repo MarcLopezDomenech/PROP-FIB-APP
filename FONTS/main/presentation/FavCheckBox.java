@@ -27,6 +27,7 @@ public class FavCheckBox extends JCheckBox {
      * @param reference Frame respecte del qual es posicionarà el diàleg d'error si falla la lectura de les imatges
      */
     public FavCheckBox(JFrame reference) {
+        super();
         setHorizontalAlignment(CENTER);
         try {
             fav = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResource("images/red.png"))));
