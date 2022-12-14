@@ -66,11 +66,11 @@ public class MainView {
      */
     private JMenu menuOptions;
     /**
-     * \brief Item del menú d'opcions que es dissenyarà perquè ensenyi el diàleg LoaderDialog
+     * \brief Item del menú d'opcions que servirà per carregar fitxers externs al sistema com a documents
      */
     private JMenuItem load;
     /**
-     * \brief Item del menú d'opcions que es dissenyarà perquè ensenyi el diàleg NewDocumentDialog
+     * \brief Item del menú d'opcions que servirà per crear nous documents sense contingut
      */
     private JMenuItem create;
     /**
@@ -82,15 +82,15 @@ public class MainView {
      */
     private JMenu menuList;
     /**
-     * \brief Item del menú de llistar que es dissenyarà perquè ensenyi el diàleg ListQueryDialog
+     * \brief Item del menú de llistar que servirà per llistar els documents segons una query
      */
     private JMenuItem listByQuery;
     /**
-     * \brief Item del menú de llistar que es dissenyarà perquè ensenyi el diàleg ListExpressionDialog
+     * \brief Item del menú de llistar que servirà per llistar els documents segons si verifiquen una expressió booleana
      */
     private JMenuItem listByExpression;
     /**
-     * \brief Item del menú de llistar que es dissenyarà perquè ensenyi el diàleg ListAuthorDialog
+     * \brief Item del menú de llistar que es servirà per llistar els documents d'un autor
      */
     private JMenuItem listByAuthor;
     /**
@@ -382,7 +382,6 @@ public class MainView {
      * @brief Mètode per inicialitzar la vista, i fer persistents els canvis fets en tancar l'aplicació
      * @details Amb aquesta funció es mostra la vista principal, i afegeix un listener per fer que quan es tanca la finestra,
      * es facin persistents els canvis fets, i tot seguit s'aturi l'execució de l'aplicació
-     * @post Es mostra la vista principal per pantalla
      */
     public void initialize(Point location, Dimension size) {
         frame.setContentPane(panel);
