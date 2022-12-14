@@ -6,7 +6,6 @@ import com.intellij.uiDesigner.core.Spacer;
 import main.domain.util.Pair;
 import main.excepcions.ExceptionNoDocument;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -15,8 +14,6 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.IOException;
-import java.util.Objects;
 
 /**
  * @author marc.valls.camps i pau.duran.manzano
@@ -24,29 +21,101 @@ import java.util.Objects;
  * @brief Vista principal de l'aplicatiu, que serveix per gestionar els documents
  */
 public class MainView {
+    /**
+     * \brief La instància de controlador de presentació de l'aplicació
+     */
     private CtrlPresentation cp;
+    /**
+     * \brief El frame principal de la vista
+     */
     private JFrame frame;
+    /**
+     * \brief El panell de contingut de la vista
+     */
     private JPanel panel;
-    private JButton similars;
-    private JButton export;
-    private JButton delete;
-    private JMenuBar menubar;
+    /**
+     * \brief Botó per a modificar un document seleccionat d'entre els que es mostren
+     */
     private JButton modify;
+    /**
+     * \brief Botó per a llistar documents similars a un de seleccionat d'entre els que es mostren
+     */
+    private JButton similars;
+    /**
+     * \brief Botó per a descarregar un document seleccionat d'entre els que es mostren
+     */
+    private JButton export;
+    /**
+     * \brief Botó per a esborrar del sistema un document seleccionat d'entre els que es mostren
+     */
+    private JButton delete;
+    /**
+     * \brief Barra de menús de la vista
+     */
+    private JMenuBar menubar;
+    /**
+     * \brief Taula on es mostren tots els documents del sistema, o una selecció d'aquests si s'ha fet alguna consulta
+     */
     private JTable documents;
+    /**
+     * \brief Model de la taula de la vista
+     */
     private DefaultTableModel documentsModel;
+    /**
+     * \brief Menú que mostra les eines més genèriques
+     */
     private JMenu menuOptions;
+    /**
+     * \brief Item del menú d'opcions que es dissenyarà perquè ensenyi el diàleg LoaderDialog
+     */
     private JMenuItem load;
+    /**
+     * \brief Item del menú d'opcions que es dissenyarà perquè ensenyi el diàleg NewDocumentDialog
+     */
     private JMenuItem create;
+    /**
+     * \brief Item del menú d'opcions que es oferirà la possibilitat de canviar a la vista ExpressionsView
+     */
     private JMenuItem expressions;
-    private JMenuItem help;
-    private JMenuItem reset;
+    /**
+     * \brief Menú que mostra les eines de les quals l'usuari disposa per llista i filtrar documents del sistema
+     */
     private JMenu menuList;
+    /**
+     * \brief Item del menú de llistar que es dissenyarà perquè ensenyi el diàleg ListQueryDialog
+     */
     private JMenuItem listByQuery;
+    /**
+     * \brief Item del menú de llistar que es dissenyarà perquè ensenyi el diàleg ListExpressionDialog
+     */
     private JMenuItem listByExpression;
+    /**
+     * \brief Item del menú de llistar que es dissenyarà perquè ensenyi el diàleg ListAuthorDialog
+     */
     private JMenuItem listByAuthor;
+    /**
+     * \brief Item del menú de llistar que es mostrarà quan s'hagin fet servir filtres, per tornar a veure tots els documents del sistema
+     */
     private JMenuItem listByNothing;
+    /**
+     * \brief Opció de la barra de menús de la vista per mostrar l'ajuda a l'usuari
+     */
+    private JMenuItem help;
+    /**
+     * \brief Opció de la barra de menús per fer reset del sistema
+     */
+    private JMenuItem reset;
+    /**
+     * \brief Índex de la fila actualment seleccionada de la taula
+     * \invariant Índex de la fila seleccionada a la taula (diferent de l'índex de les dades), o -1 si no s'ha seleccionat cap fila
+     */
     private int selectedIndex;
 
+    /**
+     * @return MainView
+     * @brief Creadora per defecte de la vista
+     * @details S'inicialitza la barra de menús i s'enllacen tots els listeners de botons, events de mouse i altres a les funcionalitats corresponents
+     */
     public MainView() {
         cp = CtrlPresentation.getInstance();
         frame = new JFrame("Gestió de documents");
@@ -278,7 +347,7 @@ public class MainView {
                 if (col == 0) {
                     boolean newFav = (boolean) documents.getValueAt(row, 0);
                     String title = (String) documents.getValueAt(row, 1);
-                    String author = (String) documents.getValueAt(row, 2).toString();
+                    String author = (String) documents.getValueAt(row, 2);
                     try {
                         cp.updateFavouriteDocument(title, author, newFav);
                     } catch (ExceptionNoDocument ex) {
@@ -307,6 +376,14 @@ public class MainView {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
+    /**
+     * @param location Posició de la pantalla on volem situar la vista
+     * @param size Mida de la vista
+     * @brief Mètode per inicialitzar la vista, i fer persistents els canvis fets en tancar l'aplicació
+     * @details Amb aquesta funció es mostra la vista principal, i afegeix un listener per fer que quan es tanca la finestra,
+     * es facin persistents els canvis fets, i tot seguit s'aturi l'execució de l'aplicació
+     * @post Es mostra la vista principal per pantalla
+     */
     public void initialize(Point location, Dimension size) {
         frame.setContentPane(panel);
         frame.setVisible(true);
@@ -322,47 +399,18 @@ public class MainView {
         });
     }
 
-    public class FavCheckBox extends JCheckBox {
-        private ImageIcon fav;
-        private ImageIcon nofav;
-
-        public FavCheckBox() {
-            setHorizontalAlignment(CENTER);
-            try {
-                fav = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResource("images/red.png"))));
-                fav = new ImageIcon(fav.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH));
-
-                nofav = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResource("images/white.png"))));
-                nofav = new ImageIcon(nofav.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH));
-            } catch (IOException e) {
-                cp.showInternalError(frame);
-            }
-        }
-
-        @Override
-        public void setSelected(boolean selected) {
-            super.setSelected(selected);
-            if (selected) setIcon(fav);
-            else setIcon(nofav);
-        }
-
-    }
-
-    public class FavBooleanCellRenderer extends FavCheckBox implements TableCellRenderer {
-        @Override
-        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-            if (value instanceof Boolean) setSelected((boolean) value);
-            return this;
-        }
-    }
-
+    /**
+     * @param data Matriu de les dades a veure a la taula de la vista
+     * @brief Mètode per substituir les dades que es veuen a la taula de la vista per noves dades, i configurar la taula
+     * per aconseguir que es renderitzi correctament
+     */
     private void updateData(Object[][] data) {
         String[] headers = new String[]{"", "Titol", "Autor"};
 
         documentsModel.setDataVector(data, headers);
 
-        documents.setDefaultRenderer(Boolean.class, new FavBooleanCellRenderer());
-        documents.setDefaultEditor(Boolean.class, new DefaultCellEditor(new FavCheckBox()));
+        documents.setDefaultRenderer(Boolean.class, new FavBooleanCellRenderer(frame));
+        documents.setDefaultEditor(Boolean.class, new DefaultCellEditor(new FavCheckBox(frame)));
 
         documents.getTableHeader().setReorderingAllowed(false);
         documents.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -372,6 +420,10 @@ public class MainView {
         tc.setMaxWidth(25);
     }
 
+    /**
+     * @brief Mètode que crea la taula de la vista, la formateja per a que es vegi com desitgem, i la inicialitza amb
+     * les dades de tots els documents del sistema
+     */
     private void createUIComponents() {
         documentsModel = new DefaultTableModel() {
             @Override
@@ -398,6 +450,10 @@ public class MainView {
         Font font = new Font("Arial", Font.BOLD, 14);
         header.setFont(font);
     }
+
+    /**
+     * \cond
+     */
 
     /**
      * Method generated by IntelliJ IDEA GUI Designer
@@ -450,5 +506,7 @@ public class MainView {
     public JComponent $$$getRootComponent$$$() {
         return panel;
     }
-
+    /**
+     * \endcond
+     */
 }
