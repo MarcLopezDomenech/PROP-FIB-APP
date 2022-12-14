@@ -1,13 +1,12 @@
-<hola> aihai <hola>
 <title>Tresors en un mapa (2)</title>
 <author>Jutge.org</author>
-<content>Feu un programa que, donat un mapa amb tresors i obstacles, digui a quants tresors es pot arribar des d‚Äôuna posici√≥ inicial donada. Els moviments permesos s√≥n horitzontals o verticals, per√≤ no diagonals. Si cal, es pot passar per sobre dels tresors.
+<content>Feu un programa que, donat un mapa amb tresors i obstacles, digui a quants tresors es pot arribar des d&aposuna posiciÛ inicial donada. Els moviments permesos sÛn horitzontals o verticals, perÚ no diagonals. Si cal, es pot passar per sobre dels tresors.
 
 Entrada
 
-L‚Äôentrada comen√ßa amb el nombre de files n &gt 0 i de columnes m &gt 0 del mapa. Segueixen n files amb m car√†cters cadascuna. Un punt indica una posici√≥ buida, una &lt X &lt indica un obstacle, i una &quot t&quot indica un tresor. Finalment, un parell de nombres f i c indiquen la fila i columna inicials (ambdues comen√ßant en 1) des de les quals cal comen√ßar a buscar tresors. Podeu suposar que f est√† entre 1 i n, que c est√† entre 1 i m, i que la posici√≥ inicial sempre est√† buida.
+L&aposentrada comenÁa amb el nombre de files n &gt 0 i de columnes m &gt 0 del mapa. Segueixen n files amb m car‡cters cadascuna. Un punt indica una posiciÛ buida, una &aposX&apos indica un obstacle, i una &apost&apos indica un tresor. Finalment, un parell de nombres f i c indiquen la fila i columna inicials (ambdues comenÁant en 1) des de les quals cal comenÁar a buscar tresors. Podeu suposar que f est‡† entre 1 i n, que c est‡ entre 1 i m, i que la posiciÛ inicial sempre est‡† buida.
 
 Sortida
 
-Escriviu el nombre de tresors accessibles des de la posici√≥ inicial.</content>
-<altres> <altres>
+Escriviu el nombre de tresors accessibles des de la posiciÛ inicial.
+</content>

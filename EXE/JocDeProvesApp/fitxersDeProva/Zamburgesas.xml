@@ -1,18 +1,18 @@
 <title> Las Zamburgesas </title>
-<author> Jorid Petit </author>
-<content> La prova de Las Zamburguesas Ã©s una de les mÃ©s mÃ­tiques del concurs. Els participants han de creuar un riu saltant de roca en roca, perÃ² compte! Algunes roques sÃ³n falses i sâ€™enfonsen!
+<author> Jordi Petit </author>
+<content> La prova de Las Zamburguesas és una de les més mítiques del concurs. Els participants han de creuar un riu saltant de roca en roca, però compte! Algunes roques són falses i s&aposenfonsen!
 
-Hi ha n roques de debÃ², circulars, amb centre (xi, yi) i radi ri. La distÃ ncia mÃ xima que pot fer dâ€™un salt un participant Ã©s d (mesurant-ho des de la vora de les roques). La vostra tasca Ã©s calcular el nombre mÃ­nim de salts que cal fer per anar de la primera roca a lâ€™Ãºltima sense caure a lâ€™aigua. Si Ã©s impossible, cal indicar-ho.
+Hi ha n roques de debó, circulars, amb centre (xi, yi) i radi ri. La distància màxima que pot fer d&aposun salt un participant és d (mesurant-ho des de la vora de les roques). La vostra tasca és calcular el nombre mínim de salts que cal fer per anar de la primera roca a l&aposúltima sense caure a l&aposaigua.
 
 Entrada
 
-Lâ€™entrada consisteix en diversos casos. Cada cas comenÃ§a amb el nombre de roques n â‰¥ 2 i la distÃ ncia de salt d &gt 0. Segueixen n triplets de reals xi, yi i ri descrivint cada roca.
+L&aposentrada consisteix en diversos casos. Cada cas comença amb el nombre de roques n &gt= 2 i la distància de salt d &gt 0. Segueixen n triplets de reals xi, yi i ri descrivint cada roca.
 
 Sortida
 
-Per a cada cas dâ€™entrada, escriviu en una lÃ­nia el nombre mÃ­nim de salts per anar de la primera de les roques donades fins a lâ€™Ãºltima, fent salts no mÃ©s grans que d, o bÃ© &quotXof!&quot si no es pot.
+Per a cada cas d&aposentrada, escriviu en una línia el nombre mínim de salts per anar de la primera de les roques donades fins a l&aposúltima, fent salts no més grans que d, o &aposXof!&apos si no es pot.
 
 Observacions
 
-Els casos de prova no contindran mai roques que se solapin, ni cap salt que vagi just, i que per tant es poguÃ©s malinterpretar per errors de precisiÃ³.
-La figura es correspon a les roques dels exemples dâ€™entrada.</content>
+Els casos de prova no contindran mai roques que se solapin, ni cap salt que vagi just, i que per tant es poguès malinterpretar per errors de precisió
+La figura es correspon a les roques dels exemples d&aposentrada.</content>

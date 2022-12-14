@@ -68,9 +68,9 @@ public class Document {
      * @throws ExceptionInvalidLanguage L'idioma del document no es vàlid (no es ca, es o en)
      */
     public Document(String title, String author, String content, String language, String format) throws ExceptionInvalidFormat, ExceptionInvalidLanguage {
-        this.author = author;
-        this.title = title;
-        this.content = content;
+        this.author = author.strip();
+        this.title = title.strip();
+        this.content = content.strip();
         if (!"ca".equals(language) && !"en".equals(language) && !"es".equals(language)) throw new ExceptionInvalidLanguage(language);
         this.language = language;
         if (!format.equals("txt") && !format.equals("xml")) throw new ExceptionInvalidFormat(format);
@@ -88,9 +88,9 @@ public class Document {
      */
     public Document(String title, String author, String content, String language) throws ExceptionInvalidLanguage {
         if (!"ca".equals(language) && !"en".equals(language) && !"es".equals(language)) throw new ExceptionInvalidLanguage(language);
-        this.author = author;
-        this.title = title;
-        this.content = content;
+        this.author = author.strip();
+        this.title = title.strip();
+        this.content = content.strip();
         this.language = language;
         this.originalFormat = null;
         this.internalDoc = new InternalDocument(content +" "+ title, language);

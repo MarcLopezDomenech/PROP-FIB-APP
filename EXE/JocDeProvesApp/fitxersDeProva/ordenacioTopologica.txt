@@ -1,11 +1,11 @@
-Ordenacio Topologica
+Ordenacio Topològica
 Jutge.org
-Cal realitzar n tasques, dâ€™una en una. A mÃ©s, cal fer algunes tasques abans que altres: hi ha m relacions de precedÃ¨ncia entre les tasques. Feu un programa que escrigui una manera dâ€™ordenar les n tasques dâ€™acord amb les m precedÃ¨ncies donades.
+Cal realitzar n tasques, d'una en una. A més, cal fer algunes tasques abans que altres: hi ha m relacions de precedència entre les tasques. Feu un programa que escrigui una manera d'ordenar les n tasques d'acord amb les m precedències donades.
 
 Entrada
 
-Lâ€™entrada consisteix en diversos casos. Cada cas comenÃ§a amb n, seguit de m, seguit de m parells diferents x y, que indiquen que cal realitzar la tasca x abans que la y. Suposeu 1 â‰¤ n â‰¤ 104, 0 â‰¤ m â‰¤ 10n, i que les tasques es numeren entre 0 i n âˆ’ 1.
+L'entrada consisteix en diversos casos. Cada cas comença amb n, seguit de m, seguit de m parells diferents x y, que indiquen que cal realitzar la tasca x abans que la y. Suposeu 1 < n  <104, 0 < m < 10n, i que les tasques es numeren entre 0 i n - 1.
 
 Sortida
 
-Per a cada cas, escriviu la manera mÃ©s petita lexicogrÃ ficament dâ€™ordenar les n tasques dâ€™acord amb les m precedÃ¨ncies donades. Sempre hi haurÃ , com a mÃ­nim, una soluciÃ³.
+Per a cada cas, escriviu la manera més petita lexicogràficament d'ordenar les n tasques d'acord amb les m precedències donades. Sempre hi haurà, com a mínim, una solució.
