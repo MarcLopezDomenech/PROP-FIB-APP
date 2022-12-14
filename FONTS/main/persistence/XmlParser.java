@@ -28,7 +28,6 @@ public class XmlParser extends Parser {
         information = information[1].split("</title>");
         if (information.length > 2) throw new ExceptionInvalidCharacter("</title>");
         String title = information[0];
-        title = title.strip();
         input = information[1];
 
         //obtenir el autor
@@ -37,7 +36,6 @@ public class XmlParser extends Parser {
         information = information[1].split("</author>");
         if (information.length > 2) throw new ExceptionInvalidCharacter("</author>");
         String author = information[0];
-        author = author.strip();
         input = information[1];
 
         //Obtenir el contingut
@@ -46,7 +44,6 @@ public class XmlParser extends Parser {
         information = information[1].split("</content>");
         if (information.length > 2) throw new ExceptionInvalidCharacter("</content>");
         String content = information[0];
-        content = content.strip();
 
         //En xml, hi ha certs caràcters especials (scape characters), que no corresponen al seu valor ascii
         title = removeScapeChars(title);

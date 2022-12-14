@@ -33,9 +33,7 @@ public class TxtParser extends Parser {
        
         Scanner myReader = new Scanner(myObj);
         String title = myReader.nextLine();
-        title = title.strip();
         String author = myReader.nextLine();
-        author = author.strip();
         String content = "";
 
         while (myReader.hasNextLine()) {
