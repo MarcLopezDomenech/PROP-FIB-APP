@@ -16,7 +16,7 @@ import java.awt.event.*;
  */
 
 public class ListQueryDialog extends JDialog {
-    private CtrlViewsDialogs cwd;
+    private CtrlViewsDialogs cvd;
 
     private JFrame quer;
     private JPanel contentPane;
@@ -30,7 +30,7 @@ public class ListQueryDialog extends JDialog {
     private Pair<String, Integer> result;
 
     public ListQueryDialog() {
-        cwd = CtrlViewsDialogs.getInstance();
+        cvd = CtrlViewsDialogs.getInstance();
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -79,12 +79,12 @@ public class ListQueryDialog extends JDialog {
             k = Integer.parseInt(spinner1.getValue().toString());
         } catch (NumberFormatException ex) {
             //LLAMAR DIALOG ERROR
-            cwd.showError(quer, "Nombre de resultats invalid");
+            cvd.showError(quer, "Nombre de resultats invalid");
             err = false;
         }
         if (err) {
             if (k < 0) {
-                cwd.showError(quer, "Nombre de resultats invalid");
+                cvd.showError(quer, "Nombre de resultats invalid");
             } else {
                 result = new Pair<String, Integer>(query, k);
                 dispose();

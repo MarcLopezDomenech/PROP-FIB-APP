@@ -27,7 +27,7 @@ public class ExpressionsView {
     /**
      * \brief Instància del subcontrolador de vistes i dàlegs
      */
-    private CtrlViewsDialogs cwd;
+    private CtrlViewsDialogs cvd;
 
     /**
      * \brief Marc de la vista
@@ -125,7 +125,7 @@ public class ExpressionsView {
     public ExpressionsView() {
         // Aconseguim la instància dels controladors de presentació que usem i inicialitzem el frame
         cp = CtrlPresentation.getInstance();
-        cwd = CtrlViewsDialogs.getInstance();
+        cvd = CtrlViewsDialogs.getInstance();
         frame = new JFrame("Gestió de les expressions");
         selected = null;
 
@@ -157,21 +157,21 @@ public class ExpressionsView {
         loadOption.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cwd.showLoader(frame);
+                cvd.showLoader(frame);
             }
         });
 
         createOption.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cwd.showNewDocument(frame);
+                cvd.showNewDocument(frame);
             }
         });
 
         listOption.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cwd.showDocuments(frame.getLocation(), frame.getSize());
+                cvd.showDocuments(frame.getLocation(), frame.getSize());
                 frame.dispose();
             }
         });
@@ -179,7 +179,7 @@ public class ExpressionsView {
         help.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cwd.showHelp(frame,
+                cvd.showHelp(frame,
                         "<html>" +
                                 "Aquesta és la pantalla de gestió de documents.<br><br>" +
                                 "Pots crear expressions en l'espai de text superior, i confirmant-ho amb el botó d'Afegir<br><br>" +
@@ -192,7 +192,7 @@ public class ExpressionsView {
         reset.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean confirm = cwd.askConfirmation(frame, "ATENCIÓ! Estàs a punt d'esborrar tot el contingut del sistema. Aquesta acció és irreversible. Estàs segur que vols fer reset?");
+                boolean confirm = cvd.askConfirmation(frame, "ATENCIÓ! Estàs a punt d'esborrar tot el contingut del sistema. Aquesta acció és irreversible. Estàs segur que vols fer reset?");
                 if (confirm) {
                     CtrlApplication.getInstance().reset();
                     listModel.clear();
@@ -259,10 +259,10 @@ public class ExpressionsView {
                     text.setText("");
                     add.setEnabled(false);
                 } catch (ExceptionExpressionExists e) {
-                    cwd.showError(frame, e.getMessage());
+                    cvd.showError(frame, e.getMessage());
                     list.setSelectedIndex(listModel.indexOf(newExpression));
                 } catch (ExceptionInvalidExpression e) {
-                    cwd.showError(frame, e.getMessage());
+                    cvd.showError(frame, e.getMessage());
                 }
             }
         });
@@ -273,7 +273,7 @@ public class ExpressionsView {
         modify.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                String newValue = cwd.showModifyExpression(frame, selected);
+                String newValue = cvd.showModifyExpression(frame, selected);
                 if (newValue != null && !"".equals(newValue)) {
                     try {
                         cp.modifyExpression(selected, newValue);
@@ -284,10 +284,10 @@ public class ExpressionsView {
                         list.grabFocus();
                         list.setSelectedIndex(listModel.indexOf(newValue));
                     } catch (ExceptionInvalidExpression | ExceptionExpressionExists e) {
-                        cwd.showError(frame, e.getMessage());
+                        cvd.showError(frame, e.getMessage());
                     } catch (ExceptionNoExpression e) {
                         // No es pot donar el cas, ho garantim per presentació
-                        cwd.showInternalError(frame);
+                        cvd.showInternalError(frame);
                     }
                 }
             }
@@ -296,13 +296,13 @@ public class ExpressionsView {
         delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean confirm = cwd.askConfirmation(frame, "Segur/a que vols esborrar l'expressió " + selected + "?");
+                boolean confirm = cvd.askConfirmation(frame, "Segur/a que vols esborrar l'expressió " + selected + "?");
                 if (confirm) {
                     try {
                         cp.deleteExpression(selected);
                     } catch (ExceptionNoExpression ex) {
                         // No es pot donar, garantit per presentació
-                        cwd.showInternalError(frame);
+                        cvd.showInternalError(frame);
                     }
                     listModel.removeElement(selected);
                     text.grabFocus();

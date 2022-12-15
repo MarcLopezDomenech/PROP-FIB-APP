@@ -16,7 +16,7 @@ import main.domain.util.Pair;
 public class ListExpressionDialog extends JDialog {
 
     private CtrlPresentation cp;
-    private CtrlViewsDialogs cwd;
+    private CtrlViewsDialogs cvd;
 
     private JFrame exp;
     private JPanel contentPane;
@@ -100,13 +100,13 @@ public class ListExpressionDialog extends JDialog {
 
         result = new Pair<String, Boolean>(null, null);
         cp = CtrlPresentation.getInstance();
-        cwd = CtrlViewsDialogs.getInstance();
+        cvd = CtrlViewsDialogs.getInstance();
         enableButtonIfCorrect();
         listModel1 = new DefaultListModel();
         list1.setModel(listModel1);
         Set<String> expressions = cp.getAllExpressions();
         if (expressions.isEmpty()) {
-            cwd.showError(exp, "<html>" +
+            cvd.showError(exp, "<html>" +
                     "No has donat d'alta cap expressió.<br><br>" +
                     "Per fer-ho, dirigeix-te a Menú --> Gestió expressions<br>" +
                     "</html>");
