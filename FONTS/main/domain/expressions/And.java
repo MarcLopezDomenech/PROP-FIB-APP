@@ -23,12 +23,12 @@ public class And extends Expression{
         if (left.height <= right.height) {
             this.left = left;
             this.right = right;
-            this.height = right.height + 1;
+            this.height = left.height + 1;
         }
         else {
             this.left = right;
             this.right = left;
-            this.height = left.height + 1;
+            this.height = right.height + 1;
         }
     }
 

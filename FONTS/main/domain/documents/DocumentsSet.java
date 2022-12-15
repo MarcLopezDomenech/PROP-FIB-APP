@@ -715,24 +715,4 @@ public class DocumentsSet {
         }
         return ordre;
     }
-    /**
-     * @class ValueComparator
-     * @brief Classe que permet comparar Pair<Pair<String, String>, Double>
-     * @author pau.duran.manzano
-     */
-    private class ValueComparator implements Comparator<Pair<Object[], Double>> {
-        /**
-         * @brief Operació per comparar en funció del segon valor (el second) d'un pair
-         * @pre Cap dels valors dels camps de dins dels pairs és null
-         * @param p1 Primer pair a comparar
-         * @param p2 Segon pair a comprar
-         * @return Es retorna 1 si p1 té un second major que p2, 0 si són iguals i -1 altrament
-         */
-        @Override
-        public int compare(Pair<Object[], Double> p1, Pair<Object[], Double> p2) {
-            if (p1.getSecond() < p2.getSecond()) return 1;
-            else if (p1.getSecond() == p2.getSecond()) return 0;
-            else return -1;
-        }
-    }
 }
