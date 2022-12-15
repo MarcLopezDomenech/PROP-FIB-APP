@@ -123,7 +123,7 @@ public class ExpressionsView {
      * @details S'inicialitza el menú i s'enllacen tots els listeners de botons, events de mouse i altres a les funcionalitats corresponents
      */
     public ExpressionsView() {
-        // Aconseguim la instància del controlador de presentació i inicialitzem el frame
+        // Aconseguim la instància dels controladors de presentació que usem i inicialitzem el frame
         cp = CtrlPresentation.getInstance();
         cwd = CtrlViewsDialogs.getInstance();
         frame = new JFrame("Gestió de les expressions");

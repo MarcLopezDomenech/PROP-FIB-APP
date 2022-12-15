@@ -1,11 +1,8 @@
 package main.presentation;
 
 import main.domain.CtrlDomain;
-import main.domain.util.Pair;
 import main.excepcions.*;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
