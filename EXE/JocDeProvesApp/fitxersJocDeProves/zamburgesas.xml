@@ -1,0 +1,13 @@
+<title> Las zamburgesas </title>
+<author> Jutge.org </author>
+<content>
+i ha n roques de debò, circulars, amb centre (xi, yi) i radi ri. La distància màxima que pot fer d’un salt un participant és d (mesurant-ho des de la vora de les roques). La vostra tasca és calcular el nombre mínim de salts que cal fer per anar de la primera roca a l’última sense caure a l’aigua. Si és impossible, cal indicar-ho.
+
+Entrada
+
+L’entrada consisteix en diversos casos. Cada cas comença amb el nombre de roques n ≥ 2 i la distància de salt d &gt 0. Segueixen n triplets de reals xi, yi i ri descrivint cada roca.
+
+Sortida
+
+Per a cada cas d’entrada, escriviu en una línia el nombre mínim de salts per anar de la primera de les roques donades fins a l’última, fent salts no més grans que d, 
+</content>
