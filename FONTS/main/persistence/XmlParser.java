@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import main.excepcions.ExceptionInvalidCharacter;
 import main.excepcions.ExceptionInvalidFormat;
+import main.excepcions.ExceptionMissingTitleOrAuthor;
 
 /**
  * @class TxtParser
@@ -21,27 +22,33 @@ public class XmlParser extends Parser {
     }
 
 
-    public String read(String path) throws FileNotFoundException, ExceptionInvalidCharacter {
+    public String read(String path) throws FileNotFoundException, ExceptionInvalidCharacter, ExceptionMissingTitleOrAuthor {
         String input = readFromFile(path);
         String[] information = input.split("<title>");
+        if (information.length == 1) throw new ExceptionMissingTitleOrAuthor("l'etiqueta <title>");
         if (information.length > 2) throw new ExceptionInvalidCharacter("<title>");
         information = information[1].split("</title>");
+        if (information.length == 1) throw new ExceptionMissingTitleOrAuthor("l'etiqueta </title>");
         if (information.length > 2) throw new ExceptionInvalidCharacter("</title>");
         String title = information[0];
         input = information[1];
 
         //obtenir el autor
         information = input.split("<author>");
+        if (information.length == 1) throw new ExceptionMissingTitleOrAuthor("l'etiqueta <author>");
         if (information.length > 2) throw new ExceptionInvalidCharacter("<author>");
         information = information[1].split("</author>");
+        if (information.length == 1) throw new ExceptionMissingTitleOrAuthor("l'etiqueta </autor>");
         if (information.length > 2) throw new ExceptionInvalidCharacter("</author>");
         String author = information[0];
         input = information[1];
 
         //Obtenir el contingut
         information = input.split("<content>");
+        if (information.length == 1) throw new ExceptionMissingTitleOrAuthor("l'etiqueta <content>");
         if (information.length > 2) throw new ExceptionInvalidCharacter("<content>");
         information = information[1].split("</content>");
+        if (information.length == 1) throw new ExceptionMissingTitleOrAuthor("l'etiqueta </content>");
         if (information.length > 2) throw new ExceptionInvalidCharacter("</content>");
         String content = information[0];
 

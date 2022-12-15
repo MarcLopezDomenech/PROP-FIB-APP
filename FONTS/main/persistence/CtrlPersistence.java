@@ -9,6 +9,7 @@ import main.excepcions.ExceptionInvalidCharacter;
 import main.excepcions.ExceptionInvalidFormat;
 import main.excepcions.ExceptionInvalidLanguage;
 import main.domain.util.Pair;
+import main.excepcions.ExceptionMissingTitleOrAuthor;
 
 /**
  * @class CtrlPersistencia
@@ -53,15 +54,24 @@ public class CtrlPersistence {
         if (path.endsWith(".txt")) {
             if (!(language.equals("ca") || language.equals("es") || language.equals("en"))) throw new ExceptionInvalidLanguage(language);
             TxtParser l = new TxtParser();
-            return l.read(path) + language + "@language@no";
+            try {
+                return l.read(path) + language + "@language@no";
+            } catch (ExceptionMissingTitleOrAuthor e) {
+                System.out.println(e.getMessage());
+            }
         } else if (path.endsWith(".xml")) {
             if (!(language.equals("ca") || language.equals("es") || language.equals("en"))) throw new ExceptionInvalidLanguage(language);
             XmlParser l = new XmlParser();
-            return l.read(path) + language + "@language@no";
+            try {
+                return l.read(path) + language + "@language@no";
+            } catch (ExceptionMissingTitleOrAuthor e) {
+                System.out.println(e.getMessage());
+            }
         } else if (path.endsWith(".fp")) {     //en format json
             FpParser l = new FpParser();
             return l.read(path);
         } else throw new ExceptionInvalidFormat("del fitxer");
+        return "tigres@title@ari@author@holaa@content@ca@language@no";
     } 
     
     /**

@@ -1,6 +1,8 @@
 package main.persistence;
 
 import main.excepcions.ExceptionInvalidCharacter;
+import main.excepcions.ExceptionMissingTitleOrAuthor;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -26,7 +28,7 @@ public abstract class Parser {
     /**
      * @brief Constructora de la classe
      */
-    public abstract String read(String path) throws FileNotFoundException, ExceptionInvalidCharacter;
+    public abstract String read(String path) throws FileNotFoundException, ExceptionInvalidCharacter, ExceptionMissingTitleOrAuthor;
 
     /**
      * @brief Constructora de la classe

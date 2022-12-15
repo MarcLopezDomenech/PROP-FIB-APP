@@ -1,6 +1,8 @@
 package main.persistence;
 
-import java.io.File;  
+import main.excepcions.ExceptionMissingTitleOrAuthor;
+
+import java.io.File;
 import java.io.FileNotFoundException;
 
 import java.nio.charset.StandardCharsets;
@@ -29,12 +31,16 @@ public class TxtParser extends Parser {
     /**
      * @brief Llegeix el contingut d'un fitxer en txt i el retorna en format propietari del sistema
      */
-    public String read(String path) throws FileNotFoundException {
+    public String read(String path) throws FileNotFoundException, ExceptionMissingTitleOrAuthor {
         File myObj = new File(path);
        
         Scanner myReader = new Scanner(myObj, "UTF-8");
+        if (!myReader.hasNextLine()) throw new ExceptionMissingTitleOrAuthor("un títol");
         String title = myReader.nextLine();
+        if (title.equals("")) throw new ExceptionMissingTitleOrAuthor("un títol");
+        if (!myReader.hasNextLine()) throw new ExceptionMissingTitleOrAuthor("un autor");
         String author = myReader.nextLine();
+        if (author.equals("")) throw new ExceptionMissingTitleOrAuthor("un autor");
         String content = "";
 
         while (myReader.hasNextLine()) {
