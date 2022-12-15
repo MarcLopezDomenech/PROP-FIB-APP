@@ -106,17 +106,17 @@ public class Document {
     public Document(String representation) throws InternalError {
         //Obtenir el titol
         String[] data = representation.split("@title@");
-        title = data[0];
+        title = data[0].strip();
         representation = data[1];
 
         //Obtenir el autor
         data = representation.split("@author@");
-        author = data[0];
+        author = data[0].strip();
         representation = data[1];
 
         //Obtenir el contingut
         data = representation.split("@content@");
-        content = data[0];
+        content = data[0].strip();
         representation = data[1];
 
         //Obtenir el contingut i el llenguatge
@@ -199,8 +199,8 @@ public class Document {
      * @param newTitle El nou títol a ser assignat al document
      */
     public void setTitle(String newTitle) {
-        title = newTitle;
-        internalDoc.newContent(content + " "+ newTitle, language);
+        title = newTitle.strip();
+        internalDoc.newContent(content + " "+ title, language);
     }
 
     /**
@@ -209,7 +209,7 @@ public class Document {
      * @param newAuthor El nou autor a ser assignat al document
      */
     public void setAuthor(String newAuthor) {
-        author = newAuthor;
+        author = newAuthor.strip();
     }
 
     /**
@@ -218,8 +218,8 @@ public class Document {
      * @param newContent El nou contingut a ser assignat al document
      */
     public void setContent(String newContent) {
-        content = newContent;
-        internalDoc.newContent(newContent + " "+ title, language);
+        content = newContent.strip();
+        internalDoc.newContent(content + " "+ title, language);
     }
 
     /**
