@@ -38,7 +38,7 @@ public class XmlParser extends Parser {
         if (information.length == 1) throw new ExceptionMissingTitleOrAuthor("l'etiqueta <author>");
         if (information.length > 2) throw new ExceptionInvalidCharacter("<author>");
         information = information[1].split("</author>");
-        if (information.length == 1) throw new ExceptionMissingTitleOrAuthor("l'etiqueta </autor>");
+        if (information.length == 1) throw new ExceptionMissingTitleOrAuthor("l'etiqueta </author>");
         if (information.length > 2) throw new ExceptionInvalidCharacter("</author>");
         String author = information[0];
         input = information[1];

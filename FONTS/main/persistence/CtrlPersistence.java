@@ -50,29 +50,20 @@ public class CtrlPersistence {
      * @throws FileNotFoundException El fitxer buscat no existeix al sistema
      */
     
-    public String importDocument(String path, String language) throws ExceptionInvalidFormat, FileNotFoundException, ExceptionInvalidLanguage, ExceptionInvalidCharacter {
+    public String importDocument(String path, String language) throws ExceptionInvalidFormat, FileNotFoundException, ExceptionInvalidLanguage, ExceptionInvalidCharacter, ExceptionMissingTitleOrAuthor {
         if (path.endsWith(".txt")) {
             if (!(language.equals("ca") || language.equals("es") || language.equals("en"))) throw new ExceptionInvalidLanguage(language);
             TxtParser l = new TxtParser();
-            try {
-                return l.read(path) + language + "@language@no";
-            } catch (ExceptionMissingTitleOrAuthor e) {
-                System.out.println(e.getMessage());
-            }
+            return l.read(path) + language + "@language@no";
         } else if (path.endsWith(".xml")) {
             if (!(language.equals("ca") || language.equals("es") || language.equals("en"))) throw new ExceptionInvalidLanguage(language);
             XmlParser l = new XmlParser();
-            try {
-                return l.read(path) + language + "@language@no";
-            } catch (ExceptionMissingTitleOrAuthor e) {
-                System.out.println(e.getMessage());
-            }
+            return l.read(path) + language + "@language@no";
         } else if (path.endsWith(".fp")) {     //en format json
             FpParser l = new FpParser();
             return l.read(path);
         } else throw new ExceptionInvalidFormat("del fitxer");
-        return "tigres@title@ari@author@holaa@content@ca@language@no";
-    } 
+    }
     
     /**
      * @brief Funció per exportar un document
