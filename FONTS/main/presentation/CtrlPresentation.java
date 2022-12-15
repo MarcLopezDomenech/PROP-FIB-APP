@@ -47,56 +47,6 @@ public class CtrlPresentation {
         return singletonObject;
     }
 
-
-    // Gestió de l'aplicació i back-ups
-
-    /**
-     * @brief Funció que inicialitza l'aplicatiu amb la còpia de seguretat
-     * @details Amb aquest mètode es permet inicialitzar l'aplicatiu a partir de l'última còpia de seguretat de què es disposi
-     * @pre Si existeix una còpia de seguretat, aquestà és vàlida
-     * @post El sistema queda inicialitzat amb la darrera còpia de seguretat del sistema
-     */
-    public void initiateApp() {
-        // Restaurar sistema
-        try {
-            cd.restoreSystem();
-        } catch (FileNotFoundException e) {
-            // Vol dir que és el primer cop que encenem l'aplicatiu, no tenim còpia de seguretat, no passa res.
-        } catch (ExceptionDocumentExists | ExceptionInvalidExpression | ExceptionExpressionExists e) {
-            // No hauría de passar mai
-            JFrame reference = new JFrame();
-            reference.setLocation(new Point(600, 300));
-            showInternalError(reference);
-        }
-    }
-
-    /**
-     * @brief Funció que deixa l'estat del sistema en una còpia de seguretat
-     * @details Aquest mètode s'ha de cridar abans de tancar l'aplicatiu per tal de salvar-ne el sistema localment i poder-lo restablir en la següent posada en marxa
-     * @param reference Frame de referència per saber on posicionar el dialog en cas d'error
-     * @post El sistema no queda alterat, però es genera una còpia de seguretat a partir de l'estat actual, que queda emmagatzemada
-     */
-    public void closeApp(JFrame reference) {
-        try {
-            cd.saveSystem();
-        } catch (IOException e) {
-            // Tenim un problema greu
-            showInternalError(reference);
-        }
-    }
-
-    /**
-     * @brief Operació per tal de resetejar el sistema
-     * @details Amb aquest mètode podem esborrar tota la informació del sistema, deixant-lo buit
-     * @post El sistema queda buit, és a dir, deixa de tenir documents i expressions donades d'alta
-     */
-    public void reset() {
-        cd.resetSystem();
-    }
-
-
-    // Crides al domini
-
     /**
      * @brief Mètode per donar d'alta un nou document
      * @details L'operació rep el nom i el títol del nou document a donar d'alta a l'aplicatiu, i sempre que no n'existeixi un amb els mateixos identificadors, així ho fa amb contingut buit.
@@ -237,6 +187,41 @@ public class CtrlPresentation {
     }
 
     /**
+     * @brief Mètode per importar documents al sistema
+     * @details A partir d'un path absolut, es carrega el document al sistema, assignant-li l'idioma donat
+     * @pre El path donat té extensió .txt, .xml o .fp
+     * @pre En el text pla, com a mínim la primera línia contindrà el autor, la segona el títol i a partir de la tercera hi serà el contingut. En xml, hi haurà com a mínim etiquetes títol, autor i contingut.
+     * @pre L'idioma del paràmetre és "ca", "en" o "es"
+     * @pre No existeix un document amb el títol i autor que identifiquen el document que es vol importar
+     * @param path Ruta al document que es vol donar afegir al sistema
+     * @param language Idioma que se li vol assignar al document a importar
+     * @return Objecte amb (favorit, títol, autor) del documet importat
+     * @post El sistema té un nou document donat d'alta, que és el que hi havia en el path donat i té com a idioma el donat
+     * @throws ExceptionInvalidFormat en cas que el path no tingui extensió .txt, .xml o .fp
+     * @throws FileNotFoundException si no es pot accedir a la path donada, per permisos o perquè no existeix
+     * @throws ExceptionDocumentExists quan el sistema ja té donat d'alta un document amb els títol i autor del document que es vol importar
+     * @throws ExceptionInvalidLanguage en cas que l'idioma del paràmetre no sigui ni "ca" ni "en" ni "es"
+     */
+    public Object[] importDocument(String path, String language) throws ExceptionInvalidFormat, FileNotFoundException, ExceptionDocumentExists, ExceptionInvalidLanguage, ExceptionInvalidCharacter, ExceptionMissingTitleOrAuthor {
+        return cd.importDocument(path, language);
+    }
+
+    /**
+     * @brief S'exporta un document a una path
+     * @details Funció que permet exportar un document del sistema al disc local de l'usuari
+     * @param title Títol del document que es vol exportar
+     * @param author Autor del document que es vol exportar
+     * @param path Direcció absoluta on es vol exportar el document prèviament identificat
+     * @post El sistema no queda alterat, però en el path donat es troba el document del sistema identificat pels paràmetres donats
+     * @throws ExceptionNoDocument Quan no existeix al sistema un document identificat per (títol, autor)
+     * @throws ExceptionInvalidFormat En cas que el path donat no tingui extensió .txt, .xml o .fp
+     * @throws IOException Si no s'ha pogut escriure en el path donat
+     */
+    public void exportDocument(String title, String author, String path) throws ExceptionNoDocument, ExceptionInvalidFormat, IOException {
+        cd.exportDocument(title, author, path);
+    }
+
+    /**
      * @brief Funció per obtenir tots els identificadors dels documents del sistema
      * @details Aquesta funció permet consultar tots els documents que hi ha guardats en el sistema
      * @return Llistat de (favorit, títol, autor) de tots els documents de l'aplicatiu
@@ -368,37 +353,34 @@ public class CtrlPresentation {
     }
 
     /**
-     * @brief Mètode per importar documents al sistema
-     * @details A partir d'un path absolut, es carrega el document al sistema, assignant-li l'idioma donat
-     * @pre El path donat té extensió .txt, .xml o .fp
-     * @pre En el text pla, com a mínim la primera línia contindrà el autor, la segona el títol i a partir de la tercera hi serà el contingut. En xml, hi haurà com a mínim etiquetes títol, autor i contingut.
-     * @pre L'idioma del paràmetre és "ca", "en" o "es"
-     * @pre No existeix un document amb el títol i autor que identifiquen el document que es vol importar
-     * @param path Ruta al document que es vol donar afegir al sistema
-     * @param language Idioma que se li vol assignar al document a importar
-     * @return Objecte amb (favorit, títol, autor) del documet importat
-     * @post El sistema té un nou document donat d'alta, que és el que hi havia en el path donat i té com a idioma el donat
-     * @throws ExceptionInvalidFormat en cas que el path no tingui extensió .txt, .xml o .fp
-     * @throws FileNotFoundException si no es pot accedir a la path donada, per permisos o perquè no existeix
-     * @throws ExceptionDocumentExists quan el sistema ja té donat d'alta un document amb els títol i autor del document que es vol importar
-     * @throws ExceptionInvalidLanguage en cas que l'idioma del paràmetre no sigui ni "ca" ni "en" ni "es"
+     * @brief Operació per salvar l'estat del sistema
+     * @details Aquesta funció dona la possibilitat de guardar tots els documents i expressions donats d'alta al sistema, per poder ser recuperats posteriorment
+     * @post El sistema no queda alterat, però tota la informació del sistema queda recollida en un fitxer .fp en el sistema local de l'usuari
+     * @throws IOException Si no s'ha pogut escriure en el sistema local la còpia de seguretat creada
      */
-    public Object[] importDocument(String path, String language) throws ExceptionInvalidFormat, FileNotFoundException, ExceptionDocumentExists, ExceptionInvalidLanguage, ExceptionInvalidCharacter, ExceptionMissingTitleOrAuthor {
-        return cd.importDocument(path, language);
+    public void saveSystem() throws IOException {
+        cd.saveSystem();
     }
 
     /**
-     * @brief S'exporta un document a una path
-     * @details Funció que permet exportar un document del sistema al disc local de l'usuari
-     * @param title Títol del document que es vol exportar
-     * @param author Autor del document que es vol exportar
-     * @param path Direcció absoluta on es vol exportar el document prèviament identificat
-     * @post El sistema no queda alterat, però en el path donat es troba el document del sistema identificat pels paràmetres donats
-     * @throws ExceptionNoDocument Quan no existeix al sistema un document identificat per (títol, autor)
-     * @throws ExceptionInvalidFormat En cas que el path donat no tingui extensió .txt, .xml o .fp
-     * @throws IOException Si no s'ha pogut escriure en el path donat
+     * @brief Mètode per restaurar el sistema a partir d'una còpia de seguretat
+     * @details Aquesta funció permet restaurar l'estat del sistema a partir d'un back up prèviament realitzat del sistema
+     * @post El sistema es restaura a partir de la còpia de seguretat que es disposa
+     * @throws FileNotFoundException En cas que no es pugui trobar la còpia de seguretat del sistema
+     * @throws ExceptionDocumentExists Si algun dels documents de la còpia de seguretat és repetit
+     * @throws ExceptionInvalidExpression Si alguna de les expressions de la còpia de seguretat no és correcta
+     * @throws ExceptionExpressionExists Si alguna de les expressions de la còpia de seguretat és repetida
      */
-    public void exportDocument(String title, String author, String path) throws ExceptionNoDocument, ExceptionInvalidFormat, IOException {
-        cd.exportDocument(title, author, path);
+    public void restoreSystem() throws FileNotFoundException, ExceptionDocumentExists, ExceptionInvalidExpression, ExceptionExpressionExists {
+        cd.restoreSystem();
+    }
+
+    /**
+     * @brief Operació per tal de resetejar el sistema
+     * @details Amb aquest mètode podem esborrar tota la informació del sistema, deixant-lo buit
+     * @post El sistema queda buit, és a dir, deixa de tenir documents i expressions donades d'alta
+     */
+    public void resetSystem() {
+        cd.resetSystem();
     }
 }

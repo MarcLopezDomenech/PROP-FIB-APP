@@ -37,7 +37,7 @@ public class FavCheckBox extends JCheckBox {
             nofav = new ImageIcon(nofav.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH));
         } catch (IOException e) {
             // NO hauria de passar, si no s'esborren les imatges
-            CtrlPresentation.getInstance().showInternalError(reference);
+            CtrlViewsDialogs.getInstance().showInternalError(reference);
         }
     }
 
