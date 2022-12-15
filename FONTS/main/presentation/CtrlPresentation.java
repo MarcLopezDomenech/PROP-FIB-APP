@@ -168,7 +168,7 @@ public class CtrlPresentation {
         for (String path : paths) {
             try {
                 // Importem el document i aconseguim les dades (fav, títol, autor)
-                Object[] document = importDocument(path, language);
+                importDocument(path, language);
             } catch (ExceptionInvalidFormat | ExceptionDocumentExists | ExceptionInvalidCharacter e) {
                 // Excepcions nostres que indiquen errors que es poden donar
                 showError(reference, e.getMessage());
