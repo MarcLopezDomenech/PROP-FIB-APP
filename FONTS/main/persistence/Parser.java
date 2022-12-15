@@ -2,8 +2,9 @@ package main.persistence;
 
 import main.excepcions.ExceptionInvalidCharacter;
 import java.io.File;
-import java.io.FileNotFoundException;  
+import java.io.FileNotFoundException;
 
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -36,7 +37,7 @@ public abstract class Parser {
      * @brief Constructora de la classe
      */
     public String readFromFile(String path) throws FileNotFoundException{
-        File myObj = new File(path, "UTF-8");
+        File myObj = new File(path);
         String data = "";
         Scanner myReader = new Scanner(myObj);
         while (myReader.hasNextLine()) {
@@ -51,7 +52,7 @@ public abstract class Parser {
      * @brief Constructora de la classe
      */
     public void writeToFile(String str, String path) throws IOException {
-        FileWriter myWriter = new FileWriter(path);
+        FileWriter myWriter = new FileWriter(path, StandardCharsets.UTF_8);
         myWriter.write(str);
         myWriter.close();
     }
