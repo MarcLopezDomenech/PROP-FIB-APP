@@ -31,7 +31,7 @@ public class TxtParser extends Parser {
     public String read(String path) throws FileNotFoundException {
         File myObj = new File(path);
        
-        Scanner myReader = new Scanner(myObj);
+        Scanner myReader = new Scanner(myObj, "UTF-8");
         String title = myReader.nextLine();
         String author = myReader.nextLine();
         String content = "";

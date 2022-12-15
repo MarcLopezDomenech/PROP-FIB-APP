@@ -36,7 +36,7 @@ public abstract class Parser {
      * @brief Constructora de la classe
      */
     public String readFromFile(String path) throws FileNotFoundException{
-        File myObj = new File(path);
+        File myObj = new File(path, "UTF-8");
         String data = "";
         Scanner myReader = new Scanner(myObj);
         while (myReader.hasNextLine()) {
