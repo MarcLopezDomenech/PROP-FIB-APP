@@ -305,6 +305,7 @@ public class CtrlPresentation {
 
     /**
      * @brief Mètode per mostrar el diàleg de modificar un document
+     * @details Aquesta funció serveix per poder modificar un document a partir d'un document vàlid que s'ha seleccionat a la vista principal
      * @pre Existeix a l'aplicatiu un document identificat pel títol i autor donats.
      * @param reference Frame de referència per saber on posicionar el diàleg
      * @param title Títol del document a modificar
@@ -319,6 +320,7 @@ public class CtrlPresentation {
 
     /**
      * @brief Mètode per mostrar el diàleg de llistar similars
+     * @details Aquesta funció serveix per mostrar documents semblants a un document a partir d'un document vàlid que s'ha seleccionat a la vista principal
      * @pre Existeix a l'aplicatiu un document identificat pel títol i autor donats.
      * @param reference Frame de referència per saber on posicionar el diàleg
      * @param title Títol del document a modificar
@@ -348,6 +350,7 @@ public class CtrlPresentation {
 
     /**
      * @brief Mètode per mostrar el diàleg d'exportar un document
+     * @details El mètode ens permet obrir el diàleg d'exportar el document i, efectivament, exportar-lo
      * @pre Existeix a l'aplicatiu un document identificat pel títol i autor donats.
      * @param reference Frame de referència per saber on posicionar el diàleg
      * @param title Títol del document a modificar
@@ -367,6 +370,23 @@ public class CtrlPresentation {
             }
         }
     }
+
+
+    // Opcions de gestió d'expressions
+
+    /**
+     * @brief Mètode per mostrar el diàleg de modificar una expressió
+     * @details Aquesta funció serveix per poder modificar una expressió a partir d'un identificador vàlid d'expressió ja seleccionada
+     * @param reference Frame de referència per saber on posicionar el diàleg
+     * @param expression Identificador de l'expressió que es vol modificar
+     * @return Es retorna el nou identificador que l'usuari vol per l'expressió donada al paràmetre
+     * @post Es mostra el diàleg per modificar l'expressió i quan s'acaba el cas d'ùs es retorna a la vista on estava
+     */
+    public String showModifyExpression(JFrame reference, String expression) {
+        ExpressionsModifyDialog modifyExpression = new ExpressionsModifyDialog();
+        return modifyExpression.initialize(reference, expression);
+    }
+
 
     // Crides al domini
 
