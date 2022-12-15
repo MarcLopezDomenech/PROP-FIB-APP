@@ -39,7 +39,7 @@ public abstract class Parser {
     public String readFromFile(String path) throws FileNotFoundException{
         File myObj = new File(path);
         String data = "";
-        Scanner myReader = new Scanner(myObj);
+        Scanner myReader = new Scanner(myObj, "UTF-8");
         while (myReader.hasNextLine()) {
             data += myReader.nextLine() + "\n";
         }
@@ -73,7 +73,7 @@ public abstract class Parser {
 
     public void restoreSystem(Set<String> docs, Set<String> exprs, String path) throws FileNotFoundException{
         File myObj = new File(path);
-        Scanner myReader = new Scanner(myObj);
+        Scanner myReader = new Scanner(myObj, "UTF-8");
         String input = "";
         String content = "";
         while (myReader.hasNextLine()) {
