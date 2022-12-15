@@ -16,14 +16,13 @@ import java.awt.event.*;
  */
 
 public class ListQueryDialog extends JDialog {
-    private CtrlPresentation cp;
+    private CtrlViewsDialogs cwd;
 
     private JFrame quer;
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
     private JTextField query_text;
-    //private JTextField number_text;
     private JSpinner spinner1;
 
     private String query;
@@ -31,7 +30,7 @@ public class ListQueryDialog extends JDialog {
     private Pair<String, Integer> result;
 
     public ListQueryDialog() {
-        cp = CtrlPresentation.getInstance();
+        cwd = CtrlViewsDialogs.getInstance();
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -73,38 +72,19 @@ public class ListQueryDialog extends JDialog {
     }
 
     private void onOK() {
-        // add your code here
         query = query_text.getText();
-        /* String str = number_text.getText();
-            boolean err = true;
-            try {
-                k = Integer.parseInt(str);
-            } catch (NumberFormatException ex) {
-                //LLAMAR DIALOG ERROR
-                cp.showError(quer, "Nombre de resultats invalid");
-                err = false;
-            }
-            if (err) {
-                if (k < 0) {
-                    cp.showError(quer, "Nombre de resultats invalid");
-                } else {
-                    result = new Pair<String, Integer>(query, k);
-                    dispose();
-                }
-            }
-        */
         boolean err = true;
         spinner1.getValue();
         try {
             k = Integer.parseInt(spinner1.getValue().toString());
         } catch (NumberFormatException ex) {
             //LLAMAR DIALOG ERROR
-            cp.showError(quer, "Nombre de resultats invalid");
+            cwd.showError(quer, "Nombre de resultats invalid");
             err = false;
         }
         if (err) {
             if (k < 0) {
-                cp.showError(quer, "Nombre de resultats invalid");
+                cwd.showError(quer, "Nombre de resultats invalid");
             } else {
                 result = new Pair<String, Integer>(query, k);
                 dispose();

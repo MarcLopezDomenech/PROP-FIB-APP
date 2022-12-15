@@ -125,6 +125,7 @@ public class ExpressionsView {
     public ExpressionsView() {
         // Aconseguim la instància del controlador de presentació i inicialitzem el frame
         cp = CtrlPresentation.getInstance();
+        cwd = CtrlViewsDialogs.getInstance();
         frame = new JFrame("Gestió de les expressions");
         selected = null;
 

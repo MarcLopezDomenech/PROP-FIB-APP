@@ -26,6 +26,10 @@ public class MainView {
      */
     private CtrlPresentation cp;
     /**
+     * \brief La instància de subcontradlor de presentació de vistes i diàlegs de l'aplicació
+     */
+    private CtrlViewsDialogs cwd;
+    /**
      * \brief El frame principal de la vista
      */
     private JFrame frame;
@@ -118,6 +122,7 @@ public class MainView {
      */
     public MainView() {
         cp = CtrlPresentation.getInstance();
+        cwd = CtrlViewsDialogs.getInstance();
         frame = new JFrame("Gestió de documents");
         selectedIndex = -1;
 
@@ -165,7 +170,7 @@ public class MainView {
         load.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (cp.showLoader(frame)) {
+                if (cwd.showLoader(frame)) {
                     Object[][] newData = cp.listAllDocuments();
                     updateData(newData);
                     listByNothing.setVisible(false);
@@ -176,7 +181,7 @@ public class MainView {
         create.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (cp.showNewDocument(frame)) {
+                if (cwd.showNewDocument(frame)) {
                     Object[][] newData = cp.listAllDocuments();
                     updateData(newData);
                     listByNothing.setVisible(false);
@@ -187,7 +192,7 @@ public class MainView {
         expressions.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cp.showExpressions(frame.getLocation(), frame.getSize());
+                cwd.showExpressions(frame.getLocation(), frame.getSize());
                 frame.dispose();
 
             }
@@ -198,7 +203,7 @@ public class MainView {
         listByQuery.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Object[][] newData = cp.showListByQuery(frame);
+                Object[][] newData = cwd.showListByQuery(frame);
                 if (newData != null) {
                     updateData(newData);
                     listByNothing.setVisible(true);
@@ -209,7 +214,7 @@ public class MainView {
         listByExpression.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Object[][] newData = cp.showListByExpression(frame);
+                Object[][] newData = cwd.showListByExpression(frame);
                 if (newData != null) {
                     updateData(newData);
                     listByNothing.setVisible(true);
@@ -220,7 +225,7 @@ public class MainView {
         listByAuthor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Object[][] newData = cp.showListByAuthor(frame);
+                Object[][] newData = cwd.showListByAuthor(frame);
                 if (newData != null) {
                     updateData(newData);
                     listByNothing.setVisible(true);
@@ -242,7 +247,7 @@ public class MainView {
         help.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cp.showHelp(frame,
+                cwd.showHelp(frame,
                         "<html>" +
                                 "Aquesta és la pantalla de gestió de documents.<br><br>" +
                                 "Un cop seleccionat un document, disposes de diferents opcions en els botons superiors.<br><br>" +
@@ -257,9 +262,9 @@ public class MainView {
         reset.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean confirm = cp.askConfirmation(frame, "ATENCIÓ! Estàs a punt d'esborrar tot el contingut del sistema. Aquesta acció és irreversible. Estàs segur que vols fer reset?");
+                boolean confirm = cwd.askConfirmation(frame, "ATENCIÓ! Estàs a punt d'esborrar tot el contingut del sistema. Aquesta acció és irreversible. Estàs segur que vols fer reset?");
                 if (confirm) {
-                    cp.reset();
+                    CtrlApplication.getInstance().reset();
                     documentsModel.setRowCount(0);
                 }
             }
@@ -288,7 +293,7 @@ public class MainView {
                 int indexModel = documents.convertRowIndexToModel(selectedIndex);
                 String title = (String) documentsModel.getValueAt(indexModel, 1);
                 String author = (String) documentsModel.getValueAt(indexModel, 2);
-                Pair<String, String> newIdentifier = cp.showModify(frame, title, author);
+                Pair<String, String> newIdentifier = cwd.showModify(frame, title, author);
                 if (newIdentifier != null) {            // Vol dir que s'ha modificat títol i/o autor
                     String newTitle = newIdentifier.getFirst();
                     String newAuthor = newIdentifier.getSecond();
@@ -303,7 +308,7 @@ public class MainView {
             public void actionPerformed(ActionEvent e) {
                 String title = (String) documents.getValueAt(selectedIndex, 1);
                 String author = (String) documents.getValueAt(selectedIndex, 2);
-                Object[][] result = cp.showListKSimilars(frame, title, author);
+                Object[][] result = cwd.showListKSimilars(frame, title, author);
                 if (result != null) {
                     updateData(result);
                     listByNothing.setVisible(true);
@@ -316,7 +321,7 @@ public class MainView {
             public void actionPerformed(ActionEvent e) {
                 String title = (String) documents.getValueAt(selectedIndex, 1);
                 String author = (String) documents.getValueAt(selectedIndex, 2);
-                boolean confirm = cp.askConfirmation(frame, "Segur/a que vols esborrar el " +
+                boolean confirm = cwd.askConfirmation(frame, "Segur/a que vols esborrar el " +
                         "document amb títol '" + title + "' i autor '" + author + "'?");
                 if (confirm) {
                     try {
@@ -324,7 +329,7 @@ public class MainView {
                         documentsModel.removeRow(documents.convertRowIndexToModel(selectedIndex));
                     } catch (ExceptionNoDocument ex) {
                         // No és possible
-                        cp.showInternalError(frame);
+                        cwd.showInternalError(frame);
                     }
                 }
             }
@@ -335,7 +340,7 @@ public class MainView {
             public void actionPerformed(ActionEvent e) {
                 String title = (String) documents.getValueAt(selectedIndex, 1);
                 String author = (String) documents.getValueAt(selectedIndex, 2);
-                cp.showDownloader(frame, title, author);
+                cwd.showDownloader(frame, title, author);
             }
         });
 
@@ -352,7 +357,7 @@ public class MainView {
                         cp.updateFavouriteDocument(title, author, newFav);
                     } catch (ExceptionNoDocument ex) {
                         // No pot ser que no trobem el document
-                        cp.showInternalError(frame);
+                        cwd.showInternalError(frame);
                     }
                 }
             }
@@ -392,7 +397,7 @@ public class MainView {
             @Override
             public void windowClosing(WindowEvent e) {
                 super.windowClosing(e);
-                cp.closeApp(frame);
+                CtrlApplication.getInstance().closeApp(frame);
                 System.exit(0);
             }
         });
