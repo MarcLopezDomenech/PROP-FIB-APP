@@ -15,9 +15,7 @@ public class Main {
         javax.swing.SwingUtilities.invokeLater (new Runnable() {
             public void run()
             {
-                CtrlPresentation cp = CtrlPresentation.getInstance();
-                cp.initiateApp();
-                cp.showDocuments(new Point(600, 300), new Dimension(600, 600));
+                CtrlApplication.getInstance().initiateApp();
             }
         });
     }

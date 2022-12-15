@@ -20,6 +20,7 @@ import java.util.Objects;
  */
 public class ModifyDialog extends JDialog {
     private CtrlPresentation cp;
+    private CtrlViewsDialogs cwd;
 
     private JFrame modify;
     private JPanel contentPane;
@@ -144,10 +145,10 @@ public class ModifyDialog extends JDialog {
                 cp.updateLanguageDocument(tit, auth, setlang);
             }
         } catch (ExceptionNoDocument e) {
-            cp.showError(modify, "No existeix el document 2");
+            cwd.showError(modify, "No existeix el document 2");
             err = true;
         } catch (ExceptionInvalidLanguage e) {
-            cp.showError(modify, "No existeix la llengua");
+            cwd.showError(modify, "No existeix la llengua");
             err = true;
         }
         if (!err) {
@@ -158,10 +159,10 @@ public class ModifyDialog extends JDialog {
                     cp.updateTitleAndAuthorDocument(tit, auth, nout, nouat);
                 }
             } catch (ExceptionNoDocument e) {
-                cp.showError(modify, "No existeix el document");
+                cwd.showError(modify, "No existeix el document");
                 err = true;
             } catch (ExceptionDocumentExists e) {
-                cp.showError(modify, "Ja existeix un document amb aquest títol i autor");
+                cwd.showError(modify, "Ja existeix un document amb aquest títol i autor");
                 err = true;
             }
         }
@@ -177,7 +178,7 @@ public class ModifyDialog extends JDialog {
     private void onCancel() {
         // add your code here if necessary
         if (buttonOK.isEnabled()) {
-            if (cp.askConfirmation(modify, "Segur que vols sortir sense guardar")) {
+            if (cwd.askConfirmation(modify, "Segur que vols sortir sense guardar")) {
                 dispose();
             }
         } else {
@@ -186,11 +187,11 @@ public class ModifyDialog extends JDialog {
     }
 
     private void onExport() {
-        if (!buttonOK.isEnabled() || cp.askConfirmation(modify, "Vols guardar i exportar?")) {
+        if (!buttonOK.isEnabled() || cwd.askConfirmation(modify, "Vols guardar i exportar?")) {
             onOK();
         }
         if (!err) {
-            cp.showDownloader(modify, tit, auth);
+            cwd.showDownloader(modify, tit, auth);
         }
     }
 
@@ -203,6 +204,7 @@ public class ModifyDialog extends JDialog {
         result = new Pair<String, String>(null, null);
         buttonOK.setEnabled(false);
         cp = CtrlPresentation.getInstance();
+        cwd = CtrlViewsDialogs.getInstance();
         err = false;
 
         tit = title;
@@ -211,7 +213,7 @@ public class ModifyDialog extends JDialog {
         try {
             cont = cp.getContentDocument(tit, auth);
         } catch (ExceptionNoDocument e) {
-            cp.showError(modify, "No existeix el document");
+            cwd.showError(modify, "No existeix el document");
         }
         tit_field.setText(tit);
         aut_field.setText(auth);
@@ -221,7 +223,7 @@ public class ModifyDialog extends JDialog {
         try {
             lan = cp.getLanguageDocument(title, author);
         } catch (ExceptionNoDocument e) {
-            cp.showError(modify, "No existeix el document");
+            cwd.showError(modify, "No existeix el document");
         }
         if (lan.equals("ca")) {
             cat.setSelected(true);
@@ -234,7 +236,7 @@ public class ModifyDialog extends JDialog {
             an.setSelected(true);
             lang = "en";
         } else {
-            cp.showError(modify, "Document sense llengua");
+            cwd.showError(modify, "Document sense llengua");
         }
         setlang = lang;
         if (!(cat.isSelected() || es.isSelected() || an.isSelected())) {
