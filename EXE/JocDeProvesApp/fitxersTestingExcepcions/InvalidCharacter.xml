@@ -1,0 +1,9 @@
+<title>Document amb molts XML Scape Characters</title>
+<author> Paula</author>
+<content> Aixo és un major: &gt
+Això és un menor: &lt
+Això és una comilla simple: &apos
+Això és una comilla doble: &quot
+Això és un ampersan o com s&aposescrigui: &amp
+Això és un ampersan sol, que peta: &
+</content>
