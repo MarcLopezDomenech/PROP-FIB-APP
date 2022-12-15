@@ -1,0 +1,11 @@
+Directori JocDeProvesApp
+
+En aquest directori trobem una col.leccio de fitxers per a posar a prova les funcionalitats de l'aplicacio.
+
+- L'executable JocDeProves.jar es una copia completa de l'aplicacio, i ens permet correr aquests tests
+- AppTesting.pdf: conte la descripcio dels testos fets a l'aplicacio usant el joc de proves presentat aqui
+- SystemBackUp.fp: la copia de seguretat associada al executable JocDeProves.jar
+
+A més, trobem els subdirectoris
+- fitxersJocDeProves: una serie de fitxers valids que serviran per a fer proves en l'aplicacio
+- fitxersTestingExcepcions: una serie de fitxer invalids per diferentes raons que ens permeten fer proves de gestio d'errors
