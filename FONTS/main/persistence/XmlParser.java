@@ -54,6 +54,7 @@ public class XmlParser extends Parser {
 
         //En xml, hi ha certs caràcters especials (scape characters), que no corresponen al seu valor ascii
         title = removeScapeChars(title);
+        author = removeScapeChars(author);
         content = removeScapeChars(content);
 
         return title + "@title@" + author + "@author@" + content + "@content@";
@@ -77,6 +78,7 @@ public class XmlParser extends Parser {
 
         content = addScapeChars(content);
         title = addScapeChars(title);
+        author = addScapeChars(author);
 
         String str = "<title>" + title + "</title>\n<author>" + author + "</author>\n<content>" + content + "</content>";
         writeToFile(str, path);
