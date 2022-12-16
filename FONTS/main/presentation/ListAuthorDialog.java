@@ -17,17 +17,49 @@ import java.util.List;
  * @brief Diàleg per mostrar els documents d'un autor, mitjançant seleccionar l'autor pel seu prefix
  */
 public class ListAuthorDialog extends JDialog {
+    /**
+     * \brief La instància de controlador de presentació de l'aplicació
+     */
     private CtrlPresentation cp;
+    /**
+     * \brief Panell amb el contingut, inicialitzat amb la GUI d'Intellij
+     */
     private JPanel contentPane;
+    /**
+     * \brief Botó OK, per retornar l'autor seleccionat
+     */
     private JButton buttonOK;
+    /**
+     * \brief Botó Tornar per tornar
+     */
     private JButton buttonCancel;
+    /**
+     * \brief Camp per omplir el prefix del nom de l'autor
+     */
     private JTextField text_aut;
+    /**
+     * \brief Llista on es mostraran tots els autors que compleixen el prefix
+     */
     private JList list1;
+    /**
+     * \brief Model que seguirà la llista on es mostraran tots els autors que compleixen el prefix
+     */
     private DefaultListModel listModel1;
-
+    /**
+     * \brief String que guarda l'autor final seleccionat
+     */
     private String result;
+    /**
+     * \brief Booleà usat per evitar una selecció mentre s'està modificant o carregant els autors
+     * \invariant Fals si no s'ha està modificant i True si sí
+     */
     private Boolean mod;
-
+    /**
+     * @return ListAuthorDialog
+     * @brief Creadora per defecte del diàleg de ListAuthorDialog
+     * @details S'inicialitza el diàleg i s'enllacen tots els listeners dels botons, així com dels camps a omplir
+     * de manera que només es desbloqueja el botó OK quan s'ha seleccionat un autor.
+     */
     public ListAuthorDialog() {
         setContentPane(contentPane);
         setModal(true);
@@ -84,7 +116,10 @@ public class ListAuthorDialog extends JDialog {
             }
         });
     }
-
+    /**
+     * @brief Funció per tractar l'escriptura del prefix
+     * @details Agafa el text escrit, busca tots els autors que compleixen el prefix i els mostra a la llista
+     */
     private void onText1() {
         buttonOK.setEnabled(false);
         String prefix = text_aut.getText();
@@ -93,29 +128,46 @@ public class ListAuthorDialog extends JDialog {
         for (String aut : authors) listModel1.addElement(aut);
         mod = false;
     }
-
+    /**
+     * @brief Funció per tractar la selecció en la llista
+     * @details Agafa el text seleccionat i el posa com a resultat i habilita el botó OK
+     */
     private void onList1() {
         if (!mod) {
             enableButtonIfCorrect();
             result = list1.getSelectedValue().toString();
         }
     }
-
+    /**
+     * @brief Funció per tractar la pulsació al botó OK
+     * @details simplement retorna i acaba l'execució
+     */
     private void onOK() {
         // add your code here
         dispose();
     }
-
+    /**
+     * @brief Funció per tractar la pulsació al botó Tornar
+     * @details Posa el resultat a null i retorna
+     */
     private void onCancel() {
         // add your code here if necessary
         result = null;
         dispose();
     }
-
+    /**
+     * @brief Funció per habilitar o inhabilitar el botó OK
+     * @details Comprova si s'ha seleccionat un autor de la llista per habilitar el botó Guardar, si no és així
+     * l'inhabilita.
+     */
     private void enableButtonIfCorrect() {
         buttonOK.setEnabled(!list1.isSelectionEmpty());
     }
-
+    /**
+     * @param reference Frame sobre el que es col·locarà i centrarà el diàleg
+     * @return Un String que té el nom de l'autor seleccionat i null si res s'ha seleccionat
+     * @brief Mètode per a mostrar el diàleg inicialitzat
+     */
     public String initialize(JFrame reference) {
         setTitle("Llistar per autor");
 

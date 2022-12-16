@@ -16,17 +16,45 @@ import java.awt.event.*;
  */
 
 public class ListQueryDialog extends JDialog {
+    /**
+     * \brief La instància de subcontradlor de presentació de vistes i diàlegs de l'aplicació
+     */
     private CtrlViewsDialogs cvd;
-
+    /**
+     * \brief El frame principal del diàleg
+     */
     private JFrame quer;
+    /**
+     * \brief Panell amb el contingut, inicialitzat amb la GUI d'Intellij
+     */
     private JPanel contentPane;
+    /**
+     * \brief Botó OK, per retornar la query i k omplert
+     */
     private JButton buttonOK;
+    /**
+     * \brief Botó Tornar per tornar
+     */
     private JButton buttonCancel;
+    /**
+     * \brief Camp per omplir la query
+     */
     private JTextField query_text;
+    /**
+     * \brief Spinner per seleccionar el nombre de documents que es vol
+     */
     private JSpinner spinner1;
-
+    /**
+     * \brief String que guarda la query
+     */
     private String query;
+    /**
+     * \brief Int que guarda el nombre de documents que es vol
+     */
     private int k;
+    /**
+     * \brief Pair usat per emmagatzemar el resultat del diàleg és a dir la query i el nombre de documents
+     */
     private Pair<String, Integer> result;
 
     public ListQueryDialog() {
@@ -70,7 +98,10 @@ public class ListQueryDialog extends JDialog {
         });
 
     }
-
+    /**
+     * @brief Funció per tractar la pulsació del botó OK
+     * @details Agafa els texts dels diferents camps i retorna la funció amb aquestes dades ficant-les al resultat
+     */
     private void onOK() {
         query = query_text.getText();
         boolean err = true;
@@ -91,17 +122,27 @@ public class ListQueryDialog extends JDialog {
             }
         }
     }
-
+    /**
+     * @brief Funció per tractar la pulsació al botó Tornar
+     * @details Posa el resultat a (null,null) i retorna
+     */
     private void onCancel() {
         // add your code here if necessary
         result = new Pair<String, Integer>(null, null);
         dispose();
     }
-
+    /**
+     * @brief Funció per habilitar o inhabilitar el botó OK
+     * @details Comprova si s'ha introduit una query per habilitar el botó OK o en cas contrari deshabilitar-ho
+     */
     private void enableButtonIfCorrect() {
         buttonOK.setEnabled(!query_text.getText().equals(""));
     }
-
+    /**
+     * @param reference Frame sobre el que es col·locarà i centrarà el diàleg
+     * @return Un pair que té la query i el nombre de documents que es volen
+     * @brief Mètode per a mostrar el diàleg inicialitzat
+     */
     public Pair<String, Integer> initialize(JFrame reference) {
         setTitle("Llistar per query");
 
