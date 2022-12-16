@@ -52,15 +52,15 @@ public class ModifyDialog extends JDialog {
      */
     private JButton exportarButton;
     /**
-     * \brief Botó a seleccionar l'idioma català
+     * \brief Botó per seleccionar l'idioma català
      */
     private JRadioButton cat;
     /**
-     * \brief Botó a seleccionar l'idioma castellà
+     * \brief Botó per seleccionar l'idioma castellà
      */
     private JRadioButton es;
     /**
-     * \brief Botó a seleccionar l'idioma anglès
+     * \brief Botó per seleccionar l'idioma anglès
      */
     private JRadioButton an;
     /**

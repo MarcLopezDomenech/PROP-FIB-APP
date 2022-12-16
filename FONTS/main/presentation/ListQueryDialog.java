@@ -29,7 +29,7 @@ public class ListQueryDialog extends JDialog {
      */
     private JPanel contentPane;
     /**
-     * \brief Botó OK, per retornar l'autor seleccionat
+     * \brief Botó OK, per retornar la query i k omplert
      */
     private JButton buttonOK;
     /**

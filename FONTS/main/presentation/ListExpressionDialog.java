@@ -12,28 +12,59 @@ import java.awt.event.*;
 import java.util.Set;
 
 import main.domain.util.Pair;
-
+/**
+ * @author marc.lopez.domenech
+ * @class ListExpressionDialog
+ * @brief Diàleg per mostrar els documents que compleixen una expressió seleccionada al diàleg
+ */
 public class ListExpressionDialog extends JDialog {
-
+    /**
+     * \brief La instància de controlador de presentació de l'aplicació
+     */
     private CtrlPresentation cp;
+    /**
+     * \brief La instància de subcontradlor de presentació de vistes i diàlegs de l'aplicació
+     */
     private CtrlViewsDialogs cvd;
-
+    /**
+     * \brief El frame principal del diàleg
+     */
     private JFrame exp;
+    /**
+     * \brief Panell amb el contingut, inicialitzat amb la GUI d'Intellij
+     */
     private JPanel contentPane;
+    /**
+     * \brief Botó OK, per retornar l'expressió seleccionada i caseSensitive
+     */
     private JButton buttonOK;
+    /**
+     * \brief Botó Tornar per tornar
+     */
     private JButton buttonCancel;
+    /**
+     * \brief Llista on es mostraran totes les expressions
+     */
     private JList list1;
+    /**
+     * \brief Botó per seleccionar caseSensitive
+     */
     private JRadioButton caseSensitiveRadioButton;
+    /**
+     * \brief Model que seguirà la llista on es mostraran totes les expressions
+     */
     private DefaultListModel listModel1;
-
+    /**
+     * \brief Pair usat per emmagatzemar el resultat del diàleg és a dir l'expressió seleccionada i si s'ha seleccionat caseSensitive
+     */
     private Pair<String, Boolean> result;
 
     /**
-     * @author marc.lopez.domenech
-     * @class ListExpressionDialog
-     * @brief Diàleg per mostrar els documents que compleixen una expressió seleccionada al diàleg
+     * @return ListExpressionDialog
+     * @brief Creadora per defecte del diàleg de ListExpressionDialog
+     * @details S'inicialitza el diàleg i s'enllacen tots els listeners dels botons, així com la llista d'expressions
+     * que només es desbloqueja el botó "OK" quan està seleccionada una expressió.
      */
-
     public ListExpressionDialog() {
         setContentPane(contentPane);
         setModal(true);
@@ -72,29 +103,45 @@ public class ListExpressionDialog extends JDialog {
             }
         });
     }
-
+    /**
+     * @brief Funció per tractar la pulsació al botó OK
+     * @details Agafa el text seleccionat i la pulsació o no de caseSensitive i posar-ho al resultat
+     */
     private void onOK() {
         // add your code here
         result = new Pair<String, Boolean>(list1.getSelectedValue().toString(), caseSensitiveRadioButton.isSelected());
         dispose();
     }
-
+    /**
+     * @brief Funció per tractar la selecció en la llista d'expressionss
+     * @details Agafa el text seleccionat i pulsacio de caseSensitive i el posa com a resultat i habilita el botó OK
+     */
     private void onList1() {
         enableButtonIfCorrect();
         result = new Pair<String, Boolean>(list1.getSelectedValue().toString(), caseSensitiveRadioButton.isSelected());
     }
-
+    /**
+     * @brief Funció per tractar la pulsació al botó Tornar
+     * @details Posa el resultat a (null,null) i retorna
+     */
     private void onCancel() {
         // add your code here if necessary
 
         result = new Pair<String, Boolean>(null, null);
         dispose();
     }
-
+    /**
+     * @brief Funció per habilitar o inhabilitar el botó OK
+     * @details Comprova si s'ha seleccionat una expressió per habilitar el botó OK o en cas contrari deshabilitar-ho
+     */
     private void enableButtonIfCorrect() {
         buttonOK.setEnabled(!list1.isSelectionEmpty());
     }
-
+    /**
+     * @param reference Frame sobre el que es col·locarà i centrarà el diàleg
+     * @return Un Pair que té l'expressió seleccionada i si s'ha seleccionat el botó caseSensitive i null si s'ha retornat pel botó Tornar
+     * @brief Mètode per a mostrar el diàleg inicialitzat
+     */
     public Pair<String, Boolean> initialize(JFrame reference) {
         setTitle("Llistar per expressio");
 
