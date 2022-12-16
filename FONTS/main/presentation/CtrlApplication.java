@@ -6,8 +6,12 @@ import main.excepcions.ExceptionInvalidExpression;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * @class CtrlApplication
@@ -46,12 +50,18 @@ public class CtrlApplication {
     }
 
     /**
-     * @brief Funció que inicialitza l'aplicatiu amb la còpia de seguretat
-     * @details Amb aquest mètode es permet inicialitzar l'aplicatiu a partir de l'última còpia de seguretat de què es disposi
+     * @brief Funció que inicialitza l'aplicatiu amb la còpia de seguretat i programa un backup periòdic
+     * @details Amb aquest mètode es permet inicialitzar l'aplicatiu a partir de l'última còpia de seguretat de què es disposi,
+     * i a més programa l'autosalvat del sistema cada 30 segons, tot i que es fa al tancar l'apliació, per seguretat
      * @pre Si existeix una còpia de seguretat, aquestà és vàlida
-     * @post El sistema queda inicialitzat amb la darrera còpia de seguretat del sistema
+     * @post El sistema queda inicialitzat amb la darrera còpia de seguretat del sistema, i a partir d'ara cada 30 segons el
+     * sistema s'autoguardarà
      */
     public void initiateApp() {
+        // Marc temporal per posicionar diàlegs d'error
+        JFrame reference = new JFrame();
+        reference.setLocation(new Point(600, 300));
+
         // Restaurem l'estat del sistema
         try {
             cp.restoreSystem();
@@ -59,10 +69,24 @@ public class CtrlApplication {
             // Vol dir que és el primer cop que encenem l'aplicatiu, no tenim còpia de seguretat, no passa res.
         } catch (ExceptionDocumentExists | ExceptionInvalidExpression | ExceptionExpressionExists e) {
             // No hauría de passar mai
-            JFrame reference = new JFrame();
-            reference.setLocation(new Point(600, 300));
             CtrlViewsDialogs.getInstance().showInternalError(reference);
         }
+
+        // Programem el guardat del sistema periòdicament cada 30 segons (per seguretat)
+        Timer t = new Timer();
+        TimerTask tt = new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    cp.saveSystem();
+                } catch (IOException e) {
+                    // Tenim un problema greu
+                    CtrlViewsDialogs.getInstance().showInternalError(reference);
+                }
+            }
+        };
+        t.scheduleAtFixedRate(tt, 30000, 30000);
+
 
         // Obrim la vista principal
         CtrlViewsDialogs.getInstance().showDocuments(new Point(600, 300), new Dimension(600, 600));
