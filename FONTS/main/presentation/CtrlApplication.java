@@ -52,9 +52,9 @@ public class CtrlApplication {
     /**
      * @brief Funció que inicialitza l'aplicatiu amb la còpia de seguretat i programa un backup periòdic
      * @details Amb aquest mètode es permet inicialitzar l'aplicatiu a partir de l'última còpia de seguretat de què es disposi,
-     * i a més programa l'autosalvat del sistema cada 30 segons, tot i que es fa al tancar l'apliació, per seguretat
+     * i a més programa l'autosalvat del sistema cada 120 segons, tot i que es fa al tancar l'apliació, per seguretat
      * @pre Si existeix una còpia de seguretat, aquestà és vàlida
-     * @post El sistema queda inicialitzat amb la darrera còpia de seguretat del sistema, i a partir d'ara cada 30 segons el
+     * @post El sistema queda inicialitzat amb la darrera còpia de seguretat del sistema, i a partir d'ara cada 120 segons el
      * sistema s'autoguardarà
      */
     public void initiateApp() {
@@ -85,7 +85,7 @@ public class CtrlApplication {
                 }
             }
         };
-        t.scheduleAtFixedRate(tt, 30000, 30000);
+        t.scheduleAtFixedRate(tt, 120000, 120000);
 
 
         // Obrim la vista principal
