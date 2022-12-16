@@ -517,7 +517,7 @@ public class DocumentsSet {
                 Document doc = d2.getValue();
                 boolean favourite = doc.isFavourite();
                 // En cas que el contingut del document compleixi l'expressió, l'afegim al resultat
-                if(expression.evaluate(doc.getContent(), caseSensitive)){
+                if(expression.evaluate(doc.getContent() + " " + doc.getTitle(), caseSensitive)){
                     expr_list.add(new Object[]{favourite, tit, aut});
                 }
             }
