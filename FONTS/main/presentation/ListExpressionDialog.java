@@ -143,7 +143,7 @@ public class ListExpressionDialog extends JDialog {
      * @brief Mètode per a mostrar el diàleg inicialitzat
      */
     public Pair<String, Boolean> initialize(JFrame reference) {
-        setTitle("Llistar per expressio");
+        setTitle("Llistar per expressió");
 
         result = new Pair<String, Boolean>(null, null);
         cp = CtrlPresentation.getInstance();
