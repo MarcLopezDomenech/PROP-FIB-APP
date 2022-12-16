@@ -72,7 +72,7 @@
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Titol:"/>
+                      <text value="Títol:"/>
                     </properties>
                   </component>
                   <component id="edf63" class="javax.swing.JLabel">
@@ -122,7 +122,7 @@
                       <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Catala"/>
+                      <text value="Català"/>
                     </properties>
                   </component>
                   <component id="8ff01" class="javax.swing.JRadioButton" binding="esp">
@@ -138,7 +138,7 @@
                       <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Angles"/>
+                      <text value="Anglès"/>
                     </properties>
                   </component>
                 </children>

@@ -28,7 +28,7 @@ public class MainView {
     /**
      * \brief La instància de subcontradlor de presentació de vistes i diàlegs de l'aplicació
      */
-    private CtrlViewsDialogs cwd;
+    private CtrlViewsDialogs cvd;
     /**
      * \brief El frame principal de la vista
      */
@@ -122,7 +122,7 @@ public class MainView {
      */
     public MainView() {
         cp = CtrlPresentation.getInstance();
-        cwd = CtrlViewsDialogs.getInstance();
+        cvd = CtrlViewsDialogs.getInstance();
         frame = new JFrame("Gestió de documents");
         selectedIndex = -1;
 
@@ -170,7 +170,7 @@ public class MainView {
         load.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (cwd.showLoader(frame)) {
+                if (cvd.showLoader(frame)) {
                     Object[][] newData = cp.listAllDocuments();
                     updateData(newData);
                     listByNothing.setVisible(false);
@@ -181,7 +181,7 @@ public class MainView {
         create.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (cwd.showNewDocument(frame)) {
+                if (cvd.showNewDocument(frame)) {
                     Object[][] newData = cp.listAllDocuments();
                     updateData(newData);
                     listByNothing.setVisible(false);
@@ -192,7 +192,7 @@ public class MainView {
         expressions.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cwd.showExpressions(frame.getLocation(), frame.getSize());
+                cvd.showExpressions(frame.getLocation(), frame.getSize());
                 frame.dispose();
 
             }
@@ -203,7 +203,7 @@ public class MainView {
         listByQuery.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Object[][] newData = cwd.showListByQuery(frame);
+                Object[][] newData = cvd.showListByQuery(frame);
                 if (newData != null) {
                     updateData(newData);
                     listByNothing.setVisible(true);
@@ -214,7 +214,7 @@ public class MainView {
         listByExpression.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Object[][] newData = cwd.showListByExpression(frame);
+                Object[][] newData = cvd.showListByExpression(frame);
                 if (newData != null) {
                     updateData(newData);
                     listByNothing.setVisible(true);
@@ -225,7 +225,7 @@ public class MainView {
         listByAuthor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Object[][] newData = cwd.showListByAuthor(frame);
+                Object[][] newData = cvd.showListByAuthor(frame);
                 if (newData != null) {
                     updateData(newData);
                     listByNothing.setVisible(true);
@@ -247,7 +247,7 @@ public class MainView {
         help.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cwd.showHelp(frame,
+                cvd.showHelp(frame,
                         "<html>" +
                                 "Aquesta és la pantalla de gestió de documents.<br><br>" +
                                 "Un cop seleccionat un document, disposes de diferents opcions en els botons superiors.<br><br>" +
@@ -262,7 +262,7 @@ public class MainView {
         reset.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean confirm = cwd.askConfirmation(frame, "ATENCIÓ! Estàs a punt d'esborrar tot el contingut del sistema. Aquesta acció és irreversible. Estàs segur que vols fer reset?");
+                boolean confirm = cvd.askConfirmation(frame, "ATENCIÓ! Estàs a punt d'esborrar tot el contingut del sistema. Aquesta acció és irreversible. Estàs segur que vols fer reset?");
                 if (confirm) {
                     CtrlApplication.getInstance().reset();
                     documentsModel.setRowCount(0);
@@ -293,7 +293,7 @@ public class MainView {
                 int indexModel = documents.convertRowIndexToModel(selectedIndex);
                 String title = (String) documentsModel.getValueAt(indexModel, 1);
                 String author = (String) documentsModel.getValueAt(indexModel, 2);
-                Pair<String, String> newIdentifier = cwd.showModify(frame, title, author);
+                Pair<String, String> newIdentifier = cvd.showModify(frame, title, author);
                 if (newIdentifier != null) {            // Vol dir que s'ha modificat títol i/o autor
                     String newTitle = newIdentifier.getFirst();
                     String newAuthor = newIdentifier.getSecond();
@@ -308,7 +308,7 @@ public class MainView {
             public void actionPerformed(ActionEvent e) {
                 String title = (String) documents.getValueAt(selectedIndex, 1);
                 String author = (String) documents.getValueAt(selectedIndex, 2);
-                Object[][] result = cwd.showListKSimilars(frame, title, author);
+                Object[][] result = cvd.showListKSimilars(frame, title, author);
                 if (result != null) {
                     updateData(result);
                     listByNothing.setVisible(true);
@@ -321,7 +321,7 @@ public class MainView {
             public void actionPerformed(ActionEvent e) {
                 String title = (String) documents.getValueAt(selectedIndex, 1);
                 String author = (String) documents.getValueAt(selectedIndex, 2);
-                boolean confirm = cwd.askConfirmation(frame, "Segur/a que vols esborrar el " +
+                boolean confirm = cvd.askConfirmation(frame, "Segur/a que vols esborrar el " +
                         "document amb títol '" + title + "' i autor '" + author + "'?");
                 if (confirm) {
                     try {
@@ -329,7 +329,7 @@ public class MainView {
                         documentsModel.removeRow(documents.convertRowIndexToModel(selectedIndex));
                     } catch (ExceptionNoDocument ex) {
                         // No és possible
-                        cwd.showInternalError(frame);
+                        cvd.showInternalError(frame);
                     }
                 }
             }
@@ -340,7 +340,7 @@ public class MainView {
             public void actionPerformed(ActionEvent e) {
                 String title = (String) documents.getValueAt(selectedIndex, 1);
                 String author = (String) documents.getValueAt(selectedIndex, 2);
-                cwd.showDownloader(frame, title, author);
+                cvd.showDownloader(frame, title, author);
             }
         });
 
@@ -357,7 +357,7 @@ public class MainView {
                         cp.updateFavouriteDocument(title, author, newFav);
                     } catch (ExceptionNoDocument ex) {
                         // No pot ser que no trobem el document
-                        cwd.showInternalError(frame);
+                        cvd.showInternalError(frame);
                     }
                 }
             }
@@ -409,7 +409,7 @@ public class MainView {
      * per aconseguir que es renderitzi correctament
      */
     private void updateData(Object[][] data) {
-        String[] headers = new String[]{"", "Titol", "Autor"};
+        String[] headers = new String[]{"", "Títol", "Autor"};
 
         documentsModel.setDataVector(data, headers);
 
@@ -469,35 +469,35 @@ public class MainView {
     private void $$$setupUI$$$() {
         createUIComponents();
         panel = new JPanel();
-        panel.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
         final JPanel panel1 = new JPanel();
-        panel1.setLayout(new GridLayoutManager(1, 6, new Insets(0, 0, 0, 0), -1, -1));
-        panel.add(panel1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        panel1.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 6, new Insets(0, 0, 0, 0), -1, -1));
+        panel.add(panel1, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         similars = new JButton();
         similars.setEnabled(false);
         similars.setText("Llistar similars");
-        panel1.add(similars, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel1.add(similars, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         export = new JButton();
         export.setEnabled(false);
         export.setText("Exportar");
-        panel1.add(export, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel1.add(export, new com.intellij.uiDesigner.core.GridConstraints(0, 4, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         delete = new JButton();
         delete.setEnabled(false);
         delete.setText("Esborrar");
-        panel1.add(delete, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer1 = new Spacer();
-        panel1.add(spacer1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        panel1.add(delete, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final com.intellij.uiDesigner.core.Spacer spacer1 = new com.intellij.uiDesigner.core.Spacer();
+        panel1.add(spacer1, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         modify = new JButton();
         modify.setEnabled(false);
         modify.setText("Modificar");
-        panel1.add(modify, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer2 = new Spacer();
-        panel1.add(spacer2, new GridConstraints(0, 5, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        panel1.add(modify, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final com.intellij.uiDesigner.core.Spacer spacer2 = new com.intellij.uiDesigner.core.Spacer();
+        panel1.add(spacer2, new com.intellij.uiDesigner.core.GridConstraints(0, 5, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         menubar = new JMenuBar();
-        menubar.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        panel.add(menubar, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        menubar.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel.add(menubar, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JScrollPane scrollPane1 = new JScrollPane();
-        panel.add(scrollPane1, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel.add(scrollPane1, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         documents.setAutoCreateRowSorter(true);
         documents.setFillsViewportHeight(true);
         documents.setShowVerticalLines(false);
