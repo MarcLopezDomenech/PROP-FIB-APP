@@ -58,9 +58,9 @@ public class CtrlApplication {
      * sistema s'autoguardarà
      */
     public void initiateApp() {
-        // Marc temporal per posicionar diàlegs d'error
+        // Marc temporal per posicionar diàlegs d'error i la vista al centre de la pantalla
         JFrame reference = new JFrame();
-        reference.setLocation(new Point(600, 300));
+        reference.setLocationRelativeTo(null);
 
         // Restaurem l'estat del sistema
         try {
@@ -89,7 +89,7 @@ public class CtrlApplication {
 
 
         // Obrim la vista principal
-        CtrlViewsDialogs.getInstance().showDocuments(new Point(600, 300), new Dimension(600, 600));
+        CtrlViewsDialogs.getInstance().showDocuments(new Dimension(600, 600));
     }
 
     /**
