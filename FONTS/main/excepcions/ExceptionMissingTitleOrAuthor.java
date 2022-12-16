@@ -1,8 +1,8 @@
 package main.excepcions;
 
 /**
- * @class ExceptionInvalidCharacter
- * @brief Excepció que es llença quan no es troba una expressió al sistema
+ * @class ExceptionMissingTitleOrAuthor
+ * @brief Excepció que es llença quan un document conté autor i títol null, o etiquetes incorrectes en xml
  * @author ariadna.cortes.danes
  */
 public class ExceptionMissingTitleOrAuthor extends Exception {
