@@ -189,6 +189,9 @@ public class Document {
         return internalDoc.getRelevantKeyWords();
     }
 
+    /**
+     * @brief Retorna la representació en format propietari del seu document intern
+     */
     public String getInteralDocRepresentation() {
         return internalDoc.writeBackUp();
     }

@@ -8,7 +8,7 @@ package main.excepcions;
 public class ExceptionMissingTitleOrAuthor extends Exception {
     /**
      * @brief Constructora per defecte
-     * @details Donat un caracter no valid en un XML, es genera el missatge d'error de l'excepció
+     * @details Donat un caràcter no valid en un XML, es genera el missatge d'error de l'excepció
      * @return ExceptionInvalidCharacter
      */
     public ExceptionMissingTitleOrAuthor(String titleOrAuthor){

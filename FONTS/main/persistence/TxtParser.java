@@ -29,7 +29,11 @@ public class TxtParser extends Parser {
     }
 
     /**
-     * @brief Llegeix el contingut d'un fitxer en txt i el retorna en format propietari del sistema
+     * @brief Llegeix el string que troba en el fitxer corresponent al path que rep en format txt
+     * @param path El path d'on es llegirà
+     * @return String en format propietari representant el document txt llegit
+     * @throws FileNotFoundException Excepció llençada si no es troba el fitxer corresponent al path donat
+     * @throws ExceptionMissingTitleOrAuthor Si autor o titol son buits
      */
     public String read(String path) throws FileNotFoundException, ExceptionMissingTitleOrAuthor {
         File myObj = new File(path);
@@ -51,7 +55,10 @@ public class TxtParser extends Parser {
     }
 
     /**
-     * @brief Escriu en document inicialment en format propietari en format txt en el path especificat
+     * @brief Funció per a escriure en format txt un cert contingut en un fitxer al path corresponent
+     * @param document string a escriure
+     * @param path El path on s'escriurà
+     * @throws IOException Excepció llençada en error d'escriptura al fitxer corresponent al path
      */
     public void write(String document, String path) throws IOException {
         //Obtenir el titol

@@ -12,14 +12,15 @@ import main.domain.util.Pair;
 import main.excepcions.ExceptionMissingTitleOrAuthor;
 
 /**
- * @class CtrlPersistencia
- * @brief Controlador de la capa de persistencia. S'encarrega del control de formats i de guardar i llegir fitxer
+ * @class CtrlPersistence
+ * @brief Controlador de la capa de persistencia. S'encarrega del control de formats i de guardar i llegir fitxers
+ * També realitza còpies de seguretat del sistema per a posteriors reinicis
  * @author ariadna.cortes.danes
  */
 public class CtrlPersistence {
 
     /**
-     * \brief Objecte singleton que guarda la única instància del CtrlPersistence
+     * @brief Objecte singleton que guarda la única instància del CtrlPersistence
      */
     private static CtrlPersistence singletonObject;
 
@@ -48,6 +49,9 @@ public class CtrlPersistence {
      * @return Un string en format JSON del que cada document n'extreurà les dades que necessiti
      * @throws ExceptionInvalidLanguage L'idioma del document importat no es correcte
      * @throws FileNotFoundException El fitxer buscat no existeix al sistema
+     * @throws ExceptionInvalidFormat Format del document no és vàlid
+     * @throws ExceptionInvalidCharacter Un caracter XML no és correcte (scape characters)
+     * @throws ExceptionMissingTitleOrAuthor Autor o titol son buits
      */
     
     public String importDocument(String path, String language) throws ExceptionInvalidFormat, FileNotFoundException, ExceptionInvalidLanguage, ExceptionInvalidCharacter, ExceptionMissingTitleOrAuthor {

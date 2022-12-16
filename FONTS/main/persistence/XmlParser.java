@@ -8,8 +8,8 @@ import main.excepcions.ExceptionInvalidFormat;
 import main.excepcions.ExceptionMissingTitleOrAuthor;
 
 /**
- * @class TxtParser
- * @brief Classe responsable de la lectura i escriptura de fitxers en format txt
+ * @class XmlParser
+ * @brief Classe responsable de la lectura i escriptura de fitxers en format xml
  * @author ariadna.cortes.danes
  */
 public class XmlParser extends Parser {
@@ -21,7 +21,14 @@ public class XmlParser extends Parser {
 
     }
 
-
+    /**
+     * @brief Llegeix el string que troba en el fitxer corresponent al path que rep en format xml
+     * @param path El path d'on es llegirà
+     * @return String en format propietari representant el document xml llegit
+     * @throws FileNotFoundException Excepció llençada si no es troba el fitxer corresponent al path donat
+     * @throws ExceptionInvalidCharacter Si es troba algun Scape Character d'XML mal gestionat
+     * @throws ExceptionMissingTitleOrAuthor Si falta alguna etiqueta o el autor o titol son buits
+     */
     public String read(String path) throws FileNotFoundException, ExceptionInvalidCharacter, ExceptionMissingTitleOrAuthor {
         String input = readFromFile(path);
         String[] information = input.split("<title>");
@@ -60,6 +67,12 @@ public class XmlParser extends Parser {
         return title + "@title@" + author + "@author@" + content + "@content@";
     }
 
+    /**
+     * @brief Funció per a escriure en format xml un cert contingut en un fitxer al path corresponent
+     * @param document string a escriure
+     * @param path El path on s'escriurà
+     * @throws IOException Excepció llençada en error d'escriptura al fitxer corresponent al path
+     */
     public void write(String document, String path) throws IOException {
 
         //Obtenir el titol
@@ -84,6 +97,12 @@ public class XmlParser extends Parser {
         writeToFile(str, path);
     }
 
+    /**
+     * @brief Canvia els scape characters per UTF-8 caràcters normals
+     * @param str El text a processar els scape characters
+     * @return El mateix text amb scape characters reemplaçats per caràcters normals
+     * @throws ExceptionInvalidCharacter Si es troba algun Scape Character d'XML mal gestionat
+     */
     private String removeScapeChars(String str) throws ExceptionInvalidCharacter {
         for (int i = 0; i < str.length(); i++) {
             if (str.charAt(i) == '\'') throw new ExceptionInvalidCharacter("\'");
@@ -111,6 +130,11 @@ public class XmlParser extends Parser {
         return str;
     }
 
+    /**
+     * @brief Canvia  els UTF-8 caràcters normals per scape characters propis d'XML
+     * @param str  El text a processar per afegir els scape characters
+     * @return El mateix text amb els caràcters necessaris reemplaçats per scape characters de xml
+     */
     private String addScapeChars(String str) {
         for (int i = 0; i < str.length(); i++) {
             if (str.charAt(i) == '\'')  {
