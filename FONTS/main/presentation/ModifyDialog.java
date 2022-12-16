@@ -19,33 +19,98 @@ import java.util.Objects;
  * @brief Diàleg per modificar un document, tant el seu títol, idioma o el contingut i guardar-ho o exportar-ho
  */
 public class ModifyDialog extends JDialog {
+    /**
+     * \brief La instància de controlador de presentació de l'aplicació
+     */
     private CtrlPresentation cp;
+    /**
+     * \brief La instància de subcontradlor de presentació de vistes i diàlegs de l'aplicació
+     */
     private CtrlViewsDialogs cvd;
-
+    /**
+     * \brief El frame principal del diàleg
+     */
     private JFrame modify;
+    /**
+     * \brief Panell amb el contingut, inicialitzat amb la GUI d'Intellij
+     */
     private JPanel contentPane;
+    /**
+     * \brief Botó Guardar, per guardar el document modificat
+     */
     private JButton buttonOK;
+    /**
+     * \brief Botó Tornar per tornar
+     */
     private JButton buttonCancel;
+    /**
+     * \brief Camp per omplir el contingut del document
+     */
     private JTextArea textcont;
+    /**
+     * \brief Botó per exportar el document
+     */
     private JButton exportarButton;
+    /**
+     * \brief Botó a seleccionar l'idioma català
+     */
     private JRadioButton cat;
+    /**
+     * \brief Botó a seleccionar l'idioma castellà
+     */
     private JRadioButton es;
+    /**
+     * \brief Botó a seleccionar l'idioma anglès
+     */
     private JRadioButton an;
+    /**
+     * \brief Camp per omplir el títol del document
+     */
     private JTextField tit_field;
+    /**
+     * \brief Camp per omplir l'autor del document
+     */
     private JTextField aut_field;
-
+    /**
+     * \brief String que guarda el títol del document
+     * \invariant Mai pot estar buit
+     */
     private String tit;
+    /**
+     * \brief String que guarda  de l'autor del document
+     * \invariant Mai pot estar buit
+     */
     private String auth;
+    /**
+     * \brief String que guarda  el contingut del document
+     */
     private String cont;
-
+    /**
+     * \brief String que guarda la llengua del document
+     * \invariant Mai pot estar buit
+     */
     private String lang;
-
+    /**
+     * \brief String que guarda la llengua seleccionada en el formulari
+     * \invariant Mai pot estar buit
+     */
     private String setlang;
-
+    /**
+     * \brief Booleà usat per veure si ha ocorregut un error en l'execució d'alguna funció
+     * \invariant Fals si no hi ha hagut cap error i True si sí
+     */
     private Boolean err;
-
+    /**
+     * \brief Pair usat per emmagatzemar el resultat del diàleg és a dir si s'ha modificat el títol o autor s'envien
+     * els finals si no s'envia null i null
+     */
     private Pair<String, String> result;
-
+    /**
+     * @return ModifyDialog
+     * @brief Creadora per defecte del diàleg de ModifyDialog
+     * @details S'inicialitza el diàleg i s'enllacen tots els listeners dels botons, així com dels camps a omplir
+     * de manera que només es desbloqueja el botó "Guardar" quan estan totes les dades.
+     */
     public ModifyDialog() {
         setContentPane(contentPane);
         setModal(true);
@@ -133,7 +198,10 @@ public class ModifyDialog extends JDialog {
             }
         });
     }
-
+    /**
+     * @brief Funció per tractar la pulsació al botó Guardar
+     * @details Agafa els texts dels diferents camps i només actualitza aquells que s'han modificat
+     */
     private void onOK() {
         String content_fin = textcont.getText();
         err = false;
@@ -174,7 +242,11 @@ public class ModifyDialog extends JDialog {
             buttonOK.setEnabled(false);
         }
     }
-
+    /**
+     * @brief Funció per tractar la pulsació al botó Tornar
+     * @details Comprova si hi ha modificacions, si és així retorna un diàleg de confirmació i
+     * si no posa el resultat a (null,null) i retorna.
+     */
     private void onCancel() {
         // add your code here if necessary
         if (buttonOK.isEnabled()) {
@@ -185,7 +257,11 @@ public class ModifyDialog extends JDialog {
             dispose();
         }
     }
-
+    /**
+     * @brief Funció per tractar la pulsació al botó Exportar
+     * @details Comprova si hi ha modificacions, si és així retorna un diàleg de confirmació per
+     * exportar amb o sense les modificacions, si no crida directament el diàleg d'exportar (DownloaderDialog).
+     */
     private void onExport() {
         if (!buttonOK.isEnabled() || cvd.askConfirmation(modify, "Vols guardar i exportar?")) {
             onOK();
@@ -194,11 +270,22 @@ public class ModifyDialog extends JDialog {
             cvd.showDownloader(modify, tit, auth);
         }
     }
-
+    /**
+     * @brief Funció per habilitar o inhabilitar el botó Guardar
+     * @details Comprova si tots els camps necessaris per a un document han sigut introduïts per habilitar el botó Guardar, si no és així
+     * l'inhabilita.
+     */
     private void enableButtonIfCorrect() {
         buttonOK.setEnabled(!(tit_field.getText().equals("") || aut_field.getText().equals("")));
     }
-
+    /**
+     * @param reference Frame sobre el que es col·locarà i centrarà el diàleg
+     * @param title     Títol del document que es vol modificar
+     * @param author    Autor del document que es vol modificar
+     * @return Un pair que té títol i autor si s'ha modificat el seu camp, si no null
+     * @brief Mètode per a mostrar el diàleg inicialitzat amb el títol i l'autor donats, la llengua del document
+     * i el seu contingut.
+     */
     public Pair<String, String> initialize(JFrame reference, String title, String author) {
         setTitle("Modificar document");
         result = new Pair<String, String>(null, null);
