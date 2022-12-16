@@ -172,6 +172,17 @@ public class CtrlViewsDialogs {
     }
 
     /**
+     * @brief Mètode per mostrar la vista de la gestió de documents
+     * @details Es dimensiona i situa la vista de gestió de documents (vista principal) i es mostra al centre de la pantalla
+     * @param size Tamany de la vista
+     * @post Es mostra per pantalla la vista de gestió de documents
+     */
+    public void showDocuments(Dimension size) {
+        MainView mw = new MainView();
+        mw.initialize(size);
+    }
+
+    /**
      * @brief Mètode per mostrar la vista de la gestió d'expressions
      * @details Es dimensiona i situa la vista de gestió d'expressions i es mostra
      * @param location Posició de la pantalla on es vol situar la vista

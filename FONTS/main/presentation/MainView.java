@@ -382,17 +382,13 @@ public class MainView {
     }
 
     /**
-     * @param location Posició de la pantalla on volem situar la vista
-     * @param size     Mida de la vista
-     * @brief Mètode per inicialitzar la vista, i fer persistents els canvis fets en tancar l'aplicació
-     * @details Amb aquesta funció es mostra la vista principal, i afegeix un listener per fer que quan es tanca la finestra,
-     * es facin persistents els canvis fets, i tot seguit s'aturi l'execució de l'aplicació
+     * @brief Mètode per inicialitzar la vista
+     * @details Aquest mètode inicialitza de manera bàsica el marc que dona sentit a la vista
      */
-    public void initialize(Point location, Dimension size) {
+    private void initialize_basic(Dimension size) {
         frame.setContentPane(panel);
         frame.setVisible(true);
         frame.setSize(size);
-        frame.setLocation(location);
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -401,6 +397,29 @@ public class MainView {
                 System.exit(0);
             }
         });
+    }
+
+    /**
+     * @param location Posició de la pantalla on volem situar la vista
+     * @param size Mida de la vista
+     * @brief Mètode per inicialitzar la vista, i fer persistents els canvis fets en tancar l'aplicació
+     * @details Amb aquesta funció es mostra la vista principal, i afegeix un listener per fer que quan es tanca la finestra,
+     * es facin persistents els canvis fets, i tot seguit s'aturi l'execució de l'aplicació
+     */
+    public void initialize(Point location, Dimension size) {
+        initialize_basic(size);
+        frame.setLocation(location);
+    }
+
+    /**
+     * @param size Mida de la vista
+     * @brief Mètode per inicialitzar la vista, i fer persistents els canvis fets en tancar l'aplicació
+     * @details Amb aquesta funció es mostra la vista principal, i afegeix un listener per fer que quan es tanca la finestra,
+     * es facin persistents els canvis fets, i tot seguit s'aturi l'execució de l'aplicació
+     */
+    public void initialize(Dimension size) {
+        initialize_basic(size);
+        frame.setLocationRelativeTo(null);
     }
 
     /**
