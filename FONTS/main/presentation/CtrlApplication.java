@@ -52,10 +52,9 @@ public class CtrlApplication {
      * @post El sistema queda inicialitzat amb la darrera còpia de seguretat del sistema
      */
     public void initiateApp() {
-        // Restaurar sistema
+        // Restaurem l'estat del sistema
         try {
             cp.restoreSystem();
-            CtrlViewsDialogs.getInstance().showDocuments(new Point(600, 300), new Dimension(600, 600));
         } catch (FileNotFoundException e) {
             // Vol dir que és el primer cop que encenem l'aplicatiu, no tenim còpia de seguretat, no passa res.
         } catch (ExceptionDocumentExists | ExceptionInvalidExpression | ExceptionExpressionExists e) {
@@ -64,6 +63,9 @@ public class CtrlApplication {
             reference.setLocation(new Point(600, 300));
             CtrlViewsDialogs.getInstance().showInternalError(reference);
         }
+
+        // Obrim la vista principal
+        CtrlViewsDialogs.getInstance().showDocuments(new Point(600, 300), new Dimension(600, 600));
     }
 
     /**
