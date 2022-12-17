@@ -110,8 +110,8 @@ public class MainView {
      */
     private JMenuItem reset;
     /**
-     * \brief Índex de la fila actualment seleccionada de la taula
-     * \invariant Índex de la fila seleccionada a la taula (diferent de l'índex de les dades), o -1 si no s'ha seleccionat cap fila
+     * @brief índex de la fila actualment seleccionada de la taula
+     * @invariant índex de la fila seleccionada a la taula (diferent de l'índex de les dades), o -1 si no s'ha seleccionat cap fila
      */
     private int selectedIndex;
 
