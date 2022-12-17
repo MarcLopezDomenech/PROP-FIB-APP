@@ -42,9 +42,9 @@ REM === COMANDA DE RECOMPILACIO I EXECUCIO DEL SISTEMA ===
 javac -cp ".;../lib/forms_rt.jar" -d ../EXE/App -encoding UTF-8 ./main/presentation/Main.java
 
 :propy
-cd ..
-java -jar EXE/JocDeProvesApp/JocDeProves.jar
-cd FONTS
+cd ../EXE/JocDeProvesApp
+java -jar JocDeProves.jar
+cd ../../FONTS
 goto :EOF
 
 REM === INSTRUCCIONS PER RECOMPILAR EL PROJECTE ===
