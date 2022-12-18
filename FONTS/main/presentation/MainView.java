@@ -432,8 +432,8 @@ public class MainView {
 
         documentsModel.setDataVector(data, headers);
 
-        documents.setDefaultRenderer(Boolean.class, new FavBooleanCellRenderer(frame));
-        documents.setDefaultEditor(Boolean.class, new DefaultCellEditor(new FavCheckBox(frame)));
+        //documents.setDefaultRenderer(Boolean.class, new FavBooleanCellRenderer(frame));
+        //documents.setDefaultEditor(Boolean.class, new DefaultCellEditor(new FavCheckBox(frame)));
 
         documents.getTableHeader().setReorderingAllowed(false);
         documents.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
