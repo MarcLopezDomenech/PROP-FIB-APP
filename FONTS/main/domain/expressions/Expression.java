@@ -115,21 +115,14 @@ public abstract class Expression {
     private static String unpack(String expression) throws ExceptionInvalidExpression{
         if (expression.isEmpty()) throw new ExceptionInvalidExpression(expression);
 
-        boolean changes = true;
-        while (changes) {
-            changes = false;
-            if (!expression.isEmpty() && expression.charAt(0) == '(' && expression.charAt(expression.length()-1) == ')') {
-                if (checkParentheses(expression.substring(1, expression.length()-1))) {
-                    expression = expression.substring(1, expression.length()-1); changes = true;
-                }
-            }
-            if (!expression.isEmpty() && expression.charAt(0) == ' ') {
-                expression = expression.substring(1); changes = true;
-            }
-            if (!expression.isEmpty() && expression.charAt(expression.length()-1) == ' ') {
-                expression = expression.substring(0, expression.length()-1); changes = true;
-            }
-        }
+        expression = expression.strip();
+
+        while (!expression.isEmpty() &&
+                expression.charAt(0) == '(' &&
+                expression.charAt(expression.length()-1) == ')' &&
+                checkParentheses(expression.substring(1, expression.length()-1)))
+
+            expression = expression.substring(1, expression.length()-1).strip();
 
         if (expression.isEmpty()) throw new ExceptionInvalidExpression(expression);
         return expression;
