@@ -70,6 +70,7 @@ public abstract class Expression {
                 if (i == n) throw new ExceptionInvalidExpression(expression);                           // claus no tanquen
 
                 boolean operands = false;
+                result += "(";
                 while (j < i) {
                     while (j < i && expression.charAt(j) == ' ') ++j;
                     if (j < i) {
@@ -88,6 +89,7 @@ public abstract class Expression {
                     }
                 }
                 if (operands) result = result.substring(0,result.length()-3);
+                result += ")";
             }
             else if (expression.charAt(i) == '}') throw new ExceptionInvalidExpression(expression);     // claus no tanquen
             else {
