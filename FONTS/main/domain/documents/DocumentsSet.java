@@ -377,7 +377,6 @@ public class DocumentsSet {
                     else value = original.compare_tf_boolean(doc);
                     
                     ordre=adding(ordre,new Object[]{favourite, tit, aut},value,k);
-                    //ordre.add(new Pair<>(new Object[]{favourite, tit, aut}, value));
                 }
             }
         }
@@ -387,20 +386,6 @@ public class DocumentsSet {
             result.add(0,iterator.next().getFirst());
         }
         return result;
-
-         /*
-        // Ordenem la llista en funció dels valors
-        Collections.sort(ordre, new ValueComparator());
-        List<Object[]> result = new ArrayList<Object[]>();
-        Iterator<Pair<Object[], Double>> iterator = ordre.listIterator();
-        int i = 0;
-        // Iterem per tota la llista ordenada fins que arribem a k o al final, per guardar el resultat que retornem
-        while(i < k && iterator.hasNext()) {
-            result.add(iterator.next().getFirst());
-            ++i;
-        }
-        return result;
-        */
 
     }
 
@@ -434,15 +419,6 @@ public class DocumentsSet {
      */
     public List<String> listAuthorsByPrefix(String prefix) {
         ArrayList<String> result = new ArrayList<String>();
-        /*
-        int len = prefix.length();
-        for (Map.Entry<String, Map<String,Document>> entry : documents.entrySet()) {
-            String nom = entry.getKey();
-            // Afegim el nom de l'autor si el seu nom és més llarg o igual al prefix (si no, no té sentit)
-            // i a més si es compleix que realment el nom començar pel prefix donat
-            if (nom.length() >= len && prefix.equals(nom.substring(0, len))) result.add(nom);
-        }
-        */
         result = arb_aut.wordsGivenPrefix(prefix);
         return result;
     }
@@ -466,13 +442,8 @@ public class DocumentsSet {
                 String title = titleDoc.getKey();
                 Document doc = titleDoc.getValue();
                 boolean favourite = doc.isFavourite();
-                // Obtenim el valor i l'afegim a la llista
                 Double value = doc.queryRelevance(query, numDocuments, presence);
-
-
                 ordre=adding(ordre,new Object[]{favourite, title, author},value,k);
-
-                //ordre.add(new Pair<>(new Object[]{favourite, title, author}, value));
             }
         }
         List<Object[]> result = new ArrayList<Object[]>();
@@ -481,20 +452,6 @@ public class DocumentsSet {
             result.add(0,iterator.next().getFirst());
         }
         return result;
-        /*
-        // Ordenem la llista en funció dels valors
-        //Collections.sort(ordre, new ValueComparator());
-
-        List<Object[]> result = new ArrayList<Object[]>();
-        Iterator<Pair<Object[], Double>> iterator = ordre.listIterator();
-        int i = 0;
-        // Iterem per tota la llista ordenada fins que arribem a k o al final, per guardar el resultat que retornem
-        while(i < k && iterator.hasNext()) {
-            result.add(iterator.next().getFirst());
-            ++i;
-        }
-        return result;
-         */
     }
 
     /**

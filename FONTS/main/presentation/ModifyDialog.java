@@ -282,6 +282,7 @@ public class ModifyDialog extends JDialog {
      */
     private void enableButtonIfCorrect() {
         buttonOK.setEnabled(!(tit_field.getText().equals("") || aut_field.getText().equals("")));
+        exportarButton.setEnabled(!(tit_field.getText().equals("") || aut_field.getText().equals("")));
     }
 
     /**
