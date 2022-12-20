@@ -193,6 +193,7 @@ public class DownloaderDialog extends JDialog {
         else if (fxml.isSelected()) extension = ".xml";
         else extension = ".fp";
 
+        if (!path.getText().strip().endsWith("/")) path.setText(path.getText().strip() + "/");
         return path.getText().strip() + name.getText().strip() + extension;
     }
 
