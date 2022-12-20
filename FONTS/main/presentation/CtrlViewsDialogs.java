@@ -322,9 +322,12 @@ public class CtrlViewsDialogs {
         if (path != null){
             try {
                 cp.exportDocument(title, author, path);
-            } catch (ExceptionInvalidFormat | ExceptionNoDocument | IOException e) {
+            } catch (ExceptionInvalidFormat | ExceptionNoDocument e) {
                 // No hauria de passar, ho garantim per presentació
                 showInternalError(reference);
+            } catch (IOException e){
+                // Passa quan la ruta no és correcta
+                showError(reference, "La ruta de la carpeta de destí que has especificat no és correcta");
             }
         }
     }
