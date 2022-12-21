@@ -1,0 +1,3 @@
+caseSensitive4
+mvalls
+p3 Pep P1 joan abcd p2 hola adéu
