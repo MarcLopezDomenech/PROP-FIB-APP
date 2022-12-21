@@ -22,12 +22,12 @@ public class Literal extends Expression {
     /**
      * @brief Funció booleana que retorna si el paràmetre c és un caràcter especial de text
      * @details Un caràcter de text és un caràcter que és natural trobar en un escrit. Els que es consideraran especials
-     * són ' ', '.', ',', ';', '!', '?', '(', ')', i ':'
+     * són ' ', '.', ',', ';', '!', '?', '(', ')', ':' i '\n'
      * @param c Caràcter a analitzar
      * @return Cert ssi el paràmetre c és un caràcter especial de text
      */
     private static boolean is_special_text_char(char c) {
-        return c == ' ' || c == '.' || c == ',' || c == ';' || c == '!' || c == '?' || c == '(' || c == ')' || c == ':';
+        return c == ' ' || c == '.' || c == ',' || c == ';' || c == '!' || c == '?' || c == '(' || c == ')' || c == ':' || c == '\n';
     }
 
     /**
