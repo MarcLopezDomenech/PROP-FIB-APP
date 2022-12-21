@@ -276,12 +276,14 @@ public class ExpressionsView {
                 String newValue = cvd.showModifyExpression(frame, selected);
                 if (newValue != null && !"".equals(newValue)) {
                     try {
-                        cp.modifyExpression(selected, newValue);
-                        int index = listModel.indexOf(selected);
-                        listModel.removeElement(selected);
-                        listModel.add(index, newValue);
-                        selected = newValue;
-                        list.grabFocus();
+                        if (!newValue.equals(selected)) {
+                            cp.modifyExpression(selected, newValue);
+                            int index = listModel.indexOf(selected);
+                            listModel.removeElement(selected);
+                            listModel.add(index, newValue);
+                            selected = newValue;
+                            list.grabFocus();
+                        }
                         list.setSelectedIndex(listModel.indexOf(newValue));
                     } catch (ExceptionInvalidExpression | ExceptionExpressionExists e) {
                         cvd.showError(frame, e.getMessage());
