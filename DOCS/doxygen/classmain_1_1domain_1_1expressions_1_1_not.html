@@ -22,7 +22,6 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Gestor de Documents
-   &#160;<span id="projectnumber">version 0 10-11-22</span>
    </div>
   </td>
  </tr>
@@ -77,6 +76,15 @@ $(function() {
 
 <p>Classe que representa a aquelles expressions booleanes que consisteixen en la negació d'una altra expressió lògica.  
  <a href="classmain_1_1domain_1_1expressions_1_1_not.html#details">Més...</a></p>
+<div class="dynheader">
+Diagrama d'Herència per a main.domain.expressions.Not:</div>
+<div class="dyncontent">
+<div class="center"><img src="classmain_1_1domain_1_1expressions_1_1_not__inherit__graph.png" border="0" usemap="#amain_8domain_8expressions_8_not_inherit__map" alt="Inheritance graph"/></div>
+<map name="amain_8domain_8expressions_8_not_inherit__map" id="amain_8domain_8expressions_8_not_inherit__map">
+<area shape="rect" title="Classe que representa a aquelles expressions booleanes que consisteixen en la negació d&#39;una altra exp..." alt="" coords="5,248,196,340"/>
+<area shape="rect" href="classmain_1_1domain_1_1expressions_1_1_expression.html" title="Classe que representa i avalua expressions booleanes." alt="" coords="12,5,189,200"/>
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Mètodes públics</h2></td></tr>
@@ -99,6 +107,10 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a55532dba8adab47de67b3d58c66914da inherit pub_static_methods_classmain_1_1domain_1_1expressions_1_1_expression"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classmain_1_1domain_1_1expressions_1_1_expression.html">Expression</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1expressions_1_1_expression.html#a55532dba8adab47de67b3d58c66914da">create</a> (String expression)  throws ExceptionInvalidExpression </td></tr>
 <tr class="memdesc:a55532dba8adab47de67b3d58c66914da inherit pub_static_methods_classmain_1_1domain_1_1expressions_1_1_expression"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tradueix expression a una instància de <a class="el" href="classmain_1_1domain_1_1expressions_1_1_expression.html" title="Classe que representa i avalua expressions booleanes.">Expression</a> que representa la fórmula lògica del paràmetre, sempre que sigui vàlida.  <a href="classmain_1_1domain_1_1expressions_1_1_expression.html#a55532dba8adab47de67b3d58c66914da">Més...</a><br /></td></tr>
 <tr class="separator:a55532dba8adab47de67b3d58c66914da inherit pub_static_methods_classmain_1_1domain_1_1expressions_1_1_expression"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classmain_1_1domain_1_1expressions_1_1_expression"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classmain_1_1domain_1_1expressions_1_1_expression')"><img src="closed.png" alt="-"/>&#160;Atributs Protegits inherited from <a class="el" href="classmain_1_1domain_1_1expressions_1_1_expression.html">main.domain.expressions.Expression</a></td></tr>
+<tr class="memitem:a62e251b6e4c7f5b11e9e789f836d949b inherit pro_attribs_classmain_1_1domain_1_1expressions_1_1_expression"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1expressions_1_1_expression.html#a62e251b6e4c7f5b11e9e789f836d949b">height</a></td></tr>
+<tr class="memdesc:a62e251b6e4c7f5b11e9e789f836d949b inherit pro_attribs_classmain_1_1domain_1_1expressions_1_1_expression"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enter que representa quants nivells de subexpressions conté l'expressió  <a href="classmain_1_1domain_1_1expressions_1_1_expression.html#a62e251b6e4c7f5b11e9e789f836d949b">Més...</a><br /></td></tr>
+<tr class="separator:a62e251b6e4c7f5b11e9e789f836d949b inherit pro_attribs_classmain_1_1domain_1_1expressions_1_1_expression"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descripció Detallada</h2>
 <div class="textblock"><p>Classe que representa a aquelles expressions booleanes que consisteixen en la negació d'una altra expressió lògica. </p>
@@ -134,7 +146,9 @@ Additional Inherited Members</h2></td></tr>
 <p class="definition">Definició a la línia <a class="el" href="_not_8java_source.html#l00019">19</a> del fitxer <a class="el" href="_not_8java_source.html">Not.java</a>.</p>
 <div class="fragment"><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                                 {</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        this.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_not.html#ad14808214d1956af2f7efdf23db8548c">inner</a> = <a class="code" href="classmain_1_1domain_1_1expressions_1_1_not.html#ad14808214d1956af2f7efdf23db8548c">inner</a>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    }</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        this.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_expression.html#a62e251b6e4c7f5b11e9e789f836d949b">height</a> = <a class="code" href="classmain_1_1domain_1_1expressions_1_1_not.html#ad14808214d1956af2f7efdf23db8548c">inner</a>.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_expression.html#a62e251b6e4c7f5b11e9e789f836d949b">height</a> + 1;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    }</div>
+<div class="ttc" id="aclassmain_1_1domain_1_1expressions_1_1_expression_html_a62e251b6e4c7f5b11e9e789f836d949b"><div class="ttname"><a href="classmain_1_1domain_1_1expressions_1_1_expression.html#a62e251b6e4c7f5b11e9e789f836d949b">main.domain.expressions.Expression.height</a></div><div class="ttdeci">int height</div><div class="ttdoc">Enter que representa quants nivells de subexpressions conté l'expressió</div><div class="ttdef"><b>Definition:</b> <a href="main_2domain_2expressions_2_expression_8java_source.html#l00015">main/domain/expressions/Expression.java:15</a></div></div>
 <div class="ttc" id="aclassmain_1_1domain_1_1expressions_1_1_not_html_ad14808214d1956af2f7efdf23db8548c"><div class="ttname"><a href="classmain_1_1domain_1_1expressions_1_1_not.html#ad14808214d1956af2f7efdf23db8548c">main.domain.expressions.Not.inner</a></div><div class="ttdeci">Expression inner</div><div class="ttdoc">Atribut que representa la subexpressió negada.</div><div class="ttdef"><b>Definition:</b> <a href="_not_8java_source.html#l00012">Not.java:12</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -178,10 +192,10 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplementat de <a class="el" href="classmain_1_1domain_1_1expressions_1_1_expression.html#a0bbb3e946a7d51ef1e46c54720fe1519">main.domain.expressions.Expression</a>.</p>
 
-<p class="definition">Definició a la línia <a class="el" href="_not_8java_source.html#l00030">30</a> del fitxer <a class="el" href="_not_8java_source.html">Not.java</a>.</p>
-<div class="fragment"><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                                                                   {</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordflow">return</span> !<a class="code" href="classmain_1_1domain_1_1expressions_1_1_not.html#ad14808214d1956af2f7efdf23db8548c">inner</a>.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_expression.html#a0bbb3e946a7d51ef1e46c54720fe1519">evaluate</a>(content, caseSensitive);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    }</div>
+<p class="definition">Definició a la línia <a class="el" href="_not_8java_source.html#l00031">31</a> del fitxer <a class="el" href="_not_8java_source.html">Not.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                                                                   {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordflow">return</span> !<a class="code" href="classmain_1_1domain_1_1expressions_1_1_not.html#ad14808214d1956af2f7efdf23db8548c">inner</a>.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_expression.html#a0bbb3e946a7d51ef1e46c54720fe1519">evaluate</a>(content, caseSensitive);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    }</div>
 <div class="ttc" id="aclassmain_1_1domain_1_1expressions_1_1_expression_html_a0bbb3e946a7d51ef1e46c54720fe1519"><div class="ttname"><a href="classmain_1_1domain_1_1expressions_1_1_expression.html#a0bbb3e946a7d51ef1e46c54720fe1519">main.domain.expressions.Expression.evaluate</a></div><div class="ttdeci">abstract boolean evaluate(String content, boolean caseSensitive)</div><div class="ttdoc">Avaluació lògica de l'expressió</div></div>
 </div><!-- fragment -->
 </div>

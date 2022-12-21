@@ -1,8 +1,0 @@
-digraph "Jerarquia Gràfica de la Classe"
-{
- // LATEX_PDF_SIZE
-  edge [fontname="FreeSans",fontsize="10",labelfontname="FreeSans",labelfontsize="10"];
-  node [fontname="FreeSans",fontsize="10",shape=record];
-  rankdir="LR";
-  Node0 [label="test.domain.documents.Test\lInternalDocument",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classtest_1_1domain_1_1documents_1_1_test_internal_document.html",tooltip="Classe per provar de forma unitària la classe InternalDocument."];
-}

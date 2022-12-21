@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['internaldocument_279',['InternalDocument',['../classmain_1_1domain_1_1documents_1_1_internal_document.html',1,'main.domain.documents.InternalDocument'],['../classtest_1_1domain_1_1documents_1_1_internal_document.html',1,'test.domain.documents.InternalDocument']]]
+  ['helpdialog_492',['HelpDialog',['../classmain_1_1presentation_1_1_help_dialog.html',1,'main::presentation']]]
 ];

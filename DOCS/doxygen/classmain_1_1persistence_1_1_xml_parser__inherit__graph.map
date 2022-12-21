@@ -1,0 +1,4 @@
+<map id="main.persistence.XmlParser" name="main.persistence.XmlParser">
+<area shape="rect" id="node1" title="Classe responsable de la lectura i escriptura de fitxers en format xml." alt="" coords="5,219,189,355"/>
+<area shape="rect" id="node2" href="$classmain_1_1persistence_1_1_parser.html" title="Classe abstracte de la que heredaran els diferents parsers responsables de la lectura i escriptura de..." alt="" coords="17,5,178,171"/>
+</map>

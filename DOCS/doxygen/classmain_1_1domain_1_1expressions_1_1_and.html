@@ -22,7 +22,6 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Gestor de Documents
-   &#160;<span id="projectnumber">version 0 10-11-22</span>
    </div>
   </td>
  </tr>
@@ -77,6 +76,15 @@ $(function() {
 
 <p>Classe que representa a aquelles expressions booleanes que consisteixen en la conjunció de dues altres expressions lògiques.  
  <a href="classmain_1_1domain_1_1expressions_1_1_and.html#details">Més...</a></p>
+<div class="dynheader">
+Diagrama d'Herència per a main.domain.expressions.And:</div>
+<div class="dyncontent">
+<div class="center"><img src="classmain_1_1domain_1_1expressions_1_1_and__inherit__graph.png" border="0" usemap="#amain_8domain_8expressions_8_and_inherit__map" alt="Inheritance graph"/></div>
+<map name="amain_8domain_8expressions_8_and_inherit__map" id="amain_8domain_8expressions_8_and_inherit__map">
+<area shape="rect" title="Classe que representa a aquelles expressions booleanes que consisteixen en la conjunció de dues altre..." alt="" coords="5,248,199,355"/>
+<area shape="rect" href="classmain_1_1domain_1_1expressions_1_1_expression.html" title="Classe que representa i avalua expressions booleanes." alt="" coords="13,5,191,200"/>
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Mètodes públics</h2></td></tr>
@@ -102,6 +110,10 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a55532dba8adab47de67b3d58c66914da inherit pub_static_methods_classmain_1_1domain_1_1expressions_1_1_expression"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classmain_1_1domain_1_1expressions_1_1_expression.html">Expression</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1expressions_1_1_expression.html#a55532dba8adab47de67b3d58c66914da">create</a> (String expression)  throws ExceptionInvalidExpression </td></tr>
 <tr class="memdesc:a55532dba8adab47de67b3d58c66914da inherit pub_static_methods_classmain_1_1domain_1_1expressions_1_1_expression"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tradueix expression a una instància de <a class="el" href="classmain_1_1domain_1_1expressions_1_1_expression.html" title="Classe que representa i avalua expressions booleanes.">Expression</a> que representa la fórmula lògica del paràmetre, sempre que sigui vàlida.  <a href="classmain_1_1domain_1_1expressions_1_1_expression.html#a55532dba8adab47de67b3d58c66914da">Més...</a><br /></td></tr>
 <tr class="separator:a55532dba8adab47de67b3d58c66914da inherit pub_static_methods_classmain_1_1domain_1_1expressions_1_1_expression"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classmain_1_1domain_1_1expressions_1_1_expression"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classmain_1_1domain_1_1expressions_1_1_expression')"><img src="closed.png" alt="-"/>&#160;Atributs Protegits inherited from <a class="el" href="classmain_1_1domain_1_1expressions_1_1_expression.html">main.domain.expressions.Expression</a></td></tr>
+<tr class="memitem:a62e251b6e4c7f5b11e9e789f836d949b inherit pro_attribs_classmain_1_1domain_1_1expressions_1_1_expression"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1expressions_1_1_expression.html#a62e251b6e4c7f5b11e9e789f836d949b">height</a></td></tr>
+<tr class="memdesc:a62e251b6e4c7f5b11e9e789f836d949b inherit pro_attribs_classmain_1_1domain_1_1expressions_1_1_expression"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enter que representa quants nivells de subexpressions conté l'expressió  <a href="classmain_1_1domain_1_1expressions_1_1_expression.html#a62e251b6e4c7f5b11e9e789f836d949b">Més...</a><br /></td></tr>
+<tr class="separator:a62e251b6e4c7f5b11e9e789f836d949b inherit pro_attribs_classmain_1_1domain_1_1expressions_1_1_expression"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descripció Detallada</h2>
 <div class="textblock"><p>Classe que representa a aquelles expressions booleanes que consisteixen en la conjunció de dues altres expressions lògiques. </p>
@@ -147,11 +159,20 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="definition">Definició a la línia <a class="el" href="_and_8java_source.html#l00022">22</a> del fitxer <a class="el" href="_and_8java_source.html">And.java</a>.</p>
 <div class="fragment"><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                                                 {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        this.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_and.html#acd8867f8bed20cd7ea1ec1b2b8ddfeff">left</a> = <a class="code" href="classmain_1_1domain_1_1expressions_1_1_and.html#acd8867f8bed20cd7ea1ec1b2b8ddfeff">left</a>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        this.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_and.html#ac84a4a73cbe3d121944c641795610cb1">right</a> = <a class="code" href="classmain_1_1domain_1_1expressions_1_1_and.html#ac84a4a73cbe3d121944c641795610cb1">right</a>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    }</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classmain_1_1domain_1_1expressions_1_1_and.html#acd8867f8bed20cd7ea1ec1b2b8ddfeff">left</a>.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_expression.html#a62e251b6e4c7f5b11e9e789f836d949b">height</a> &lt;= <a class="code" href="classmain_1_1domain_1_1expressions_1_1_and.html#ac84a4a73cbe3d121944c641795610cb1">right</a>.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_expression.html#a62e251b6e4c7f5b11e9e789f836d949b">height</a>) {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            this.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_and.html#acd8867f8bed20cd7ea1ec1b2b8ddfeff">left</a> = <a class="code" href="classmain_1_1domain_1_1expressions_1_1_and.html#acd8867f8bed20cd7ea1ec1b2b8ddfeff">left</a>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            this.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_and.html#ac84a4a73cbe3d121944c641795610cb1">right</a> = <a class="code" href="classmain_1_1domain_1_1expressions_1_1_and.html#ac84a4a73cbe3d121944c641795610cb1">right</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            this.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_expression.html#a62e251b6e4c7f5b11e9e789f836d949b">height</a> = <a class="code" href="classmain_1_1domain_1_1expressions_1_1_and.html#acd8867f8bed20cd7ea1ec1b2b8ddfeff">left</a>.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_expression.html#a62e251b6e4c7f5b11e9e789f836d949b">height</a> + 1;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        }</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            this.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_and.html#acd8867f8bed20cd7ea1ec1b2b8ddfeff">left</a> = <a class="code" href="classmain_1_1domain_1_1expressions_1_1_and.html#ac84a4a73cbe3d121944c641795610cb1">right</a>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            this.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_and.html#ac84a4a73cbe3d121944c641795610cb1">right</a> = <a class="code" href="classmain_1_1domain_1_1expressions_1_1_and.html#acd8867f8bed20cd7ea1ec1b2b8ddfeff">left</a>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            this.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_expression.html#a62e251b6e4c7f5b11e9e789f836d949b">height</a> = <a class="code" href="classmain_1_1domain_1_1expressions_1_1_and.html#ac84a4a73cbe3d121944c641795610cb1">right</a>.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_expression.html#a62e251b6e4c7f5b11e9e789f836d949b">height</a> + 1;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        }</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    }</div>
 <div class="ttc" id="aclassmain_1_1domain_1_1expressions_1_1_and_html_ac84a4a73cbe3d121944c641795610cb1"><div class="ttname"><a href="classmain_1_1domain_1_1expressions_1_1_and.html#ac84a4a73cbe3d121944c641795610cb1">main.domain.expressions.And.right</a></div><div class="ttdeci">Expression right</div><div class="ttdoc">Atribut que representa la segona subexpressió de la conjunció</div><div class="ttdef"><b>Definition:</b> <a href="_and_8java_source.html#l00014">And.java:14</a></div></div>
 <div class="ttc" id="aclassmain_1_1domain_1_1expressions_1_1_and_html_acd8867f8bed20cd7ea1ec1b2b8ddfeff"><div class="ttname"><a href="classmain_1_1domain_1_1expressions_1_1_and.html#acd8867f8bed20cd7ea1ec1b2b8ddfeff">main.domain.expressions.And.left</a></div><div class="ttdeci">Expression left</div><div class="ttdoc">Atribut que representa la primera subexpressió de la conjunció</div><div class="ttdef"><b>Definition:</b> <a href="_and_8java_source.html#l00012">And.java:12</a></div></div>
+<div class="ttc" id="aclassmain_1_1domain_1_1expressions_1_1_expression_html_a62e251b6e4c7f5b11e9e789f836d949b"><div class="ttname"><a href="classmain_1_1domain_1_1expressions_1_1_expression.html#a62e251b6e4c7f5b11e9e789f836d949b">main.domain.expressions.Expression.height</a></div><div class="ttdeci">int height</div><div class="ttdoc">Enter que representa quants nivells de subexpressions conté l'expressió</div><div class="ttdef"><b>Definition:</b> <a href="main_2domain_2expressions_2_expression_8java_source.html#l00015">main/domain/expressions/Expression.java:15</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -194,10 +215,10 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplementat de <a class="el" href="classmain_1_1domain_1_1expressions_1_1_expression.html#a0bbb3e946a7d51ef1e46c54720fe1519">main.domain.expressions.Expression</a>.</p>
 
-<p class="definition">Definició a la línia <a class="el" href="_and_8java_source.html#l00034">34</a> del fitxer <a class="el" href="_and_8java_source.html">And.java</a>.</p>
-<div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                                                                  {</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classmain_1_1domain_1_1expressions_1_1_and.html#acd8867f8bed20cd7ea1ec1b2b8ddfeff">left</a>.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_expression.html#a0bbb3e946a7d51ef1e46c54720fe1519">evaluate</a>(content, caseSensitive) &amp;&amp; <a class="code" href="classmain_1_1domain_1_1expressions_1_1_and.html#ac84a4a73cbe3d121944c641795610cb1">right</a>.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_expression.html#a0bbb3e946a7d51ef1e46c54720fe1519">evaluate</a>(content, caseSensitive);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    }</div>
+<p class="definition">Definició a la línia <a class="el" href="_and_8java_source.html#l00042">42</a> del fitxer <a class="el" href="_and_8java_source.html">And.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                                                                  {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classmain_1_1domain_1_1expressions_1_1_and.html#acd8867f8bed20cd7ea1ec1b2b8ddfeff">left</a>.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_expression.html#a0bbb3e946a7d51ef1e46c54720fe1519">evaluate</a>(content, caseSensitive) &amp;&amp; <a class="code" href="classmain_1_1domain_1_1expressions_1_1_and.html#ac84a4a73cbe3d121944c641795610cb1">right</a>.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_expression.html#a0bbb3e946a7d51ef1e46c54720fe1519">evaluate</a>(content, caseSensitive);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
 <div class="ttc" id="aclassmain_1_1domain_1_1expressions_1_1_expression_html_a0bbb3e946a7d51ef1e46c54720fe1519"><div class="ttname"><a href="classmain_1_1domain_1_1expressions_1_1_expression.html#a0bbb3e946a7d51ef1e46c54720fe1519">main.domain.expressions.Expression.evaluate</a></div><div class="ttdeci">abstract boolean evaluate(String content, boolean caseSensitive)</div><div class="ttdoc">Avaluació lògica de l'expressió</div></div>
 </div><!-- fragment -->
 </div>

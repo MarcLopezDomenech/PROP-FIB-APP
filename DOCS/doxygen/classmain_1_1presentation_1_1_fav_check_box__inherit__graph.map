@@ -1,0 +1,4 @@
+<map id="main.presentation.FavCheckBox" name="main.presentation.FavCheckBox">
+<area shape="rect" id="node1" title="Herència de la classe JCheckBox de SWING per implementar que l&#39;estat seleccionat es correspongui a un..." alt="" coords="17,5,225,112"/>
+<area shape="rect" id="node2" href="$classmain_1_1presentation_1_1_fav_boolean_cell_renderer.html" title="Herència de la classe FavCheckBox, que implementa la interfície de SWING TableCellRenderer,..." alt="" coords="5,160,236,267"/>
+</map>

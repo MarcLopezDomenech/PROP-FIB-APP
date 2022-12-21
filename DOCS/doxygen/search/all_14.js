@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['writebackup_260',['writeBackUp',['../classmain_1_1domain_1_1documents_1_1_internal_document.html#ad6c6dec47d91876ee3e26f6846d36c6a',1,'main::domain::documents::InternalDocument']]]
+  ['value_453',['value',['../classmain_1_1domain_1_1expressions_1_1_literal.html#a62ae2b21695b26df142eca0d7504ebc5',1,'main::domain::expressions::Literal']]]
 ];

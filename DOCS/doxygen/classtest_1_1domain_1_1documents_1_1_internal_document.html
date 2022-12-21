@@ -22,7 +22,6 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Gestor de Documents
-   &#160;<span id="projectnumber">version 0 10-11-22</span>
    </div>
   </td>
  </tr>
@@ -79,16 +78,16 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Mètodes públics</h2></td></tr>
-<tr class="memitem:a2c37b17d186ed2c1fc811eb24ed3b15c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtest_1_1domain_1_1documents_1_1_internal_document.html#a2c37b17d186ed2c1fc811eb24ed3b15c">InternalDocument</a> (String content)</td></tr>
-<tr class="separator:a2c37b17d186ed2c1fc811eb24ed3b15c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57e46ac13083eab1f4bad83e750d33d4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtest_1_1domain_1_1documents_1_1_internal_document.html#a57e46ac13083eab1f4bad83e750d33d4">InternalDocument</a> (String content, String language)</td></tr>
+<tr class="separator:a57e46ac13083eab1f4bad83e750d33d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acdd1b73f2cb568d7e1cac45cb0bafa18"><td class="memItemLeft" align="right" valign="top">Map&lt; String, Integer &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtest_1_1domain_1_1documents_1_1_internal_document.html#acdd1b73f2cb568d7e1cac45cb0bafa18">getRelevantWords</a> ()</td></tr>
 <tr class="separator:acdd1b73f2cb568d7e1cac45cb0bafa18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a951e3bd3360fe336dcf323cd9a9ae21c"><td class="memItemLeft" align="right" valign="top">Set&lt; String &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtest_1_1domain_1_1documents_1_1_internal_document.html#a951e3bd3360fe336dcf323cd9a9ae21c">getRelevantKeyWords</a> ()</td></tr>
 <tr class="separator:a951e3bd3360fe336dcf323cd9a9ae21c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91eaa3fe93fc93b41203729fbdbafcd8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtest_1_1domain_1_1documents_1_1_internal_document.html#a91eaa3fe93fc93b41203729fbdbafcd8">getTotalWords</a> ()</td></tr>
 <tr class="separator:a91eaa3fe93fc93b41203729fbdbafcd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8202711a6a0ba4a8c5eaabe4584a9570"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtest_1_1domain_1_1documents_1_1_internal_document.html#a8202711a6a0ba4a8c5eaabe4584a9570">newContent</a> (String content)</td></tr>
-<tr class="separator:a8202711a6a0ba4a8c5eaabe4584a9570"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24e1542b79b3b482bba60e753e299f2d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtest_1_1domain_1_1documents_1_1_internal_document.html#a24e1542b79b3b482bba60e753e299f2d">newContent</a> (String content, String language)</td></tr>
+<tr class="separator:a24e1542b79b3b482bba60e753e299f2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descripció Detallada</h2>
 <div class="textblock"><p>Classe stub de <a class="el" href="classtest_1_1domain_1_1documents_1_1_internal_document.html" title="Classe stub de InternalDocument.">InternalDocument</a>. </p>
@@ -96,8 +95,8 @@ Mètodes públics</h2></td></tr>
 
 <p class="definition">Definició a la línia <a class="el" href="test_2domain_2documents_2_internal_document_8java_source.html#l00010">10</a> del fitxer <a class="el" href="test_2domain_2documents_2_internal_document_8java_source.html">test/domain/documents/InternalDocument.java</a>.</p>
 </div><h2 class="groupheader">Documentació del Constructor i el Destructor</h2>
-<a id="a2c37b17d186ed2c1fc811eb24ed3b15c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2c37b17d186ed2c1fc811eb24ed3b15c">&#9670;&nbsp;</a></span>InternalDocument()</h2>
+<a id="a57e46ac13083eab1f4bad83e750d33d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57e46ac13083eab1f4bad83e750d33d4">&#9670;&nbsp;</a></span>InternalDocument()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -106,14 +105,24 @@ Mètodes públics</h2></td></tr>
           <td class="memname">test.domain.documents.InternalDocument.InternalDocument </td>
           <td>(</td>
           <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>content</em></td><td>)</td>
+          <td class="paramname"><em>content</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>language</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p class="definition">Definició a la línia <a class="el" href="test_2domain_2documents_2_internal_document_8java_source.html#l00013">13</a> del fitxer <a class="el" href="test_2domain_2documents_2_internal_document_8java_source.html">test/domain/documents/InternalDocument.java</a>.</p>
-<div class="fragment"><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;                                            {</div>
+<div class="fragment"><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;                                                             {</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keywordflow">if</span> (content.equals(<span class="stringliteral">&quot;Tres tristes, tristes tigres comen trigo en un trigal.&quot;</span>)) <span class="keywordtype">id</span> = 1;</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordflow">if</span> (content.equals(<span class="stringliteral">&quot;Mi mama me mima&quot;</span>)) <span class="keywordtype">id</span> = 2;</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keywordflow">if</span> (content.equals(<span class="stringliteral">&quot;Tres tristes palabras&quot;</span>)) <span class="keywordtype">id</span> = 3;</div>
@@ -192,19 +201,19 @@ Mètodes públics</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                                             {</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        Set&lt;String&gt; words = <span class="keyword">new</span> HashSet&lt;&gt;();</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordflow">if</span> (<span class="keywordtype">id</span> == 1) {</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            String keywords[] = {<span class="stringliteral">&quot;Tres&quot;</span>, <span class="stringliteral">&quot;tristes&quot;</span>, <span class="stringliteral">&quot;tigres&quot;</span>, <span class="stringliteral">&quot;comen&quot;</span>, <span class="stringliteral">&quot;trigo&quot;</span>, <span class="stringliteral">&quot;trigal&quot;</span>};</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            String keywords[] = {<span class="stringliteral">&quot;tristes&quot;</span>, <span class="stringliteral">&quot;tigres&quot;</span>, <span class="stringliteral">&quot;comen&quot;</span>, <span class="stringliteral">&quot;trigo&quot;</span>, <span class="stringliteral">&quot;trigal&quot;</span>};</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            words.addAll(Arrays.asList(keywords));</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        }</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<span class="keywordtype">id</span> == 2) {</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            String keywords[] = {<span class="stringliteral">&quot;Mi&quot;</span>, <span class="stringliteral">&quot;mama&quot;</span>, <span class="stringliteral">&quot;me&quot;</span>, <span class="stringliteral">&quot;mima&quot;</span>};</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            String keywords[] = {<span class="stringliteral">&quot;mama&quot;</span>, <span class="stringliteral">&quot;mima&quot;</span>};</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            words.addAll(Arrays.asList(keywords));</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        }</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<span class="keywordtype">id</span> == 3) {</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            String keywords[] = {<span class="stringliteral">&quot;Tres&quot;</span>, <span class="stringliteral">&quot;tristes&quot;</span>, <span class="stringliteral">&quot;palabras&quot;</span>};</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            String keywords[] = {<span class="stringliteral">&quot;tristes&quot;</span>, <span class="stringliteral">&quot;palabras&quot;</span>};</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            words.addAll(Arrays.asList(keywords));</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        }</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<span class="keywordtype">id</span> == 4) {</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            String keywords[] = {<span class="stringliteral">&quot;Tres&quot;</span>, <span class="stringliteral">&quot;triste&quot;</span>, <span class="stringliteral">&quot;tigre&quot;</span>, <span class="stringliteral">&quot;trigal&quot;</span>};</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            String keywords[] = {<span class="stringliteral">&quot;triste&quot;</span>, <span class="stringliteral">&quot;tigre&quot;</span>, <span class="stringliteral">&quot;trigal&quot;</span>};</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            words.addAll(Arrays.asList(keywords));</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        }</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">return</span> words;</div>
@@ -229,17 +238,17 @@ Mètodes públics</h2></td></tr>
 
 <p class="definition">Definició a la línia <a class="el" href="test_2domain_2documents_2_internal_document_8java_source.html#l00073">73</a> del fitxer <a class="el" href="test_2domain_2documents_2_internal_document_8java_source.html">test/domain/documents/InternalDocument.java</a>.</p>
 <div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                               {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordflow">if</span> (<span class="keywordtype">id</span> == 1) <span class="keywordflow">return</span> 7;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">if</span> (<span class="keywordtype">id</span> == 2) <span class="keywordflow">return</span> 4;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">if</span> (<span class="keywordtype">id</span> == 3) <span class="keywordflow">return</span> 3;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">if</span> (<span class="keywordtype">id</span> == 4) <span class="keywordflow">return</span> 4;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">return</span> 3;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordflow">if</span> (<span class="keywordtype">id</span> == 1) <span class="keywordflow">return</span> 6;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">if</span> (<span class="keywordtype">id</span> == 2) <span class="keywordflow">return</span> 2;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">if</span> (<span class="keywordtype">id</span> == 3) <span class="keywordflow">return</span> 2;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">if</span> (<span class="keywordtype">id</span> == 4) <span class="keywordflow">return</span> 3;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a8202711a6a0ba4a8c5eaabe4584a9570"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8202711a6a0ba4a8c5eaabe4584a9570">&#9670;&nbsp;</a></span>newContent()</h2>
+<a id="a24e1542b79b3b482bba60e753e299f2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24e1542b79b3b482bba60e753e299f2d">&#9670;&nbsp;</a></span>newContent()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -248,14 +257,24 @@ Mètodes públics</h2></td></tr>
           <td class="memname">void test.domain.documents.InternalDocument.newContent </td>
           <td>(</td>
           <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>content</em></td><td>)</td>
+          <td class="paramname"><em>content</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>language</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p class="definition">Definició a la línia <a class="el" href="test_2domain_2documents_2_internal_document_8java_source.html#l00081">81</a> del fitxer <a class="el" href="test_2domain_2documents_2_internal_document_8java_source.html">test/domain/documents/InternalDocument.java</a>.</p>
-<div class="fragment"><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                                           {</div>
+<div class="fragment"><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                                                            {</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
