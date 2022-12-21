@@ -193,6 +193,7 @@ public class DownloaderDialog extends JDialog {
         else if (fxml.isSelected()) extension = ".xml";
         else extension = ".fp";
 
+        if (!path.getText().strip().endsWith("/")) path.setText(path.getText().strip() + "/");
         return path.getText().strip() + name.getText().strip() + extension;
     }
 
@@ -269,10 +270,10 @@ public class DownloaderDialog extends JDialog {
         panel4.add(path, new GridConstraints(2, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         authorDoc = new JLabel();
         authorDoc.setText("author");
-        panel4.add(authorDoc, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(71, 18), null, 0, false));
+        panel4.add(authorDoc, new GridConstraints(1, 0, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(70, -1), new Dimension(250, 18), new Dimension(250, -1), 0, false));
         titleDoc = new JLabel();
         titleDoc.setText("title");
-        panel4.add(titleDoc, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(71, 18), null, 0, false));
+        panel4.add(titleDoc, new GridConstraints(0, 0, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(70, -1), new Dimension(250, 18), new Dimension(250, -1), 0, false));
         browse = new JButton();
         browse.setText("Busca");
         panel4.add(browse, new GridConstraints(2, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));

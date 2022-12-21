@@ -4,5 +4,5 @@ En aquest directori es troba el conjunt de codi que permet l'execucio dels tests
 Es a dir, tant els propis tests (unitaris o drivers) com els stubs emprats.
 Hem subdividit el directori en les tres capes del sistema:
 - domain: Per recollir els tests de la capa de domini.
-- interface: Per recollir els tests de la capa de presentacio. Per ara es buit.
-- persistence: Per recollir els tests de la capa de persistencia. Per ara es buit.
+- interface: Per recollir els tests de la capa de presentacio. Per ara es buit. Les proves s'han fet de forma interativa.
+- persistence: Per recollir els tests de la capa de persistencia. Conté diversos fitxers que s'han utilitzat per fer proves.

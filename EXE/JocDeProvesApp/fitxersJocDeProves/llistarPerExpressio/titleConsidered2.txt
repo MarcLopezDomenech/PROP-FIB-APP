@@ -1,0 +1,5 @@
+recepta
+mvalls
+ingredients:
+- una patata
+- ...
