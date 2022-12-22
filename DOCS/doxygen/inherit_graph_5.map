@@ -1,0 +1,9 @@
+<map id="Jerarquia Gràfica de la Classe" name="Jerarquia Gràfica de la Classe">
+<area shape="rect" id="node1" href="$classmain_1_1domain_1_1expressions_1_1_expression.html" title="Classe que representa i avalua expressions booleanes." alt="" coords="5,141,176,182"/>
+<area shape="rect" id="node2" href="$classmain_1_1domain_1_1expressions_1_1_and.html" title="Classe que representa a aquelles expressions booleanes que consisteixen en la conjunció de dues altre..." alt="" coords="224,5,417,32"/>
+<area shape="rect" id="node3" href="$classmain_1_1domain_1_1expressions_1_1_literal.html" title="Classe que representa a aquelles expressions booleanes formades solament per una paraula o frase,..." alt="" coords="235,57,406,98"/>
+<area shape="rect" id="node4" href="$classmain_1_1domain_1_1expressions_1_1_not.html" title="Classe que representa a aquelles expressions booleanes que consisteixen en la negació d&#39;una altra exp..." alt="" coords="225,123,416,149"/>
+<area shape="rect" id="node5" href="$classmain_1_1domain_1_1expressions_1_1_or.html" title="Classe que representa a aquelles expressions booleanes que consisteixen en la disjunció de dues altre..." alt="" coords="229,173,413,200"/>
+<area shape="rect" id="node6" href="$classtest_1_1domain_1_1expressions_1_1_false.html" title="Classe que usem per provar expressions, sabent que sempre ens retornarà una avaluació falsa." alt="" coords="239,225,403,266"/>
+<area shape="rect" id="node7" href="$classtest_1_1domain_1_1expressions_1_1_true.html" title="Classe que usem per provar expressions, sabent que sempre ens retornarà una avaluació certa." alt="" coords="225,291,416,317"/>
+</map>

@@ -5,8 +5,8 @@
 #---------------------------------------------------------------------------
 DOXYFILE_ENCODING      = utf-8
 PROJECT_NAME           = "Gestor de Documents" 
-PROJECT_NUMBER         = "version 0 10-11-22"
-OUTPUT_DIRECTORY       = "./DOC" 
+PROJECT_NUMBER         = ""
+OUTPUT_DIRECTORY       = "./DOC-DOXY" 
 CREATE_SUBDIRS         = NO
 OUTPUT_LANGUAGE        = Catalan
 BRIEF_MEMBER_DESC      = YES

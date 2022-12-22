@@ -1,0 +1,15 @@
+<map id="Jerarquia Gràfica de la Classe" name="Jerarquia Gràfica de la Classe">
+<area shape="rect" id="node1" title=" " alt="" coords="5,346,71,373"/>
+<area shape="rect" id="node2" href="$classmain_1_1presentation_1_1_confirm_dialog.html" title="Diàleg per confirmar canvis destructius abans de realitzar les accions associades." alt="" coords="140,5,311,47"/>
+<area shape="rect" id="node3" href="$classmain_1_1presentation_1_1_downloader_dialog.html" title="Diàleg per a exportar un document del sistema." alt="" coords="128,71,323,112"/>
+<area shape="rect" id="node4" href="$classmain_1_1presentation_1_1_error_dialog.html" title="Diàleg per mostrar errors." alt="" coords="130,137,321,163"/>
+<area shape="rect" id="node5" href="$classmain_1_1presentation_1_1_expressions_modify_dialog.html" title="Diàleg que permet editar expressions i confirmar&#45;ne els canvis o no guardar&#45;los." alt="" coords="127,188,324,229"/>
+<area shape="rect" id="node6" href="$classmain_1_1presentation_1_1_help_dialog.html" title="Diàleg per mostrar ajudes a l&#39;usuari sobre com usar l&#39;aplicatiu." alt="" coords="130,254,321,281"/>
+<area shape="rect" id="node7" href="$classmain_1_1presentation_1_1_list_author_dialog.html" title="Diàleg per mostrar els documents d&#39;un autor, mitjançant seleccionar l&#39;autor pel seu prefix." alt="" coords="132,305,319,347"/>
+<area shape="rect" id="node8" href="$classmain_1_1presentation_1_1_list_expression_dialog.html" title="Diàleg per mostrar els documents que compleixen una expressió seleccionada al diàleg." alt="" coords="119,371,331,412"/>
+<area shape="rect" id="node9" href="$classmain_1_1presentation_1_1_list_k_similars_dialog.html" title="Diàleg per a llistar els k documents més semblants a un de seleccionat a la vista principal." alt="" coords="123,436,328,477"/>
+<area shape="rect" id="node10" href="$classmain_1_1presentation_1_1_list_query_dialog.html" title="Diàleg per mostrar els k documents segons la query inserida." alt="" coords="134,501,317,543"/>
+<area shape="rect" id="node11" href="$classmain_1_1presentation_1_1_loader_dialog.html" title="Diàleg per a carregar un document extern al sistema." alt="" coords="142,567,309,608"/>
+<area shape="rect" id="node12" href="$classmain_1_1presentation_1_1_modify_dialog.html" title="Diàleg per modificar un document, tant el seu títol, idioma o el contingut i guardar&#45;ho o exportar&#45;ho..." alt="" coords="143,632,308,673"/>
+<area shape="rect" id="node13" href="$classmain_1_1presentation_1_1_new_document_dialog.html" title="Diàleg per a crear un nou document al sistema, en blanc." alt="" coords="119,697,332,739"/>
+</map>

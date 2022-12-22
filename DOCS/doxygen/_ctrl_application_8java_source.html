@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Gestor de Documents: Fitxer de Codi CtrlApplication.java</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Gestor de Documents
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generat per Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Cerca','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Cerca');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d2a81fcb9e0344d06f49c2bd6fcf908f.html">FONTS</a></li><li class="navelem"><a class="el" href="dir_7b215a15921fff0d8439bbb25ead1992.html">main</a></li><li class="navelem"><a class="el" href="dir_de0e6f75f79133b8708e8a15c37239c2.html">presentation</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">CtrlApplication.java</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_ctrl_application_8java.html">Veure la documentació d'aquest fitxer.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">package </span>main.presentation;</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">import</span> main.excepcions.ExceptionDocumentExists;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">import</span> main.excepcions.ExceptionExpressionExists;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">import</span> main.excepcions.ExceptionInvalidExpression;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">import</span> javax.swing.*;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">import</span> java.awt.*;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">import</span> java.awt.event.ActionEvent;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">import</span> java.awt.event.ActionListener;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">import</span> java.io.FileNotFoundException;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">import</span> java.io.IOException;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">import</span> java.util.Timer;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">import</span> java.util.TimerTask;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_ctrl_application.html">   21</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classmain_1_1presentation_1_1_ctrl_application.html">CtrlApplication</a> {</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_ctrl_application.html#a9520bf4d576aed4f8529bbcce60ea2e1">   25</a></span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> <a class="code" href="classmain_1_1presentation_1_1_ctrl_application.html">CtrlApplication</a> <a class="code" href="classmain_1_1presentation_1_1_ctrl_application.html#a9520bf4d576aed4f8529bbcce60ea2e1">singletonObject</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_ctrl_application.html#a74d67f481588a8e657891faf43f01669">   30</a></span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> <a class="code" href="classmain_1_1presentation_1_1_ctrl_presentation.html">CtrlPresentation</a> <a class="code" href="classmain_1_1presentation_1_1_ctrl_application.html#a74d67f481588a8e657891faf43f01669">cp</a>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_ctrl_application.html#a87845fbdbc8606262a05cf1f82a59301">   38</a></span>&#160;    <span class="keyword">private</span> <a class="code" href="classmain_1_1presentation_1_1_ctrl_application.html#a87845fbdbc8606262a05cf1f82a59301">CtrlApplication</a>() {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_ctrl_application.html#a74d67f481588a8e657891faf43f01669">cp</a> = <a class="code" href="classmain_1_1presentation_1_1_ctrl_presentation.html">CtrlPresentation</a>.<a class="code" href="classmain_1_1presentation_1_1_ctrl_presentation.html#a261353f3704004b81efe2028e3d50b5d">getInstance</a>();</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    }</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_ctrl_application.html#a974c6ff85ee568cb53f554bef817d659">   47</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <a class="code" href="classmain_1_1presentation_1_1_ctrl_application.html">CtrlApplication</a> <a class="code" href="classmain_1_1presentation_1_1_ctrl_application.html#a974c6ff85ee568cb53f554bef817d659">getInstance</a>() {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classmain_1_1presentation_1_1_ctrl_application.html#a9520bf4d576aed4f8529bbcce60ea2e1">singletonObject</a> == <span class="keyword">null</span>) <a class="code" href="classmain_1_1presentation_1_1_ctrl_application.html#a9520bf4d576aed4f8529bbcce60ea2e1">singletonObject</a> = <span class="keyword">new</span> <a class="code" href="classmain_1_1presentation_1_1_ctrl_application.html#a87845fbdbc8606262a05cf1f82a59301">CtrlApplication</a>();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classmain_1_1presentation_1_1_ctrl_application.html#a9520bf4d576aed4f8529bbcce60ea2e1">singletonObject</a>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_ctrl_application.html#a2bf51199e62a45fabfe413621f57fe19">   60</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classmain_1_1presentation_1_1_ctrl_application.html#a2bf51199e62a45fabfe413621f57fe19">initiateApp</a>() {</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="comment">// Marc temporal per posicionar diàlegs d&#39;error i la vista al centre de la pantalla</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        JFrame reference = <span class="keyword">new</span> JFrame();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        reference.setLocationRelativeTo(<span class="keyword">null</span>);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="comment">// Restaurem l&#39;estat del sistema</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <a class="code" href="classmain_1_1presentation_1_1_ctrl_application.html#a74d67f481588a8e657891faf43f01669">cp</a>.<a class="code" href="classmain_1_1presentation_1_1_ctrl_presentation.html#ab5e47d061ee822ace68dab0b9f86ae60">restoreSystem</a>();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        } <span class="keywordflow">catch</span> (FileNotFoundException e) {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="comment">// Vol dir que és el primer cop que encenem l&#39;aplicatiu, no tenim còpia de seguretat, no passa res.</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        } <span class="keywordflow">catch</span> (<a class="code" href="classmain_1_1excepcions_1_1_exception_document_exists.html">ExceptionDocumentExists</a> | <a class="code" href="classmain_1_1excepcions_1_1_exception_invalid_expression.html">ExceptionInvalidExpression</a> | <a class="code" href="classmain_1_1excepcions_1_1_exception_expression_exists.html">ExceptionExpressionExists</a> e) {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="comment">// No hauría de passar mai</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <a class="code" href="classmain_1_1presentation_1_1_ctrl_views_dialogs.html">CtrlViewsDialogs</a>.<a class="code" href="classmain_1_1presentation_1_1_ctrl_views_dialogs.html#a8d7be115d3ab64f1d9a4a9c2b1b2a4fc">getInstance</a>().<a class="code" href="classmain_1_1presentation_1_1_ctrl_views_dialogs.html#a1022beae788061d0626150fa2058ffd8">showInternalError</a>(reference);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="comment">// Programem el guardat del sistema periòdicament cada 30 segons (per seguretat)</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        Timer t = <span class="keyword">new</span> Timer();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        TimerTask tt = <span class="keyword">new</span> TimerTask() {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            @Override</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <span class="keyword">public</span> <span class="keywordtype">void</span> run() {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                    <a class="code" href="classmain_1_1presentation_1_1_ctrl_application.html#a74d67f481588a8e657891faf43f01669">cp</a>.<a class="code" href="classmain_1_1presentation_1_1_ctrl_presentation.html#a07bc12532eee83618cdba311e6174ee6">saveSystem</a>();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                } <span class="keywordflow">catch</span> (IOException e) {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                    <span class="comment">// Tenim un problema greu</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                    <a class="code" href="classmain_1_1presentation_1_1_ctrl_views_dialogs.html">CtrlViewsDialogs</a>.<a class="code" href="classmain_1_1presentation_1_1_ctrl_views_dialogs.html#a8d7be115d3ab64f1d9a4a9c2b1b2a4fc">getInstance</a>().<a class="code" href="classmain_1_1presentation_1_1_ctrl_views_dialogs.html#a1022beae788061d0626150fa2058ffd8">showInternalError</a>(reference);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                }</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        };</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        t.scheduleAtFixedRate(tt, 120000, 120000);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="comment">// Obrim la vista principal</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_ctrl_views_dialogs.html">CtrlViewsDialogs</a>.<a class="code" href="classmain_1_1presentation_1_1_ctrl_views_dialogs.html#a8d7be115d3ab64f1d9a4a9c2b1b2a4fc">getInstance</a>().<a class="code" href="classmain_1_1presentation_1_1_ctrl_views_dialogs.html#a4a7d693b6f683089aa2af944db8f357d">showDocuments</a>(<span class="keyword">new</span> Dimension(600, 600));</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    }</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_ctrl_application.html#aa6117e0f47670065ef4531a1c64df1af">  101</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classmain_1_1presentation_1_1_ctrl_application.html#aa6117e0f47670065ef4531a1c64df1af">closeApp</a>(JFrame reference) {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            <a class="code" href="classmain_1_1presentation_1_1_ctrl_application.html#a74d67f481588a8e657891faf43f01669">cp</a>.<a class="code" href="classmain_1_1presentation_1_1_ctrl_presentation.html#a07bc12532eee83618cdba311e6174ee6">saveSystem</a>();</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        } <span class="keywordflow">catch</span> (IOException e) {</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            <span class="comment">// Tenim un problema greu</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            <a class="code" href="classmain_1_1presentation_1_1_ctrl_views_dialogs.html">CtrlViewsDialogs</a>.<a class="code" href="classmain_1_1presentation_1_1_ctrl_views_dialogs.html#a8d7be115d3ab64f1d9a4a9c2b1b2a4fc">getInstance</a>().<a class="code" href="classmain_1_1presentation_1_1_ctrl_views_dialogs.html#a1022beae788061d0626150fa2058ffd8">showInternalError</a>(reference);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        }</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    }</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_ctrl_application.html#a0bb97e4a7fa217639902e92e9922dc58">  115</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classmain_1_1presentation_1_1_ctrl_application.html#a0bb97e4a7fa217639902e92e9922dc58">reset</a>() {</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_ctrl_application.html#a74d67f481588a8e657891faf43f01669">cp</a>.<a class="code" href="classmain_1_1presentation_1_1_ctrl_presentation.html#aaaea69b74a8a970c3faa488444ab6693">resetSystem</a>();</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    }</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;}</div>
+<div class="ttc" id="aclassmain_1_1excepcions_1_1_exception_document_exists_html"><div class="ttname"><a href="classmain_1_1excepcions_1_1_exception_document_exists.html">main.excepcions.ExceptionDocumentExists</a></div><div class="ttdoc">Excepció que es llença quan el document ja existeix.</div><div class="ttdef"><b>Definition:</b> <a href="_exception_document_exists_8java_source.html#l00008">ExceptionDocumentExists.java:8</a></div></div>
+<div class="ttc" id="aclassmain_1_1excepcions_1_1_exception_expression_exists_html"><div class="ttname"><a href="classmain_1_1excepcions_1_1_exception_expression_exists.html">main.excepcions.ExceptionExpressionExists</a></div><div class="ttdoc">Excepció que es llença quan l'expressió ja existeix.</div><div class="ttdef"><b>Definition:</b> <a href="_exception_expression_exists_8java_source.html#l00008">ExceptionExpressionExists.java:8</a></div></div>
+<div class="ttc" id="aclassmain_1_1excepcions_1_1_exception_invalid_expression_html"><div class="ttname"><a href="classmain_1_1excepcions_1_1_exception_invalid_expression.html">main.excepcions.ExceptionInvalidExpression</a></div><div class="ttdoc">Excepció que es llença quan l'expressió no està ben formada.</div><div class="ttdef"><b>Definition:</b> <a href="_exception_invalid_expression_8java_source.html#l00008">ExceptionInvalidExpression.java:8</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_ctrl_application_html"><div class="ttname"><a href="classmain_1_1presentation_1_1_ctrl_application.html">main.presentation.CtrlApplication</a></div><div class="ttdoc">Subcontrolador de la capa de presentació de l'aplicatiu. S'encarrega de la gestió de la posada en mar...</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_application_8java_source.html#l00021">CtrlApplication.java:21</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_ctrl_application_html_a0bb97e4a7fa217639902e92e9922dc58"><div class="ttname"><a href="classmain_1_1presentation_1_1_ctrl_application.html#a0bb97e4a7fa217639902e92e9922dc58">main.presentation.CtrlApplication.reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Operació per tal de resetejar el sistema.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_application_8java_source.html#l00115">CtrlApplication.java:115</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_ctrl_application_html_a2bf51199e62a45fabfe413621f57fe19"><div class="ttname"><a href="classmain_1_1presentation_1_1_ctrl_application.html#a2bf51199e62a45fabfe413621f57fe19">main.presentation.CtrlApplication.initiateApp</a></div><div class="ttdeci">void initiateApp()</div><div class="ttdoc">Funció que inicialitza l'aplicatiu amb la còpia de seguretat i programa un backup periòdic.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_application_8java_source.html#l00060">CtrlApplication.java:60</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_ctrl_application_html_a74d67f481588a8e657891faf43f01669"><div class="ttname"><a href="classmain_1_1presentation_1_1_ctrl_application.html#a74d67f481588a8e657891faf43f01669">main.presentation.CtrlApplication.cp</a></div><div class="ttdeci">static CtrlPresentation cp</div><div class="ttdoc">Instància del controlador de presentació (CtrlPresentation)</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_application_8java_source.html#l00030">CtrlApplication.java:30</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_ctrl_application_html_a87845fbdbc8606262a05cf1f82a59301"><div class="ttname"><a href="classmain_1_1presentation_1_1_ctrl_application.html#a87845fbdbc8606262a05cf1f82a59301">main.presentation.CtrlApplication.CtrlApplication</a></div><div class="ttdeci">CtrlApplication()</div><div class="ttdoc">Constructora per defecte de CtrlApplication.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_application_8java_source.html#l00038">CtrlApplication.java:38</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_ctrl_application_html_a9520bf4d576aed4f8529bbcce60ea2e1"><div class="ttname"><a href="classmain_1_1presentation_1_1_ctrl_application.html#a9520bf4d576aed4f8529bbcce60ea2e1">main.presentation.CtrlApplication.singletonObject</a></div><div class="ttdeci">static CtrlApplication singletonObject</div><div class="ttdoc">Objecte singleton que guarda la única instància del CtrlApplication.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_application_8java_source.html#l00025">CtrlApplication.java:25</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_ctrl_application_html_a974c6ff85ee568cb53f554bef817d659"><div class="ttname"><a href="classmain_1_1presentation_1_1_ctrl_application.html#a974c6ff85ee568cb53f554bef817d659">main.presentation.CtrlApplication.getInstance</a></div><div class="ttdeci">static CtrlApplication getInstance()</div><div class="ttdoc">Funció per aconseguir la instància de CtrlApplication.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_application_8java_source.html#l00047">CtrlApplication.java:47</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_ctrl_application_html_aa6117e0f47670065ef4531a1c64df1af"><div class="ttname"><a href="classmain_1_1presentation_1_1_ctrl_application.html#aa6117e0f47670065ef4531a1c64df1af">main.presentation.CtrlApplication.closeApp</a></div><div class="ttdeci">void closeApp(JFrame reference)</div><div class="ttdoc">Funció que deixa l'estat del sistema en una còpia de seguretat.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_application_8java_source.html#l00101">CtrlApplication.java:101</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_ctrl_presentation_html"><div class="ttname"><a href="classmain_1_1presentation_1_1_ctrl_presentation.html">main.presentation.CtrlPresentation</a></div><div class="ttdoc">Controlador de la capa de presentació de l'aplicatiu. S'encarrega de la comunicació amb el controlado...</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_presentation_8java_source.html#l00016">CtrlPresentation.java:16</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_ctrl_presentation_html_a07bc12532eee83618cdba311e6174ee6"><div class="ttname"><a href="classmain_1_1presentation_1_1_ctrl_presentation.html#a07bc12532eee83618cdba311e6174ee6">main.presentation.CtrlPresentation.saveSystem</a></div><div class="ttdeci">void saveSystem()</div><div class="ttdoc">Operació per salvar l'estat del sistema.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_presentation_8java_source.html#l00358">CtrlPresentation.java:358</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_ctrl_presentation_html_a261353f3704004b81efe2028e3d50b5d"><div class="ttname"><a href="classmain_1_1presentation_1_1_ctrl_presentation.html#a261353f3704004b81efe2028e3d50b5d">main.presentation.CtrlPresentation.getInstance</a></div><div class="ttdeci">static CtrlPresentation getInstance()</div><div class="ttdoc">Funció per aconseguir la instància de CtrlPresentation.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_presentation_8java_source.html#l00042">CtrlPresentation.java:42</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_ctrl_presentation_html_aaaea69b74a8a970c3faa488444ab6693"><div class="ttname"><a href="classmain_1_1presentation_1_1_ctrl_presentation.html#aaaea69b74a8a970c3faa488444ab6693">main.presentation.CtrlPresentation.resetSystem</a></div><div class="ttdeci">void resetSystem()</div><div class="ttdoc">Operació per tal de resetejar el sistema.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_presentation_8java_source.html#l00380">CtrlPresentation.java:380</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_ctrl_presentation_html_ab5e47d061ee822ace68dab0b9f86ae60"><div class="ttname"><a href="classmain_1_1presentation_1_1_ctrl_presentation.html#ab5e47d061ee822ace68dab0b9f86ae60">main.presentation.CtrlPresentation.restoreSystem</a></div><div class="ttdeci">void restoreSystem()</div><div class="ttdoc">Mètode per restaurar el sistema a partir d'una còpia de seguretat.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_presentation_8java_source.html#l00371">CtrlPresentation.java:371</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_ctrl_views_dialogs_html"><div class="ttname"><a href="classmain_1_1presentation_1_1_ctrl_views_dialogs.html">main.presentation.CtrlViewsDialogs</a></div><div class="ttdoc">Subcontrolador de la capa de presentació de l'aplicatiu. S'encarrega de la gestió de les vistes i els...</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_views_dialogs_8java_source.html#l00016">CtrlViewsDialogs.java:16</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_ctrl_views_dialogs_html_a1022beae788061d0626150fa2058ffd8"><div class="ttname"><a href="classmain_1_1presentation_1_1_ctrl_views_dialogs.html#a1022beae788061d0626150fa2058ffd8">main.presentation.CtrlViewsDialogs.showInternalError</a></div><div class="ttdeci">void showInternalError(JFrame reference)</div><div class="ttdoc">Mètode per mostrar el missatge d'error intern.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_views_dialogs_8java_source.html#l00067">CtrlViewsDialogs.java:67</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_ctrl_views_dialogs_html_a4a7d693b6f683089aa2af944db8f357d"><div class="ttname"><a href="classmain_1_1presentation_1_1_ctrl_views_dialogs.html#a4a7d693b6f683089aa2af944db8f357d">main.presentation.CtrlViewsDialogs.showDocuments</a></div><div class="ttdeci">void showDocuments(Point location, Dimension size)</div><div class="ttdoc">Mètode per mostrar la vista de la gestió de documents.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_views_dialogs_8java_source.html#l00169">CtrlViewsDialogs.java:169</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_ctrl_views_dialogs_html_a8d7be115d3ab64f1d9a4a9c2b1b2a4fc"><div class="ttname"><a href="classmain_1_1presentation_1_1_ctrl_views_dialogs.html#a8d7be115d3ab64f1d9a4a9c2b1b2a4fc">main.presentation.CtrlViewsDialogs.getInstance</a></div><div class="ttdeci">static CtrlViewsDialogs getInstance()</div><div class="ttdoc">Funció per aconseguir la instància de CtrlViewsDialogs.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_views_dialogs_8java_source.html#l00042">CtrlViewsDialogs.java:42</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generat per&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

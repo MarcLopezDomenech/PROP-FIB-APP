@@ -22,7 +22,6 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Gestor de Documents
-   &#160;<span id="projectnumber">version 0 10-11-22</span>
    </div>
   </td>
  </tr>
@@ -78,6 +77,15 @@ $(function() {
 
 <p>Classe que representa a aquelles expressions booleanes formades solament per una paraula o frase, sense cap connectiva lògica.  
  <a href="classmain_1_1domain_1_1expressions_1_1_literal.html#details">Més...</a></p>
+<div class="dynheader">
+Diagrama d'Herència per a main.domain.expressions.Literal:</div>
+<div class="dyncontent">
+<div class="center"><img src="classmain_1_1domain_1_1expressions_1_1_literal__inherit__graph.png" border="0" usemap="#amain_8domain_8expressions_8_literal_inherit__map" alt="Inheritance graph"/></div>
+<map name="amain_8domain_8expressions_8_literal_inherit__map" id="amain_8domain_8expressions_8_literal_inherit__map">
+<area shape="rect" title="Classe que representa a aquelles expressions booleanes formades solament per una paraula o frase,..." alt="" coords="9,248,179,369"/>
+<area shape="rect" href="classmain_1_1domain_1_1expressions_1_1_expression.html" title="Classe que representa i avalua expressions booleanes." alt="" coords="5,5,183,200"/>
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Mètodes públics</h2></td></tr>
@@ -106,6 +114,10 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a55532dba8adab47de67b3d58c66914da inherit pub_static_methods_classmain_1_1domain_1_1expressions_1_1_expression"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classmain_1_1domain_1_1expressions_1_1_expression.html">Expression</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1expressions_1_1_expression.html#a55532dba8adab47de67b3d58c66914da">create</a> (String expression)  throws ExceptionInvalidExpression </td></tr>
 <tr class="memdesc:a55532dba8adab47de67b3d58c66914da inherit pub_static_methods_classmain_1_1domain_1_1expressions_1_1_expression"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tradueix expression a una instància de <a class="el" href="classmain_1_1domain_1_1expressions_1_1_expression.html" title="Classe que representa i avalua expressions booleanes.">Expression</a> que representa la fórmula lògica del paràmetre, sempre que sigui vàlida.  <a href="classmain_1_1domain_1_1expressions_1_1_expression.html#a55532dba8adab47de67b3d58c66914da">Més...</a><br /></td></tr>
 <tr class="separator:a55532dba8adab47de67b3d58c66914da inherit pub_static_methods_classmain_1_1domain_1_1expressions_1_1_expression"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classmain_1_1domain_1_1expressions_1_1_expression"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classmain_1_1domain_1_1expressions_1_1_expression')"><img src="closed.png" alt="-"/>&#160;Atributs Protegits inherited from <a class="el" href="classmain_1_1domain_1_1expressions_1_1_expression.html">main.domain.expressions.Expression</a></td></tr>
+<tr class="memitem:a62e251b6e4c7f5b11e9e789f836d949b inherit pro_attribs_classmain_1_1domain_1_1expressions_1_1_expression"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain_1_1domain_1_1expressions_1_1_expression.html#a62e251b6e4c7f5b11e9e789f836d949b">height</a></td></tr>
+<tr class="memdesc:a62e251b6e4c7f5b11e9e789f836d949b inherit pro_attribs_classmain_1_1domain_1_1expressions_1_1_expression"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enter que representa quants nivells de subexpressions conté l'expressió  <a href="classmain_1_1domain_1_1expressions_1_1_expression.html#a62e251b6e4c7f5b11e9e789f836d949b">Més...</a><br /></td></tr>
+<tr class="separator:a62e251b6e4c7f5b11e9e789f836d949b inherit pro_attribs_classmain_1_1domain_1_1expressions_1_1_expression"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descripció Detallada</h2>
 <div class="textblock"><p>Classe que representa a aquelles expressions booleanes formades solament per una paraula o frase, sense cap connectiva lògica. </p>
@@ -141,7 +153,9 @@ Additional Inherited Members</h2></td></tr>
 <p class="definition">Definició a la línia <a class="el" href="_literal_8java_source.html#l00017">17</a> del fitxer <a class="el" href="_literal_8java_source.html">Literal.java</a>.</p>
 <div class="fragment"><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                                {</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        this.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_literal.html#a62ae2b21695b26df142eca0d7504ebc5">value</a> = <a class="code" href="classmain_1_1domain_1_1expressions_1_1_literal.html#a62ae2b21695b26df142eca0d7504ebc5">value</a>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    }</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        this.<a class="code" href="classmain_1_1domain_1_1expressions_1_1_expression.html#a62e251b6e4c7f5b11e9e789f836d949b">height</a> = 0;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    }</div>
+<div class="ttc" id="aclassmain_1_1domain_1_1expressions_1_1_expression_html_a62e251b6e4c7f5b11e9e789f836d949b"><div class="ttname"><a href="classmain_1_1domain_1_1expressions_1_1_expression.html#a62e251b6e4c7f5b11e9e789f836d949b">main.domain.expressions.Expression.height</a></div><div class="ttdeci">int height</div><div class="ttdoc">Enter que representa quants nivells de subexpressions conté l'expressió</div><div class="ttdef"><b>Definition:</b> <a href="main_2domain_2expressions_2_expression_8java_source.html#l00015">main/domain/expressions/Expression.java:15</a></div></div>
 <div class="ttc" id="aclassmain_1_1domain_1_1expressions_1_1_literal_html_a62ae2b21695b26df142eca0d7504ebc5"><div class="ttname"><a href="classmain_1_1domain_1_1expressions_1_1_literal.html#a62ae2b21695b26df142eca0d7504ebc5">main.domain.expressions.Literal.value</a></div><div class="ttdeci">String value</div><div class="ttdoc">String que guarda la paraula o frase representada pel Literal.</div><div class="ttdef"><b>Definition:</b> <a href="_literal_8java_source.html#l00010">Literal.java:10</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -172,7 +186,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Funció booleana que retorna si el paràmetre c és un caràcter especial de text. </p>
-<p>Un caràcter de text és un caràcter que és natural trobar en un escrit. Els que es consideraran especials són ' ', '.', ',', ';', '!', '?', '(', ')', i ':' </p><dl class="params"><dt>Paràmetres</dt><dd>
+<p>Un caràcter de text és un caràcter que és natural trobar en un escrit. Els que es consideraran especials són ' ', '.', ',', ';', '!', '?', '(', ')', ':' i '<br  />
+' </p><dl class="params"><dt>Paràmetres</dt><dd>
   <table class="params">
     <tr><td class="paramname">c</td><td>Caràcter a analitzar </td></tr>
   </table>
@@ -180,10 +195,10 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Retorna</dt><dd>Cert ssi el paràmetre c és un caràcter especial de text </dd></dl>
 
-<p class="definition">Definició a la línia <a class="el" href="_literal_8java_source.html#l00028">28</a> del fitxer <a class="el" href="_literal_8java_source.html">Literal.java</a>.</p>
-<div class="fragment"><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                                                        {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">return</span> c == <span class="charliteral">&#39; &#39;</span> || c == <span class="charliteral">&#39;.&#39;</span> || c == <span class="charliteral">&#39;,&#39;</span> || c == <span class="charliteral">&#39;;&#39;</span> || c == <span class="charliteral">&#39;!&#39;</span> || c == <span class="charliteral">&#39;?&#39;</span> || c == <span class="charliteral">&#39;(&#39;</span> || c == <span class="charliteral">&#39;)&#39;</span> || c == <span class="charliteral">&#39;:&#39;</span>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    }</div>
+<p class="definition">Definició a la línia <a class="el" href="_literal_8java_source.html#l00029">29</a> del fitxer <a class="el" href="_literal_8java_source.html">Literal.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                                                        {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordflow">return</span> c == <span class="charliteral">&#39; &#39;</span> || c == <span class="charliteral">&#39;.&#39;</span> || c == <span class="charliteral">&#39;,&#39;</span> || c == <span class="charliteral">&#39;;&#39;</span> || c == <span class="charliteral">&#39;!&#39;</span> || c == <span class="charliteral">&#39;?&#39;</span> || c == <span class="charliteral">&#39;(&#39;</span> || c == <span class="charliteral">&#39;)&#39;</span> || c == <span class="charliteral">&#39;:&#39;</span> || c == <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -225,26 +240,26 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplementat de <a class="el" href="classmain_1_1domain_1_1expressions_1_1_expression.html#a0bbb3e946a7d51ef1e46c54720fe1519">main.domain.expressions.Expression</a>.</p>
 
-<p class="definition">Definició a la línia <a class="el" href="_literal_8java_source.html#l00039">39</a> del fitxer <a class="el" href="_literal_8java_source.html">Literal.java</a>.</p>
-<div class="fragment"><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                                                                  {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        String content_to_evaluate = <span class="stringliteral">&quot; &quot;</span> + content  + <span class="stringliteral">&quot; &quot;</span>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        String value_to_find = <a class="code" href="classmain_1_1domain_1_1expressions_1_1_literal.html#a62ae2b21695b26df142eca0d7504ebc5">value</a>;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">if</span> (!caseSensitive) {</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            content_to_evaluate = content_to_evaluate.toLowerCase();</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            value_to_find = value_to_find.toLowerCase();</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        }</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordtype">int</span> l = value_to_find.length();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordtype">int</span> n = content_to_evaluate.length();</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt;= n - (l + 2); ++i)</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="classmain_1_1domain_1_1expressions_1_1_literal.html#aa7d24e17ea91338fbfc03fa759671098">is_special_text_char</a>(content_to_evaluate.charAt(i)) &amp;&amp;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                value_to_find.equals(content_to_evaluate.substring(i+1, i+1+l)) &amp;&amp;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                <a class="code" href="classmain_1_1domain_1_1expressions_1_1_literal.html#aa7d24e17ea91338fbfc03fa759671098">is_special_text_char</a>(content_to_evaluate.charAt(i+1+l))) <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
-<div class="ttc" id="aclassmain_1_1domain_1_1expressions_1_1_literal_html_aa7d24e17ea91338fbfc03fa759671098"><div class="ttname"><a href="classmain_1_1domain_1_1expressions_1_1_literal.html#aa7d24e17ea91338fbfc03fa759671098">main.domain.expressions.Literal.is_special_text_char</a></div><div class="ttdeci">static boolean is_special_text_char(char c)</div><div class="ttdoc">Funció booleana que retorna si el paràmetre c és un caràcter especial de text.</div><div class="ttdef"><b>Definition:</b> <a href="_literal_8java_source.html#l00028">Literal.java:28</a></div></div>
+<p class="definition">Definició a la línia <a class="el" href="_literal_8java_source.html#l00040">40</a> del fitxer <a class="el" href="_literal_8java_source.html">Literal.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                                                                  {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        String content_to_evaluate = <span class="stringliteral">&quot; &quot;</span> + content  + <span class="stringliteral">&quot; &quot;</span>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        String value_to_find = <a class="code" href="classmain_1_1domain_1_1expressions_1_1_literal.html#a62ae2b21695b26df142eca0d7504ebc5">value</a>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordflow">if</span> (!caseSensitive) {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            content_to_evaluate = content_to_evaluate.toLowerCase();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            value_to_find = value_to_find.toLowerCase();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        }</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordtype">int</span> l = value_to_find.length();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordtype">int</span> n = content_to_evaluate.length();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt;= n - (l + 2); ++i)</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="classmain_1_1domain_1_1expressions_1_1_literal.html#aa7d24e17ea91338fbfc03fa759671098">is_special_text_char</a>(content_to_evaluate.charAt(i)) &amp;&amp;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                value_to_find.equals(content_to_evaluate.substring(i+1, i+1+l)) &amp;&amp;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                <a class="code" href="classmain_1_1domain_1_1expressions_1_1_literal.html#aa7d24e17ea91338fbfc03fa759671098">is_special_text_char</a>(content_to_evaluate.charAt(i+1+l))) <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
+<div class="ttc" id="aclassmain_1_1domain_1_1expressions_1_1_literal_html_aa7d24e17ea91338fbfc03fa759671098"><div class="ttname"><a href="classmain_1_1domain_1_1expressions_1_1_literal.html#aa7d24e17ea91338fbfc03fa759671098">main.domain.expressions.Literal.is_special_text_char</a></div><div class="ttdeci">static boolean is_special_text_char(char c)</div><div class="ttdoc">Funció booleana que retorna si el paràmetre c és un caràcter especial de text.</div><div class="ttdef"><b>Definition:</b> <a href="_literal_8java_source.html#l00029">Literal.java:29</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>

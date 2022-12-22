@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['testvalues_542',['testValues',['../classtest_1_1domain_1_1documents_1_1_test_documents_set.html#af6c6babe87e807502d1681559032c28c',1,'test.domain.documents.TestDocumentsSet.testValues()'],['../classtest_1_1domain_1_1expressions_1_1_test_expressions_set.html#a8c7f22d05592c62d61b374965c6a0bf0',1,'test.domain.expressions.TestExpressionsSet.testValues()']]],
-  ['title_543',['title',['../classmain_1_1domain_1_1documents_1_1_document.html#a22cdf90d611fb5a4dcbc20d766fb6c75',1,'main::domain::documents::Document']]],
-  ['totalwords_544',['totalWords',['../classmain_1_1domain_1_1documents_1_1_internal_document.html#a4b7355febdfa8f7d9b122d3074bfe02a',1,'main::domain::documents::InternalDocument']]]
+  ['okpressed_936',['okPressed',['../classmain_1_1presentation_1_1_downloader_dialog.html#a646416e3840306d4dc0dc8a6684eef87',1,'main.presentation.DownloaderDialog.okPressed()'],['../classmain_1_1presentation_1_1_list_k_similars_dialog.html#a61556831710f52feabe054e6dae77132',1,'main.presentation.ListKSimilarsDialog.okPressed()'],['../classmain_1_1presentation_1_1_loader_dialog.html#a757e8da011ee28cbcd3d71a0b10206fd',1,'main.presentation.LoaderDialog.okPressed()'],['../classmain_1_1presentation_1_1_new_document_dialog.html#aa52979407f5f79d56ec5d3f4f51d74ca',1,'main.presentation.NewDocumentDialog.okPressed()']]],
+  ['originalformat_937',['originalFormat',['../classmain_1_1domain_1_1documents_1_1_document.html#a42827cc3ff13e51cd450a0d1b52efd78',1,'main::domain::documents::Document']]]
 ];

@@ -22,7 +22,6 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Gestor de Documents
-   &#160;<span id="projectnumber">version 0 10-11-22</span>
    </div>
   </td>
  </tr>
@@ -65,6 +64,14 @@ $(function() {
 <div class="textblock">Aquesta és la llista de tots els membres de classe amb enllaços a les classes a que pertanyen:</div>
 
 <h3><a id="index_g"></a>- g -</h3><ul>
+<li>getAllDocumentRepresentations()
+: <a class="el" href="classmain_1_1domain_1_1documents_1_1_documents_set.html#aff01eca76a00442fb96620e38df91d47">main.domain.documents.DocumentsSet</a>
+</li>
+<li>getAllExpressions()
+: <a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html#a4894f68dd78f5f68f660759aae2201b2">main.domain.CtrlDomain</a>
+, <a class="el" href="classmain_1_1domain_1_1expressions_1_1_expressions_set.html#a66926cc1517f0dc840ab497c3dcfac92">main.domain.expressions.ExpressionsSet</a>
+, <a class="el" href="classmain_1_1presentation_1_1_ctrl_presentation.html#a25c7359bf969f523023d09fb1289744d">main.presentation.CtrlPresentation</a>
+</li>
 <li>getAuthor()
 : <a class="el" href="classmain_1_1domain_1_1documents_1_1_document.html#af8800e3f56b2d62b4a44bde29635884a">main.domain.documents.Document</a>
 </li>
@@ -75,9 +82,13 @@ $(function() {
 <li>getContentDocument()
 : <a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html#a098623ab38153bfa4381b5562e961efd">main.domain.CtrlDomain</a>
 , <a class="el" href="classmain_1_1domain_1_1documents_1_1_documents_set.html#aaa7d5500adbcda86b9061448d17bdb59">main.domain.documents.DocumentsSet</a>
+, <a class="el" href="classmain_1_1presentation_1_1_ctrl_presentation.html#a74a755d5035668b11d20a6bc68f0c685">main.presentation.CtrlPresentation</a>
 </li>
 <li>getDocument()
 : <a class="el" href="classmain_1_1domain_1_1documents_1_1_documents_set.html#a3d4855fb93976d3f1a48744d1e5a0c44">main.domain.documents.DocumentsSet</a>
+</li>
+<li>getDocumentRepresentation()
+: <a class="el" href="classmain_1_1domain_1_1documents_1_1_documents_set.html#a7b15fcb3e707313a10b196b4115807dc">main.domain.documents.DocumentsSet</a>
 </li>
 <li>getDocuments()
 : <a class="el" href="classmain_1_1domain_1_1documents_1_1_documents_set.html#a282064a66c1806232d426f257364b269">main.domain.documents.DocumentsSet</a>
@@ -95,6 +106,13 @@ $(function() {
 : <a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html#a72d1c93e27e283053fe0893b7b4d3869">main.domain.CtrlDomain</a>
 , <a class="el" href="classmain_1_1domain_1_1documents_1_1_documents_set.html#aa86961d250e1b2a4b1ac34bfab59204d">main.domain.documents.DocumentsSet</a>
 , <a class="el" href="classmain_1_1domain_1_1expressions_1_1_expressions_set.html#acbc2984b47c609f75cea83fc37b3317a">main.domain.expressions.ExpressionsSet</a>
+, <a class="el" href="classmain_1_1persistence_1_1_ctrl_persistence.html#a6eed3e18a0788e914788a4e568145350">main.persistence.CtrlPersistence</a>
+, <a class="el" href="classmain_1_1presentation_1_1_ctrl_application.html#a974c6ff85ee568cb53f554bef817d659">main.presentation.CtrlApplication</a>
+, <a class="el" href="classmain_1_1presentation_1_1_ctrl_presentation.html#a261353f3704004b81efe2028e3d50b5d">main.presentation.CtrlPresentation</a>
+, <a class="el" href="classmain_1_1presentation_1_1_ctrl_views_dialogs.html#a8d7be115d3ab64f1d9a4a9c2b1b2a4fc">main.presentation.CtrlViewsDialogs</a>
+</li>
+<li>getInteralDocRepresentation()
+: <a class="el" href="classmain_1_1domain_1_1documents_1_1_document.html#a023ba1c28d0d864d4f38883cd12d06ae">main.domain.documents.Document</a>
 </li>
 <li>getLanguage()
 : <a class="el" href="classmain_1_1domain_1_1documents_1_1_document.html#adcd45fe10217ed3fb47c0dbdb46afe86">main.domain.documents.Document</a>
@@ -103,6 +121,7 @@ $(function() {
 <li>getLanguageDocument()
 : <a class="el" href="classmain_1_1domain_1_1_ctrl_domain.html#aa4ff4fef401b1c06245bd7feec0f88df">main.domain.CtrlDomain</a>
 , <a class="el" href="classmain_1_1domain_1_1documents_1_1_documents_set.html#a36224be4aa3044d18d4118de6c4bfd10">main.domain.documents.DocumentsSet</a>
+, <a class="el" href="classmain_1_1presentation_1_1_ctrl_presentation.html#a4e7c27bfd78d4a4164b1ed117af2b858">main.presentation.CtrlPresentation</a>
 </li>
 <li>getnumDocuments()
 : <a class="el" href="classmain_1_1domain_1_1documents_1_1_documents_set.html#ad2983821547f13fc9a53dbcc18265c1d">main.domain.documents.DocumentsSet</a>
@@ -123,8 +142,14 @@ $(function() {
 , <a class="el" href="classtest_1_1domain_1_1documents_1_1_document.html#a4c1c85af915163bd2550336a7750a7bb">test.domain.documents.Document</a>
 , <a class="el" href="classtest_1_1domain_1_1documents_1_1_internal_document.html#acdd1b73f2cb568d7e1cac45cb0bafa18">test.domain.documents.InternalDocument</a>
 </li>
+<li>getRepresentation()
+: <a class="el" href="classmain_1_1domain_1_1documents_1_1_document.html#a888aeccf9351f84b5347484c4d7e3a6c">main.domain.documents.Document</a>
+</li>
 <li>getSecond()
 : <a class="el" href="classmain_1_1domain_1_1util_1_1_pair.html#a287faf2830c4672024d5d6606aa7faab">main.domain.util.Pair&lt; F, S &gt;</a>
+</li>
+<li>getTableCellRendererComponent()
+: <a class="el" href="classmain_1_1presentation_1_1_fav_boolean_cell_renderer.html#afc191ab5fb91a97c8220253193af9622">main.presentation.FavBooleanCellRenderer</a>
 </li>
 <li>getTitle()
 : <a class="el" href="classmain_1_1domain_1_1documents_1_1_document.html#aafb80611a8fdd6dfab566fa4f1417731">main.domain.documents.Document</a>

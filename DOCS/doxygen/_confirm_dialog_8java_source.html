@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Gestor de Documents: Fitxer de Codi ConfirmDialog.java</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Gestor de Documents
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generat per Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Cerca','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Cerca');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d2a81fcb9e0344d06f49c2bd6fcf908f.html">FONTS</a></li><li class="navelem"><a class="el" href="dir_7b215a15921fff0d8439bbb25ead1992.html">main</a></li><li class="navelem"><a class="el" href="dir_de0e6f75f79133b8708e8a15c37239c2.html">presentation</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">ConfirmDialog.java</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_confirm_dialog_8java.html">Veure la documentació d'aquest fitxer.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="namespacemain_1_1presentation.html">    1</a></span>&#160;<span class="keyword">package </span>main.presentation;</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">import</span> com.intellij.uiDesigner.core.GridConstraints;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">import</span> com.intellij.uiDesigner.core.GridLayoutManager;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">import</span> com.intellij.uiDesigner.core.Spacer;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">import</span> javax.swing.*;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">import</span> java.awt.*;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">import</span> java.awt.event.*;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_confirm_dialog.html">   16</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html">ConfirmDialog</a> <span class="keyword">extends</span> JDialog {</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_confirm_dialog.html#a7a17843645fcfd468207bd7b0bc1deb4">   20</a></span>&#160;    <span class="keyword">private</span> JPanel <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a7a17843645fcfd468207bd7b0bc1deb4">contentPane</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_confirm_dialog.html#ac893e016fbbaf7c88eb525eb40126b05">   25</a></span>&#160;    <span class="keyword">private</span> JLabel <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#ac893e016fbbaf7c88eb525eb40126b05">text</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_confirm_dialog.html#a40bd18aae3957e5dd8cbd5ee9b1412c5">   30</a></span>&#160;    <span class="keyword">private</span> JButton <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a40bd18aae3957e5dd8cbd5ee9b1412c5">buttonSi</a>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_confirm_dialog.html#a465b599df415806e97e9ab906d1de71b">   35</a></span>&#160;    <span class="keyword">private</span> JButton <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a465b599df415806e97e9ab906d1de71b">buttonNo</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_confirm_dialog.html#a29c7603abe6ee6d179d332b683ca276b">   40</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">boolean</span> <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a29c7603abe6ee6d179d332b683ca276b">confirmation</a>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_confirm_dialog.html#a7fa27cba2557fbb0ae6d30157efbb41f">   47</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a7fa27cba2557fbb0ae6d30157efbb41f">ConfirmDialog</a>() {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        setContentPane(<a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a7a17843645fcfd468207bd7b0bc1deb4">contentPane</a>);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a29c7603abe6ee6d179d332b683ca276b">confirmation</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="comment">// Listeners dels dos botons</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a40bd18aae3957e5dd8cbd5ee9b1412c5">buttonSi</a>.addActionListener(<span class="keyword">new</span> ActionListener() {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            <span class="keyword">public</span> <span class="keywordtype">void</span> actionPerformed(ActionEvent e) {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#afa177b9e8f394e439fa8cdc852861832">onOK</a>();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        });</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a465b599df415806e97e9ab906d1de71b">buttonNo</a>.addActionListener(<span class="keyword">new</span> ActionListener() {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="keyword">public</span> <span class="keywordtype">void</span> actionPerformed(ActionEvent e) {</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#aa56b57b79d3deb08426bea1535645e54">onCancel</a>();</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        });</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="comment">// Si tanquem el dialog s&#39;entén com cancel</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        addWindowListener(<span class="keyword">new</span> WindowAdapter() {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            <span class="keyword">public</span> <span class="keywordtype">void</span> windowClosing(WindowEvent e) {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#aa56b57b79d3deb08426bea1535645e54">onCancel</a>();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            }</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        });</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="comment">// Si apretem ESC s&#39;entén com cancel</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a7a17843645fcfd468207bd7b0bc1deb4">contentPane</a>.registerKeyboardAction(<span class="keyword">new</span> ActionListener() {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keyword">public</span> <span class="keywordtype">void</span> actionPerformed(ActionEvent e) {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#aa56b57b79d3deb08426bea1535645e54">onCancel</a>();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_confirm_dialog.html#a1fab554b9b682d4dd6b4cf514aecce0f">   89</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">boolean</span> <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a1fab554b9b682d4dd6b4cf514aecce0f">initialize</a>(JFrame reference, String confirm) {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#ac893e016fbbaf7c88eb525eb40126b05">text</a>.setText(confirm);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        setContentPane(<a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a7a17843645fcfd468207bd7b0bc1deb4">contentPane</a>);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        setModal(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        setTitle(<span class="stringliteral">&quot;Confirmar&quot;</span>);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        pack();</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        getRootPane().setDefaultButton(<a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a465b599df415806e97e9ab906d1de71b">buttonNo</a>);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        setLocationRelativeTo(reference);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        setVisible(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a29c7603abe6ee6d179d332b683ca276b">confirmation</a>;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    }</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_confirm_dialog.html#afa177b9e8f394e439fa8cdc852861832">  106</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#afa177b9e8f394e439fa8cdc852861832">onOK</a>() {</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a29c7603abe6ee6d179d332b683ca276b">confirmation</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        dispose();</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    }</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_confirm_dialog.html#aa56b57b79d3deb08426bea1535645e54">  116</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#aa56b57b79d3deb08426bea1535645e54">onCancel</a>() {</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a29c7603abe6ee6d179d332b683ca276b">confirmation</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        dispose();</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    }</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    {</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment">// GUI initializer generated by IntelliJ IDEA GUI Designer</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">// &gt;&gt;&gt; IMPORTANT!! &lt;&lt;&lt;</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment">// DO NOT EDIT OR ADD ANY CODE HERE!</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        $$$setupUI$$$();</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    }</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> $$$setupUI$$$() {</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a7a17843645fcfd468207bd7b0bc1deb4">contentPane</a> = <span class="keyword">new</span> JPanel();</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a7a17843645fcfd468207bd7b0bc1deb4">contentPane</a>.setLayout(<span class="keyword">new</span> GridLayoutManager(2, 1, <span class="keyword">new</span> Insets(10, 10, 10, 10), -1, -1));</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="keyword">final</span> JPanel panel1 = <span class="keyword">new</span> JPanel();</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        panel1.setLayout(<span class="keyword">new</span> GridLayoutManager(1, 3, <span class="keyword">new</span> Insets(0, 0, 0, 0), -1, -1));</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a7a17843645fcfd468207bd7b0bc1deb4">contentPane</a>.add(panel1, <span class="keyword">new</span> GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, 0, <span class="keyword">false</span>));</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="keyword">final</span> JPanel panel2 = <span class="keyword">new</span> JPanel();</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        panel2.setLayout(<span class="keyword">new</span> GridLayoutManager(1, 1, <span class="keyword">new</span> Insets(0, 0, 0, 0), -1, -1));</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        panel1.add(panel2, <span class="keyword">new</span> GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, 0, <span class="keyword">false</span>));</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a40bd18aae3957e5dd8cbd5ee9b1412c5">buttonSi</a> = <span class="keyword">new</span> JButton();</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a40bd18aae3957e5dd8cbd5ee9b1412c5">buttonSi</a>.setText(<span class="stringliteral">&quot;Sí&quot;</span>);</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        panel2.add(<a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a40bd18aae3957e5dd8cbd5ee9b1412c5">buttonSi</a>, <span class="keyword">new</span> GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, 0, <span class="keyword">false</span>));</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a465b599df415806e97e9ab906d1de71b">buttonNo</a> = <span class="keyword">new</span> JButton();</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a465b599df415806e97e9ab906d1de71b">buttonNo</a>.setText(<span class="stringliteral">&quot;No&quot;</span>);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        panel1.add(<a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a465b599df415806e97e9ab906d1de71b">buttonNo</a>, <span class="keyword">new</span> GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, 0, <span class="keyword">false</span>));</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        <span class="keyword">final</span> Spacer spacer1 = <span class="keyword">new</span> Spacer();</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        panel1.add(spacer1, <span class="keyword">new</span> GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, 0, <span class="keyword">false</span>));</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <span class="keyword">final</span> JPanel panel3 = <span class="keyword">new</span> JPanel();</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        panel3.setLayout(<span class="keyword">new</span> GridLayoutManager(1, 3, <span class="keyword">new</span> Insets(0, 0, 0, 0), -1, -1));</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a7a17843645fcfd468207bd7b0bc1deb4">contentPane</a>.add(panel3, <span class="keyword">new</span> GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, 0, <span class="keyword">false</span>));</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#ac893e016fbbaf7c88eb525eb40126b05">text</a> = <span class="keyword">new</span> JLabel();</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#ac893e016fbbaf7c88eb525eb40126b05">text</a>.setText(<span class="stringliteral">&quot;Label&quot;</span>);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        panel3.add(<a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#ac893e016fbbaf7c88eb525eb40126b05">text</a>, <span class="keyword">new</span> GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, 0, <span class="keyword">false</span>));</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        <span class="keyword">final</span> Spacer spacer2 = <span class="keyword">new</span> Spacer();</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        panel3.add(spacer2, <span class="keyword">new</span> GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, 0, <span class="keyword">false</span>));</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        <span class="keyword">final</span> Spacer spacer3 = <span class="keyword">new</span> Spacer();</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        panel3.add(spacer3, <span class="keyword">new</span> GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, 0, <span class="keyword">false</span>));</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    }</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="keyword">public</span> JComponent $$$getRootComponent$$$() {</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classmain_1_1presentation_1_1_confirm_dialog.html#a7a17843645fcfd468207bd7b0bc1deb4">contentPane</a>;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    }</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;}</div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_confirm_dialog_html"><div class="ttname"><a href="classmain_1_1presentation_1_1_confirm_dialog.html">main.presentation.ConfirmDialog</a></div><div class="ttdoc">Diàleg per confirmar canvis destructius abans de realitzar les accions associades.</div><div class="ttdef"><b>Definition:</b> <a href="_confirm_dialog_8java_source.html#l00016">ConfirmDialog.java:16</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_confirm_dialog_html_a1fab554b9b682d4dd6b4cf514aecce0f"><div class="ttname"><a href="classmain_1_1presentation_1_1_confirm_dialog.html#a1fab554b9b682d4dd6b4cf514aecce0f">main.presentation.ConfirmDialog.initialize</a></div><div class="ttdeci">boolean initialize(JFrame reference, String confirm)</div><div class="ttdoc">Mètode per inicialitzar el diàleg.</div><div class="ttdef"><b>Definition:</b> <a href="_confirm_dialog_8java_source.html#l00089">ConfirmDialog.java:89</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_confirm_dialog_html_a29c7603abe6ee6d179d332b683ca276b"><div class="ttname"><a href="classmain_1_1presentation_1_1_confirm_dialog.html#a29c7603abe6ee6d179d332b683ca276b">main.presentation.ConfirmDialog.confirmation</a></div><div class="ttdeci">boolean confirmation</div><div class="ttdoc">Booleà que registra si s'ha confirmat o no per part de l'usuari.</div><div class="ttdef"><b>Definition:</b> <a href="_confirm_dialog_8java_source.html#l00040">ConfirmDialog.java:40</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_confirm_dialog_html_a40bd18aae3957e5dd8cbd5ee9b1412c5"><div class="ttname"><a href="classmain_1_1presentation_1_1_confirm_dialog.html#a40bd18aae3957e5dd8cbd5ee9b1412c5">main.presentation.ConfirmDialog.buttonSi</a></div><div class="ttdeci">JButton buttonSi</div><div class="ttdoc">Botó de confirmació</div><div class="ttdef"><b>Definition:</b> <a href="_confirm_dialog_8java_source.html#l00030">ConfirmDialog.java:30</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_confirm_dialog_html_a465b599df415806e97e9ab906d1de71b"><div class="ttname"><a href="classmain_1_1presentation_1_1_confirm_dialog.html#a465b599df415806e97e9ab906d1de71b">main.presentation.ConfirmDialog.buttonNo</a></div><div class="ttdeci">JButton buttonNo</div><div class="ttdoc">Botó de cancel·lació</div><div class="ttdef"><b>Definition:</b> <a href="_confirm_dialog_8java_source.html#l00035">ConfirmDialog.java:35</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_confirm_dialog_html_a7a17843645fcfd468207bd7b0bc1deb4"><div class="ttname"><a href="classmain_1_1presentation_1_1_confirm_dialog.html#a7a17843645fcfd468207bd7b0bc1deb4">main.presentation.ConfirmDialog.contentPane</a></div><div class="ttdeci">JPanel contentPane</div><div class="ttdoc">Panell principal del diàleg.</div><div class="ttdef"><b>Definition:</b> <a href="_confirm_dialog_8java_source.html#l00020">ConfirmDialog.java:20</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_confirm_dialog_html_a7fa27cba2557fbb0ae6d30157efbb41f"><div class="ttname"><a href="classmain_1_1presentation_1_1_confirm_dialog.html#a7fa27cba2557fbb0ae6d30157efbb41f">main.presentation.ConfirmDialog.ConfirmDialog</a></div><div class="ttdeci">ConfirmDialog()</div><div class="ttdoc">Constructora per defecte.</div><div class="ttdef"><b>Definition:</b> <a href="_confirm_dialog_8java_source.html#l00047">ConfirmDialog.java:47</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_confirm_dialog_html_aa56b57b79d3deb08426bea1535645e54"><div class="ttname"><a href="classmain_1_1presentation_1_1_confirm_dialog.html#aa56b57b79d3deb08426bea1535645e54">main.presentation.ConfirmDialog.onCancel</a></div><div class="ttdeci">void onCancel()</div><div class="ttdoc">Definició de què succeeix quan no confirmem.</div><div class="ttdef"><b>Definition:</b> <a href="_confirm_dialog_8java_source.html#l00116">ConfirmDialog.java:116</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_confirm_dialog_html_ac893e016fbbaf7c88eb525eb40126b05"><div class="ttname"><a href="classmain_1_1presentation_1_1_confirm_dialog.html#ac893e016fbbaf7c88eb525eb40126b05">main.presentation.ConfirmDialog.text</a></div><div class="ttdeci">JLabel text</div><div class="ttdoc">Text que es vol que l'usuari confirmi.</div><div class="ttdef"><b>Definition:</b> <a href="_confirm_dialog_8java_source.html#l00025">ConfirmDialog.java:25</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_confirm_dialog_html_afa177b9e8f394e439fa8cdc852861832"><div class="ttname"><a href="classmain_1_1presentation_1_1_confirm_dialog.html#afa177b9e8f394e439fa8cdc852861832">main.presentation.ConfirmDialog.onOK</a></div><div class="ttdeci">void onOK()</div><div class="ttdoc">Definició de què succeeix quan premem confirmar.</div><div class="ttdef"><b>Definition:</b> <a href="_confirm_dialog_8java_source.html#l00106">ConfirmDialog.java:106</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generat per&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

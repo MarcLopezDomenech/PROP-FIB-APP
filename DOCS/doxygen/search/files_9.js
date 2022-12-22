@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pair_2ejava_325',['Pair.java',['../_pair_8java.html',1,'']]]
+  ['or_2ejava_583',['Or.java',['../_or_8java.html',1,'']]]
 ];

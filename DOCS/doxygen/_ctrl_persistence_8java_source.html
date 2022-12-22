@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Gestor de Documents: Fitxer de Codi CtrlPersistence.java</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Gestor de Documents
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generat per Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Cerca','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Cerca');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d2a81fcb9e0344d06f49c2bd6fcf908f.html">FONTS</a></li><li class="navelem"><a class="el" href="dir_7b215a15921fff0d8439bbb25ead1992.html">main</a></li><li class="navelem"><a class="el" href="dir_1c52640b8fbda851362d6ee4923bc8df.html">persistence</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">CtrlPersistence.java</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_ctrl_persistence_8java.html">Veure la documentació d'aquest fitxer.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="namespacemain_1_1persistence.html">    1</a></span>&#160;<span class="keyword">package </span>main.persistence;</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">import</span> java.io.FileNotFoundException;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">import</span> java.io.IOException;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">import</span> java.util.HashSet;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">import</span> java.util.Set;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">import</span> main.excepcions.ExceptionInvalidCharacter;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">import</span> main.excepcions.ExceptionInvalidFormat;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">import</span> main.excepcions.ExceptionInvalidLanguage;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">import</span> main.domain.util.Pair;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">import</span> main.excepcions.ExceptionMissingTitleOrAuthor;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classmain_1_1persistence_1_1_ctrl_persistence.html">   20</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classmain_1_1persistence_1_1_ctrl_persistence.html">CtrlPersistence</a> {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classmain_1_1persistence_1_1_ctrl_persistence.html#a92941ac8877640f765616f143f4dfc49">   25</a></span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> <a class="code" href="classmain_1_1persistence_1_1_ctrl_persistence.html">CtrlPersistence</a> <a class="code" href="classmain_1_1persistence_1_1_ctrl_persistence.html#a92941ac8877640f765616f143f4dfc49">singletonObject</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classmain_1_1persistence_1_1_ctrl_persistence.html#a3a17ee829d2e03b57af9426f5b04ba19">   33</a></span>&#160;    <span class="keyword">private</span> <a class="code" href="classmain_1_1persistence_1_1_ctrl_persistence.html#a3a17ee829d2e03b57af9426f5b04ba19">CtrlPersistence</a>() {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    }</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classmain_1_1persistence_1_1_ctrl_persistence.html#a6eed3e18a0788e914788a4e568145350">   41</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> <a class="code" href="classmain_1_1persistence_1_1_ctrl_persistence.html">CtrlPersistence</a> <a class="code" href="classmain_1_1persistence_1_1_ctrl_persistence.html#a6eed3e18a0788e914788a4e568145350">getInstance</a>() {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classmain_1_1persistence_1_1_ctrl_persistence.html#a92941ac8877640f765616f143f4dfc49">singletonObject</a> == <span class="keyword">null</span>) <a class="code" href="classmain_1_1persistence_1_1_ctrl_persistence.html#a92941ac8877640f765616f143f4dfc49">singletonObject</a> = <span class="keyword">new</span> <a class="code" href="classmain_1_1persistence_1_1_ctrl_persistence.html#a3a17ee829d2e03b57af9426f5b04ba19">CtrlPersistence</a>();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classmain_1_1persistence_1_1_ctrl_persistence.html#a92941ac8877640f765616f143f4dfc49">singletonObject</a>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classmain_1_1persistence_1_1_ctrl_persistence.html#a7145644bf96b987887eaed422fa364c9">   57</a></span>&#160;    <span class="keyword">public</span> String <a class="code" href="classmain_1_1persistence_1_1_ctrl_persistence.html#a7145644bf96b987887eaed422fa364c9">importDocument</a>(String path, String language) <span class="keywordflow">throws</span> <a class="code" href="classmain_1_1excepcions_1_1_exception_invalid_format.html">ExceptionInvalidFormat</a>, FileNotFoundException, <a class="code" href="classmain_1_1excepcions_1_1_exception_invalid_language.html">ExceptionInvalidLanguage</a>, <a class="code" href="classmain_1_1excepcions_1_1_exception_invalid_character.html">ExceptionInvalidCharacter</a>, <a class="code" href="classmain_1_1excepcions_1_1_exception_missing_title_or_author.html">ExceptionMissingTitleOrAuthor</a> {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordflow">if</span> (path.endsWith(<span class="stringliteral">&quot;.txt&quot;</span>)) {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordflow">if</span> (!(language.equals(<span class="stringliteral">&quot;ca&quot;</span>) || language.equals(<span class="stringliteral">&quot;es&quot;</span>) || language.equals(<span class="stringliteral">&quot;en&quot;</span>))) <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="classmain_1_1excepcions_1_1_exception_invalid_language.html">ExceptionInvalidLanguage</a>(language);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <a class="code" href="classmain_1_1persistence_1_1_txt_parser.html">TxtParser</a> l = <span class="keyword">new</span> <a class="code" href="classmain_1_1persistence_1_1_txt_parser.html">TxtParser</a>();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="keywordflow">return</span> l.<a class="code" href="classmain_1_1persistence_1_1_txt_parser.html#add95f0add6a204701f92fa9d976278b6">read</a>(path) + language + <span class="stringliteral">&quot;@language@no&quot;</span>;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (path.endsWith(<span class="stringliteral">&quot;.xml&quot;</span>)) {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <span class="keywordflow">if</span> (!(language.equals(<span class="stringliteral">&quot;ca&quot;</span>) || language.equals(<span class="stringliteral">&quot;es&quot;</span>) || language.equals(<span class="stringliteral">&quot;en&quot;</span>))) <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="classmain_1_1excepcions_1_1_exception_invalid_language.html">ExceptionInvalidLanguage</a>(language);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <a class="code" href="classmain_1_1persistence_1_1_xml_parser.html">XmlParser</a> l = <span class="keyword">new</span> <a class="code" href="classmain_1_1persistence_1_1_xml_parser.html">XmlParser</a>();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <span class="keywordflow">return</span> l.<a class="code" href="classmain_1_1persistence_1_1_xml_parser.html#a16d6ed8371d36747443cc61dc8f986c0">read</a>(path) + language + <span class="stringliteral">&quot;@language@no&quot;</span>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (path.endsWith(<span class="stringliteral">&quot;.fp&quot;</span>)) {     <span class="comment">//en format json</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <a class="code" href="classmain_1_1persistence_1_1_fp_parser.html">FpParser</a> l = <span class="keyword">new</span> <a class="code" href="classmain_1_1persistence_1_1_fp_parser.html">FpParser</a>();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            <span class="keywordflow">return</span> l.<a class="code" href="classmain_1_1persistence_1_1_fp_parser.html#a81ac773a42ee87e517baa756dbd6a669">read</a>(path);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="classmain_1_1excepcions_1_1_exception_invalid_format.html">ExceptionInvalidFormat</a>(<span class="stringliteral">&quot;del fitxer&quot;</span>);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    }</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    </div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="classmain_1_1persistence_1_1_ctrl_persistence.html#a5cac4a5ae74a60ca91b26a7643316a60">   80</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classmain_1_1persistence_1_1_ctrl_persistence.html#a5cac4a5ae74a60ca91b26a7643316a60">exportDocument</a>(String doc, String path) <span class="keywordflow">throws</span> <a class="code" href="classmain_1_1excepcions_1_1_exception_invalid_format.html">ExceptionInvalidFormat</a>, IOException{</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordflow">if</span> (path.endsWith(<span class="stringliteral">&quot;.txt&quot;</span>)) {</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            <a class="code" href="classmain_1_1persistence_1_1_txt_parser.html">TxtParser</a> par = <span class="keyword">new</span> <a class="code" href="classmain_1_1persistence_1_1_txt_parser.html">TxtParser</a>();</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            par.<a class="code" href="classmain_1_1persistence_1_1_txt_parser.html#a369056a21c97a4e39ed12052d7bab60f">write</a>(doc, path);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (path.endsWith(<span class="stringliteral">&quot;.xml&quot;</span>)) {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            <a class="code" href="classmain_1_1persistence_1_1_xml_parser.html">XmlParser</a> par = <span class="keyword">new</span> <a class="code" href="classmain_1_1persistence_1_1_xml_parser.html">XmlParser</a>();</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            par.<a class="code" href="classmain_1_1persistence_1_1_xml_parser.html#aa7e82f7ec63e4bdcb36404861386babd">write</a>(doc, path);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (path.endsWith(<span class="stringliteral">&quot;.fp&quot;</span>)) {     <span class="comment">//en format json</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            <a class="code" href="classmain_1_1persistence_1_1_fp_parser.html">FpParser</a> par = <span class="keyword">new</span> <a class="code" href="classmain_1_1persistence_1_1_fp_parser.html">FpParser</a>();</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            par.<a class="code" href="classmain_1_1persistence_1_1_fp_parser.html#a5f40e7533a82f653dc64c64fb8e0160a">write</a>(doc, path);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="classmain_1_1excepcions_1_1_exception_invalid_format.html">ExceptionInvalidFormat</a>(<span class="stringliteral">&quot;del fitxer&quot;</span>);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="classmain_1_1persistence_1_1_ctrl_persistence.html#ac934457385e8345b346074febe75a066">   99</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classmain_1_1persistence_1_1_ctrl_persistence.html#ac934457385e8345b346074febe75a066">saveSystem</a>(Set&lt;String&gt; docs, Set&lt;String&gt; exprs) <span class="keywordflow">throws</span> IOException{</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <a class="code" href="classmain_1_1persistence_1_1_fp_parser.html">FpParser</a> par = <span class="keyword">new</span> <a class="code" href="classmain_1_1persistence_1_1_fp_parser.html">FpParser</a>();</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        par.<a class="code" href="classmain_1_1persistence_1_1_parser.html#aed7f936b7def32ad6fc7dcd40e487000">saveSystem</a>(docs, exprs, <span class="stringliteral">&quot;SystemBackUp.fp&quot;</span>);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    }</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="classmain_1_1persistence_1_1_ctrl_persistence.html#ac85b56d764686150a45f3d1cee2121a9">  110</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classmain_1_1domain_1_1util_1_1_pair.html">Pair&lt;Set&lt;String&gt;</a>,Set&lt;String&gt;&gt; <a class="code" href="classmain_1_1persistence_1_1_ctrl_persistence.html#ac85b56d764686150a45f3d1cee2121a9">restoreSystem</a>() throws FileNotFoundException {</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        Set&lt;String&gt; docs = <span class="keyword">new</span> HashSet&lt;&gt;();</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        Set&lt;String&gt; exprs = <span class="keyword">new</span> HashSet&lt;&gt;();</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <a class="code" href="classmain_1_1persistence_1_1_fp_parser.html">FpParser</a> par = <span class="keyword">new</span> <a class="code" href="classmain_1_1persistence_1_1_fp_parser.html">FpParser</a>();</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        par.<a class="code" href="classmain_1_1persistence_1_1_parser.html#a6ebcd5a3f1140088d65ad98ac9ecc990">restoreSystem</a>(docs, exprs, <span class="stringliteral">&quot;SystemBackUp.fp&quot;</span>);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classmain_1_1domain_1_1util_1_1_pair.html">Pair&lt;Set&lt;String&gt;</a>,Set&lt;String&gt;&gt;(docs,exprs);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    }</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
+<div class="ttc" id="aclassmain_1_1domain_1_1util_1_1_pair_html"><div class="ttname"><a href="classmain_1_1domain_1_1util_1_1_pair.html">main.domain.util.Pair</a></div><div class="ttdoc">Implementació senzilla de la classe Pair per poder-la usar en el nostre projecte, només amb les opera...</div><div class="ttdef"><b>Definition:</b> <a href="_pair_8java_source.html#l00008">Pair.java:8</a></div></div>
+<div class="ttc" id="aclassmain_1_1excepcions_1_1_exception_invalid_character_html"><div class="ttname"><a href="classmain_1_1excepcions_1_1_exception_invalid_character.html">main.excepcions.ExceptionInvalidCharacter</a></div><div class="ttdoc">Excepció que es llença quan no es troba una expressió al sistema.</div><div class="ttdef"><b>Definition:</b> <a href="_exception_invalid_character_8java_source.html#l00008">ExceptionInvalidCharacter.java:8</a></div></div>
+<div class="ttc" id="aclassmain_1_1excepcions_1_1_exception_invalid_format_html"><div class="ttname"><a href="classmain_1_1excepcions_1_1_exception_invalid_format.html">main.excepcions.ExceptionInvalidFormat</a></div><div class="ttdoc">Excepció que es llença quan no es troba una expressió al sistema.</div><div class="ttdef"><b>Definition:</b> <a href="_exception_invalid_format_8java_source.html#l00008">ExceptionInvalidFormat.java:8</a></div></div>
+<div class="ttc" id="aclassmain_1_1excepcions_1_1_exception_invalid_language_html"><div class="ttname"><a href="classmain_1_1excepcions_1_1_exception_invalid_language.html">main.excepcions.ExceptionInvalidLanguage</a></div><div class="ttdoc">Excepció que es llença quan el paràmetre d'idioma d'un document no és vàlid.</div><div class="ttdef"><b>Definition:</b> <a href="_exception_invalid_language_8java_source.html#l00008">ExceptionInvalidLanguage.java:8</a></div></div>
+<div class="ttc" id="aclassmain_1_1excepcions_1_1_exception_missing_title_or_author_html"><div class="ttname"><a href="classmain_1_1excepcions_1_1_exception_missing_title_or_author.html">main.excepcions.ExceptionMissingTitleOrAuthor</a></div><div class="ttdoc">Excepció que es llença quan un document conté autor i títol null, o etiquetes incorrectes en xml.</div><div class="ttdef"><b>Definition:</b> <a href="_exception_missing_title_or_author_8java_source.html#l00008">ExceptionMissingTitleOrAuthor.java:8</a></div></div>
+<div class="ttc" id="aclassmain_1_1persistence_1_1_ctrl_persistence_html"><div class="ttname"><a href="classmain_1_1persistence_1_1_ctrl_persistence.html">main.persistence.CtrlPersistence</a></div><div class="ttdoc">Controlador de la capa de persistencia. S'encarrega del control de formats i de guardar i llegir fitx...</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_persistence_8java_source.html#l00020">CtrlPersistence.java:20</a></div></div>
+<div class="ttc" id="aclassmain_1_1persistence_1_1_ctrl_persistence_html_a3a17ee829d2e03b57af9426f5b04ba19"><div class="ttname"><a href="classmain_1_1persistence_1_1_ctrl_persistence.html#a3a17ee829d2e03b57af9426f5b04ba19">main.persistence.CtrlPersistence.CtrlPersistence</a></div><div class="ttdeci">CtrlPersistence()</div><div class="ttdoc">Constructora per defecte de CtrlPersistence.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_persistence_8java_source.html#l00033">CtrlPersistence.java:33</a></div></div>
+<div class="ttc" id="aclassmain_1_1persistence_1_1_ctrl_persistence_html_a5cac4a5ae74a60ca91b26a7643316a60"><div class="ttname"><a href="classmain_1_1persistence_1_1_ctrl_persistence.html#a5cac4a5ae74a60ca91b26a7643316a60">main.persistence.CtrlPersistence.exportDocument</a></div><div class="ttdeci">void exportDocument(String doc, String path)</div><div class="ttdoc">Funció per exportar un document.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_persistence_8java_source.html#l00080">CtrlPersistence.java:80</a></div></div>
+<div class="ttc" id="aclassmain_1_1persistence_1_1_ctrl_persistence_html_a6eed3e18a0788e914788a4e568145350"><div class="ttname"><a href="classmain_1_1persistence_1_1_ctrl_persistence.html#a6eed3e18a0788e914788a4e568145350">main.persistence.CtrlPersistence.getInstance</a></div><div class="ttdeci">static synchronized CtrlPersistence getInstance()</div><div class="ttdoc">Funció per aconseguir la instància de CtrlPersistence.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_persistence_8java_source.html#l00041">CtrlPersistence.java:41</a></div></div>
+<div class="ttc" id="aclassmain_1_1persistence_1_1_ctrl_persistence_html_a7145644bf96b987887eaed422fa364c9"><div class="ttname"><a href="classmain_1_1persistence_1_1_ctrl_persistence.html#a7145644bf96b987887eaed422fa364c9">main.persistence.CtrlPersistence.importDocument</a></div><div class="ttdeci">String importDocument(String path, String language)</div><div class="ttdoc">Funció per obrir un document guardat en local de l'usuari.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_persistence_8java_source.html#l00057">CtrlPersistence.java:57</a></div></div>
+<div class="ttc" id="aclassmain_1_1persistence_1_1_ctrl_persistence_html_a92941ac8877640f765616f143f4dfc49"><div class="ttname"><a href="classmain_1_1persistence_1_1_ctrl_persistence.html#a92941ac8877640f765616f143f4dfc49">main.persistence.CtrlPersistence.singletonObject</a></div><div class="ttdeci">static CtrlPersistence singletonObject</div><div class="ttdoc">Objecte singleton que guarda la única instància del CtrlPersistence.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_persistence_8java_source.html#l00025">CtrlPersistence.java:25</a></div></div>
+<div class="ttc" id="aclassmain_1_1persistence_1_1_ctrl_persistence_html_ac85b56d764686150a45f3d1cee2121a9"><div class="ttname"><a href="classmain_1_1persistence_1_1_ctrl_persistence.html#ac85b56d764686150a45f3d1cee2121a9">main.persistence.CtrlPersistence.restoreSystem</a></div><div class="ttdeci">Pair&lt; Set&lt; String &gt;, Set&lt; String &gt; &gt; restoreSystem()</div><div class="ttdoc">Funció per recuperar l'estat del sistema.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_persistence_8java_source.html#l00110">CtrlPersistence.java:110</a></div></div>
+<div class="ttc" id="aclassmain_1_1persistence_1_1_ctrl_persistence_html_ac934457385e8345b346074febe75a066"><div class="ttname"><a href="classmain_1_1persistence_1_1_ctrl_persistence.html#ac934457385e8345b346074febe75a066">main.persistence.CtrlPersistence.saveSystem</a></div><div class="ttdeci">void saveSystem(Set&lt; String &gt; docs, Set&lt; String &gt; exprs)</div><div class="ttdoc">Funció per guardar l'estat del sistema.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_persistence_8java_source.html#l00099">CtrlPersistence.java:99</a></div></div>
+<div class="ttc" id="aclassmain_1_1persistence_1_1_fp_parser_html"><div class="ttname"><a href="classmain_1_1persistence_1_1_fp_parser.html">main.persistence.FpParser</a></div><div class="ttdoc">Classe responsable de la lectura i escriptura de fitxers en format propietari.</div><div class="ttdef"><b>Definition:</b> <a href="_fp_parser_8java_source.html#l00011">FpParser.java:11</a></div></div>
+<div class="ttc" id="aclassmain_1_1persistence_1_1_fp_parser_html_a5f40e7533a82f653dc64c64fb8e0160a"><div class="ttname"><a href="classmain_1_1persistence_1_1_fp_parser.html#a5f40e7533a82f653dc64c64fb8e0160a">main.persistence.FpParser.write</a></div><div class="ttdeci">void write(String document, String path)</div><div class="ttdoc">Funció per a escriure en format propietari un cert contingut en un fitxer al path corresponent.</div><div class="ttdef"><b>Definition:</b> <a href="_fp_parser_8java_source.html#l00036">FpParser.java:36</a></div></div>
+<div class="ttc" id="aclassmain_1_1persistence_1_1_fp_parser_html_a81ac773a42ee87e517baa756dbd6a669"><div class="ttname"><a href="classmain_1_1persistence_1_1_fp_parser.html#a81ac773a42ee87e517baa756dbd6a669">main.persistence.FpParser.read</a></div><div class="ttdeci">String read(String path)</div><div class="ttdoc">Llegeix el string que troba en el fitxer corresponent al path que rep en format propietari.</div><div class="ttdef"><b>Definition:</b> <a href="_fp_parser_8java_source.html#l00026">FpParser.java:26</a></div></div>
+<div class="ttc" id="aclassmain_1_1persistence_1_1_parser_html_a6ebcd5a3f1140088d65ad98ac9ecc990"><div class="ttname"><a href="classmain_1_1persistence_1_1_parser.html#a6ebcd5a3f1140088d65ad98ac9ecc990">main.persistence.Parser.restoreSystem</a></div><div class="ttdeci">void restoreSystem(Set&lt; String &gt; docs, Set&lt; String &gt; exprs, String path)</div><div class="ttdoc">Recupera l'estat del sistema en basa a una còpia de seguretat del sistema.</div><div class="ttdef"><b>Definition:</b> <a href="_parser_8java_source.html#l00104">Parser.java:104</a></div></div>
+<div class="ttc" id="aclassmain_1_1persistence_1_1_parser_html_aed7f936b7def32ad6fc7dcd40e487000"><div class="ttname"><a href="classmain_1_1persistence_1_1_parser.html#aed7f936b7def32ad6fc7dcd40e487000">main.persistence.Parser.saveSystem</a></div><div class="ttdeci">void saveSystem(Set&lt; String &gt; docs, Set&lt; String &gt; exprs, String path)</div><div class="ttdoc">Crea un còpia de seguretat del sistema.</div><div class="ttdef"><b>Definition:</b> <a href="_parser_8java_source.html#l00086">Parser.java:86</a></div></div>
+<div class="ttc" id="aclassmain_1_1persistence_1_1_txt_parser_html"><div class="ttname"><a href="classmain_1_1persistence_1_1_txt_parser.html">main.persistence.TxtParser</a></div><div class="ttdoc">Classe responsable de la lectura i escriptura de fitxers en format txt.</div><div class="ttdef"><b>Definition:</b> <a href="_txt_parser_8java_source.html#l00021">TxtParser.java:21</a></div></div>
+<div class="ttc" id="aclassmain_1_1persistence_1_1_txt_parser_html_a369056a21c97a4e39ed12052d7bab60f"><div class="ttname"><a href="classmain_1_1persistence_1_1_txt_parser.html#a369056a21c97a4e39ed12052d7bab60f">main.persistence.TxtParser.write</a></div><div class="ttdeci">void write(String document, String path)</div><div class="ttdoc">Funció per a escriure en format txt un cert contingut en un fitxer al path corresponent.</div><div class="ttdef"><b>Definition:</b> <a href="_txt_parser_8java_source.html#l00063">TxtParser.java:63</a></div></div>
+<div class="ttc" id="aclassmain_1_1persistence_1_1_txt_parser_html_add95f0add6a204701f92fa9d976278b6"><div class="ttname"><a href="classmain_1_1persistence_1_1_txt_parser.html#add95f0add6a204701f92fa9d976278b6">main.persistence.TxtParser.read</a></div><div class="ttdeci">String read(String path)</div><div class="ttdoc">Llegeix el string que troba en el fitxer corresponent al path que rep en format txt.</div><div class="ttdef"><b>Definition:</b> <a href="_txt_parser_8java_source.html#l00038">TxtParser.java:38</a></div></div>
+<div class="ttc" id="aclassmain_1_1persistence_1_1_xml_parser_html"><div class="ttname"><a href="classmain_1_1persistence_1_1_xml_parser.html">main.persistence.XmlParser</a></div><div class="ttdoc">Classe responsable de la lectura i escriptura de fitxers en format xml.</div><div class="ttdef"><b>Definition:</b> <a href="_xml_parser_8java_source.html#l00015">XmlParser.java:15</a></div></div>
+<div class="ttc" id="aclassmain_1_1persistence_1_1_xml_parser_html_a16d6ed8371d36747443cc61dc8f986c0"><div class="ttname"><a href="classmain_1_1persistence_1_1_xml_parser.html#a16d6ed8371d36747443cc61dc8f986c0">main.persistence.XmlParser.read</a></div><div class="ttdeci">String read(String path)</div><div class="ttdoc">Llegeix el string que troba en el fitxer corresponent al path que rep en format xml.</div><div class="ttdef"><b>Definition:</b> <a href="_xml_parser_8java_source.html#l00032">XmlParser.java:32</a></div></div>
+<div class="ttc" id="aclassmain_1_1persistence_1_1_xml_parser_html_aa7e82f7ec63e4bdcb36404861386babd"><div class="ttname"><a href="classmain_1_1persistence_1_1_xml_parser.html#aa7e82f7ec63e4bdcb36404861386babd">main.persistence.XmlParser.write</a></div><div class="ttdeci">void write(String document, String path)</div><div class="ttdoc">Funció per a escriure en format xml un cert contingut en un fitxer al path corresponent.</div><div class="ttdef"><b>Definition:</b> <a href="_xml_parser_8java_source.html#l00076">XmlParser.java:76</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generat per&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

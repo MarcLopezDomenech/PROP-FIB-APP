@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['originalformat_533',['originalFormat',['../classmain_1_1domain_1_1documents_1_1_document.html#a42827cc3ff13e51cd450a0d1b52efd78',1,'main::domain::documents::Document']]]
+  ['k_909',['k',['../classmain_1_1presentation_1_1_list_k_similars_dialog.html#a92099e189e0fa1cf89951349c56cda9e',1,'main.presentation.ListKSimilarsDialog.k()'],['../classmain_1_1presentation_1_1_list_query_dialog.html#aeff9cac069d787997acb74f127ba5880',1,'main.presentation.ListQueryDialog.k()']]]
 ];

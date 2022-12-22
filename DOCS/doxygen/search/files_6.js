@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['document_2ejava_320',['Document.java',['../main_2domain_2documents_2_document_8java.html',1,'']]],
-  ['expression_2ejava_321',['Expression.java',['../main_2domain_2expressions_2_expression_8java.html',1,'']]],
-  ['internaldocument_2ejava_322',['InternalDocument.java',['../main_2domain_2documents_2_internal_document_8java.html',1,'']]]
+  ['listauthordialog_2ejava_569',['ListAuthorDialog.java',['../_list_author_dialog_8java.html',1,'']]],
+  ['listexpressiondialog_2ejava_570',['ListExpressionDialog.java',['../_list_expression_dialog_8java.html',1,'']]],
+  ['listksimilarsdialog_2ejava_571',['ListKSimilarsDialog.java',['../_list_k_similars_dialog_8java.html',1,'']]],
+  ['listquerydialog_2ejava_572',['ListQueryDialog.java',['../_list_query_dialog_8java.html',1,'']]],
+  ['literal_2ejava_573',['Literal.java',['../_literal_8java.html',1,'']]],
+  ['loaderdialog_2ejava_574',['LoaderDialog.java',['../_loader_dialog_8java.html',1,'']]]
 ];

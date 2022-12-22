@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Gestor de Documents: Fitxer de Codi ListAuthorDialog.java</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Gestor de Documents
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generat per Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Cerca','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Cerca');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d2a81fcb9e0344d06f49c2bd6fcf908f.html">FONTS</a></li><li class="navelem"><a class="el" href="dir_7b215a15921fff0d8439bbb25ead1992.html">main</a></li><li class="navelem"><a class="el" href="dir_de0e6f75f79133b8708e8a15c37239c2.html">presentation</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">ListAuthorDialog.java</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_list_author_dialog_8java.html">Veure la documentació d'aquest fitxer.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">package </span>main.presentation;</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">import</span> com.intellij.uiDesigner.core.GridConstraints;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">import</span> com.intellij.uiDesigner.core.GridLayoutManager;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">import</span> com.intellij.uiDesigner.core.Spacer;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">import</span> javax.swing.*;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">import</span> javax.swing.event.ListSelectionEvent;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">import</span> javax.swing.event.ListSelectionListener;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">import</span> java.awt.*;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">import</span> java.awt.event.*;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">import</span> java.util.List;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_list_author_dialog.html">   19</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html">ListAuthorDialog</a> <span class="keyword">extends</span> JDialog {</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_list_author_dialog.html#a9f5122e8556db9d9882f29f8f1af6408">   23</a></span>&#160;    <span class="keyword">private</span> <a class="code" href="classmain_1_1presentation_1_1_ctrl_presentation.html">CtrlPresentation</a> <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a9f5122e8556db9d9882f29f8f1af6408">cp</a>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_list_author_dialog.html#aa5845099e8e121b38ac96fcb54a41b09">   27</a></span>&#160;    <span class="keyword">private</span> JPanel <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#aa5845099e8e121b38ac96fcb54a41b09">contentPane</a>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_list_author_dialog.html#ad1a18f976a5783c22992de515b4f35c8">   31</a></span>&#160;    <span class="keyword">private</span> JButton <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#ad1a18f976a5783c22992de515b4f35c8">buttonOK</a>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_list_author_dialog.html#a589c4adda1689c2bea65b4873cb245c0">   35</a></span>&#160;    <span class="keyword">private</span> JButton <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a589c4adda1689c2bea65b4873cb245c0">buttonCancel</a>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_list_author_dialog.html#af14851f83294b9e267d8443d17d89bd5">   39</a></span>&#160;    <span class="keyword">private</span> JTextField <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#af14851f83294b9e267d8443d17d89bd5">text_aut</a>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_list_author_dialog.html#a4598d6b63480f17270ecc429e1f31acd">   43</a></span>&#160;    <span class="keyword">private</span> JList <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a4598d6b63480f17270ecc429e1f31acd">list1</a>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_list_author_dialog.html#ac595fc0a90f4f494a2b31e5835e71650">   47</a></span>&#160;    <span class="keyword">private</span> DefaultListModel <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#ac595fc0a90f4f494a2b31e5835e71650">listModel1</a>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_list_author_dialog.html#a1c89795d41febc6557684e9d55fb3ece">   51</a></span>&#160;    <span class="keyword">private</span> String <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a1c89795d41febc6557684e9d55fb3ece">result</a>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_list_author_dialog.html#a419799d0edb249dc500ec7a325b6b597">   56</a></span>&#160;    <span class="keyword">private</span> Boolean <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a419799d0edb249dc500ec7a325b6b597">mod</a>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_list_author_dialog.html#a64e95e38f5bf0a0ec829bbcbe0b34f12">   64</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a64e95e38f5bf0a0ec829bbcbe0b34f12">ListAuthorDialog</a>() {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        setContentPane(<a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#aa5845099e8e121b38ac96fcb54a41b09">contentPane</a>);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        setModal(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        getRootPane().setDefaultButton(<a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#ad1a18f976a5783c22992de515b4f35c8">buttonOK</a>);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#ad1a18f976a5783c22992de515b4f35c8">buttonOK</a>.addActionListener(<span class="keyword">new</span> ActionListener() {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="keyword">public</span> <span class="keywordtype">void</span> actionPerformed(ActionEvent e) {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#af473bfc296913d367f110de60f544b80">onOK</a>();</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        });</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a589c4adda1689c2bea65b4873cb245c0">buttonCancel</a>.addActionListener(<span class="keyword">new</span> ActionListener() {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keyword">public</span> <span class="keywordtype">void</span> actionPerformed(ActionEvent e) {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a24b81b49b384588f569661708fcf0073">onCancel</a>();</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            }</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        });</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="comment">// call onCancel() when cross is clicked</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        addWindowListener(<span class="keyword">new</span> WindowAdapter() {</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <span class="keyword">public</span> <span class="keywordtype">void</span> windowClosing(WindowEvent e) {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a24b81b49b384588f569661708fcf0073">onCancel</a>();</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        });</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="comment">// call onCancel() on ESCAPE</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#aa5845099e8e121b38ac96fcb54a41b09">contentPane</a>.registerKeyboardAction(<span class="keyword">new</span> ActionListener() {</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            <span class="keyword">public</span> <span class="keywordtype">void</span> actionPerformed(ActionEvent e) {</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a24b81b49b384588f569661708fcf0073">onCancel</a>();</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            }</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#af14851f83294b9e267d8443d17d89bd5">text_aut</a>.addKeyListener(<span class="keyword">new</span> KeyAdapter() {</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            @Override</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            <span class="keyword">public</span> <span class="keywordtype">void</span> keyReleased(KeyEvent e) {</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                super.keyReleased(e);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#ae79683717c4bb34c3bdd63d73ddc99d5">onText1</a>();</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            }</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        });</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a4598d6b63480f17270ecc429e1f31acd">list1</a>.addListSelectionListener(<span class="keyword">new</span> ListSelectionListener() {</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            @Override</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            <span class="keyword">public</span> <span class="keywordtype">void</span> valueChanged(ListSelectionEvent e) {</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a2910eb41216e042c4e2a7709da84eea3">onList1</a>();</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            }</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        });</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#af14851f83294b9e267d8443d17d89bd5">text_aut</a>.addKeyListener(<span class="keyword">new</span> KeyAdapter() {</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        });</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#af14851f83294b9e267d8443d17d89bd5">text_aut</a>.addKeyListener(<span class="keyword">new</span> KeyAdapter() {</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            @Override</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            <span class="keyword">public</span> <span class="keywordtype">void</span> keyPressed(KeyEvent e) {</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                super.keyPressed(e);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a419799d0edb249dc500ec7a325b6b597">mod</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a4598d6b63480f17270ecc429e1f31acd">list1</a>.clearSelection();</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            }</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        });</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    }</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_list_author_dialog.html#ae79683717c4bb34c3bdd63d73ddc99d5">  125</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#ae79683717c4bb34c3bdd63d73ddc99d5">onText1</a>() {</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#ad1a18f976a5783c22992de515b4f35c8">buttonOK</a>.setEnabled(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        String prefix = <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#af14851f83294b9e267d8443d17d89bd5">text_aut</a>.getText();</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#ac595fc0a90f4f494a2b31e5835e71650">listModel1</a>.clear();</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        List&lt;String&gt; authors = <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a9f5122e8556db9d9882f29f8f1af6408">cp</a>.<a class="code" href="classmain_1_1presentation_1_1_ctrl_presentation.html#abd5641e11a61a287036e54f170cc35d2">listAuthorsByPrefix</a>(prefix);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="keywordflow">for</span> (String aut : authors) <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#ac595fc0a90f4f494a2b31e5835e71650">listModel1</a>.addElement(aut);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a419799d0edb249dc500ec7a325b6b597">mod</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    }</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_list_author_dialog.html#a2910eb41216e042c4e2a7709da84eea3">  138</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a2910eb41216e042c4e2a7709da84eea3">onList1</a>() {</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <span class="keywordflow">if</span> (!<a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a419799d0edb249dc500ec7a325b6b597">mod</a>) {</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#ae7d7078f28197c820adc7f55f79c97da">enableButtonIfCorrect</a>();</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a1c89795d41febc6557684e9d55fb3ece">result</a> = <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a4598d6b63480f17270ecc429e1f31acd">list1</a>.getSelectedValue().toString();</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        }</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    }</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
+<div class="line"><a name="l00149"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_list_author_dialog.html#af473bfc296913d367f110de60f544b80">  149</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#af473bfc296913d367f110de60f544b80">onOK</a>() {</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        <span class="comment">// add your code here</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        dispose();</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    }</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_list_author_dialog.html#a24b81b49b384588f569661708fcf0073">  158</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a24b81b49b384588f569661708fcf0073">onCancel</a>() {</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="comment">// add your code here if necessary</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a1c89795d41febc6557684e9d55fb3ece">result</a> = <span class="keyword">null</span>;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        dispose();</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    }</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
+<div class="line"><a name="l00169"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_list_author_dialog.html#ae7d7078f28197c820adc7f55f79c97da">  169</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#ae7d7078f28197c820adc7f55f79c97da">enableButtonIfCorrect</a>() {</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#ad1a18f976a5783c22992de515b4f35c8">buttonOK</a>.setEnabled(!<a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a4598d6b63480f17270ecc429e1f31acd">list1</a>.isSelectionEmpty());</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    }</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
+<div class="line"><a name="l00178"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_list_author_dialog.html#ac00ab7d0ec2dc39d20975be703190146">  178</a></span>&#160;    <span class="keyword">public</span> String <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#ac00ab7d0ec2dc39d20975be703190146">initialize</a>(JFrame reference) {</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        setTitle(<span class="stringliteral">&quot;Llistar per autor&quot;</span>);</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a419799d0edb249dc500ec7a325b6b597">mod</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a1c89795d41febc6557684e9d55fb3ece">result</a> = <span class="keyword">null</span>;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a9f5122e8556db9d9882f29f8f1af6408">cp</a> = <a class="code" href="classmain_1_1presentation_1_1_ctrl_presentation.html">CtrlPresentation</a>.<a class="code" href="classmain_1_1presentation_1_1_ctrl_presentation.html#a261353f3704004b81efe2028e3d50b5d">getInstance</a>();</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#ae7d7078f28197c820adc7f55f79c97da">enableButtonIfCorrect</a>();</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#ac595fc0a90f4f494a2b31e5835e71650">listModel1</a> = <span class="keyword">new</span> DefaultListModel();</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a4598d6b63480f17270ecc429e1f31acd">list1</a>.setModel(<a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#ac595fc0a90f4f494a2b31e5835e71650">listModel1</a>);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        List&lt;String&gt; authors = <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a9f5122e8556db9d9882f29f8f1af6408">cp</a>.<a class="code" href="classmain_1_1presentation_1_1_ctrl_presentation.html#abd5641e11a61a287036e54f170cc35d2">listAuthorsByPrefix</a>(<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        <span class="keywordflow">for</span> (String aut : authors) <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#ac595fc0a90f4f494a2b31e5835e71650">listModel1</a>.addElement(aut);</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        pack();</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        setLocationRelativeTo(reference);</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        setVisible(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a1c89795d41febc6557684e9d55fb3ece">result</a>;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    }</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    {</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="comment">// GUI initializer generated by IntelliJ IDEA GUI Designer</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="comment">// &gt;&gt;&gt; IMPORTANT!! &lt;&lt;&lt;</span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="comment">// DO NOT EDIT OR ADD ANY CODE HERE!</span></div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        $$$setupUI$$$();</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    }</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160; </div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> $$$setupUI$$$() {</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#aa5845099e8e121b38ac96fcb54a41b09">contentPane</a> = <span class="keyword">new</span> JPanel();</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#aa5845099e8e121b38ac96fcb54a41b09">contentPane</a>.setLayout(<span class="keyword">new</span> GridLayoutManager(2, 1, <span class="keyword">new</span> Insets(10, 10, 10, 10), -1, -1));</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#aa5845099e8e121b38ac96fcb54a41b09">contentPane</a>.setPreferredSize(<span class="keyword">new</span> Dimension(350, 300));</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;        <span class="keyword">final</span> JPanel panel1 = <span class="keyword">new</span> JPanel();</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        panel1.setLayout(<span class="keyword">new</span> GridLayoutManager(1, 3, <span class="keyword">new</span> Insets(0, 0, 0, 0), -1, -1));</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#aa5845099e8e121b38ac96fcb54a41b09">contentPane</a>.add(panel1, <span class="keyword">new</span> GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, 0, <span class="keyword">false</span>));</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        <span class="keyword">final</span> Spacer spacer1 = <span class="keyword">new</span> Spacer();</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        panel1.add(spacer1, <span class="keyword">new</span> GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, 0, <span class="keyword">false</span>));</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        <span class="keyword">final</span> JPanel panel2 = <span class="keyword">new</span> JPanel();</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        panel2.setLayout(<span class="keyword">new</span> GridLayoutManager(1, 1, <span class="keyword">new</span> Insets(0, 0, 0, 0), -1, -1));</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        panel1.add(panel2, <span class="keyword">new</span> GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, 0, <span class="keyword">false</span>));</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#ad1a18f976a5783c22992de515b4f35c8">buttonOK</a> = <span class="keyword">new</span> JButton();</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#ad1a18f976a5783c22992de515b4f35c8">buttonOK</a>.setText(<span class="stringliteral">&quot;OK&quot;</span>);</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        panel2.add(<a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#ad1a18f976a5783c22992de515b4f35c8">buttonOK</a>, <span class="keyword">new</span> GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, 0, <span class="keyword">false</span>));</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a589c4adda1689c2bea65b4873cb245c0">buttonCancel</a> = <span class="keyword">new</span> JButton();</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a589c4adda1689c2bea65b4873cb245c0">buttonCancel</a>.setText(<span class="stringliteral">&quot;Tornar&quot;</span>);</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        panel1.add(<a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a589c4adda1689c2bea65b4873cb245c0">buttonCancel</a>, <span class="keyword">new</span> GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, 0, <span class="keyword">false</span>));</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;        <span class="keyword">final</span> JPanel panel3 = <span class="keyword">new</span> JPanel();</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        panel3.setLayout(<span class="keyword">new</span> GridLayoutManager(2, 2, <span class="keyword">new</span> Insets(0, 0, 0, 0), -1, -1));</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#aa5845099e8e121b38ac96fcb54a41b09">contentPane</a>.add(panel3, <span class="keyword">new</span> GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, 0, <span class="keyword">false</span>));</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        <span class="keyword">final</span> JLabel label1 = <span class="keyword">new</span> JLabel();</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        label1.setText(<span class="stringliteral">&quot;Autor:&quot;</span>);</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        panel3.add(label1, <span class="keyword">new</span> GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, 0, <span class="keyword">false</span>));</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#af14851f83294b9e267d8443d17d89bd5">text_aut</a> = <span class="keyword">new</span> JTextField();</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#af14851f83294b9e267d8443d17d89bd5">text_aut</a>.setText(<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        panel3.add(<a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#af14851f83294b9e267d8443d17d89bd5">text_aut</a>, <span class="keyword">new</span> GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, <span class="keyword">null</span>, <span class="keyword">new</span> Dimension(150, -1), <span class="keyword">null</span>, 0, <span class="keyword">false</span>));</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        <span class="keyword">final</span> JScrollPane scrollPane1 = <span class="keyword">new</span> JScrollPane();</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        panel3.add(scrollPane1, <span class="keyword">new</span> GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, 0, <span class="keyword">false</span>));</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a4598d6b63480f17270ecc429e1f31acd">list1</a> = <span class="keyword">new</span> JList();</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        <span class="keyword">final</span> DefaultListModel defaultListModel1 = <span class="keyword">new</span> DefaultListModel();</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a4598d6b63480f17270ecc429e1f31acd">list1</a>.setModel(defaultListModel1);</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        scrollPane1.setViewportView(<a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#a4598d6b63480f17270ecc429e1f31acd">list1</a>);</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    }</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160; </div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    <span class="keyword">public</span> JComponent $$$getRootComponent$$$() {</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classmain_1_1presentation_1_1_list_author_dialog.html#aa5845099e8e121b38ac96fcb54a41b09">contentPane</a>;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    }</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160; </div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;}</div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_ctrl_presentation_html"><div class="ttname"><a href="classmain_1_1presentation_1_1_ctrl_presentation.html">main.presentation.CtrlPresentation</a></div><div class="ttdoc">Controlador de la capa de presentació de l'aplicatiu. S'encarrega de la comunicació amb el controlado...</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_presentation_8java_source.html#l00016">CtrlPresentation.java:16</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_ctrl_presentation_html_a261353f3704004b81efe2028e3d50b5d"><div class="ttname"><a href="classmain_1_1presentation_1_1_ctrl_presentation.html#a261353f3704004b81efe2028e3d50b5d">main.presentation.CtrlPresentation.getInstance</a></div><div class="ttdeci">static CtrlPresentation getInstance()</div><div class="ttdoc">Funció per aconseguir la instància de CtrlPresentation.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_presentation_8java_source.html#l00042">CtrlPresentation.java:42</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_ctrl_presentation_html_abd5641e11a61a287036e54f170cc35d2"><div class="ttname"><a href="classmain_1_1presentation_1_1_ctrl_presentation.html#abd5641e11a61a287036e54f170cc35d2">main.presentation.CtrlPresentation.listAuthorsByPrefix</a></div><div class="ttdeci">List&lt; String &gt; listAuthorsByPrefix(String prefix)</div><div class="ttdoc">Operació per aconseguir els autors que comencen per un cert prefix.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_presentation_8java_source.html#l00270">CtrlPresentation.java:270</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_list_author_dialog_html"><div class="ttname"><a href="classmain_1_1presentation_1_1_list_author_dialog.html">main.presentation.ListAuthorDialog</a></div><div class="ttdoc">Diàleg per mostrar els documents d'un autor, mitjançant seleccionar l'autor pel seu prefix.</div><div class="ttdef"><b>Definition:</b> <a href="_list_author_dialog_8java_source.html#l00019">ListAuthorDialog.java:19</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_list_author_dialog_html_a1c89795d41febc6557684e9d55fb3ece"><div class="ttname"><a href="classmain_1_1presentation_1_1_list_author_dialog.html#a1c89795d41febc6557684e9d55fb3ece">main.presentation.ListAuthorDialog.result</a></div><div class="ttdeci">String result</div><div class="ttdoc">String que guarda l'autor final seleccionat.</div><div class="ttdef"><b>Definition:</b> <a href="_list_author_dialog_8java_source.html#l00051">ListAuthorDialog.java:51</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_list_author_dialog_html_a24b81b49b384588f569661708fcf0073"><div class="ttname"><a href="classmain_1_1presentation_1_1_list_author_dialog.html#a24b81b49b384588f569661708fcf0073">main.presentation.ListAuthorDialog.onCancel</a></div><div class="ttdeci">void onCancel()</div><div class="ttdoc">Funció per tractar la pulsació al botó Tornar.</div><div class="ttdef"><b>Definition:</b> <a href="_list_author_dialog_8java_source.html#l00158">ListAuthorDialog.java:158</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_list_author_dialog_html_a2910eb41216e042c4e2a7709da84eea3"><div class="ttname"><a href="classmain_1_1presentation_1_1_list_author_dialog.html#a2910eb41216e042c4e2a7709da84eea3">main.presentation.ListAuthorDialog.onList1</a></div><div class="ttdeci">void onList1()</div><div class="ttdoc">Funció per tractar la selecció en la llista.</div><div class="ttdef"><b>Definition:</b> <a href="_list_author_dialog_8java_source.html#l00138">ListAuthorDialog.java:138</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_list_author_dialog_html_a419799d0edb249dc500ec7a325b6b597"><div class="ttname"><a href="classmain_1_1presentation_1_1_list_author_dialog.html#a419799d0edb249dc500ec7a325b6b597">main.presentation.ListAuthorDialog.mod</a></div><div class="ttdeci">Boolean mod</div><div class="ttdoc">Booleà usat per evitar una selecció mentre s'està modificant o carregant els autors.</div><div class="ttdef"><b>Definition:</b> <a href="_list_author_dialog_8java_source.html#l00056">ListAuthorDialog.java:56</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_list_author_dialog_html_a4598d6b63480f17270ecc429e1f31acd"><div class="ttname"><a href="classmain_1_1presentation_1_1_list_author_dialog.html#a4598d6b63480f17270ecc429e1f31acd">main.presentation.ListAuthorDialog.list1</a></div><div class="ttdeci">JList list1</div><div class="ttdoc">Llista on es mostraran tots els autors que compleixen el prefix.</div><div class="ttdef"><b>Definition:</b> <a href="_list_author_dialog_8java_source.html#l00043">ListAuthorDialog.java:43</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_list_author_dialog_html_a589c4adda1689c2bea65b4873cb245c0"><div class="ttname"><a href="classmain_1_1presentation_1_1_list_author_dialog.html#a589c4adda1689c2bea65b4873cb245c0">main.presentation.ListAuthorDialog.buttonCancel</a></div><div class="ttdeci">JButton buttonCancel</div><div class="ttdoc">Botó Tornar per tornar.</div><div class="ttdef"><b>Definition:</b> <a href="_list_author_dialog_8java_source.html#l00035">ListAuthorDialog.java:35</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_list_author_dialog_html_a64e95e38f5bf0a0ec829bbcbe0b34f12"><div class="ttname"><a href="classmain_1_1presentation_1_1_list_author_dialog.html#a64e95e38f5bf0a0ec829bbcbe0b34f12">main.presentation.ListAuthorDialog.ListAuthorDialog</a></div><div class="ttdeci">ListAuthorDialog()</div><div class="ttdoc">Creadora per defecte del diàleg de ListAuthorDialog.</div><div class="ttdef"><b>Definition:</b> <a href="_list_author_dialog_8java_source.html#l00064">ListAuthorDialog.java:64</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_list_author_dialog_html_a9f5122e8556db9d9882f29f8f1af6408"><div class="ttname"><a href="classmain_1_1presentation_1_1_list_author_dialog.html#a9f5122e8556db9d9882f29f8f1af6408">main.presentation.ListAuthorDialog.cp</a></div><div class="ttdeci">CtrlPresentation cp</div><div class="ttdoc">La instància de controlador de presentació de l'aplicació</div><div class="ttdef"><b>Definition:</b> <a href="_list_author_dialog_8java_source.html#l00023">ListAuthorDialog.java:23</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_list_author_dialog_html_aa5845099e8e121b38ac96fcb54a41b09"><div class="ttname"><a href="classmain_1_1presentation_1_1_list_author_dialog.html#aa5845099e8e121b38ac96fcb54a41b09">main.presentation.ListAuthorDialog.contentPane</a></div><div class="ttdeci">JPanel contentPane</div><div class="ttdoc">Panell amb el contingut, inicialitzat amb la GUI d'Intellij.</div><div class="ttdef"><b>Definition:</b> <a href="_list_author_dialog_8java_source.html#l00027">ListAuthorDialog.java:27</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_list_author_dialog_html_ac00ab7d0ec2dc39d20975be703190146"><div class="ttname"><a href="classmain_1_1presentation_1_1_list_author_dialog.html#ac00ab7d0ec2dc39d20975be703190146">main.presentation.ListAuthorDialog.initialize</a></div><div class="ttdeci">String initialize(JFrame reference)</div><div class="ttdoc">Mètode per a mostrar el diàleg inicialitzat.</div><div class="ttdef"><b>Definition:</b> <a href="_list_author_dialog_8java_source.html#l00178">ListAuthorDialog.java:178</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_list_author_dialog_html_ac595fc0a90f4f494a2b31e5835e71650"><div class="ttname"><a href="classmain_1_1presentation_1_1_list_author_dialog.html#ac595fc0a90f4f494a2b31e5835e71650">main.presentation.ListAuthorDialog.listModel1</a></div><div class="ttdeci">DefaultListModel listModel1</div><div class="ttdoc">Model que seguirà la llista on es mostraran tots els autors que compleixen el prefix.</div><div class="ttdef"><b>Definition:</b> <a href="_list_author_dialog_8java_source.html#l00047">ListAuthorDialog.java:47</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_list_author_dialog_html_ad1a18f976a5783c22992de515b4f35c8"><div class="ttname"><a href="classmain_1_1presentation_1_1_list_author_dialog.html#ad1a18f976a5783c22992de515b4f35c8">main.presentation.ListAuthorDialog.buttonOK</a></div><div class="ttdeci">JButton buttonOK</div><div class="ttdoc">Botó OK, per retornar l'autor seleccionat.</div><div class="ttdef"><b>Definition:</b> <a href="_list_author_dialog_8java_source.html#l00031">ListAuthorDialog.java:31</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_list_author_dialog_html_ae79683717c4bb34c3bdd63d73ddc99d5"><div class="ttname"><a href="classmain_1_1presentation_1_1_list_author_dialog.html#ae79683717c4bb34c3bdd63d73ddc99d5">main.presentation.ListAuthorDialog.onText1</a></div><div class="ttdeci">void onText1()</div><div class="ttdoc">Funció per tractar l'escriptura del prefix.</div><div class="ttdef"><b>Definition:</b> <a href="_list_author_dialog_8java_source.html#l00125">ListAuthorDialog.java:125</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_list_author_dialog_html_ae7d7078f28197c820adc7f55f79c97da"><div class="ttname"><a href="classmain_1_1presentation_1_1_list_author_dialog.html#ae7d7078f28197c820adc7f55f79c97da">main.presentation.ListAuthorDialog.enableButtonIfCorrect</a></div><div class="ttdeci">void enableButtonIfCorrect()</div><div class="ttdoc">Funció per habilitar o inhabilitar el botó OK.</div><div class="ttdef"><b>Definition:</b> <a href="_list_author_dialog_8java_source.html#l00169">ListAuthorDialog.java:169</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_list_author_dialog_html_af14851f83294b9e267d8443d17d89bd5"><div class="ttname"><a href="classmain_1_1presentation_1_1_list_author_dialog.html#af14851f83294b9e267d8443d17d89bd5">main.presentation.ListAuthorDialog.text_aut</a></div><div class="ttdeci">JTextField text_aut</div><div class="ttdoc">Camp per omplir el prefix del nom de l'autor.</div><div class="ttdef"><b>Definition:</b> <a href="_list_author_dialog_8java_source.html#l00039">ListAuthorDialog.java:39</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_list_author_dialog_html_af473bfc296913d367f110de60f544b80"><div class="ttname"><a href="classmain_1_1presentation_1_1_list_author_dialog.html#af473bfc296913d367f110de60f544b80">main.presentation.ListAuthorDialog.onOK</a></div><div class="ttdeci">void onOK()</div><div class="ttdoc">Funció per tractar la pulsació al botó OK.</div><div class="ttdef"><b>Definition:</b> <a href="_list_author_dialog_8java_source.html#l00149">ListAuthorDialog.java:149</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generat per&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Gestor de Documents: Fitxer de Codi FavCheckBox.java</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Gestor de Documents
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generat per Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Cerca','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Cerca');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d2a81fcb9e0344d06f49c2bd6fcf908f.html">FONTS</a></li><li class="navelem"><a class="el" href="dir_7b215a15921fff0d8439bbb25ead1992.html">main</a></li><li class="navelem"><a class="el" href="dir_de0e6f75f79133b8708e8a15c37239c2.html">presentation</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">FavCheckBox.java</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_fav_check_box_8java.html">Veure la documentació d'aquest fitxer.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">package </span>main.presentation;</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">import</span> javax.imageio.ImageIO;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">import</span> javax.swing.*;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">import</span> java.awt.*;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">import</span> java.io.IOException;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">import</span> java.util.Objects;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_fav_check_box.html">   15</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classmain_1_1presentation_1_1_fav_check_box.html">FavCheckBox</a> <span class="keyword">extends</span> JCheckBox {</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_fav_check_box.html#a6a7e45df0aca1d403f2a19979128b119">   19</a></span>&#160;    <span class="keyword">private</span> ImageIcon <a class="code" href="classmain_1_1presentation_1_1_fav_check_box.html#a6a7e45df0aca1d403f2a19979128b119">fav</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_fav_check_box.html#aa9feb590a4abc89c0b90e5834f7df345">   23</a></span>&#160;    <span class="keyword">private</span> ImageIcon <a class="code" href="classmain_1_1presentation_1_1_fav_check_box.html#aa9feb590a4abc89c0b90e5834f7df345">nofav</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_fav_check_box.html#a1f255e9d36509bf2e98a6dc1f2412762">   29</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classmain_1_1presentation_1_1_fav_check_box.html#a1f255e9d36509bf2e98a6dc1f2412762">FavCheckBox</a>(JFrame reference) {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        super();</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        setHorizontalAlignment(CENTER);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <a class="code" href="classmain_1_1presentation_1_1_fav_check_box.html#a6a7e45df0aca1d403f2a19979128b119">fav</a> = <span class="keyword">new</span> ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResource(<span class="stringliteral">&quot;images/red.png&quot;</span>))));</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <a class="code" href="classmain_1_1presentation_1_1_fav_check_box.html#a6a7e45df0aca1d403f2a19979128b119">fav</a> = <span class="keyword">new</span> ImageIcon(<a class="code" href="classmain_1_1presentation_1_1_fav_check_box.html#a6a7e45df0aca1d403f2a19979128b119">fav</a>.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH));</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <a class="code" href="classmain_1_1presentation_1_1_fav_check_box.html#aa9feb590a4abc89c0b90e5834f7df345">nofav</a> = <span class="keyword">new</span> ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResource(<span class="stringliteral">&quot;images/white.png&quot;</span>))));</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <a class="code" href="classmain_1_1presentation_1_1_fav_check_box.html#aa9feb590a4abc89c0b90e5834f7df345">nofav</a> = <span class="keyword">new</span> ImageIcon(<a class="code" href="classmain_1_1presentation_1_1_fav_check_box.html#aa9feb590a4abc89c0b90e5834f7df345">nofav</a>.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH));</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        } <span class="keywordflow">catch</span> (IOException e) {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            <span class="comment">// NO hauria de passar, si no s&#39;esborren les imatges</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <a class="code" href="classmain_1_1presentation_1_1_ctrl_views_dialogs.html">CtrlViewsDialogs</a>.<a class="code" href="classmain_1_1presentation_1_1_ctrl_views_dialogs.html#a8d7be115d3ab64f1d9a4a9c2b1b2a4fc">getInstance</a>().<a class="code" href="classmain_1_1presentation_1_1_ctrl_views_dialogs.html#a1022beae788061d0626150fa2058ffd8">showInternalError</a>(reference);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    @Override</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classmain_1_1presentation_1_1_fav_check_box.html#acf653168f0a4a8520d69eb0c3b96f01f">   49</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classmain_1_1presentation_1_1_fav_check_box.html#acf653168f0a4a8520d69eb0c3b96f01f">setSelected</a>(<span class="keywordtype">boolean</span> selected) {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        super.setSelected(selected);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordflow">if</span> (selected) setIcon(<a class="code" href="classmain_1_1presentation_1_1_fav_check_box.html#a6a7e45df0aca1d403f2a19979128b119">fav</a>);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">else</span> setIcon(<a class="code" href="classmain_1_1presentation_1_1_fav_check_box.html#aa9feb590a4abc89c0b90e5834f7df345">nofav</a>);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_ctrl_views_dialogs_html"><div class="ttname"><a href="classmain_1_1presentation_1_1_ctrl_views_dialogs.html">main.presentation.CtrlViewsDialogs</a></div><div class="ttdoc">Subcontrolador de la capa de presentació de l'aplicatiu. S'encarrega de la gestió de les vistes i els...</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_views_dialogs_8java_source.html#l00016">CtrlViewsDialogs.java:16</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_ctrl_views_dialogs_html_a1022beae788061d0626150fa2058ffd8"><div class="ttname"><a href="classmain_1_1presentation_1_1_ctrl_views_dialogs.html#a1022beae788061d0626150fa2058ffd8">main.presentation.CtrlViewsDialogs.showInternalError</a></div><div class="ttdeci">void showInternalError(JFrame reference)</div><div class="ttdoc">Mètode per mostrar el missatge d'error intern.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_views_dialogs_8java_source.html#l00067">CtrlViewsDialogs.java:67</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_ctrl_views_dialogs_html_a8d7be115d3ab64f1d9a4a9c2b1b2a4fc"><div class="ttname"><a href="classmain_1_1presentation_1_1_ctrl_views_dialogs.html#a8d7be115d3ab64f1d9a4a9c2b1b2a4fc">main.presentation.CtrlViewsDialogs.getInstance</a></div><div class="ttdeci">static CtrlViewsDialogs getInstance()</div><div class="ttdoc">Funció per aconseguir la instància de CtrlViewsDialogs.</div><div class="ttdef"><b>Definition:</b> <a href="_ctrl_views_dialogs_8java_source.html#l00042">CtrlViewsDialogs.java:42</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_fav_check_box_html"><div class="ttname"><a href="classmain_1_1presentation_1_1_fav_check_box.html">main.presentation.FavCheckBox</a></div><div class="ttdoc">Herència de la classe JCheckBox de SWING per implementar que l'estat seleccionat es correspongui a un...</div><div class="ttdef"><b>Definition:</b> <a href="_fav_check_box_8java_source.html#l00015">FavCheckBox.java:15</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_fav_check_box_html_a1f255e9d36509bf2e98a6dc1f2412762"><div class="ttname"><a href="classmain_1_1presentation_1_1_fav_check_box.html#a1f255e9d36509bf2e98a6dc1f2412762">main.presentation.FavCheckBox.FavCheckBox</a></div><div class="ttdeci">FavCheckBox(JFrame reference)</div><div class="ttdoc">Constructora que inicialitza les ImageIcon, carregant les dues imatges i redimensionant-les.</div><div class="ttdef"><b>Definition:</b> <a href="_fav_check_box_8java_source.html#l00029">FavCheckBox.java:29</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_fav_check_box_html_a6a7e45df0aca1d403f2a19979128b119"><div class="ttname"><a href="classmain_1_1presentation_1_1_fav_check_box.html#a6a7e45df0aca1d403f2a19979128b119">main.presentation.FavCheckBox.fav</a></div><div class="ttdeci">ImageIcon fav</div><div class="ttdoc">Icona d'un cor vermell que representa &quot;favorit&quot;.</div><div class="ttdef"><b>Definition:</b> <a href="_fav_check_box_8java_source.html#l00019">FavCheckBox.java:19</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_fav_check_box_html_aa9feb590a4abc89c0b90e5834f7df345"><div class="ttname"><a href="classmain_1_1presentation_1_1_fav_check_box.html#aa9feb590a4abc89c0b90e5834f7df345">main.presentation.FavCheckBox.nofav</a></div><div class="ttdeci">ImageIcon nofav</div><div class="ttdoc">Icona d'un cor blanc que representa &quot;no favorit&quot;.</div><div class="ttdef"><b>Definition:</b> <a href="_fav_check_box_8java_source.html#l00023">FavCheckBox.java:23</a></div></div>
+<div class="ttc" id="aclassmain_1_1presentation_1_1_fav_check_box_html_acf653168f0a4a8520d69eb0c3b96f01f"><div class="ttname"><a href="classmain_1_1presentation_1_1_fav_check_box.html#acf653168f0a4a8520d69eb0c3b96f01f">main.presentation.FavCheckBox.setSelected</a></div><div class="ttdeci">void setSelected(boolean selected)</div><div class="ttdoc">Reimplementació de la funció de JCheckBox, per definir la imatge que s'ha de mostrar segons l'estat.</div><div class="ttdef"><b>Definition:</b> <a href="_fav_check_box_8java_source.html#l00049">FavCheckBox.java:49</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generat per&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

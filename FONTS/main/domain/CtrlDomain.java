@@ -353,8 +353,8 @@ public class CtrlDomain {
      * @throws ExceptionInvalidExpression si la nova expressió no té un format vàlid
      */
     public void modifyExpression(String oldExpression, String newExpression) throws ExceptionNoExpression, ExceptionExpressionExists, ExceptionInvalidExpression {
-        deleteExpression(oldExpression);
         createExpression(newExpression);
+        deleteExpression(oldExpression);
     }
 
     /**
