@@ -149,6 +149,7 @@ public class ListExpressionDialog extends JDialog {
      * @brief Mètode per a mostrar el diàleg inicialitzat
      */
     public Pair<String, Boolean> initialize(JFrame reference) {
+        this.exp = reference;
         setTitle("Llistar per expressió");
 
         result = new Pair<String, Boolean>(null, null);
@@ -168,7 +169,6 @@ public class ListExpressionDialog extends JDialog {
         for (String ex : expressions) listModel1.addElement(ex);
 
         pack();
-        this.exp = reference;
         setLocationRelativeTo(reference);
         setVisible(true);
         return result;
