@@ -8,5 +8,7 @@ En aquest directori hi ha la definició de les classes excepció que usem en el 
 - ExceptionInvalidK: Usada quan el paràmetre k d'una funció no és adient.
 - ExceptionInvalidLanguage: Pel cas que s'intenti crear un document donant un idioma no vàlid.
 - ExceptionInvalidStrategy: Usada quan es vol llistar documents amb una estratègia invàlida.
+- ExceptionMissingTitleOrAuthor: Quan un document carregat te autor o titol invalid.
 - ExceptionNoDocument: Per quan no existeix un document i hauria d'existir.
 - ExceptionNoExpression: Per quan no existeix una expressió i hauria d'existir.
+- 

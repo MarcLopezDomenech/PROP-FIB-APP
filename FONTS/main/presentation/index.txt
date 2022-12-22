@@ -1,0 +1,18 @@
+Directori presentation
+
+En aquest directori hi ha les classes de la capa de presentació, amb els .form amb els respectius dissenys dels diàlegs i vistes:
+- CtrlApplication:
+- CtrlViewsDialogs:
+- CtrlPresentation:
+- ConfirmDialog:
+- ErrorDialog:
+- HelpDialog:
+- MainView:
+- NewDocumentDialog:
+- LoaderDialog:
+- ModifyDialog:
+- ListKSimilarsDialog:
+- DownloaderDialog:
+- ListQueryDialog:
+- ListExpressionDialog:
+- ListAuthorDialog:
