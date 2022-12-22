@@ -1,0 +1,1 @@
+Teo@title@Teo@author@Teo@content@es@language@no@internal@teo[~2~]2
