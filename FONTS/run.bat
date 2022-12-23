@@ -15,6 +15,7 @@ if /i %1 == TestLiteral goto :literal
 if /i %1 == TestNot goto :nota
 if /i %1 == TestOr goto :or
 if /i %1 == TestPair goto :pair
+if /i %1 == TestTrie goto :trie
 
 echo:
 echo: USAGE
@@ -33,6 +34,7 @@ echo: TestAnd
 echo: TestNot
 echo: TestOr
 echo: TestPair
+echo: TestTrie
 echo: 
 echo: Nota: Nomes es recompilara el driver interactiu! 
 goto :EOF
@@ -146,4 +148,13 @@ javac -cp ".;../lib/junit-4.12.jar;../hamcrest-core-1.3.jar" -d ../EXE/TestsJUni
 :pair
 echo Running test for Pair...
 java -cp "../EXE/TestsJUnit/Pair;../lib/junit-4.12.jar;../lib/hamcrest-core-1.3.jar" org.junit.runner.JUnitCore test.domain.util.TestPair
+goto :EOF
+
+REM === PAIR ===
+
+javac -cp ".;../lib/junit-4.12.jar;../hamcrest-core-1.3.jar" -d ../EXE/TestsJUnit/Trie test/domain/util/TestTrie.java
+
+:trie
+echo Running test for PTrieair...
+java -cp "../EXE/TestsJUnit/Trie;../lib/junit-4.12.jar;../lib/hamcrest-core-1.3.jar" org.junit.runner.JUnitCore test.domain.util.TestTrie
 goto :EOF
