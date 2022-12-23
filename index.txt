@@ -7,3 +7,4 @@ En aquest directori trobem els directoris que es demanen per l'entrega definitiv
 
 A mes, trobem:
 - Directori lib: Que conte les llibreries externes descrites en la documentacio lliurada.
+- README: descripció de l'equip
