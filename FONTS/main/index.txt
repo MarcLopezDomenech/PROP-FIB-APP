@@ -4,4 +4,4 @@ En aquest directori es troba la implementació de totes les classes repartides e
 - domain: Conte el codi de les classes del domini.
 - excepcions: On hi ha la definició de totes les excepcions que emprem en el nostre codi.
 - interface: La implementació de la capa de presentació.
-- persistence: La implementacio de la capa de persistència.
+- persistence: La implementació de la capa de persistència.

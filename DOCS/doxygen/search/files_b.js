@@ -1,20 +1,5 @@
 var searchData=
 [
-  ['document_2ejava_586',['Document.java',['../test_2domain_2documents_2_document_8java.html',1,'']]],
-  ['expression_2ejava_587',['Expression.java',['../test_2domain_2expressions_2_expression_8java.html',1,'']]],
-  ['internaldocument_2ejava_588',['InternalDocument.java',['../test_2domain_2documents_2_internal_document_8java.html',1,'']]],
-  ['testand_2ejava_589',['TestAnd.java',['../_test_and_8java.html',1,'']]],
-  ['testdocument_2ejava_590',['TestDocument.java',['../_test_document_8java.html',1,'']]],
-  ['testdocumentsset_2ejava_591',['TestDocumentsSet.java',['../_test_documents_set_8java.html',1,'']]],
-  ['testexpression_2ejava_592',['TestExpression.java',['../_test_expression_8java.html',1,'']]],
-  ['testexpressionsset_2ejava_593',['TestExpressionsSet.java',['../_test_expressions_set_8java.html',1,'']]],
-  ['testinternaldocument_2ejava_594',['TestInternalDocument.java',['../_test_internal_document_8java.html',1,'']]],
-  ['testliteral_2ejava_595',['TestLiteral.java',['../_test_literal_8java.html',1,'']]],
-  ['testnot_2ejava_596',['TestNot.java',['../_test_not_8java.html',1,'']]],
-  ['testor_2ejava_597',['TestOr.java',['../_test_or_8java.html',1,'']]],
-  ['testpair_2ejava_598',['TestPair.java',['../_test_pair_8java.html',1,'']]],
-  ['testtrie_2ejava_599',['TestTrie.java',['../_test_trie_8java.html',1,'']]],
-  ['trie_2ejava_600',['Trie.java',['../_trie_8java.html',1,'']]],
-  ['true_2ejava_601',['True.java',['../_true_8java.html',1,'']]],
-  ['txtparser_2ejava_602',['TxtParser.java',['../_txt_parser_8java.html',1,'']]]
+  ['pair_2ejava_438',['Pair.java',['../_pair_8java.html',1,'']]],
+  ['parser_2ejava_439',['Parser.java',['../_parser_8java.html',1,'']]]
 ];

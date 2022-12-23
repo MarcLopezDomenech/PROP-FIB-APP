@@ -1,3 +1,6 @@
 <map id="Jerarquia Gràfica de la Classe" name="Jerarquia Gràfica de la Classe">
-<area shape="rect" id="node1" href="$classmain_1_1persistence_1_1_ctrl_persistence.html" title="Controlador de la capa de persistencia. S&#39;encarrega del control de formats i de guardar i llegir fitx..." alt="" coords="5,5,217,32"/>
+<area shape="rect" id="node1" href="$classmain_1_1persistence_1_1_parser.html" title="Classe abstracte de la que heredaran els diferents parsers responsables de la lectura i escriptura de..." alt="" coords="5,56,167,83"/>
+<area shape="rect" id="node2" href="$classmain_1_1persistence_1_1_fp_parser.html" title="Classe responsable de la lectura i escriptura de fitxers en format propietari." alt="" coords="219,5,395,32"/>
+<area shape="rect" id="node3" href="$classmain_1_1persistence_1_1_txt_parser.html" title="Classe responsable de la lectura i escriptura de fitxers en format txt." alt="" coords="217,56,396,83"/>
+<area shape="rect" id="node4" href="$classmain_1_1persistence_1_1_xml_parser.html" title="Classe responsable de la lectura i escriptura de fitxers en format xml." alt="" coords="215,107,399,133"/>
 </map>

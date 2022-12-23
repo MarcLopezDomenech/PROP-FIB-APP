@@ -9,7 +9,7 @@ public class ExceptionInvalidExpression extends Exception{
 
     /**
      * @brief Constructora per defecte
-     * @details Donada una expressió boolana que no té un format correcte, excepció informa a l'usuari de l'error.
+     * @details Donada una expressió booleana que no té un format correcte, l'excepció informa a l'usuari de l'error.
      * @return ExceptionInvalidExpression
      */
     public ExceptionInvalidExpression(String id_expressio){

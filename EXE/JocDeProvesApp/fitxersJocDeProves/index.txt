@@ -1,0 +1,3 @@
+Directori fitxersJocDeProves
+
+En aquest directori hi ha una serie de fitxers valids que serviran per a fer proves en l'aplicacio, i que són usats en els jocs de prova.

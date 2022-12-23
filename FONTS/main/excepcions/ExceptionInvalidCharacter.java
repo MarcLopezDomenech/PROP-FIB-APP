@@ -2,7 +2,7 @@ package main.excepcions;
 
 /**
  * @class ExceptionInvalidCharacter
- * @brief Excepció que es llença quan no es troba una expressió al sistema
+ * @brief Excepció que es llença quan un arxiu XML conté un caràcter o una etiqueta il·legal
  * @author ariadna.cortes.danes
  */
 public class ExceptionInvalidCharacter extends Exception {

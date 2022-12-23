@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['or_2ejava_583',['Or.java',['../_or_8java.html',1,'']]]
+  ['newdocumentdialog_2ejava_435',['NewDocumentDialog.java',['../_new_document_dialog_8java.html',1,'']]],
+  ['not_2ejava_436',['Not.java',['../_not_8java.html',1,'']]]
 ];

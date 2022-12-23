@@ -8,9 +8,9 @@ package main.excepcions;
 public class ExceptionInvalidLanguage extends Exception {
 
     /**
-     * @brief Constructora per defecte amb la k errònia
-     * @details Donada la k introduïda, es genera el missatge d'error
-     * @return ExceptionInvalidStrategy
+     * @brief Constructora per defecte amb el llenguatge invàlid
+     * @details Donat el llenguatge que no és vàlid, es genera el missatge d'error
+     * @return ExceptionInvalidLanguage
      */
     public ExceptionInvalidLanguage(String language){
         super("L'idioma d'un document pot ser català (ca), anglès (en) o castellà (es), " + language + " no és vàlid");

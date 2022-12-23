@@ -1,3 +1,6 @@
 <map id="Jerarquia Gràfica de la Classe" name="Jerarquia Gràfica de la Classe">
-<area shape="rect" id="node1" href="$classmain_1_1presentation_1_1_expressions_view.html" title="Vista per gestionar les expressions del sistema." alt="" coords="5,5,232,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,93,32"/>
+<area shape="rect" id="node2" href="$classmain_1_1presentation_1_1_fav_check_box.html" title="Herència de la classe JCheckBox de SWING per implementar que l&#39;estat seleccionat es correspongui a un..." alt="" coords="141,5,349,32"/>
+<area shape="rect" id="node3" href="$classmain_1_1presentation_1_1_fav_boolean_cell_renderer.html" title="Herència de la classe FavCheckBox, que implementa la interfície de SWING TableCellRenderer,..." alt="" coords="397,23,593,65"/>
+<area shape="rect" id="node4" title=" " alt="" coords="181,56,309,83"/>
 </map>

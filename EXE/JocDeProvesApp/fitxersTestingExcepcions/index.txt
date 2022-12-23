@@ -1,0 +1,3 @@
+Directori fitxersTestingExcepcions
+
+En aquest directori trobem una serie de fitxer invalids per diferentes raons que ens permeten fer proves de gestio d'errors en els jocs de proves.

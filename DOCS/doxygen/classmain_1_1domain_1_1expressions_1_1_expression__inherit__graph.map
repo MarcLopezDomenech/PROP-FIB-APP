@@ -1,9 +1,7 @@
 <map id="main.domain.expressions.Expression" name="main.domain.expressions.Expression">
-<area shape="rect" id="node1" title="Classe que representa i avalua expressions booleanes." alt="" coords="531,5,708,200"/>
+<area shape="rect" id="node1" title="Classe que representa i avalua expressions booleanes." alt="" coords="323,5,500,200"/>
 <area shape="rect" id="node2" href="$classmain_1_1domain_1_1expressions_1_1_and.html" title="Classe que representa a aquelles expressions booleanes que consisteixen en la conjunció de dues altre..." alt="" coords="5,255,199,362"/>
 <area shape="rect" id="node3" href="$classmain_1_1domain_1_1expressions_1_1_literal.html" title="Classe que representa a aquelles expressions booleanes formades solament per una paraula o frase,..." alt="" coords="223,248,394,369"/>
 <area shape="rect" id="node4" href="$classmain_1_1domain_1_1expressions_1_1_not.html" title="Classe que representa a aquelles expressions booleanes que consisteixen en la negació d&#39;una altra exp..." alt="" coords="419,263,609,355"/>
 <area shape="rect" id="node5" href="$classmain_1_1domain_1_1expressions_1_1_or.html" title="Classe que representa a aquelles expressions booleanes que consisteixen en la disjunció de dues altre..." alt="" coords="634,255,818,362"/>
-<area shape="rect" id="node6" href="$classtest_1_1domain_1_1expressions_1_1_false.html" title="Classe que usem per provar expressions, sabent que sempre ens retornarà una avaluació falsa." alt="" coords="843,255,1007,362"/>
-<area shape="rect" id="node7" href="$classtest_1_1domain_1_1expressions_1_1_true.html" title="Classe que usem per provar expressions, sabent que sempre ens retornarà una avaluació certa." alt="" coords="1031,263,1221,355"/>
 </map>

@@ -2,7 +2,7 @@ package main.excepcions;
 
 /**
  * @class ExceptionInvalidFormat
- * @brief Excepció que es llença quan no es troba una expressió al sistema
+ * @brief Excepció que es llença quan s'intenta crear un document donant un format no vàlid
  * @author ariadna.cortes.danes
  */
 public class ExceptionInvalidFormat extends Exception{

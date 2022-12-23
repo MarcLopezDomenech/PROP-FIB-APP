@@ -1,0 +1,4 @@
+Directori presentation/images
+
+Aquest directori conté les imatges d'un cor blanc i un cor vermell usats en la implementació de la presentació dels favorits.
+
