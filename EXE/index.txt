@@ -1,10 +1,9 @@
 Directori EXE
 
 En aquest directori hi ha un subdirectori trobem diversos executables.
-Aquí trobem l'executable subgrup_33_1.jar, que inicia l'aplicacio.
+Aqui trobem l'executable subgrup_33_1.jar, que inicia l'aplicacio.
 
 A mes, trobem els subdirectoris:
 - TestsJUnit: tests unitaris de JUnit de la capa de domini, dades i descripcions de cadascun d'aquests jocs
-- JocDeProvesApp: directori que conté tots els jocs de proves de l'aplicació (fitxers necessaris i descripcio dels jocs).
-- App: Aplicació completa compilada
-
+- JocDeProvesApp: directori que conte tots els jocs de proves de l'aplicacio (fitxers necessaris i descripcio dels jocs).
+- App: Aplicacio completa compilada

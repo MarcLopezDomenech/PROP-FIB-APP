@@ -1,10 +1,10 @@
 Directori FONTS
 
-Aquest és el directori on hi ha tota la implementació. Aquesta es troba en el directori main. 
-- Directori main: Amb tota la implementació de les classes que apareixen a la capa de domini, i posteriorment amb la resta de classes.
-- META-INF: directori necessari per a la generació del jar autoexecutable.
+Aquest es el directori on hi ha tota la implementacio. Aquesta es troba en el directori main.
+- Directori main: Amb tota la implementacio de les classes que apareixen a la capa de domini, i posteriorment amb la resta de classes.
+- META-INF: directori necessari per a la generacio del jar autoexecutable.
 
-A més, aquest directori conte el fitxer run.bat. L'execucio d'aquest s'ha de fer des del directori FONTS.
-Si s'executa amb cap paràmetre, engega l'aplicació, però també es pot executar amb un paràmetre indicant el test o driver que es vol executar.
+A mes, aquest directori conte el fitxer run.bat. L'execucio d'aquest s'ha de fer des del directori FONTS.
+Si s'executa amb cap parametre, engega l'aplicacio, pero tambe es pot executar amb un parametre indicant el test o driver que es vol executar.
 Per exemple, "run.bat TestDocument" executa el test de la classe Document i "run.bat Driver" recompila i executa el driver (del controlaor de domini).
-El run.bat llança un missatge d'"usage" quan s'introdueix un paràmetre no identificat. Si us plau executeu "run.bat help" per veure quines són totes les opcions.
+El run.bat llanca un missatge d'"usage" quan s'introdueix un parametre no identificat. Si us plau executeu "run.bat help" per veure quines son totes les opcions.

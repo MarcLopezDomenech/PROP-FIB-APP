@@ -1,25 +1,25 @@
 Directori presentation
 
-En aquest directori hi ha les classes de la capa de presentació, amb els .form quan es tracta de diàlegs i vistes:
-- Main: 			la classe executable del sistema, que instancïa CtrlApplication i que arranca l'aplicació.
-- CtrlApplication: 		subcontrolador de la capa de presentació que s'ocupa de l'engegada, l'aturada i el reseteig del sistema.
-- CtrlPresentation: 		controlador principal de la capa de presentació, que serveixen peticions de la capa comunicant-se amb el controlador de domini.
-- CtrlViewsDialogs: 		subcontrolador de la capa de presentació que instancia, inicialitza i mostra totes les vistes i diàlegs.
-- ConfirmDialog: 		diàleg mostrat per demanar confirmació quan es sol·licita fer alguna funcionalitat destructiva.
-- ErrorDialog: 			diàleg que es mostra amb l'objectiu de notificar algun error.
-- HelpDialog: 			diàleg d'ajuda que mostra missatges per orientar a l'usuari.
-- MainView: 			vista principal de l'aplicació, destinada a la gestió i el llistat de documents.
-- FavCheckBox: 			classe que hereda de JCheckBox per implementar una casella de selecció on els dos estats són dues imatges d'un cor de colors diferents.
+En aquest directori hi ha les classes de la capa de presentacio, amb els .form quan es tracta de dialegs i vistes:
+- Main: 			la classe executable del sistema, que instancia CtrlApplication i que arranca l'aplicacio.
+- CtrlApplication: 		subcontrolador de la capa de presentacio que s'ocupa de l'engegada, l'aturada i el reseteig del sistema.
+- CtrlPresentation: 		controlador principal de la capa de presentacio, que serveixen peticions de la capa comunicant-se amb el controlador de domini.
+- CtrlViewsDialogs: 		subcontrolador de la capa de presentacio que instancia, inicialitza i mostra totes les vistes i dialegs.
+- ConfirmDialog: 		dialeg mostrat per demanar confirmacio quan es sol·licita fer alguna funcionalitat destructiva.
+- ErrorDialog: 			dialeg que es mostra amb l'objectiu de notificar algun error.
+- HelpDialog: 			dialeg d'ajuda que mostra missatges per orientar a l'usuari.
+- MainView: 			vista principal de l'aplicacio, destinada a la gestio i el llistat de documents.
+- FavCheckBox: 			classe que hereda de JCheckBox per implementar una casella de seleccio on els dos estats son dues imatges d'un cor de colors diferents.
 - FavBooleanCellRenderer: 	classe que hereda de FavCheckBox per fer possible que es renderitzin els valors booleans en una taula com una FavCheckBox.
-- NewDocumentDialog: 		diàleg que permet a l'usuari l'alta d'un nou document amb el contingut en blanc.
-- LoaderDialog: 		diàleg que implementa la funcionalitat de carregar document(s) al sistema.
-- ModifyDialog: 		diàleg per modificar els documents com es desitgi: títol, autor, llenguatge i contingut.
-- ListKSimilarsDialog: 		diàleg l'ús del qual és llistar documents similars a un de seleccionat a la vista principal.
-- DownloaderDialog: 		diàleg que permet a l'usuari exportar documents del sistema.
-- ListQueryDialog: 		diàleg que respon al cas d'ús de llistar els documents més rellevants a una query.
-- ListExpressionDialog: 	diàleg per llistar segons una expressió prèviament donada d'alta al sistema.
-- ListAuthorDialog: 		diàleg que serveix per filtrar els autors donat un prefix, i a continuació llistar els títols d'un autor seleccionat.
-- ExpressionsView:		vista que s'ocupa de la gestió d'expressions: altes, baixes i modificacions.
-- ExpressionsModifyDialog:	diàleg que es mostra quan es vol modificar una expressió donada d'alta al sistema.
+- NewDocumentDialog: 		dialeg que permet a l'usuari l'alta d'un nou document amb el contingut en blanc.
+- LoaderDialog: 		dialeg que implementa la funcionalitat de carregar document(s) al sistema.
+- ModifyDialog: 		dialeg per modificar els documents com es desitgi: titol, autor, llenguatge i contingut.
+- ListKSimilarsDialog: 		dialeg l'us del qual es llistar documents similars a un de seleccionat a la vista principal.
+- DownloaderDialog: 		dialeg que permet a l'usuari exportar documents del sistema.
+- ListQueryDialog: 		dialeg que respon al cas d'us de llistar els documents mes rellevants a una query.
+- ListExpressionDialog: 	dialeg per llistar segons una expressio previament donada d'alta al sistema.
+- ListAuthorDialog: 		dialeg que serveix per filtrar els autors donat un prefix, i a continuacio llistar els titols d'un autor seleccionat.
+- ExpressionsView:		vista que s'ocupa de la gestio d'expressions: altes, baixes i modificacions.
+- ExpressionsModifyDialog:	dialeg que es mostra quan es vol modificar una expressio donada d'alta al sistema.
 
-També conté el directori Images, on es guarden les imatges d'un cor blanc i un cor vermell usats en la implementació de la presentació dels favorits.
+Tambe conte el directori Images, on es guarden les imatges d'un cor blanc i un cor vermell usats en la implementacio de la presentacio dels favorits.

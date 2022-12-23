@@ -1,8 +1,8 @@
 Directori DOCS
 
 En aquest directori nomes hi ha un fitxer, que correspon amb la documentacio demanada per aquesta ultima entrega:
-- Manual d'usuari: introducció a l'aplicació, especificacions, descripció de les funcionalitats, exemples d'ús i reflexió final sobre les limitacions del sistema
-- Llibreries externes: enumeració i descripció de les llibreries externes necessàries per fer funcionar l'aplicació, així com el raonament de perquè són necessàries
-- Distribució de les tasques: taula on es llista per cada membre el codi i la documentació fets, en el format demanat pel professor
+- Manual d'usuari: introduccio a l'aplicacio, especificacions, descripcio de les funcionalitats, exemples d'us i reflexio final sobre les limitacions del sistema
+- Llibreries externes: enumeracio i descripcio de les llibreries externes necessaries per fer funcionar l'aplicacio, aixi com el raonament de perque son necessaries
+- Distribucio de les tasques: taula on es llista per cada membre el codi i la documentacio fets, en el format demanat pel professor
 
 En aquest directori tambe trobem el directori doxygen, amb tota l'especificacio de les classes amb Doxygen, visible en el fitxer index.html

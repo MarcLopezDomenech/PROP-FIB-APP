@@ -1,6 +1,6 @@
 Directori util
 
-Aquest directori serveix per recollir les classes bàsiques que hem implementat per tal de ser usades des d'altres classes com a recurs.
-Són aquestes:
+Aquest directori serveix per recollir les classes basiques que hem implementat per tal de ser usades des d'altres classes com a recurs.
+Son aquestes:
 - Pair: En aquest fitxer esta el codi d'una implementacio senzilla del concepte de pair.
-- Trie: És tracta d'una classe que implementa l'estructura de dades arbòria on cada node representa una lletra. Emmagatzema paraules i fàcilment llista les paraules que conté donat un prefix.
+- Trie: Es tracta d'una classe que implementa l'estructura de dades arboria on cada node representa una lletra. Emmagatzema paraules i facilment llista les paraules que conte donat un prefix.

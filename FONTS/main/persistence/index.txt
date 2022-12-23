@@ -1,7 +1,7 @@
 Directori persistence
 
-En aquest directori hi ha la definició de les classes necessàries per a la implementació de la capa de persistència:
-- CtrlPersistence: Controlador de la capa de persistència
+En aquest directori hi ha la definicio de les classes necessaries per a la implementacio de la capa de persistencia:
+- CtrlPersistence: Controlador de la capa de persistencia
 - Parser: Classe pare que defineix l'estructura de qualsevol sub-parser.
 - TxtParser: Parser encarregat del format text pla
 - XmlParser: Parser encarregat del format XML
